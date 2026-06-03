@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Литературный Оазис - Книги в жанре Фэнтези</title>
+    <style>
+        /* Все стили из главной страницы сохраняем */
+        :root {
+            --primary-color: #8B4513;
+            --secondary-color: #D2691E;
+            --accent-color: #FF8C00;
+            --light-color: #FFF8DC;
+            --dark-color: #5D4037;
+            --text-color: #3E2723;
+            --shadow-sm: 0 2px 8px rgba(139, 69, 19, 0.1);
+            --shadow-md: 0 4px 16px rgba(139, 69, 19, 0.15);
+            --shadow-lg: 0 8px 32px rgba(139, 69, 19, 0.2);
+            --shadow-interactive: 0 4px 12px rgba(210, 105, 30, 0.25);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: 
+                linear-gradient(rgba(255, 248, 220, 0.9), rgba(255, 248, 220, 0.95)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><defs><pattern id="books" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><rect fill="%23F5E6D3" opacity="0.4" x="0" y="0" width="40" height="40"/><path fill="%23D2691E" opacity="0.15" d="M8,8 L32,8 L32,32 L8,32 Z M10,10 L30,10 L30,30 L10,30 Z M12,12 L28,12 L28,18 L12,18 Z M12,20 L28,20 L28,26 L12,26 Z"/></pattern></defs><rect fill="url(%23books)" width="400" height="400"/></svg>'),
+                #FFF8DC;
+            background-size: 400px 400px, auto;
+            background-attachment: fixed;
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: margin-left 0.3s ease;
+        }
+
+        body.admin-panel-open {
+            margin-left: 420px;
+        }
+
+        /* Шапка */
+        .header {
+            background: linear-gradient(135deg, var(--light-color), #F5E6D3);
+            padding: 15px 0;
+            border-bottom: 4px solid var(--primary-color);
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 0;
+            width: 100%;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 3700px;
+            margin: 0 auto;
+            padding: 0 30px;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+            text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2);
+        }
+
+        .nav {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--dark-color);
+            padding: 10px 16px;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            position: relative;
+            border: 2px solid transparent;
+            box-shadow: var(--shadow-sm);
+            white-space: nowrap;
+        }
+
+        .nav-item:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+            border-color: var(--accent-color);
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 6px;
+            background: rgba(139, 69, 19, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .nav-item:hover .nav-icon {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(135deg, #DC143C, #B22222);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            border: 3px solid var(--light-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-search {
+            display: flex;
+            gap: 10px;
+            margin-left: 20px;
+            position: relative;
+        }
+
+        .search-input {
+            padding: 12px 20px;
+            border: 3px solid var(--primary-color);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            background: white;
+            color: var(--text-color);
+            width: 280px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-interactive);
+            transform: translateY(-2px);
+        }
+
+        .search-button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+        }
+
+        .search-button:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+        }
+
+        /* Кнопки авторизации */
+        .auth-buttons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .login-btn, .register-btn {
+            padding: 10px 18px;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .login-btn {
+            background: var(--light-color);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .login-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+        }
+
+        .register-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: 2px solid transparent;
+        }
+
+        .register-btn:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+        }
+
+        /* Основной контейнер */
+        .container {
+            max-width: 1300px;
+            margin: auto;
+            padding: 0 30px;
+        }
+
+        /* Заголовок страницы жанра */
+        .genre-header {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.1), rgba(210, 105, 30, 0.05));
+            padding: 60px 0;
+            margin-bottom: 40px;
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+            border-bottom: 3px solid var(--primary-color);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+
+        .genre-header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .genre-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .genre-subtitle {
+            font-size: 24px;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .genre-description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+
+        .genre-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--accent-color);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--dark-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Сетка книг фэнтези */
+        .books-section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            font-size: 36px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        /* Карточка книги */
+        .book-card {
+            background: var(--light-color);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            border: 3px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .book-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-lg), 0 15px 30px rgba(139, 69, 19, 0.25);
+            border-color: var(--accent-color);
+        }
+
+        .book-image-container {
+            width: 100%;
+            flex: 0 0 auto;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 320px;
+            background: linear-gradient(135deg, #FFF8DC, #F5E6D3);
+            border-radius: var(--radius-md);
+            padding: 15px;
+        }
+
+        .book-image {
+            width: 100%;
+            max-width: 200px;
+            height: 300px;
+            object-fit: contain;
+            object-position: center top;
+            border-radius: var(--radius-sm);
+            border: 3px solid var(--primary-color);
+            transition: var(--transition);
+            background-color: white;
+            padding: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-card:hover .book-image {
+            transform: scale(1.08) rotate(1deg);
+            border-color: var(--accent-color);
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
+        }
+
+        .book-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .book-title {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-weight: 700;
+            line-height: 1.3;
+            min-height: 52px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .book-author {
+            color: var(--secondary-color);
+            margin-bottom: 12px;
+            font-size: 16px;
+            font-style: italic;
+            min-height: 24px;
+        }
+
+        .book-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px 0;
+            border-top: 2px solid rgba(139, 69, 19, 0.1);
+            border-bottom: 2px solid rgba(139, 69, 19, 0.1);
+        }
+
+        .book-pages {
+            color: var(--dark-color);
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .book-pages::before {
+            content: "📖";
+            font-size: 12px;
+        }
+
+        .book-price-container {
+            margin-top: auto;
+            margin-bottom: 15px;
+        }
+
+        .book-price {
+            font-size: 26px;
+            color: #228B22;
+            font-weight: 800;
+            text-align: center;
+            padding: 10px;
+            background: rgba(34, 139, 34, 0.05);
+            border-radius: var(--radius-md);
+            border: 2px solid rgba(34, 139, 34, 0.1);
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 16px;
+            font-weight: 700;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .add-to-cart:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .add-to-cart::before {
+            content: "🛒";
+            font-size: 14px;
+        }
+
+        /* Фильтры и сортировка */
+        .filters-section {
+            background: var(--light-color);
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-md);
+            border: 3px solid var(--primary-color);
+        }
+
+        .filters-title {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+
+        .filter-select, .filter-input {
+            padding: 12px;
+            border: 2px solid #E0D6CC;
+            border-radius: var(--radius-md);
+            font-size: 16px;
+            transition: var(--transition);
+            background: white;
+            color: var(--text-color);
+        }
+
+        .filter-select:focus, .filter-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-interactive);
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.secondary {
+            background: var(--light-color);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .filter-btn.secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Подвал */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-color), #4A3529);
+            color: #F5E6D3;
+            padding: 40px;
+            text-align: center;
+            margin-top: 50px;
+            width: 100%;
+            border-top: 4px solid var(--accent-color);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer p {
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* Модальное окно деталей книги (ТОЧЬ-В-ТОЧЬ КАК В ГЛАВНОЙ) */
+        .book-detail-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(93, 64, 55, 0.95);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .book-detail-modal.active {
+            display: flex;
+        }
+
+        .book-detail-container {
+            background: var(--light-color);
+            border-radius: var(--radius-lg);
+            width: 90%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 3px solid var(--primary-color);
+            box-shadow: var(--shadow-lg);
+            transform: scale(0.98);
+            transition: transform 0.3s ease;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        .book-detail-container.active {
+            transform: scale(1);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(0.98);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .book-detail-header {
+            padding: 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        .book-detail-title {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .book-detail-title::before {
+            content: "📚";
+            font-size: 24px;
+        }
+
+        .close-detail-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .close-detail-btn:hover {
+            background: rgba(255, 140, 0, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .book-detail-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px;
+            display: flex;
+            gap: 40px;
+        }
+
+        .book-detail-image-container {
+            flex: 0 0 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .book-detail-image {
+            width: 100%;
+            max-width: 280px;
+            height: 400px;
+            object-fit: contain;
+            border-radius: var(--radius-lg);
+            border: 4px solid var(--primary-color);
+            box-shadow: var(--shadow-lg);
+            background: white;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .book-detail-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .book-detail-name {
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .book-detail-author {
+            font-size: 22px;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            font-style: italic;
+            border-bottom: 2px solid rgba(210, 105, 30, 0.2);
+            padding-bottom: 15px;
+        }
+
+        .book-detail-description {
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .book-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .detail-item {
+            background: linear-gradient(135deg, rgba(255, 248, 220, 0.8), rgba(245, 230, 211, 0.9));
+            padding: 20px;
+            border-radius: var(--radius-md);
+            border: 2px solid rgba(139, 69, 19, 0.2);
+            transition: var(--transition);
+        }
+
+        .detail-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .detail-label {
+            font-size: 14px;
+            color: var(--primary-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .detail-label::before {
+            font-size: 16px;
+        }
+
+        .detail-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+
+        .detail-price {
+            font-size: 36px;
+            color: #228B22;
+            font-weight: 800;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(34, 139, 34, 0.1), rgba(50, 205, 50, 0.05));
+            border-radius: var(--radius-lg);
+            border: 3px solid rgba(34, 139, 34, 0.2);
+            margin: 20px 0;
+        }
+
+        .detail-genres {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .detail-genre {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .detail-actions {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .detail-cart-btn {
+            flex: 1;
+            padding: 18px;
+            background: linear-gradient(135deg, #228B22, #006400);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 700;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .detail-cart-btn:hover {
+            background: linear-gradient(135deg, #006400, #004d00);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .book-rating {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: var(--radius-md);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .rating-stars {
+            color: #FFD700;
+            font-size: 20px;
+        }
+
+        .rating-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+
+        .rating-count {
+            font-size: 14px;
+            color: var(--secondary-color);
+        }
+
+        /* Система оценки книг (ТОЧЬ-В-ТОЧЬ КАК В ГЛАВНОЙ) */
+        .rating-system {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 248, 220, 0.5);
+            border-radius: var(--radius-md);
+            border: 2px solid rgba(139, 69, 19, 0.2);
+        }
+
+        .rating-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rating-title::before {
+            content: "⭐";
+        }
+
+        .stars-container {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .star {
+            font-size: 28px;
+            cursor: pointer;
+            color: #ccc;
+            transition: all 0.2s ease;
+        }
+
+        .star:hover,
+        .star.active {
+            color: #FFD700;
+            transform: scale(1.2);
+        }
+
+        .rating-message {
+            font-size: 14px;
+            color: var(--secondary-color);
+            margin-top: 10px;
+            min-height: 20px;
+        }
+
+        .rating-message.success {
+            color: #228B22;
+        }
+
+        .rating-message.error {
+            color: #DC143C;
+        }
+
+        .rating-login-prompt {
+            padding: 15px;
+            background: linear-gradient(135deg, rgba(255, 140, 0, 0.1), rgba(210, 105, 30, 0.05));
+            border-radius: var(--radius-md);
+            border: 2px solid rgba(255, 140, 0, 0.2);
+            text-align: center;
+        }
+
+        .rating-login-prompt p {
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .rating-login-btn {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .rating-login-btn:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            transform: translateY(-2px);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1024px) {
+            .books-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .genre-title {
+                font-size: 36px;
+            }
+            
+            .genre-subtitle {
+                font-size: 20px;
+            }
+            
+            .book-detail-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .book-detail-image-container {
+                flex: 0 0 auto;
+                align-items: center;
+            }
+            
+            .book-details-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .nav {
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                margin-left: 0;
+                width: 100%;
+                gap: 8px;
+            }
+            
+            .header-search {
+                margin-left: 0;
+                width: 100%;
+                justify-content: flex-start;
+            }
+            
+            .search-input {
+                width: 100%;
+            }
+            
+            .genre-header {
+                padding: 40px 0;
+            }
+            
+            .genre-title {
+                font-size: 32px;
+            }
+            
+            .genre-subtitle {
+                font-size: 18px;
+            }
+            
+            .genre-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .books-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .book-details-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .detail-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .books-grid {
+                grid-template-columns: 1fr;
+                max-width: 300px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .genre-title {
+                font-size: 28px;
+            }
+            
+            .genre-subtitle {
+                font-size: 16px;
+            }
+            
+            .book-detail-content {
+                padding: 20px;
+            }
+            
+            .book-detail-name {
+                font-size: 24px;
+            }
+            
+            .book-detail-author {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                Литературный Оазис
+            </a>
+            
+            <nav class="nav">
+                <a href="index.html" class="nav-item">
+                    <span class="nav-icon">Г</span>
+                    Главная
+                </a>
+                <a href="horror.html" class="nav-item">
+                    <span class="nav-icon">У</span>
+                    Ужасы
+                </a>
+                <a href="textbooks.html" class="nav-item">
+                    <span class="nav-icon">У</span>
+                    Учебники
+                </a>
+                <a href="magazines.html" class="nav-item">
+                    <span class="nav-icon">Ж</span>
+                    Журналы
+                </a>
+                
+                <div class="header-search">
+                    <input type="text" class="search-input" placeholder="Поиск книг фэнтези..." id="headerSearch">
+                    <button class="search-button" onclick="performSearch()">
+                        <span class="nav-icon">П</span>
+                    </button>
+                </div>
+                
+                <!-- Кнопки авторизации -->
+                <div class="auth-buttons" id="authButtons">
+                    <button class="login-btn" onclick="showAuthModal('login')">Войти</button>
+                    <button class="register-btn" onclick="showAuthModal('register')">Регистрация</button>
+                </div>
+                
+                <a href="cart.html" class="nav-item">
+                    <span class="nav-icon">К</span>
+                    Корзина
+                    <span class="cart-count" id="cart-count">0</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Заголовок страницы жанра -->
+    <section class="genre-header">
+        <div class="genre-header-content">
+            <h1 class="genre-title">🧙‍♂️ Фэнтези</h1>
+            <p class="genre-subtitle">Мир магии, драконов и эпических приключений</p>
+            <p class="genre-description">
+                Отправьтесь в захватывающее путешествие по мирам, где правят магия и древние легенды. 
+                От классических эпосов до современных городских фэнтези — здесь собраны самые увлекательные 
+                истории о героях, магических существах и невероятных приключениях.
+            </p>
+            <div class="genre-stats">
+                <div class="stat-item">
+                    <span class="stat-value">350+</span>
+                    <span class="stat-label">Книг в жанре</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">70+</span>
+                    <span class="stat-label">Авторов</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">1500+</span>
+                    <span class="stat-label">Отзывов читателей</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Основной контент -->
+    <div class="container">
+        <!-- Фильтры и сортировка -->
+        <section class="filters-section">
+            <h2 class="filters-title">Фильтры и сортировка</h2>
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label class="filter-label">Сортировать по:</label>
+                    <select class="filter-select" id="sortSelect">
+                        <option value="popular">Популярности</option>
+                        <option value="price-asc">Цене (по возрастанию)</option>
+                        <option value="price-desc">Цене (по убыванию)</option>
+                        <option value="title">Названию</option>
+                        <option value="date">Дате выхода</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Цена:</label>
+                    <select class="filter-select" id="priceSelect">
+                        <option value="all">Любая</option>
+                        <option value="0-500">До 500 руб</option>
+                        <option value="500-1000">500 - 1000 руб</option>
+                        <option value="1000+">Более 1000 руб</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Поджанр:</label>
+                    <select class="filter-select" id="subgenreSelect">
+                        <option value="all">Все поджанры</option>
+                        <option value="Высокое фэнтези">Высокое фэнтези</option>
+                        <option value="Тёмное фэнтези">Тёмное фэнтези</option>
+                        <option value="Городское фэнтези">Городское фэнтези</option>
+                        <option value="Романтическое фэнтези">Романтическое фэнтези</option>
+                    </select>
+                </div>
+            </div>
+            <div class="filter-actions">
+                <button class="filter-btn secondary" onclick="resetFilters()">Сбросить фильтры</button>
+                <button class="filter-btn" onclick="applyFilters()">Применить</button>
+            </div>
+        </section>
+
+        <!-- Книги в жанре фэнтези -->
+        <section class="books-section">
+            <h2 class="section-title">Книги в жанре фэнтези</h2>
+            <div class="books-grid" id="fantasyBooksGrid">
+                <!-- Книги будут добавлены через JavaScript -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <p>© 2024 Литературный Оазис. Все права защищены.</p>
+        <p>Книжный магазин с душой | Ул. Бамбуково, д.13 | +7 (921) 756-77-44</p>
+    </footer>
+
+    <!-- Модальное окно деталей книги -->
+    <div class="book-detail-modal" id="bookDetailModal">
+        <div class="book-detail-container">
+            <div class="book-detail-header">
+                <h2 class="book-detail-title">Подробности книги</h2>
+                <button class="close-detail-btn" onclick="closeBookDetail()">×</button>
+            </div>
+            <div class="book-detail-content" id="bookDetailContent">
+                <!-- Содержимое будет заполнено через JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Данные книг в жанре фэнтези (расширенные)
+        const fantasyBooks = [
+            {
+                id: 201,
+                title: "Властелин Колец",
+                author: "Дж. Р. Р. Толкин",
+                pages: 1216,
+                price: 1450,
+                year: 1954,
+                subgenre: "Высокое фэнтези",
+                series: "Властелин Колец",
+                image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&w=400&h=600&fit=crop&q=80",
+                description: "Эпическая трилогия о борьбе добра и зла в Средиземье. Классика жанра фэнтези, повествующая о путешествии хоббита Фродо Бэггинса, который должен уничтожить Единое Кольцо в жерле огнедышащей горы Ородруин. По пути он встречает друзей, сталкивается с предательством и проходит через множество испытаний.",
+                rating: 4.9,
+                ratingCount: 7890,
+                genres: ["Высокое фэнтези", "Эпическое фэнтези", "Классика"],
+                isbn: "978-5-17-090185-1",
+                language: "Русский",
+                weight: 1200,
+                dimensions: "24.5 x 17.5 x 4.5 см",
+                publisher: "Издательство «АСТ»",
+                available: true
+            },
+            {
+                id: 202,
+                title: "Хроники Нарнии",
+                author: "Клайв С. Льюис",
+                pages: 768,
+                price: 980,
+                year: 1950,
+                subgenre: "Высокое фэнтези",
+                series: "Хроники Нарнии",
+                image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&w=400&h=600&fit=crop&q=80",
+                description: "Семь книг о волшебной стране Нарнии и приключениях детей, которые попадают в неё через платяной шкаф. Каждая книга представляет собой отдельную историю, объединённую общей вселенной и персонажами. От создания Нарнии львом Асланом до последней битвы между добром и злом.",
+                rating: 4.8,
+                ratingCount: 4567,
+                genres: ["Высокое фэнтези", "Детская литература", "Христианская аллегория"],
+                isbn: "978-5-17-090186-8",
+                language: "Русский",
+                weight: 850,
+                dimensions: "22.5 x 15.5 x 3.8 см",
+                publisher: "Издательство «Эксмо»",
+                available: true
+            },
+            {
+                id: 203,
+                title: "Гарри Поттер и философский камень",
+                author: "Джоан Роулинг",
+                pages: 432,
+                price: 890,
+                year: 1997,
+                subgenre: "Городское фэнтези",
+                series: "Гарри Поттер",
+                image: "https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?ixlib=rb-4.0.3&w=400&h=600&fit=crop&q=80",
+                description: "Первая книга о юном волшебнике Гарри Поттере и его обучении в школе магии Хогвартс. История начинается с того, что Гарри, живущий у ненавидящих его родственников, узнаёт, что он волшебник и приглашён в школу магии. В Хогвартсе он находит друзей, врагов и раскрывает тайну философского камня.",
+                rating: 4.9,
+                ratingCount: 9876,
+                genres: ["Городское фэнтези", "Детская литература", "Приключения"],
+                isbn: "978-5-389-07435-4",
+                language: "Русский",
+                weight: 520,
+                dimensions: "22.5 x 14.5 x 3.2 см",
+                publisher: "Издательство «Махаон»",
+                available: true
+            },
+            {
+                id: 204,
+                title: "Игра престолов",
+                author: "Джордж Р. Р. Мартин",
+                pages: 864,
+                price: 950,
+                year: 1996,
+                subgenre: "Тёмное фэнтези",
+                series: "Песнь Льда и Огня",
+                image: "https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&w=400&h=600&fit=crop&q=80",
+                description: "Первая книга эпопеи о борьбе за Железный Трон Семи Королевств. Действие происходит в вымышленном мире, напоминающем средневековую Европу. Сложные политические интриги, кровопролитные битвы, магия и драконы переплетаются в истории множества персонажей, каждый из которых борется за власть, выживание или месть.",
+                rating: 4.7,
+                ratingCount: 6543,
+                genres: ["Тёмное фэнтези", "Политическое фэнтези", "Эпическое фэнтези"],
+                isbn: "978-5-17-090187-5",
+                language: "Русский",
+                weight: 950,
+                dimensions: "24.0 x 16.5 x 4.2 см",
+                publisher: "Издательство «АСТ»",
+                available: true
+            },
+            {
+                id: 205,
+                title: "Ведьмак: Последнее желание",
+                author: "Анджей Сапковский",
+                pages: 288,
+                price: 650,
+                year: 1993,
+                subgenre: "Тёмное фэнтези",
+                series: "Ведьмак",
+                image: "https://images.unsplash.com/photo-1568667256549-094345857637?ixlib=rb-4.0.3&w=400&h=600&fit=crop&q=80",
+                description: "Сборник рассказов о ведьмаке Геральте, охотнике на чудовищ. Геральт из Ривии — мутант, обученный с детства охоте на монстров. В мире, где магия реальна, а люди зачастую хуже чудовищ, он пытается сохранить нейтралитет, но судьба постоянно втягивает его в политические интриги и опасные приключения.",
+                rating: 4.8,
+                ratingCount: 5678,
+                genres: ["Тёмное фэнтези", "Славянское фэнтези", "Приключения"],
+                isbn: "978-5-17-090188-2",
+                language: "Русский",
+                weight: 380,
+                dimensions: "20.8 x 13.5 x 2.2 см",
+                publisher: "Издательство «АСТ»",
+                available: true
+            },
+            {
+                id: 206,
+                title: "Хоббит, или Туда и обратно",
+                author: "Дж. Р. Р. Толкин",
+                pages: 320,
+                price: 720,
+                year: 1937,
+                subgenre: "Высокое фэнтези",
+                series: "Легендариум Средиземья",
+                image: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=400&h=600&fit=crop&q=80",
+                description: "История о путешествии хоббита Бильбо Бэггинса к Одинокой Горе. Скромный хоббит Бильбо неожиданно для себя отправляется в опасное путешествие с группой гномов, чтобы помочь им вернуть их сокровища, украденные драконом Смаугом. По пути он находит магическое кольцо, которое изменит судьбу всего Средиземья.",
+                rating: 4.8,
+                ratingCount: 5432,
+                genres: ["Высокое фэнтези", "Приключения", "Классика"],
+                isbn: "978-5-17-090189-9",
+                language: "Русский",
+                weight: 450,
+                dimensions: "21.5 x 14.5 x 2.5 см",
+                publisher: "Издательство «АСТ»",
+                available: true
+            },
+            {
+                id: 207,
+                title: "Имя ветра",
+                author: "Патрик Ротфус",
+                pages: 784,
+                price: 850,
+                year: 2007,
+                subgenre: "Высокое фэнтези",
+                series: "Хроника Убийцы Короля",
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop&q=80",
+                description: "История Квоута, легендарного героя, рассказывающего свою жизнь хроникёру. Квоут — музыкант, волшебник, вор и легендарный убийца. Он рассказывает историю своего детства в труппе бродячих артистов, обучения в Университете, поисков таинственных существ Чандиан и трагической любви.",
+                rating: 4.7,
+                ratingCount: 4321,
+                genres: ["Высокое фэнтези", "Магический реализм", "Приключения"],
+                isbn: "978-5-17-090190-5",
+                language: "Русский",
+                weight: 780,
+                dimensions: "24.0 x 16.5 x 4.0 см",
+                publisher: "Издательство «Фантастика»",
+                available: true
+            },
+            {
+                id: 208,
+                title: "Мгла",
+                author: "Стивен Кинг",
+                pages: 416,
+                price: 680,
+                year: 2007,
+                subgenre: "Тёмное фэнтези",
+                series: "Тёмная Башня",
+                image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.0.3&w=400&h=600&fit=crop&q=80",
+                description: "История о художнике, который попадает в параллельный мир после автомобильной аварии. Действие происходит в вымышленном городе Иерусалимов Лот, куда главный герой приезжает, чтобы закончить картину. Однако город скрывает тёмные тайны, а сам художник оказывается связан с древним злом.",
+                rating: 4.5,
+                ratingCount: 3210,
+                genres: ["Тёмное фэнтези", "Ужасы", "Мистика"],
+                isbn: "978-5-17-090191-2",
+                language: "Русский",
+                weight: 550,
+                dimensions: "21.0 x 14.0 x 3.0 см",
+                publisher: "Издательство «АСТ»",
+                available: true
+            },
+            {
+                id: 209,
+                title: "Академия Проклятых",
+                author: "Ришель Мид",
+                pages: 352,
+                price: 580,
+                year: 2007,
+                subgenre: "Романтическое фэнтези",
+                series: "Академия вампиров",
+                image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-4.0.3&w=400&h=600&fit=crop&q=80",
+                description: "История о стражнице Розе Хэтэуэй и её отношениях с вампиром-мораем. Роза — dhampir (полувампир), обучающаяся стать стражницей вампиров. Её лучшая подруга — вампир Лиза, и Роза должна защищать её от Стригоев, бездушных вампиров-убийц. История полна романтики, действия и вампирской политики.",
+                rating: 4.4,
+                ratingCount: 2345,
+                genres: ["Романтическое фэнтези", "Городское фэнтези", "Вампиры"],
+                isbn: "978-5-17-090192-9",
+                language: "Русский",
+                weight: 420,
+                dimensions: "20.5 x 13.5 x 2.5 см",
+                publisher: "Издательство «Азбука»",
+                available: true
+            },
+            {
+                id: 210,
+                title: "Дозоры",
+                author: "Сергей Лукьяненко",
+                pages: 448,
+                price: 620,
+                year: 1998,
+                subgenre: "Городское фэнтези",
+                series: "Дозоры",
+                image: "https://images.unsplash.com/photo-1580477667995-2b94f01c9516?ixlib=rb-4.0.3&w=400&h=600&fit=crop&q=80",
+                description: "Роман о мире, где среди людей живут Иные — маги, оборотни, вампиры. Все они разделены на Светлых и Тёмных, между которыми существует хрупкое равновесие. Главный герой Антон Городецкий — маг Ночного Дозора, который охраняет мир от Тёмных Иных. Но граница между добром и злом оказывается размытой.",
+                rating: 4.6,
+                ratingCount: 3456,
+                genres: ["Городское фэнтези", "Магический реализм", "Приключения"],
+                isbn: "978-5-17-090193-6",
+                language: "Русский",
+                weight: 520,
+                dimensions: "21.0 x 14.0 x 3.2 см",
+                publisher: "Издательство «АСТ»",
+                available: true
+            },
+            {
+                id: 211,
+                title: "Эрагон",
+                author: "Кристофер Паолини",
+                pages: 544,
+                price: 750,
+                year: 2002,
+                subgenre: "Высокое фэнтези",
+                series: "Наследие",
+                image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&w=400&h=600&fit=crop&q=80",
+                description: "История о мальчике Эрагоне, который находит драконье яйцо и становится Всадником. В мире, где драконы считаются вымершими, а Всадники — легендой, простой фермерский мальчик находит драконье яйцо. Когда из яйца вылупляется дракон, Эрагон вынужден бежать от злого короля и присоединиться к сопротивлению.",
+                rating: 4.5,
+                ratingCount: 2987,
+                genres: ["Высокое фэнтези", "Приключения", "Драконы"],
+                isbn: "978-5-17-090194-3",
+                language: "Русский",
+                weight: 650,
+                dimensions: "22.5 x 15.0 x 3.5 см",
+                publisher: "Издательство «Росмэн»",
+                available: true
+            },
+            {
+                id: 212,
+                title: "Плоский мир",
+                author: "Терри Пратчетт",
+                pages: 384,
+                price: 690,
+                year: 1983,
+                subgenre: "Юмористическое фэнтези",
+                series: "Плоский мир",
+                image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&w=400&h=600&fit=crop&q=80",
+                description: "Юмористический фэнтези-роман о диске, который покоится на спинах четырёх слонов. Действие происходит на плоском мире, покоящемся на спинах четырёх слонов, которые, в свою очередь, стоят на панцире гигантской черепахи. История полна пародий на классические фэнтези-клише, философских размышлений и тонкого британского юмора.",
+                rating: 4.7,
+                ratingCount: 4123,
+                genres: ["Юмористическое фэнтези", "Сатрическое фэнтези", "Приключения"],
+                isbn: "978-5-17-090195-0",
+                language: "Русский",
+                weight: 480,
+                dimensions: "21.0 x 14.0 x 2.8 см",
+                publisher: "Издательство «Эксмо»",
+                available: true
+            }
+        ];
+
+        // Переменные для фильтрации
+        let currentBooks = [...fantasyBooks];
+        let currentFilters = {
+            sort: 'popular',
+            price: 'all',
+            subgenre: 'all'
+        };
+
+        // Инициализация корзины
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+        // Хранилище оценок пользователей (как в главной)
+        let bookRatings = {};
+        let currentUser = null;
+
+        // Загрузка оценок из localStorage
+        function loadRatings() {
+            const savedRatings = localStorage.getItem('bookRatings');
+            if (savedRatings) {
+                bookRatings = JSON.parse(savedRatings);
+            }
+        }
+
+        // Сохранение оценок в localStorage
+        function saveRatings() {
+            localStorage.setItem('bookRatings', JSON.stringify(bookRatings));
+        }
+
+        // Отображение книг
+        function displayBooks() {
+            const booksGrid = document.getElementById('fantasyBooksGrid');
+            booksGrid.innerHTML = '';
+            
+            currentBooks.forEach(book => {
+                const bookCard = document.createElement('div');
+                bookCard.className = 'book-card';
+                
+                // Добавляем значок серии, если книга входит в серию
+                const seriesBadge = book.series ? `<span style="font-size: 12px; color: var(--accent-color); font-weight: 600; background: rgba(255, 140, 0, 0.1); padding: 2px 8px; border-radius: 10px; border: 1px solid rgba(255, 140, 0, 0.2);">${book.series}</span>` : '';
+                
+                bookCard.innerHTML = `
+                    <div class="book-image-container" onclick="showBookDetail(${book.id})" style="cursor: pointer;">
+                        <img src="${book.image}" alt="Обложка: ${book.title}" 
+                             class="book-image"
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&w=400&h=600&fit=cover&q=80'; this.alt='Изображение недоступно'">
+                    </div>
+                    <div class="book-content">
+                        <h3 class="book-title" onclick="showBookDetail(${book.id})" style="cursor: pointer;">${book.title}</h3>
+                        <p class="book-author">${book.author}</p>
+                        <div style="margin-bottom: 10px;">
+                            ${seriesBadge}
+                        </div>
+                        <div class="book-meta">
+                            <span class="book-pages">${book.pages} стр.</span>
+                            <span style="font-size: 12px; color: var(--accent-color); font-weight: 600;">${book.year} г.</span>
+                        </div>
+                        <div class="book-price-container">
+                            <div class="book-price">${book.price} руб</div>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart(${book.id}); event.stopPropagation();">В корзину</button>
+                    </div>
+                `;
+                booksGrid.appendChild(bookCard);
+            });
+        }
+
+        // Получить HTML для системы оценки (как в главной)
+        function getRatingSystemHTML(bookId) {
+            // Проверяем, зарегистрирован ли пользователь
+            if (!currentUser) {
+                return `
+                    <div class="rating-login-prompt">
+                        <p>Чтобы оценить книгу, необходимо войти в систему</p>
+                        <button class="rating-login-btn" onclick="showAuthModal('login')">Войти</button>
+                    </div>
+                `;
+            }
+            
+            // Получаем текущую оценку пользователя
+            const userRating = getCurrentUserRating(bookId);
+            const currentRating = userRating || 0;
+            
+            return `
+                <div class="stars-container" id="starsContainer-${bookId}">
+                    ${[1, 2, 3, 4, 5].map(starValue => `
+                        <span class="star ${starValue <= currentRating ? 'active' : ''}" 
+                              data-value="${starValue}"
+                              onclick="rateBook(${bookId}, ${starValue})">
+                            ★
+                        </span>
+                    `).join('')}
+                </div>
+                <div class="rating-message" id="ratingMessage-${bookId}">
+                    ${userRating ? `Ваша оценка: ${userRating} звезд` : 'Нажмите на звезду для оценки'}
+                </div>
+            `;
+        }
+
+        // Инициализация системы оценки (как в главной)
+        function initializeRatingSystem(bookId) {
+            const stars = document.querySelectorAll(`#starsContainer-${bookId} .star`);
+            const messageElement = document.getElementById(`ratingMessage-${bookId}`);
+            
+            if (!stars.length || !messageElement) return;
+            
+            // Добавляем обработчики событий для звезд
+            stars.forEach(star => {
+                const value = parseInt(star.getAttribute('data-value'));
+                
+                // При наведении
+                star.addEventListener('mouseenter', () => {
+                    stars.forEach(s => {
+                        const sValue = parseInt(s.getAttribute('data-value'));
+                        if (sValue <= value) {
+                            s.classList.add('active');
+                        } else {
+                            s.classList.remove('active');
+                        }
+                    });
+                });
+                
+                // При уходе мыши
+                star.addEventListener('mouseleave', () => {
+                    const currentRating = getCurrentUserRating(bookId) || 0;
+                    stars.forEach(s => {
+                        const sValue = parseInt(s.getAttribute('data-value'));
+                        if (sValue <= currentRating) {
+                            s.classList.add('active');
+                        } else {
+                            s.classList.remove('active');
+                        }
+                    });
+                });
+            });
+        }
+
+        // Оценка книги (как в главной)
+        function rateBook(bookId, rating) {
+            if (!currentUser) {
+                showAuthModal('login');
+                return;
+            }
+            
+            // Сохраняем оценку
+            if (!bookRatings[currentUser.id]) {
+                bookRatings[currentUser.id] = {};
+            }
+            bookRatings[currentUser.id][bookId] = rating;
+            
+            // Сохраняем в localStorage
+            saveRatings();
+            
+            // Обновляем сообщение
+            const messageElement = document.getElementById(`ratingMessage-${bookId}`);
+            if (messageElement) {
+                messageElement.textContent = `Ваша оценка: ${rating} звезд`;
+                messageElement.className = 'rating-message success';
+                
+                // Показываем уведомление
+                showNotification(`Вы оценили книгу на ${rating} звезд!`, 'success');
+            }
+            
+            // Обновляем отображение звезд
+            const stars = document.querySelectorAll(`#starsContainer-${bookId} .star`);
+            stars.forEach(star => {
+                const starValue = parseInt(star.getAttribute('data-value'));
+                if (starValue <= rating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        // Получить текущую оценку пользователя (как в главной)
+        function getCurrentUserRating(bookId) {
+            if (!currentUser || !bookRatings[currentUser.id]) {
+                return null;
+            }
+            return bookRatings[currentUser.id][bookId] || null;
+        }
+
+        // Показать детали книги в модальном окне (ТОЧЬ-В-ТОЧЬ КАК В ГЛАВНОЙ)
+        function showBookDetail(bookId) {
+            const book = fantasyBooks.find(b => b.id === bookId);
+            if (!book) return;
+
+            const modal = document.getElementById('bookDetailModal');
+            const content = document.getElementById('bookDetailContent');
+            
+            // Создаем HTML для детального просмотра
+            const genresHTML = book.genres.map(genre => 
+                `<span class="detail-genre">${genre}</span>`
+            ).join('');
+
+            const ratingStars = '★'.repeat(Math.floor(book.rating)) + '☆'.repeat(5 - Math.floor(book.rating));
+            
+            content.innerHTML = `
+                <div class="book-detail-image-container">
+                    <img src="${book.image}" alt="${book.title}" class="book-detail-image"
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&w=400&h=600&fit=cover&q=80'; this.alt='Изображение недоступно'">
+                    <div class="book-rating">
+                        <div class="rating-stars">${ratingStars}</div>
+                        <div class="rating-value">${book.rating}</div>
+                        <div class="rating-count">(${book.ratingCount} оценок)</div>
+                    </div>
+                </div>
+                <div class="book-detail-main">
+                    <h3 class="book-detail-name">${book.title}</h3>
+                    <p class="book-detail-author">${book.author}</p>
+                    
+                    <div class="book-detail-description">
+                        <strong>Описание:</strong><br>
+                        ${book.description}
+                    </div>
+                    
+                    <div class="detail-genres">
+                        ${genresHTML}
+                    </div>
+                    
+                    <div class="book-details-grid">
+                        <div class="detail-item">
+                            <div class="detail-label">📅 Год издания</div>
+                            <div class="detail-value">${book.year}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">📖 Страниц</div>
+                            <div class="detail-value">${book.pages}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">🏷️ Издательство</div>
+                            <div class="detail-value">${book.publisher}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">🔤 Язык</div>
+                            <div class="detail-value">${book.language}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">📏 Размеры</div>
+                            <div class="detail-value">${book.dimensions}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">⚖️ Вес</div>
+                            <div class="detail-value">${book.weight} г</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">📚 Серия</div>
+                            <div class="detail-value">${book.series || 'Нет'}</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">🔖 Поджанр</div>
+                            <div class="detail-value">${book.subgenre}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-price">${book.price} руб</div>
+                    
+                    <div class="detail-actions">
+                        <button class="detail-cart-btn" onclick="addToCart(${book.id}); closeBookDetail();">
+                            <span>🛒</span>
+                            <span>В корзину</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Система оценки книг (ТОЧЬ-В-ТОЧЬ КАК В ГЛАВНОЙ) -->
+                    <div class="rating-system">
+                        <div class="rating-title">
+                            <span>Оценить книгу</span>
+                        </div>
+                        ${getRatingSystemHTML(book.id)}
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Инициализируем систему оценки
+            initializeRatingSystem(book.id);
+        }
+
+        // Закрыть детали книги
+        function closeBookDetail() {
+            const modal = document.getElementById('bookDetailModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Добавить в корзину
+        function addToCart(bookId) {
+            const book = fantasyBooks.find(b => b.id === bookId);
+            const existingItem = cartItems.find(item => item.id === bookId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cartItems.push({
+                    id: book.id,
+                    title: book.title,
+                    price: book.price,
+                    image: book.image,
+                    author: book.author,
+                    quantity: 1
+                });
+            }
+            
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            updateCartCount();
+            
+            // Показать уведомление
+            showNotification(`"${book.title}" добавлена в корзину!`, 'success');
+        }
+
+        // Обновить счетчик корзины
+        function updateCartCount() {
+            const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+            const cartCountElement = document.getElementById('cart-count');
+            
+            if (cartCountElement) {
+                cartCountElement.textContent = totalCount;
+                if (totalCount > 0) {
+                    cartCountElement.style.display = 'flex';
+                } else {
+                    cartCountElement.style.display = 'none';
+                }
+            }
+        }
+
+        // Показать уведомление (как в главной)
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? 'linear-gradient(135deg, #228B22, #006400)' : 'linear-gradient(135deg, var(--accent-color), #FFA500)'};
+                color: white;
+                padding: 20px 25px;
+                border-radius: var(--radius-md);
+                box-shadow: var(--shadow-lg);
+                z-index: 3000;
+                animation: slideIn 0.3s ease;
+                font-weight: 600;
+                font-size: 16px;
+                border: 2px solid rgba(255, 255, 255, 0.2);
+            `;
+            
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <span>${type === 'success' ? '✅' : 'ℹ️'}</span>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Применить фильтры
+        function applyFilters() {
+            const sortValue = document.getElementById('sortSelect').value;
+            const priceValue = document.getElementById('priceSelect').value;
+            const subgenreValue = document.getElementById('subgenreSelect').value;
+            
+            currentFilters = { sort: sortValue, price: priceValue, subgenre: subgenreValue };
+            
+            // Фильтрация по цене
+            let filteredBooks = fantasyBooks.filter(book => {
+                if (priceValue === 'all') return true;
+                if (priceValue === '0-500') return book.price <= 500;
+                if (priceValue === '500-1000') return book.price >= 500 && book.price <= 1000;
+                if (priceValue === '1000+') return book.price > 1000;
+                return true;
+            });
+            
+            // Фильтрация по поджанру
+            if (subgenreValue !== 'all') {
+                filteredBooks = filteredBooks.filter(book => book.subgenre === subgenreValue);
+            }
+            
+            // Сортировка
+            filteredBooks.sort((a, b) => {
+                if (sortValue === 'popular') return b.ratingCount - a.ratingCount;
+                if (sortValue === 'price-asc') return a.price - b.price;
+                if (sortValue === 'price-desc') return b.price - a.price;
+                if (sortValue === 'title') return a.title.localeCompare(b.title);
+                if (sortValue === 'date') return b.year - a.year;
+                return 0;
+            });
+            
+            currentBooks = filteredBooks;
+            displayBooks();
+            
+            // Показать сообщение о количестве найденных книг
+            const countMessage = filteredBooks.length === fantasyBooks.length ? 
+                'Показаны все книги' : 
+                `Найдено ${filteredBooks.length} книг`;
+            showNotification(countMessage);
+        }
+
+        // Сбросить фильтры
+        function resetFilters() {
+            document.getElementById('sortSelect').value = 'popular';
+            document.getElementById('priceSelect').value = 'all';
+            document.getElementById('subgenreSelect').value = 'all';
+            
+            currentBooks = [...fantasyBooks];
+            displayBooks();
+            showNotification('Фильтры сброшены. Показаны все книги.');
+        }
+
+        // Поиск книг
+        function performSearch() {
+            const searchTerm = document.getElementById('headerSearch').value.toLowerCase().trim();
+            
+            if (searchTerm === '') {
+                resetFilters();
+                return;
+            }
+            
+            const filteredBooks = fantasyBooks.filter(book => 
+                book.title.toLowerCase().includes(searchTerm) ||
+                book.author.toLowerCase().includes(searchTerm) ||
+                (book.series && book.series.toLowerCase().includes(searchTerm)) ||
+                book.subgenre.toLowerCase().includes(searchTerm)
+            );
+            
+            currentBooks = filteredBooks;
+            displayBooks();
+            
+            if (filteredBooks.length === 0) {
+                showNotification('Книги по вашему запросу не найдены');
+            } else {
+                showNotification(`Найдено ${filteredBooks.length} книг`);
+            }
+        }
+
+        // Модальное окно авторизации (упрощенное)
+        function showAuthModal(type) {
+            alert('Для входа в систему перейдите на главную страницу сайта.');
+        }
+
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            // Загружаем оценки
+            loadRatings();
+            
+            // Загружаем текущего пользователя (если есть)
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+            }
+            
+            displayBooks();
+            updateCartCount();
+            
+            // Загрузка корзины из localStorage
+            const savedCart = localStorage.getItem('cartItems');
+            if (savedCart) {
+                cartItems = JSON.parse(savedCart);
+            }
+            
+            // Обработка нажатия Enter в поиске
+            document.getElementById('headerSearch').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            // Закрытие модального окна при клике вне его
+            document.addEventListener('click', function(event) {
+                const modal = document.getElementById('bookDetailModal');
+                if (modal.classList.contains('active') && event.target === modal) {
+                    closeBookDetail();
+                }
+            });
+            
+            // Закрытие модального окна по Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeBookDetail();
+                }
+            });
+            
+            // Добавляем CSS анимации (как в главной)
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    25% { transform: translateX(-5px); }
+                    75% { transform: translateX(5px); }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>

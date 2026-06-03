@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход - Литературный Оазис</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: 
+                linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.98)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><defs><pattern id="books" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><rect fill="%23f1f5f9" opacity="0.3" x="0" y="0" width="40" height="40"/><path fill="%23cbd5e1" opacity="0.2" d="M8,8 L32,8 L32,32 L8,32 Z M10,10 L30,10 L30,30 L10,30 Z M12,12 L28,12 L28,18 L12,18 Z M12,20 L28,20 L28,26 L12,26 Z"/></pattern></defs><rect fill="url(%23books)" width="400" height="400"/></svg>'),
+                #f8fafc;
+            background-size: 400px 400px, auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: white;
+            padding: 16px 0;
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: #3b82f6;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .back-btn {
+            padding: 8px 16px;
+            background: #f1f5f9;
+            color: #475569;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .back-btn:hover {
+            background: #e2e8f0;
+        }
+
+        .login-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .login-box {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .login-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #475569;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #374151;
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-input.error {
+            border-color: #ef4444;
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #374151;
+            background: white;
+            cursor: pointer;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .form-text {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 5px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 20px;
+        }
+
+        .login-btn:hover:not(:disabled) {
+            background: #059669;
+        }
+
+        .login-btn:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        .login-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-size: 16px;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn.active {
+            color: #3b82f6;
+            border-bottom-color: #3b82f6;
+            font-weight: 500;
+        }
+
+        .auth-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .auth-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+
+        .auth-info {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .auth-field {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .auth-label {
+            color: #64748b;
+        }
+
+        .auth-value {
+            color: #1e293b;
+            font-weight: 500;
+        }
+
+        .logout-btn {
+            width: 100%;
+            padding: 12px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
+        }
+
+        .footer {
+            background: #1e293b;
+            color: #cbd5e1;
+            padding: 30px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .footer p {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            
+            .login-box {
+                padding: 30px 20px;
+            }
+        }
+
+        .password-strength {
+            margin-top: 5px;
+            height: 4px;
+            background: #e2e8f0;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: all 0.3s ease;
+        }
+
+        .strength-weak {
+            background: #ef4444;
+        }
+
+        .strength-medium {
+            background: #f59e0b;
+        }
+
+        .strength-strong {
+            background: #10b981;
+        }
+
+        .password-requirements {
+            font-size: 11px;
+            color: #64748b;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">LO</div>
+                Литературный Оазис
+            </a>
+            
+            <a href="index.html" class="back-btn">
+                ← На главную
+            </a>
+        </div>
+    </header>
+
+    <div class="login-container">
+        <div class="login-box">
+            <h1 class="login-title">Авторизация</h1>
+            
+            <div class="login-tabs">
+                <button class="tab-btn active" onclick="showTab('register')">Регистрация</button>
+                <button class="tab-btn" onclick="showTab('login')">Войти</button>
+            </div>
+            
+            <!-- Форма регистрации -->
+            <div id="registerTab">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label class="form-label">Логин *</label>
+                        <input type="text" class="form-input" id="regUsername" name="username" required>
+                        <div class="error-message" id="regUsernameError">Логин должен содержать от 3 до 20 символов (буквы, цифры, _)</div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Имя *</label>
+                            <input type="text" class="form-input" id="regFirstName" name="firstName" required>
+                            <div class="error-message" id="regFirstNameError">Только буквы, без цифр и знаков препинания</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Фамилия *</label>
+                            <input type="text" class="form-input" id="regLastName" name="lastName" required>
+                            <div class="error-message" id="regLastNameError">Только буквы, без цифр и знаков препинания</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Телефон *</label>
+                        <input type="tel" class="form-input" id="regPhone" name="phone" required placeholder="+7 (___) ___-__-__">
+                        <div class="error-message" id="regPhoneError">Введите корректный номер телефона: +7 (XXX) XXX-XX-XX</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email *</label>
+                        <input type="email" class="form-input" id="regEmail" name="email" required>
+                        <div class="error-message" id="regEmailError">Введите корректный email (должен содержать @)</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Дата рождения *</label>
+                        <input type="date" class="form-input" id="regBirthDate" name="birthDate" required>
+                        <div class="error-message" id="regBirthDateError">Дата рождения не может быть в будущем или сегодня</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Пароль *</label>
+                        <input type="password" class="form-input" id="regPassword" name="password" required>
+                        <div class="password-strength">
+                            <div class="strength-bar" id="passwordStrength"></div>
+                        </div>
+                        <div class="password-requirements">Минимум 8 символов, заглавная буква, цифра</div>
+                        <div class="error-message" id="regPasswordError">Пароль слишком слабый</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Подтвердите пароль *</label>
+                        <input type="password" class="form-input" id="regConfirmPassword" name="confirmPassword" required>
+                        <div class="error-message" id="regConfirmPasswordError">Пароли не совпадают</div>
+                    </div>
+                    
+                    <button type="submit" class="login-btn" id="registerBtn">Зарегистрироваться</button>
+                </form>
+            </div>
+            
+            <!-- Форма входа -->
+            <div id="loginTab" style="display: none;">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label">Логин или Email *</label>
+                        <input type="text" class="form-input" id="loginUsername" name="username" required>
+                        <div class="error-message" id="loginUsernameError">Неверный логин или email</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Пароль *</label>
+                        <input type="password" class="form-input" id="loginPassword" name="password" required>
+                        <div class="error-message" id="loginPasswordError">Неверный пароль</div>
+                    </div>
+                    
+                    <button type="submit" class="login-btn" id="loginBtn">Войти</button>
+                </form>
+                
+                <div class="auth-section" id="userInfo" style="display: none;">
+                    <h3 class="auth-title">Ваши данные</h3>
+                    <div class="auth-info" id="userData">
+                        <!-- Данные пользователя будут здесь -->
+                    </div>
+                    <button class="logout-btn" onclick="logout()">Выйти из аккаунта</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Литературный Оазис. Все права защищены.</p>
+        <p>Книжный магазин с душой | Ул. Бамбуково, д.13 | +7 (921) 756-77-44</p>
+    </footer>
+
+    <script>
+        // ========== ФУНКЦИИ ДЛЯ ПЕРЕНОСА КОРЗИН ==========
+        
+        // Перенос гостевой корзины в корзину пользователя
+        function clearGuestCartOnLogin(username) {
+            const guestCart = JSON.parse(localStorage.getItem('cartItems_guest')) || [];
+            
+            if (guestCart.length > 0) {
+                // Спрашиваем пользователя, хочет ли он перенести товары
+                if (confirm('В вашей временной корзине есть товары. Перенести их в вашу личную корзину?')) {
+                    // Получаем личную корзину пользователя
+                    const userCartKey = `cartItems_${username}`;
+                    let userCart = JSON.parse(localStorage.getItem(userCartKey)) || [];
+                    
+                    // Объединяем корзины
+                    guestCart.forEach(guestItem => {
+                        const existingItem = userCart.find(item => item.id === guestItem.id);
+                        if (existingItem) {
+                            existingItem.quantity += guestItem.quantity;
+                        } else {
+                            userCart.push(guestItem);
+                        }
+                    });
+                    
+                    localStorage.setItem(userCartKey, JSON.stringify(userCart));
+                    console.log('Корзина перенесена в личный аккаунт');
+                }
+                
+                // Очищаем гостевую корзину в любом случае
+                localStorage.removeItem('cartItems_guest');
+            }
+        }
+        
+        // Восстановление корзины из резервной копии
+        function restoreUserCart(username) {
+            const backupKey = `cartBackup_${username}`;
+            const backupCart = JSON.parse(localStorage.getItem(backupKey)) || [];
+            
+            if (backupCart.length > 0) {
+                const userCartKey = `cartItems_${username}`;
+                localStorage.setItem(userCartKey, JSON.stringify(backupCart));
+                localStorage.removeItem(backupKey);
+                console.log('Корзина восстановлена из резервной копии');
+            }
+        }
+        
+        // ========== ФУНКЦИИ ДЛЯ ОТОБРАЖЕНИЯ ВКЛАДОК ==========
+        
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('registerTab').style.display = 'none';
+            document.getElementById('loginTab').style.display = 'none';
+            
+            if (tabName === 'register') {
+                document.querySelector('[onclick="showTab(\'register\')"]').classList.add('active');
+                document.getElementById('registerTab').style.display = 'block';
+            } else {
+                document.querySelector('[onclick="showTab(\'login\')"]').classList.add('active');
+                document.getElementById('loginTab').style.display = 'block';
+                checkAuth();
+            }
+        }
+        
+        // ========== ФУНКЦИИ ВАЛИДАЦИИ ==========
+        
+        function validateName(name) {
+            return /^[А-Яа-яЁёA-Za-z\s-]+$/.test(name) && !/\d/.test(name);
+        }
+        
+        function validateUsername(username) {
+            return /^[a-zA-Z0-9_]{3,20}$/.test(username);
+        }
+        
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+        
+        function validateBirthDate(date) {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const birthDate = new Date(date);
+            return birthDate < today;
+        }
+        
+        function validatePhone(phone) {
+            const cleaned = phone.replace(/\D/g, '');
+            return cleaned.length === 11 && cleaned.startsWith('7');
+        }
+        
+        function validatePassword(password) {
+            return password.length >= 8 && 
+                   /[A-Z]/.test(password) && 
+                   /[a-z]/.test(password) && 
+                   /\d/.test(password);
+        }
+        
+        // ========== ФУНКЦИИ ДЛЯ РАБОТЫ С ТЕЛЕФОНОМ ==========
+        
+        function formatPhone(input) {
+            let value = input.value.replace(/\D/g, '');
+            
+            if (value.length > 0) {
+                if (!value.startsWith('7')) {
+                    value = '7' + value;
+                }
+                
+                let formatted = '+7';
+                
+                if (value.length > 1) {
+                    formatted += ' (' + value.substring(1, 4);
+                }
+                if (value.length > 4) {
+                    formatted += ') ' + value.substring(4, 7);
+                }
+                if (value.length > 7) {
+                    formatted += '-' + value.substring(7, 9);
+                }
+                if (value.length > 9) {
+                    formatted += '-' + value.substring(9, 11);
+                }
+                
+                input.value = formatted;
+            }
+        }
+        
+        // ========== ФУНКЦИИ ДЛЯ РАБОТЫ С ПАРОЛЯМИ ==========
+        
+        function checkPasswordStrength(password) {
+            let strength = 0;
+            const strengthBar = document.getElementById('passwordStrength');
+            
+            if (password.length >= 8) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[a-z]/.test(password)) strength++;
+            if (/\d/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            
+            let width = (strength / 5) * 100;
+            strengthBar.style.width = width + '%';
+            
+            if (strength <= 2) {
+                strengthBar.className = 'strength-bar strength-weak';
+            } else if (strength <= 4) {
+                strengthBar.className = 'strength-bar strength-medium';
+            } else {
+                strengthBar.className = 'strength-bar strength-strong';
+            }
+            
+            return strength >= 3;
+        }
+        
+        // ========== ФУНКЦИИ ДЛЯ АВТОРИЗАЦИИ ==========
+        
+        function checkAuth() {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            const userInfo = document.getElementById('userInfo');
+            const loginForm = document.getElementById('loginForm');
+            
+            if (user) {
+                loginForm.style.display = 'none';
+                userInfo.style.display = 'block';
+                
+                const userData = document.getElementById('userData');
+                userData.innerHTML = `
+                    <div class="auth-field">
+                        <span class="auth-label">Логин:</span>
+                        <span class="auth-value">${user.username}</span>
+                    </div>
+                    <div class="auth-field">
+                        <span class="auth-label">Имя:</span>
+                        <span class="auth-value">${user.firstName}</span>
+                    </div>
+                    <div class="auth-field">
+                        <span class="auth-label">Фамилия:</span>
+                        <span class="auth-value">${user.lastName}</span>
+                    </div>
+                    <div class="auth-field">
+                        <span class="auth-label">Email:</span>
+                        <span class="auth-value">${user.email}</span>
+                    </div>
+                    <div class="auth-field">
+                        <span class="auth-label">Телефон:</span>
+                        <span class="auth-value">${user.phone}</span>
+                    </div>
+                `;
+            } else {
+                loginForm.style.display = 'block';
+                userInfo.style.display = 'none';
+            }
+        }
+        
+        function logout() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            
+            if (currentUser) {
+                // Сохраняем корзину пользователя под его username
+                const userCartKey = `cartItems_${currentUser.username}`;
+                const userCart = JSON.parse(localStorage.getItem(userCartKey)) || [];
+                
+                // Сохраняем резервную копию корзины
+                localStorage.setItem(`cartBackup_${currentUser.username}`, JSON.stringify(userCart));
+            }
+            
+            localStorage.removeItem('currentUser');
+            checkAuth();
+            alert('Вы вышли из аккаунта');
+        }
+        
+        // ========== ФУНКЦИИ ДЛЯ РЕГИСТРАЦИИ И ВХОДА ==========
+        
+        function registerUser(userData) {
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            
+            // Проверяем, не занят ли логин или email
+            const existingUser = users.find(u => 
+                u.username === userData.username || u.email === userData.email
+            );
+            
+            if (existingUser) {
+                if (existingUser.username === userData.username) {
+                    alert('Этот логин уже занят');
+                    return false;
+                }
+                if (existingUser.email === userData.email) {
+                    alert('Этот email уже используется');
+                    return false;
+                }
+            }
+            
+            // Добавляем нового пользователя
+            users.push(userData);
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            // Авторизуем пользователя
+            localStorage.setItem('currentUser', JSON.stringify(userData));
+            
+            // Восстанавливаем корзину из резервной копии если есть
+            restoreUserCart(userData.username);
+            
+            return true;
+        }
+        
+        function loginUser(username, password) {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            
+            // Ищем пользователя по логину или email
+            const user = users.find(u => 
+                (u.username === username || u.email === username) && 
+                u.password === password
+            );
+            
+            if (user) {
+                // Переносим гостевую корзину в корзину пользователя
+                clearGuestCartOnLogin(user.username);
+                
+                // Восстанавливаем корзину из резервной копии если есть
+                restoreUserCart(user.username);
+                
+                // Удаляем пароль из объекта перед сохранением в currentUser
+                const { password, ...userWithoutPassword } = user;
+                localStorage.setItem('currentUser', JSON.stringify(userWithoutPassword));
+                return true;
+            }
+            
+            return false;
+        }
+        
+        // ========== ИНИЦИАЛИЗАЦИЯ ==========
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Обработчик телефона
+            const phoneInput = document.getElementById('regPhone');
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function() {
+                    formatPhone(this);
+                });
+                
+                phoneInput.addEventListener('keydown', function(e) {
+                    if (e.key.length === 1 && !/\d/.test(e.key)) {
+                        e.preventDefault();
+                    }
+                });
+            }
+            
+            // Проверка силы пароля
+            const passwordInput = document.getElementById('regPassword');
+            if (passwordInput) {
+                passwordInput.addEventListener('input', function() {
+                    checkPasswordStrength(this.value);
+                });
+            }
+            
+            // Форма регистрации
+            const registerForm = document.getElementById('registerForm');
+            if (registerForm) {
+                registerForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const userData = {
+                        username: document.getElementById('regUsername').value.trim(),
+                        firstName: document.getElementById('regFirstName').value.trim(),
+                        lastName: document.getElementById('regLastName').value.trim(),
+                        phone: document.getElementById('regPhone').value.trim(),
+                        email: document.getElementById('regEmail').value.trim(),
+                        birthDate: document.getElementById('regBirthDate').value,
+                        password: document.getElementById('regPassword').value,
+                        confirmPassword: document.getElementById('regConfirmPassword').value,
+                        registrationDate: new Date().toISOString()
+                    };
+                    
+                    let isValid = true;
+                    
+                    // Валидация логина
+                    if (!validateUsername(userData.username)) {
+                        document.getElementById('regUsernameError').style.display = 'block';
+                        document.getElementById('regUsername').classList.add('error');
+                        isValid = false;
+                    } else {
+                        document.getElementById('regUsernameError').style.display = 'none';
+                        document.getElementById('regUsername').classList.remove('error');
+                    }
+                    
+                    // Валидация имени
+                    if (!validateName(userData.firstName)) {
+                        document.getElementById('regFirstNameError').style.display = 'block';
+                        document.getElementById('regFirstName').classList.add('error');
+                        isValid = false;
+                    } else {
+                        document.getElementById('regFirstNameError').style.display = 'none';
+                        document.getElementById('regFirstName').classList.remove('error');
+                    }
+                    
+                    // Валидация фамилии
+                    if (!validateName(userData.lastName)) {
+                        document.getElementById('regLastNameError').style.display = 'block';
+                        document.getElementById('regLastName').classList.add('error');
+                        isValid = false;
+                    } else {
+                        document.getElementById('regLastNameError').style.display = 'none';
+                        document.getElementById('regLastName').classList.remove('error');
+                    }
+                    
+                    // Валидация телефона
+                    if (!validatePhone(userData.phone)) {
+                        document.getElementById('regPhoneError').style.display = 'block';
+                        document.getElementById('regPhone').classList.add('error');
+                        isValid = false;
+                    } else {
+                        document.getElementById('regPhoneError').style.display = 'none';
+                        document.getElementById('regPhone').classList.remove('error');
+                    }
+                    
+                    // Валидация email
+                    if (!validateEmail(userData.email)) {
+                        document.getElementById('regEmailError').style.display = 'block';
+                        document.getElementById('regEmail').classList.add('error');
+                        isValid = false;
+                    } else {
+                        document.getElementById('regEmailError').style.display = 'none';
+                        document.getElementById('regEmail').classList.remove('error');
+                    }
+                    
+                    // Валидация даты рождения
+                    if (!validateBirthDate(userData.birthDate)) {
+                        document.getElementById('regBirthDateError').style.display = 'block';
+                        document.getElementById('regBirthDate').classList.add('error');
+                        isValid = false;
+                    } else {
+                        document.getElementById('regBirthDateError').style.display = 'none';
+                        document.getElementById('regBirthDate').classList.remove('error');
+                    }
+                    
+                    // Валидация пароля
+                    if (!validatePassword(userData.password)) {
+                        document.getElementById('regPasswordError').style.display = 'block';
+                        document.getElementById('regPassword').classList.add('error');
+                        isValid = false;
+                    } else {
+                        document.getElementById('regPasswordError').style.display = 'none';
+                        document.getElementById('regPassword').classList.remove('error');
+                    }
+                    
+                    // Проверка совпадения паролей
+                    if (userData.password !== userData.confirmPassword) {
+                        document.getElementById('regConfirmPasswordError').style.display = 'block';
+                        document.getElementById('regConfirmPassword').classList.add('error');
+                        isValid = false;
+                    } else {
+                        document.getElementById('regConfirmPasswordError').style.display = 'none';
+                        document.getElementById('regConfirmPassword').classList.remove('error');
+                    }
+                    
+                    if (isValid) {
+                        const { confirmPassword, ...userToSave } = userData;
+                        
+                        if (registerUser(userToSave)) {
+                            alert('Регистрация успешна!');
+                            showTab('login');
+                            checkAuth();
+                        }
+                    }
+                });
+            }
+            
+            // Форма входа
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const username = document.getElementById('loginUsername').value.trim();
+                    const password = document.getElementById('loginPassword').value;
+                    
+                    if (loginUser(username, password)) {
+                        alert('Вход выполнен успешно!');
+                        checkAuth();
+                        
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 1000);
+                    } else {
+                        document.getElementById('loginPasswordError').style.display = 'block';
+                        document.getElementById('loginPassword').classList.add('error');
+                        alert('Неверный логин или пароль');
+                    }
+                });
+            }
+            
+            // Сброс ошибок при вводе
+            const inputs = document.querySelectorAll('.form-input');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    this.classList.remove('error');
+                    const errorId = this.id + 'Error';
+                    const errorElement = document.getElementById(errorId);
+                    if (errorElement) {
+                        errorElement.style.display = 'none';
+                    }
+                    
+                    if (this.id === 'regPassword' || this.id === 'regConfirmPassword') {
+                        const confirmError = document.getElementById('regConfirmPasswordError');
+                        if (confirmError) {
+                            confirmError.style.display = 'none';
+                        }
+                        document.getElementById('regConfirmPassword').classList.remove('error');
+                    }
+                });
+            });
+            
+            // Проверяем, есть ли уже авторизованный пользователь
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (currentUser) {
+                showTab('login');
+                checkAuth();
+            }
+        });
+    </script>
+</body>
+</html>

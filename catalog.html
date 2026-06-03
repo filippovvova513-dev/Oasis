@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Каталог - Литературный Оазис</title>
+  <style>
+    /* Основные стили остаются такими же как в books.html */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ffffff;
+      color: #1a237e;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Шапка */
+    .header {
+      padding: 16px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      border-bottom: 2px solid #e3f2fd;
+      gap: 32px;
+      box-shadow: 0 2px 10px rgba(33, 150, 243, 0.1);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .logo-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .logo-image {
+      height: 50px;
+      width: auto;
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 24px;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: #1976d2;
+      text-decoration: none;
+      font-size: 1rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      font-weight: 500;
+      border: 1px solid transparent;
+    }
+
+    .nav-link:hover {
+      background: #1976d2;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+    }
+
+    .cart-icon {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #1976d2;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      border: 1px solid transparent;
+      position: relative;
+    }
+
+    .cart-icon:hover {
+      background: #1976d2;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #e53935;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      flex: 1;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #1565c0;
+      margin-bottom: 40px;
+      font-weight: 700;
+    }
+    
+    /* Обновленная сетка книг */
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .book-card {
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 25px;
+      border: 2px solid #e3f2fd;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(33, 150, 243, 0.1);
+      display: flex;
+      flex-direction: column;
+      height: 850px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .book-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(33, 150, 243, 0.2);
+      border-color: #1976d2;
+    }
+    
+    .book-image {
+      width: 100%;
+      height: 550px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #e3f2fd;
+    }
+    
+    .book-title {
+      font-size: 1.3rem;
+      color: #1565c0;
+      margin-bottom: 12px;
+      font-weight: 600;
+      line-height: 1.3;
+      min-height: 3.2em;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .book-author {
+      color: #42a5f5;
+      margin-bottom: 10px;
+      font-weight: 500;
+      font-size: 1.1rem;
+    }
+    
+    .book-pages {
+      color: #64b5f6;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+    
+    .book-price {
+      color: #1976d2;
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+    
+    .add-to-cart-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #1976d2, #1565c0);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: auto;
+      font-size: 1rem;
+    }
+    
+    .add-to-cart-btn:hover {
+      background: linear-gradient(135deg, #1565c0, #0d47a1);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 20px;
+      background: #1976d2;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      gap: 8px;
+    }
+    
+    .back-button:hover {
+      background: #1565c0;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+    }
+
+    /* Новые стили для жанра в углу */
+    .genre-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(25, 118, 210, 0.9);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      backdrop-filter: blur(10px);
+      z-index: 2;
+      max-width: 150px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .category-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      background: #e3f2fd;
+      color: #1976d2;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    /* Фильтры */
+    .category-filter {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+      padding: 10px 20px;
+      border: 2px solid #1976d2;
+      background: white;
+      color: #1976d2;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+    
+    .filter-btn.active {
+      background: #1976d2;
+      color: white;
+    }
+    
+    .filter-btn:hover {
+      background: #1976d2;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Подвал */
+    .footer {
+      background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+      color: #ffffff;
+      padding: 40px 48px;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer-quote {
+      font-size: 1.3rem;
+      font-style: italic;
+      color: #e3f2fd;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .footer-divider {
+      width: 200px;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #bbdefb, transparent);
+    }
+
+    .footer-contacts {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #e3f2fd;
+      font-size: 1.1rem;
+    }
+
+    .contact-item svg {
+      width: 24px;
+      height: 24px;
+      color: #bbdefb;
+    }
+
+    .footer-copyright {
+      font-size: 0.9rem;
+      color: #bbdefb;
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 1024px) {
+      .books-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .header {
+        flex-wrap: wrap;
+        padding: 16px 24px;
+        gap: 16px;
+      }
+      
+      .header-nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .books-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .book-card {
+        height: auto;
+        min-height: 600px;
+      }
+      
+      .header-nav {
+        gap: 12px;
+      }
+      
+      .nav-link {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+      }
+      
+      .header-tagline {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px 15px;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .book-card {
+        padding: 20px;
+      }
+      
+      .book-image {
+        height: 300px;
+      }
+      
+      .genre-badge {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+        max-width: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Шапка -->
+  <header class="header">
+    <div class="logo-container">
+      <a href="index.html" class="logo-link">
+        <img src="https://i.imgur.com/placeholder-logo.png" alt="Литературный Оазис" class="logo-image">
+      </a>
+    </div>
+    
+    <nav class="header-nav">
+      <a href="books.html" class="nav-link">Книги</a>
+      <a href="manga.html" class="nav-link">Манга</a>
+      <a href="magazines.html" class="nav-link">Журналы</a>
+      <a href="textbooks.html" class="nav-link">Учебники</a>
+      <a href="catalog.html" class="nav-link">Каталог</a>
+      <a href="new.html" class="nav-link">Новинки</a>
+      <a href="cart.html" class="cart-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        Корзина
+        <span class="cart-count" id="cart-count">0</span>
+      </a>
+    </nav>
+    
+    <div class="header-tagline">Литература для души и ума!</div>
+  </header>
+
+  <div class="container">
+    <a href="index.html" class="back-button">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      На главную
+    </a>
+    <h1 class="section-title">Полный каталог</h1>
+    
+    <div class="category-filter">
+      <button class="filter-btn active" onclick="filterCategory('all')">Все товары</button>
+      <button class="filter-btn" onclick="filterCategory('books')">Книги</button>
+      <button class="filter-btn" onclick="filterCategory('manga')">Манга</button>
+      <button class="filter-btn" onclick="filterCategory('magazines')">Журналы</button>
+      <button class="filter-btn" onclick="filterCategory('textbooks')">Учебники</button>
+    </div>
+    
+    <div class="books-grid" id="catalog-grid">
+      <!-- Все товары будут загружены через JavaScript -->
+    </div>
+  </div>
+
+  <!-- Подвал -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-quote">«Литература для души и ума!»</div>
+      <div class="footer-divider"></div>
+      <div class="footer-contacts">
+        <div class="contact-item">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <span>Ул. Бамбуково, д.13</span>
+        </div>
+        <div class="contact-item">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          <span>+7 921 756 77 44</span>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        © 2024 Литературный Оазис. Все права защищены.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Данные всех товаров
+    const allProducts = [
+      // Книги - 15 товаров (101-115)
+      {id: 101, title: "Мастер и Маргарита", author: "Михаил Булгаков", price: 850, pages: "480 страниц", genre: "Роман, Классика", image: "https://i.imgur.com/placeholder-book1.jpg", category: "books"},
+      {id: 102, title: "1984", author: "Джордж Оруэлл", price: 720, pages: "328 страниц", genre: "Антиутопия", image: "https://i.imgur.com/placeholder-book2.jpg", category: "books"},
+      {id: 103, title: "Преступление и наказание", author: "Фёдор Достоевский", price: 790, pages: "672 страницы", genre: "Психологический роман", image: "https://i.imgur.com/placeholder-book3.jpg", category: "books"},
+      {id: 104, title: "Война и мир", author: "Лев Толстой", price: 1100, pages: "1225 страниц", genre: "Исторический роман", image: "https://i.imgur.com/placeholder-book4.jpg", category: "books"},
+      {id: 105, title: "Анна Каренина", author: "Лев Толстой", price: 920, pages: "864 страницы", genre: "Роман, Классика", image: "https://i.imgur.com/placeholder-book5.jpg", category: "books"},
+      {id: 106, title: "Братья Карамазовы", author: "Фёдор Достоевский", price: 890, pages: "824 страницы", genre: "Философский роман", image: "https://i.imgur.com/placeholder-book6.jpg", category: "books"},
+      {id: 107, title: "Тихий Дон", author: "Михаил Шолохов", price: 1250, pages: "1504 страницы", genre: "Эпопея", image: "https://i.imgur.com/placeholder-book7.jpg", category: "books"},
+      {id: 108, title: "Доктор Живаго", author: "Борис Пастернак", price: 780, pages: "608 страниц", genre: "Роман", image: "https://i.imgur.com/placeholder-book8.jpg", category: "books"},
+      {id: 109, title: "Отцы и дети", author: "Иван Тургенев", price: 650, pages: "288 страниц", genre: "Роман", image: "https://i.imgur.com/placeholder-book9.jpg", category: "books"},
+      {id: 110, title: "Обломов", author: "Иван Гончаров", price: 720, pages: "576 страниц", genre: "Роман", image: "https://i.imgur.com/placeholder-book10.jpg", category: "books"},
+      {id: 111, title: "Герой нашего времени", author: "Михаил Лермонтов", price: 580, pages: "224 страницы", genre: "Роман", image: "https://i.imgur.com/placeholder-book11.jpg", category: "books"},
+      {id: 112, title: "Мёртвые души", author: "Николай Гоголь", price: 680, pages: "352 страницы", genre: "Поэма", image: "https://i.imgur.com/placeholder-book12.jpg", category: "books"},
+      {id: 113, title: "Евгений Онегин", author: "Александр Пушкин", price: 550, pages: "288 страниц", genre: "Роман в стихах", image: "https://i.imgur.com/placeholder-book13.jpg", category: "books"},
+      {id: 114, title: "Капитанская дочка", author: "Александр Пушкин", price: 520, pages: "192 страницы", genre: "Повесть", image: "https://i.imgur.com/placeholder-book14.jpg", category: "books"},
+      {id: 115, title: "Ревизор", author: "Николай Гоголь", price: 490, pages: "160 страниц", genre: "Комедия", image: "https://i.imgur.com/placeholder-book15.jpg", category: "books"},
+
+      // Манга - 15 товаров (201-215)
+      {id: 201, title: "Наруто. Том 1", author: "Масаси Кисимото", price: 450, pages: "192 страницы", genre: "Сёнэн, Приключения", image: "manga/nar.jpg", category: "manga"},
+      {id: 202, title: "Атака титанов. Том 1", author: "Хадзимэ Исаяма", price: 480, pages: "208 страниц", genre: "Сёнэн, Драма", image: "manga/atack.webp", category: "manga"},
+      {id: 203, title: "Токийские мстители. Том 1", author: "Кэн Вакуи", price: 460, pages: "216 страниц", genre: "Сёнэн, Боевик", image: "manga/tok.webp", category: "manga"},
+      {id: 204, title: "Ван Пис. Том 1", author: "Эйитиро Ода", price: 470, pages: "224 страницы", genre: "Сёнэн, Приключения", image: "manga/one.webp", category: "manga"},
+      {id: 205, title: "Моя геройская академия. Том 1", author: "Кохэй Хорикоси", price: 440, pages: "200 страниц", genre: "Сёнэн, Супергерои", image: "manga/mga.webp", category: "manga"},
+      {id: 206, title: "Блич. Том 1", author: "Тайто Кубо", price: 430, pages: "192 страницы", genre: "Сёнэн, Фэнтези", image: "manga/bl.webp", category: "manga"},
+      {id: 207, title: "Ходячий замок", author: "Диана Уинн Джонс", price: 520, pages: "448 страниц", genre: "Фэнтези, Роман", image: "manga/hod.jpg", category: "manga"},
+      {id: 208, title: "Берсерк. Том 1", author: "Кэнтаро Миура", price: 490, pages: "240 страниц", genre: "Сэйнэн, Фэнтези", image: "manga/ber.jpg", category: "manga"},
+      {id: 209, title: "Ванпанчмен. Том 1", author: "ONE", price: 450, pages: "200 страниц", genre: "Сёнэн, Комедия", image: "manga/onep.webp", category: "manga"},
+      {id: 210, title: "Драгонболл. Том 1", author: "Акира Торияма", price: 420, pages: "192 страницы", genre: "Сёнэн, Приключения", image: "manga/bak.webp", category: "manga"},
+      {id: 211, title: "Сейлор Мун. Том 1", author: "Наоко Такэути", price: 460, pages: "208 страниц", genre: "Сёдзё, Махо-сёдзё", image: "manga/sbr.webp", category: "manga"},
+      {id: 212, title: "Евангелион. Том 1", author: "Хидэаки Анно", price: 500, pages: "216 страниц", genre: "Сэйнэн, Меха", image: "https://i.imgur.com/placeholder-manga12.jpg", category: "manga"},
+      {id: 213, title: "Хеллсинг. Том 1", author: "Кота Хирано", price: 480, pages: "200 страниц", genre: "Сэйнэн, Ужасы", image: "https://i.imgur.com/placeholder-manga13.jpg", category: "manga"},
+      {id: 214, title: "Джоджо. Том 1", author: "Хирохико Араки", price: 470, pages: "224 страницы", genre: "Сёнэн, Приключения", image: "https://i.imgur.com/placeholder-manga14.jpg", category: "manga"},
+      {id: 215, title: "Тетрадь смерти. Том 1", author: "Цугуми Оба", price: 490, pages: "208 страниц", genre: "Сёнэн, Детектив", image: "https://i.imgur.com/placeholder-manga15.jpg", category: "manga"},
+
+      // Журналы - 10 товаров (301-310)
+      {id: 301, title: "National Geographic", author: "Июль 2024", price: 350, pages: "120 страниц", genre: "Наука, Путешествия", image: "https://i.imgur.com/placeholder-mag1.jpg", category: "magazines"},
+      {id: 302, title: "Forbes", author: "Июнь 2024", price: 280, pages: "96 страниц", genre: "Бизнес, Финансы", image: "https://i.imgur.com/placeholder-mag2.jpg", category: "magazines"},
+      {id: 303, title: "Vogue", author: "Август 2024", price: 420, pages: "180 страниц", genre: "Мода, Стиль", image: "https://i.imgur.com/placeholder-mag3.jpg", category: "magazines"},
+      {id: 304, title: "Popular Science", author: "Июль 2024", price: 320, pages: "84 страницы", genre: "Наука, Технологии", image: "https://i.imgur.com/placeholder-mag4.jpg", category: "magazines"},
+      {id: 305, title: "Time Magazine", author: "Июль 2024", price: 300, pages: "64 страницы", genre: "Новости, Политика", image: "https://i.imgur.com/placeholder-mag5.jpg", category: "magazines"},
+      {id: 306, title: "The New Yorker", author: "Август 2024", price: 380, pages: "112 страниц", genre: "Культура, Искусство", image: "https://i.imgur.com/placeholder-mag6.jpg", category: "magazines"},
+      {id: 307, title: "Cosmopolitan", author: "Июль 2024", price: 290, pages: "140 страниц", genre: "Женский, Lifestyle", image: "https://i.imgur.com/placeholder-mag7.jpg", category: "magazines"},
+      {id: 308, title: "GQ", author: "Август 2024", price: 340, pages: "128 страниц", genre: "Мужской, Стиль", image: "https://i.imgur.com/placeholder-mag8.jpg", category: "magazines"},
+      {id: 309, title: "National Geographic Traveler", author: "Лето 2024", price: 360, pages: "132 страницы", genre: "Путешествия, Фотография", image: "https://i.imgur.com/placeholder-mag9.jpg", category: "magazines"},
+      {id: 310, title: "Scientific American", author: "Июль 2024", price: 330, pages: "88 страниц", genre: "Наука, Исследования", image: "https://i.imgur.com/placeholder-mag10.jpg", category: "magazines"},
+
+      // Учебники - 10 товаров (401-410)
+      {id: 401, title: "Физика. 10-11 класс", author: "Г. Я. Мякишев", price: 650, pages: "480 страниц", genre: "Учебник, Физика", image: "https://i.imgur.com/placeholder-textbook1.jpg", category: "textbooks"},
+      {id: 402, title: "Алгебра и начала анализа", author: "А. Н. Колмогоров", price: 580, pages: "432 страницы", genre: "Учебник, Математика", image: "https://i.imgur.com/placeholder-textbook2.jpg", category: "textbooks"},
+      {id: 403, title: "Химия. 10 класс", author: "О. С. Габриелян", price: 520, pages: "320 страниц", genre: "Учебник, Химия", image: "https://i.imgur.com/placeholder-textbook3.jpg", category: "textbooks"},
+      {id: 404, title: "Биология. 10-11 класс", author: "Д. К. Беляев", price: 590, pages: "384 страницы", genre: "Учебник, Биология", image: "https://i.imgur.com/placeholder-textbook4.jpg", category: "textbooks"},
+      {id: 405, title: "История России", author: "А. С. Орлов", price: 620, pages: "544 страницы", genre: "Учебник, История", image: "https://i.imgur.com/placeholder-textbook5.jpg", category: "textbooks"},
+      {id: 406, title: "Английский язык", author: "В. П. Кузовлев", price: 480, pages: "256 страниц", genre: "Учебник, Языки", image: "https://i.imgur.com/placeholder-textbook6.jpg", category: "textbooks"},
+      {id: 407, title: "География. 10 класс", author: "В. П. Максаковский", price: 540, pages: "288 страниц", genre: "Учебник, География", image: "https://i.imgur.com/placeholder-textbook7.jpg", category: "textbooks"},
+      {id: 408, title: "Литература. 10 класс", author: "Ю. В. Лебедев", price: 510, pages: "368 страниц", genre: "Учебник, Литература", image: "https://i.imgur.com/placeholder-textbook8.jpg", category: "textbooks"},
+      {id: 409, title: "Обществознание. 10 класс", author: "Л. Н. Боголюбов", price: 530, pages: "352 страницы", genre: "Учебник, Обществознание", image: "https://i.imgur.com/placeholder-textbook9.jpg", category: "textbooks"},
+      {id: 410, title: "Информатика. 10 класс", author: "И. Г. Семакин", price: 570, pages: "304 страницы", genre: "Учебник, Информатика", image: "https://i.imgur.com/placeholder-textbook10.jpg", category: "textbooks"}
+    ];
+
+    // Функция фильтрации по категориям
+    function filterCategory(category) {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      const filteredProducts = category === 'all' 
+        ? allProducts 
+        : allProducts.filter(product => product.category === category);
+      
+      renderProducts(filteredProducts);
+    }
+
+    // Функция отображения товаров
+    function renderProducts(products) {
+      const grid = document.getElementById('catalog-grid');
+      grid.innerHTML = '';
+      
+      products.forEach(product => {
+        const categoryNames = {
+          'books': 'Книга',
+          'manga': 'Манга', 
+          'magazines': 'Журнал',
+          'textbooks': 'Учебник'
+        };
+        
+        const productHTML = `
+          <div class="book-card">
+            <div class="genre-badge">${product.genre}</div>
+            <img src="${product.image}" alt="${product.title}" class="book-image">
+            <span class="category-badge">${categoryNames[product.category]}</span>
+            <h3 class="book-title">${product.title}</h3>
+            <p class="book-author">${product.author}</p>
+            <p class="book-pages">📖 ${product.pages}</p>
+            <p class="book-price">${product.price} ₽</p>
+            <button class="add-to-cart-btn" onclick="addToCart(${product.id}, '${product.title}', '${product.author}', ${product.price}, '${product.image}', '${product.category}')">
+              В корзину
+            </button>
+          </div>
+        `;
+        grid.innerHTML += productHTML;
+      });
+    }
+
+    // Инициализация при загрузке
+    document.addEventListener('DOMContentLoaded', function() {
+      renderProducts(allProducts);
+      updateCartCount();
+    });
+
+    // Функции для работы с корзиной
+    function addToCart(id, title, author, price, image, category) {
+      try {
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        
+        const existingItemIndex = cartItems.findIndex(item => item.id === id);
+        
+        if (existingItemIndex !== -1) {
+          cartItems[existingItemIndex].quantity += 1;
+        } else {
+          cartItems.push({
+            id: id,
+            title: title,
+            author: author,
+            price: price,
+            quantity: 1,
+            image: image,
+            category: category
+          });
+        }
+        
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        updateCartCount();
+        showNotification('Товар "' + title + '" добавлен в корзину!');
+        
+      } catch (error) {
+        console.error('Ошибка при добавлении в корзину:', error);
+        showNotification('Ошибка при добавлении в корзину', 'error');
+      }
+    }
+
+    function updateCartCount() {
+      try {
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        const totalCount = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        const cartCountElement = document.getElementById('cart-count');
+        if (cartCountElement) {
+          cartCountElement.textContent = totalCount;
+        }
+      } catch (error) {
+        console.error('Ошибка при обновлении счетчика корзины:', error);
+      }
+    }
+
+    function showNotification(message, type = 'success') {
+      const notification = document.createElement('div');
+      const backgroundColor = type === 'success' ? '#4caf50' : '#f44336';
+      
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${backgroundColor};
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        z-index: 1000;
+        font-weight: 500;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        max-width: 300px;
+      `;
+      notification.textContent = message;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+      }, 100);
+      
+      setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+          if (document.body.contains(notification)) {
+            document.body.removeChild(notification);
+          }
+        }, 300);
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

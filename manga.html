@@ -1,0 +1,2103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Манга - Литературный Оазис</title>
+    <style>
+        :root {
+            --primary-color: #8B4513; /* Теплый коричневый */
+            --secondary-color: #D2691E; /* Шоколадный */
+            --accent-color: #FF8C00; /* Теплый оранжевый */
+            --light-color: #FFF8DC; /* Миндальный */
+            --dark-color: #5D4037; /* Темно-коричневый */
+            --text-color: #3E2723;
+            --shadow-sm: 0 2px 8px rgba(139, 69, 19, 0.1);
+            --shadow-md: 0 4px 16px rgba(139, 69, 19, 0.15);
+            --shadow-lg: 0 8px 32px rgba(139, 69, 19, 0.2);
+            --shadow-interactive: 0 4px 12px rgba(210, 105, 30, 0.25);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: 
+                linear-gradient(rgba(255, 248, 220, 0.9), rgba(255, 248, 220, 0.95)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><defs><pattern id="books" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><rect fill="%23F5E6D3" opacity="0.4" x="0" y="0" width="40" height="40"/><path fill="%23D2691E" opacity="0.15" d="M8,8 L32,8 L32,32 L8,32 Z M10,10 L30,10 L30,30 L10,30 Z M12,12 L28,12 L28,18 L12,18 Z M12,20 L28,20 L28,26 L12,26 Z"/></pattern></defs><rect fill="url(%23books)" width="400" height="400"/></svg>'),
+                #FFF8DC;
+            background-size: 400px 400px, auto;
+            background-attachment: fixed;
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: margin-left 0.3s ease;
+        }
+
+        body.admin-panel-open {
+            margin-left: 420px;
+        }
+
+        /* Уведомления */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #228B22, #006400);
+            color: white;
+            padding: 15px 25px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideIn 0.3s ease;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .notification.info {
+            background: linear-gradient(135deg, var(--accent-color), #FFA500);
+        }
+
+        .notification button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Шапка - ТОЧНАЯ КОПИЯ С ГЛАВНОЙ СТРАНИЦЫ */
+        .header {
+            background: linear-gradient(135deg, var(--light-color), #F5E6D3);
+            padding: 15px 0;
+            border-bottom: 4px solid var(--primary-color);
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 0;
+            width: 100%;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 3700px;
+            margin: 0 auto;
+            padding: 0 30px;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+            text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2);
+        }
+
+        .nav {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--dark-color);
+            padding: 10px 16px;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            position: relative;
+            border: 2px solid transparent;
+            box-shadow: var(--shadow-sm);
+            white-space: nowrap;
+        }
+
+        .nav-item:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+            border-color: var(--accent-color);
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 6px;
+            background: rgba(139, 69, 19, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .nav-item:hover .nav-icon {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(135deg, #DC143C, #B22222);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            border: 3px solid var(--light-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Поиск в шапке */
+        .header-search {
+            display: flex;
+            gap: 10px;
+            margin-left: 20px;
+            position: relative;
+        }
+
+        .search-input {
+            padding: 12px 20px;
+            border: 3px solid var(--primary-color);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            background: white;
+            color: var(--text-color);
+            width: 280px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-interactive);
+            transform: translateY(-2px);
+        }
+
+        .search-button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+        }
+
+        .search-button:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+        }
+
+        /* Кнопки входа/регистрации */
+        .auth-buttons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .login-btn, .register-btn {
+            padding: 10px 18px;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .login-btn {
+            background: var(--light-color);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .login-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+        }
+
+        .register-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: 2px solid transparent;
+        }
+
+        .register-btn:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+        }
+
+        /* Меню пользователя */
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 16px;
+            background: rgba(139, 69, 19, 0.1);
+            border-radius: var(--radius-md);
+            border: 2px solid rgba(139, 69, 19, 0.2);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .user-info:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: 14px;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .user-action-btn {
+            padding: 10px 16px;
+            border: 2px solid var(--primary-color);
+            background: white;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: var(--transition);
+            color: var(--primary-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .user-action-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+        }
+
+        .logout-btn {
+            padding: 10px 16px;
+            background: linear-gradient(135deg, #DC143C, #B22222);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .logout-btn:hover {
+            background: linear-gradient(135deg, #B22222, #8B0000);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+        }
+
+        /* Кнопка админ-панели */
+        .admin-panel-btn {
+            background: linear-gradient(135deg, #228B22, #006400);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            padding: 10px 18px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow-sm);
+            display: none;
+        }
+
+        .admin-panel-btn.visible {
+            display: flex;
+        }
+
+        .admin-panel-btn:hover {
+            background: linear-gradient(135deg, #006400, #004d00);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Окно результатов поиска */
+        .search-results {
+            position: fixed;
+            top: 130px;
+            right: 30px;
+            width: 450px;
+            max-height: 600px;
+            background: var(--light-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            border: 3px solid var(--primary-color);
+            z-index: 1000;
+            display: none;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: auto;
+            padding: 0 30px;
+        }
+
+        /* Боковая админ-панель */
+        .admin-panel {
+            position: fixed;
+            left: -420px;
+            top: 0;
+            width: 420px;
+            height: 100vh;
+            background: linear-gradient(180deg, var(--dark-color) 0%, #4A3529 100%);
+            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 4px 0 40px rgba(0, 0, 0, 0.4);
+            border-right: 3px solid var(--accent-color);
+        }
+
+        .admin-panel.open {
+            left: 0;
+        }
+
+        /* Основной контент страницы */
+        .page-header {
+            margin-bottom: 30px;
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, var(--light-color), #F5E6D3);
+            border-radius: var(--radius-lg);
+            border: 3px solid var(--primary-color);
+            box-shadow: var(--shadow-md);
+            margin-top: 20px;
+        }
+
+        .page-title {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-subtitle {
+            color: var(--secondary-color);
+            font-size: 20px;
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .filter-section {
+            background: var(--light-color);
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-lg);
+            border: 3px solid var(--primary-color);
+        }
+
+        .filter-title {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(210, 105, 30, 0.2);
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .filter-label {
+            font-size: 16px;
+            color: var(--primary-color);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-select {
+            padding: 14px 20px;
+            border: 3px solid #E0D6CC;
+            border-radius: var(--radius-md);
+            font-size: 16px;
+            color: var(--text-color);
+            background: white;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-interactive);
+            transform: translateY(-2px);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        /* Карточка манги */
+        .product-card {
+            background: var(--light-color);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            border: 3px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-lg), 0 15px 30px rgba(139, 69, 19, 0.25);
+            border-color: var(--accent-color);
+        }
+
+        .product-image-container {
+            width: 100%;
+            flex: 0 0 auto;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 320px;
+            background: linear-gradient(135deg, #FFF8DC, #F5E6D3);
+            border-radius: var(--radius-md);
+            padding: 15px;
+        }
+
+        .product-image {
+            width: 100%;
+            max-width: 200px;
+            height: 300px;
+            object-fit: contain;
+            object-position: center top;
+            border-radius: var(--radius-sm);
+            border: 3px solid var(--primary-color);
+            transition: var(--transition);
+            background-color: white;
+            padding: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.08) rotate(1deg);
+            border-color: var(--accent-color);
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
+        }
+
+        .product-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-title {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-weight: 700;
+            line-height: 1.3;
+            min-height: 52px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-author {
+            color: var(--secondary-color);
+            margin-bottom: 12px;
+            font-size: 16px;
+            font-style: italic;
+            min-height: 24px;
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px 0;
+            border-top: 2px solid rgba(139, 69, 19, 0.1);
+            border-bottom: 2px solid rgba(139, 69, 19, 0.1);
+        }
+
+        .product-pages {
+            color: var(--dark-color);
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .product-pages::before {
+            content: "📖";
+            font-size: 12px;
+        }
+
+        .product-genre {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            box-shadow: var(--shadow-sm);
+            z-index: 2;
+        }
+
+        .product-price-container {
+            margin-top: auto;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 26px;
+            color: #228B22;
+            font-weight: 800;
+            text-align: center;
+            padding: 10px;
+            background: rgba(34, 139, 34, 0.05);
+            border-radius: var(--radius-md);
+            border: 2px solid rgba(34, 139, 34, 0.1);
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 16px;
+            font-weight: 700;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .add-to-cart:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .add-to-cart::before {
+            content: "🛒";
+            font-size: 14px;
+        }
+
+        /* Модальное окно для подробностей манги */
+        .manga-detail-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(93, 64, 55, 0.95);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .manga-detail-modal.active {
+            display: flex;
+        }
+
+        .manga-detail-container {
+            background: var(--light-color);
+            border-radius: var(--radius-lg);
+            width: 90%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 3px solid var(--primary-color);
+            box-shadow: var(--shadow-lg);
+            transform: scale(0.98);
+            transition: transform 0.3s ease;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        .manga-detail-container.active {
+            transform: scale(1);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(0.98);
+            }
+        }
+
+        .manga-detail-header {
+            padding: 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        .manga-detail-title {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .manga-detail-title::before {
+            content: "📚";
+            font-size: 24px;
+        }
+
+        .close-detail-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .close-detail-btn:hover {
+            background: rgba(255, 140, 0, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .manga-detail-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px;
+            display: flex;
+            gap: 40px;
+        }
+
+        .manga-detail-image-container {
+            flex: 0 0 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .manga-detail-image {
+            width: 100%;
+            max-width: 280px;
+            height: 400px;
+            object-fit: contain;
+            border-radius: var(--radius-lg);
+            border: 4px solid var(--primary-color);
+            box-shadow: var(--shadow-lg);
+            background: white;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .manga-detail-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .manga-detail-name {
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .manga-detail-author {
+            font-size: 22px;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            font-style: italic;
+            border-bottom: 2px solid rgba(210, 105, 30, 0.2);
+            padding-bottom: 15px;
+        }
+
+        .manga-detail-description {
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .manga-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .manga-detail-item {
+            background: linear-gradient(135deg, rgba(255, 248, 220, 0.8), rgba(245, 230, 211, 0.9));
+            padding: 20px;
+            border-radius: var(--radius-md);
+            border: 2px solid rgba(139, 69, 19, 0.2);
+            transition: var(--transition);
+        }
+
+        .manga-detail-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .manga-detail-label {
+            font-size: 14px;
+            color: var(--primary-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .manga-detail-label::before {
+            font-size: 16px;
+        }
+
+        .manga-detail-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+
+        .manga-detail-price {
+            font-size: 36px;
+            color: #228B22;
+            font-weight: 800;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(34, 139, 34, 0.1), rgba(50, 205, 50, 0.05));
+            border-radius: var(--radius-lg);
+            border: 3px solid rgba(34, 139, 34, 0.2);
+            margin: 20px 0;
+        }
+
+        .manga-detail-actions {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .manga-detail-cart-btn {
+            flex: 1;
+            padding: 18px;
+            background: linear-gradient(135deg, #228B22, #006400);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 700;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .manga-detail-cart-btn:hover {
+            background: linear-gradient(135deg, #006400, #004d00);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .page-btn {
+            padding: 12px 20px;
+            background: var(--light-color);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .page-btn:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            transform: translateY(-2px);
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-interactive);
+        }
+
+        .page-btn.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .footer {
+            background: linear-gradient(135deg, var(--dark-color), #4A3529);
+            color: #F5E6D3;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+            width: 100%;
+            border-top: 4px solid var(--accent-color);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer p {
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .manga-detail-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .manga-detail-image-container {
+                flex: 0 0 auto;
+                align-items: center;
+            }
+            
+            .manga-details-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .nav {
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                margin-left: 0;
+                width: 100%;
+                gap: 8px;
+            }
+            
+            .header-search {
+                margin-left: 0;
+                width: 100%;
+                justify-content: flex-start;
+            }
+            
+            .search-input {
+                width: 100%;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .page-title {
+                font-size: 36px;
+            }
+            
+            .page-subtitle {
+                font-size: 18px;
+            }
+            
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .manga-details-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-results {
+                width: 90%;
+                right: 5%;
+                top: 160px;
+            }
+
+            .admin-panel {
+                width: 100%;
+                left: -100%;
+            }
+
+            body.admin-panel-open {
+                margin-left: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .header-content {
+                padding: 0 20px;
+            }
+            
+            .manga-detail-content {
+                padding: 20px;
+            }
+            
+            .manga-detail-name {
+                font-size: 24px;
+            }
+            
+            .manga-detail-author {
+                font-size: 18px;
+            }
+            
+            .manga-detail-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка - ТОЧНАЯ КОПИЯ С ГЛАВНОЙ СТРАНИЦЫ -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                Литературный Оазис
+            </a>
+            
+            <nav class="nav">
+                <a href="index.html" class="nav-item">
+                    <span class="nav-icon">Г</span>
+                    Главная
+                </a>
+                <a href="manga.html" class="nav-item">
+                    <span class="nav-icon">М</span>
+                    Манга
+                </a>
+                <a href="textbooks.html" class="nav-item">
+                    <span class="nav-icon">У</span>
+                    Учебники
+                </a>
+                <a href="magazines.html" class="nav-item">
+                    <span class="nav-icon">Ж</span>
+                    Журналы
+                </a>
+                
+                <div class="header-search">
+                    <input type="text" class="search-input" placeholder="Поиск книг или авторов..." id="headerSearch">
+                    <button class="search-button" onclick="performSearch()">
+                        <span class="nav-icon">П</span>
+                    </button>
+                </div>
+                
+                <!-- Кнопки входа/регистрации или информация о пользователе -->
+                <div class="auth-buttons" id="authButtons">
+                    <!-- Будет заполнено JavaScript -->
+                </div>
+                
+                <!-- Кнопка админ-панели (показывается только для админа) -->
+                <button class="admin-panel-btn" id="adminPanelBtn" onclick="toggleAdminPanel()">
+                    <span>⚡</span>
+                    <span>Админ-панель</span>
+                </button>
+                
+                <a href="cart.html" class="nav-item">
+                    <span class="nav-icon">К</span>
+                    Корзина
+                    <span class="cart-count" id="cart-count">0</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Окно результатов поиска -->
+    <div class="search-results" id="searchResults">
+        <div class="search-results-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <div class="search-results-title" style="font-size: 18px; font-weight: 700; color: var(--primary-color);">Результаты поиска</div>
+            <button style="background: none; border: none; color: var(--primary-color); font-size: 20px; cursor: pointer;" onclick="closeSearchResults()">×</button>
+        </div>
+        <div class="search-results-count" id="resultsCount" style="font-size: 14px; color: var(--secondary-color); margin-bottom: 15px;">Найдено: 0</div>
+        <div class="search-results-list" id="searchResultsList">
+            <!-- Результаты поиска будут здесь -->
+        </div>
+    </div>
+
+    <!-- Боковая админ-панель -->
+    <div class="admin-panel" id="adminPanel">
+        <button class="admin-close" onclick="toggleAdminPanel()" style="position: absolute; top: 30px; right: 30px; background: rgba(255, 255, 255, 0.15); border: 2px solid rgba(255, 255, 255, 0.2); color: #E0D6CC; width: 40px; height: 40px; border-radius: 10px; cursor: pointer; font-size: 24px; display: flex; align-items: center; justify-content: center; transition: var(--transition);">×</button>
+        <div class="admin-header" style="padding: 30px; background: rgba(62, 39, 35, 0.95); color: white; border-bottom: 2px solid var(--accent-color);">
+            <div class="admin-title-container" style="display: flex; align-items: center; gap: 15px; margin-bottom: 8px;">
+                <div class="admin-icon" style="width: 48px; height: 48px; background: linear-gradient(135deg, var(--accent-color), #FFA500); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: var(--shadow-md);">⚡</div>
+                <div>
+                    <div class="admin-title" style="font-size: 26px; font-weight: 700; margin: 0; color: var(--light-color);">Админ-панель</div>
+                    <div class="admin-subtitle" style="font-size: 14px; opacity: 0.8; margin-left: 63px; color: #E0D6CC;">Управление книжным магазином</div>
+                </div>
+            </div>
+        </div>
+        <div style="padding: 30px; text-align: center; color: #E0D6CC;">
+            <p>Для полной функциональности админ-панели используйте главную страницу</p>
+            <button onclick="window.location.href='index.html'" style="margin-top: 20px; padding: 12px 24px; background: linear-gradient(135deg, var(--accent-color), #FFA500); color: white; border: none; border-radius: var(--radius-md); cursor: pointer; font-size: 16px; font-weight: 600; transition: var(--transition);">Перейти на главную</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно для подробностей манги -->
+    <div class="manga-detail-modal" id="mangaDetailModal">
+        <div class="manga-detail-container">
+            <div class="manga-detail-header">
+                <h2 class="manga-detail-title">Подробности манги</h2>
+                <button class="close-detail-btn" onclick="closeMangaDetail()">×</button>
+            </div>
+            <div class="manga-detail-content" id="mangaDetailContent">
+                <!-- Содержимое будет заполнено через JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Коллекция манги</h1>
+            <p class="page-subtitle">Окунитесь в мир японских комиксов с нашей эксклюзивной коллекцией</p>
+        </div>
+
+        <div class="filter-section">
+            <h3 class="filter-title">🔍 Фильтры поиска</h3>
+            <div class="filter-grid">
+                <div class="filter-group">
+                    <label class="filter-label">
+                        <span>🎭</span>
+                        Жанр
+                    </label>
+                    <select class="filter-select" id="genreFilter" onchange="filterProducts()">
+                        <option value="">Все жанры</option>
+                        <option value="Сёнэн">Сёнэн</option>
+                        <option value="Сёдзё">Сёдзё</option>
+                        <option value="Сэйнэн">Сэйнэн</option>
+                        <option value="Комедия">Комедия</option>
+                        <option value="Приключения">Приключения</option>
+                        <option value="Фэнтези">Фэнтези</option>
+                        <option value="Спорт">Спорт</option>
+                        <option value="Мекха">Мекха</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">
+                        <span>📊</span>
+                        Сортировка
+                    </label>
+                    <select class="filter-select" id="sortFilter" onchange="filterProducts()">
+                        <option value="default">По умолчанию</option>
+                        <option value="price-asc">Цена (по возрастанию)</option>
+                        <option value="price-desc">Цена (по убыванию)</option>
+                        <option value="name-asc">Название (А-Я)</option>
+                        <option value="name-desc">Название (Я-А)</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">
+                        <span>💰</span>
+                        Цена
+                    </label>
+                    <select class="filter-select" id="priceFilter" onchange="filterProducts()">
+                        <option value="">Все цены</option>
+                        <option value="0-500">До 500 руб</option>
+                        <option value="500-1000">500-1000 руб</option>
+                        <option value="1000-1500">1000-1500 руб</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+            <!-- Манги будут загружены через JavaScript -->
+        </div>
+
+        <div class="pagination" id="pagination">
+            <!-- Пагинация будет создана через JavaScript -->
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Литературный Оазис. Все права защищены.</p>
+        <p>Книжный магазин с душой | Ул. Бамбуково, д.13 | +7 (921) 756-77-44</p>
+    </footer>
+
+    <script>
+        // Расширенные данные манги
+        const mangas = [
+            {
+                id: 4, 
+                title: "Наруто: Том 1", 
+                author: "Масаси Кисимото", 
+                pages: 192, 
+                price: 450, 
+                genre: "Сёнэн", 
+                category: "manga", 
+                image: "https://images.unsplash.com/photo-1589998059171-988d887df646?w=400&h=600&fit=crop&q=80",
+                description: "История о Наруто Узумаки — мальчике-ниндзя, который хочет заслужить признание в своей деревне и стать Хокаге, лидером деревни. Наруто — неудачник, но у него есть мечта и огромное количество энергии.",
+                year: 1999,
+                publisher: "Shueisha",
+                rating: 4.6,
+                ratingCount: 3210,
+                genres: ["Сёнэн", "Боевые искусства", "Приключения"],
+                isbn: "978-4-08-872840-7",
+                language: "Японский (перевод)",
+                weight: 180,
+                dimensions: "17.5 x 11.5 x 1.5 см",
+                available: true
+            },
+            {
+                id: 5, 
+                title: "Атака Титанов", 
+                author: "Хадзиме Исаяма", 
+                pages: 200, 
+                price: 480, 
+                genre: "Сёнэн", 
+                category: "manga", 
+                image: "https://images.unsplash.com/photo-1568667256549-094345857637?w=400&h=600&fit=crop&q=80",
+                description: "Человечество живет в городах, окруженных тремя огромными стенами, которые защищают людей от гигантских человекоподобных существ, называемых титанами. Главный герой, Эрен Йегер, клянется уничтожить всех титанов после того, как они разрушают его родной город и убивают его мать.",
+                year: 2009,
+                publisher: "Kodansha",
+                rating: 4.8,
+                ratingCount: 4321,
+                genres: ["Сёнэн", "Постапокалипсис", "Ужасы"],
+                isbn: "978-4-06-384276-0",
+                language: "Японский (перевод)",
+                weight: 190,
+                dimensions: "17.5 x 11.5 x 1.6 см",
+                available: true
+            },
+            {
+                id: 6, 
+                title: "Ван Пис", 
+                author: "Эйитиро Ода", 
+                pages: 210, 
+                price: 470, 
+                genre: "Сёнэн", 
+                category: "manga", 
+                image: "https://images.unsplash.com/photo-1592672690593-9fdf1779e457?w=400&h=600&fit=crop&q=80",
+                description: "Приключения пирата Монки Д. Луффи, который вместе со своей командой ищет легендарное сокровище Ван Пис, чтобы стать Королем Пиратов. История полна юмора, драмы и невероятных сражений.",
+                year: 1997,
+                publisher: "Shueisha",
+                rating: 4.9,
+                ratingCount: 5123,
+                genres: ["Сёнэн", "Приключения", "Комедия"],
+                isbn: "978-4-08-872509-3",
+                language: "Японский (перевод)",
+                weight: 195,
+                dimensions: "17.5 x 11.5 x 1.5 см",
+                available: true
+            },
+            {
+                id: 7, 
+                title: "Токийские мстители", 
+                author: "Кэн Вакуи", 
+                pages: 190, 
+                price: 460, 
+                genre: "Сёнэн", 
+                category: "manga", 
+                image: "https://images.unsplash.com/photo-1572817519562-8f828eefb3b1?w=400&h=600&fit=crop&q=80",
+                description: "Такиши Ханагиши — неудачник, который узнает, что его бывшая девушка Хината погибла во время конфликта между преступными группировками. Получив возможность отправиться в прошлое, он пытается предотвратить её смерть.",
+                year: 2017,
+                publisher: "Kodansha",
+                rating: 4.5,
+                ratingCount: 2345,
+                genres: ["Сёнэн", "Боевые искусства", "Драма"],
+                isbn: "978-4-06-395607-9",
+                language: "Японский (перевод)",
+                weight: 185,
+                dimensions: "17.5 x 11.5 x 1.4 см",
+                available: true
+            },
+            {
+                id: 8, 
+                title: "Моб Психо 100", 
+                author: "ONE", 
+                pages: 180, 
+                price: 440, 
+                genre: "Комедия", 
+                category: "manga", 
+                image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=400&h=600&fit=crop&q=80",
+                description: "Шигэо Кагеяма, также известный как Моб, — школьник с огромными экстрасенсорными способностями. Он старается жить обычной жизнью, подавляя свои эмоции, так как они могут выйти из-под контроля.",
+                year: 2012,
+                publisher: "Shogakukan",
+                rating: 4.7,
+                ratingCount: 3123,
+                genres: ["Комедия", "Экшен", "Сверхъестественное"],
+                isbn: "978-4-09-126311-9",
+                language: "Японский (перевод)",
+                weight: 175,
+                dimensions: "17.5 x 11.5 x 1.3 см",
+                available: true
+            },
+            {
+                id: 9, 
+                title: "Блич", 
+                author: "Тайто Кубо", 
+                pages: 195, 
+                price: 455, 
+                genre: "Сёнэн", 
+                category: "manga", 
+                image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=600&fit=crop&q=80",
+                description: "Ичиго Куросаки — школьник, который может видеть призраков. После встречи с синигами Рукией Кучики он получает её силы и становится синигами, защищая людей от злых духов.",
+                year: 2001,
+                publisher: "Shueisha",
+                rating: 4.4,
+                ratingCount: 3987,
+                genres: ["Сёнэн", "Боевые искусства", "Сверхъестественное"],
+                isbn: "978-4-08-873213-8",
+                language: "Японский (перевод)",
+                weight: 185,
+                dimensions: "17.5 x 11.5 x 1.4 см",
+                available: true
+            },
+            {
+                id: 10, 
+                title: "Хантер х Хантер", 
+                author: "Ёсихиро Тогаси", 
+                pages: 205, 
+                price: 465, 
+                genre: "Сёнэн", 
+                category: "мanga", 
+                image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=600&fit=crop&q=80",
+                description: "Гон Фрикс отправляется на экзамен, чтобы стать Охотником, как его пропавший отец. На своём пути он встречает друзей и сталкивается с невероятными опасностями.",
+                year: 1998,
+                publisher: "Shueisha",
+                rating: 4.8,
+                ratingCount: 4231,
+                genres: ["Сёнэн", "Приключения", "Фэнтези"],
+                isbn: "978-4-08-872571-0",
+                language: "Японский (перевод)",
+                weight: 190,
+                dimensions: "17.5 x 11.5 x 1.5 см",
+                available: true
+            },
+            {
+                id: 11, 
+                title: "Моя геройская академия", 
+                author: "Кохэй Хорикоси", 
+                pages: 198, 
+                price: 460, 
+                genre: "Сёнэн", 
+                category: "manga", 
+                image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=600&fit=crop&q=80",
+                description: "В мире, где у большинства людей есть сверхспособности, Изуку Мидория рождается без них. Однако он всё ещё мечтает стать героем и в конечном итоге получает силу от величайшего героя мира.",
+                year: 2014,
+                publisher: "Shueisha",
+                rating: 4.7,
+                ratingCount: 4567,
+                genres: ["Сёнэн", "Супергерои", "Школа"],
+                isbn: "978-4-08-880264-0",
+                language: "Японский (перевод)",
+                weight: 188,
+                dimensions: "17.5 x 11.5 x 1.5 см",
+                available: true
+            },
+            {
+                id: 12, 
+                title: "Клинок, рассекающий демонов", 
+                author: "Койхару Готогэ", 
+                pages: 192, 
+                price: 450, 
+                genre: "Сёнэн", 
+                category: "manga", 
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&q=80",
+                description: "Танджиро Камадо становится истребителем демонов после того, как его семья была убита, а его сестра Незуко превращена в демона. Он отправляется в путешествие, чтобы найти лекарство для сестры и отомстить за семью.",
+                year: 2016,
+                publisher: "Shueisha",
+                rating: 4.9,
+                ratingCount: 4987,
+                genres: ["Сёнэн", "Исторический", "Боевые искусства"],
+                isbn: "978-4-08-880723-2",
+                language: "Японский (перевод)",
+                weight: 180,
+                dimensions: "17.5 x 11.5 x 1.4 см",
+                available: true
+            },
+            {
+                id: 13, 
+                title: "Джоджо", 
+                author: "Хирохико Араки", 
+                pages: 220, 
+                price: 490, 
+                genre: "Приключения", 
+                category: "manga", 
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop&q=80",
+                description: "Эпическая сага, рассказывающая историю семьи Джостаров и их борьбы со сверхъестественными силами на протяжении нескольких поколений. Каждая часть фокусируется на новом представителе семьи.",
+                year: 1987,
+                publisher: "Shueisha",
+                rating: 4.6,
+                ratingCount: 3876,
+                genres: ["Приключения", "Сверхъестественное", "Боевик"],
+                isbn: "978-4-08-851126-9",
+                language: "Японский (перевод)",
+                weight: 210,
+                dimensions: "17.5 x 11.5 x 1.6 см",
+                available: true
+            },
+            {
+                id: 14, 
+                title: "Самурай Чамплу", 
+                author: "Синъитиро Ватанабэ", 
+                pages: 188, 
+                price: 445, 
+                genre: "Приключения", 
+                category: "manga", 
+                image: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=400&h=600&fit=crop&q=80",
+                description: "История о бродячем самураи и девушке-сироте, которые путешествуют по феодальной Японии в поисках самурая, который пахнет подсолнухами.",
+                year: 2004,
+                publisher: "Shogakukan",
+                rating: 4.5,
+                ratingCount: 2345,
+                genres: ["Приключения", "Комедия", "Исторический"],
+                isbn: "978-4-09-127341-5",
+                language: "Японский (перевод)",
+                weight: 175,
+                dimensions: "17.5 x 11.5 x 1.4 см",
+                available: true
+            },
+            {
+                id: 15, 
+                title: "Евангелион", 
+                author: "Хидэаки Анно", 
+                pages: 195, 
+                price: 480, 
+                genre: "Мекха", 
+                category: "manga", 
+                image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=600&fit=crop&q=80",
+                description: "В постапокалиптическом мире подростки пилотируют гигантских роботов под названием Евангелионы, чтобы защитить человечество от таинственных существ под названием Ангелы.",
+                year: 1995,
+                publisher: "Kadokawa Shoten",
+                rating: 4.8,
+                ratingCount: 4123,
+                genres: ["Мекха", "Психологический", "Драма"],
+                isbn: "978-4-04-713151-3",
+                language: "Японский (перевод)",
+                weight: 190,
+                dimensions: "17.5 x 11.5 x 1.5 см",
+                available: true
+            },
+            {
+                id: 40, 
+                title: "Тетрадь смерти", 
+                author: "Цугуми Ооба", 
+                pages: 185, 
+                price: 475, 
+                genre: "Сёдзё", 
+                category: "manga", 
+                image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=600&fit=crop&q=80",
+                description: "Старшеклассник Лайт Ягами находит сверхъестественную тетрадь, которая позволяет ему убивать любого человека, чьё имя он запишет в неё. Он решает использовать её, чтобы создать идеальный мир без преступности.",
+                year: 2003,
+                publisher: "Shueisha",
+                rating: 4.7,
+                ratingCount: 4567,
+                genres: ["Сёдзё", "Детектив", "Психологический"],
+                isbn: "978-4-08-873621-1",
+                language: "Японский (перевод)",
+                weight: 180,
+                dimensions: "17.5 x 11.5 x 1.4 см",
+                available: true
+            },
+            {
+                id: 41, 
+                title: "Стальной алхимик", 
+                author: "Хирому Аракава", 
+                pages: 205, 
+                price: 490, 
+                genre: "Сёнэн", 
+                category: "manga", 
+                image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=600&fit=crop&q=80",
+                description: "Братья Эдвард и Альфонс Элрики нарушают главный запрет алхимии, пытаясь воскресить свою умершую мать. В результате Эдвард теряет руку и ногу, а Альфонс теряет всё тело.",
+                year: 2001,
+                publisher: "Square Enix",
+                rating: 4.9,
+                ratingCount: 5123,
+                genres: ["Сёнэн", "Фэнтези", "Приключения"],
+                isbn: "978-4-7575-0628-5",
+                language: "Японский (перевод)",
+                weight: 195,
+                dimensions: "17.5 x 11.5 x 1.5 см",
+                available: true
+            },
+            {
+                id: 42, 
+                title: "Баскетбол Куроко", 
+                author: "Тадатоси Фудзимаки", 
+                pages: 195, 
+                price: 465, 
+                genre: "Спорт", 
+                category: "manga", 
+                image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=600&fit=crop&q=80",
+                description: "История о школьной баскетбольной команде, в которой играют гении-баскетболисты. Главный герой, Тацуя Куроко, обладает уникальной способностью быть незаметным на площадке.",
+                year: 2008,
+                publisher: "Shueisha",
+                rating: 4.6,
+                ratingCount: 3456,
+                genres: ["Спорт", "Школа", "Комедия"],
+                isbn: "978-4-08-874552-7",
+                language: "Японский (перевод)",
+                weight: 185,
+                dimensions: "17.5 x 11.5 x 1.4 см",
+                available: true
+            },
+            {
+                id: 43, 
+                title: "Сейлор Мун", 
+                author: "Наоко Такэути", 
+                pages: 175, 
+                price: 420, 
+                genre: "Сёдзё", 
+                category: "manga", 
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&q=80",
+                description: "Усаги Цукино — обычная школьница, которая узнаёт, что она воин-защитник Сейлор Мун. Вместе с другими воинами она сражается со злом, чтобы защитить Землю.",
+                year: 1992,
+                publisher: "Kodansha",
+                rating: 4.7,
+                ratingCount: 4987,
+                genres: ["Сёдзё", "Махо-сёдзё", "Романтика"],
+                isbn: "978-4-06-178721-6",
+                language: "Японский (перевод)",
+                weight: 170,
+                dimensions: "17.5 x 11.5 x 1.3 см",
+                available: true
+            }
+        ];
+
+        let currentPage = 1;
+        const productsPerPage = 12;
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+        const ADMIN_CREDENTIALS = {
+            login: "8355Vova",
+            password: "Adf220906"
+        };
+
+        // ========== ФУНКЦИИ ШАПКИ ==========
+
+        function performSearch() {
+            const searchTerm = document.getElementById('headerSearch').value.toLowerCase().trim();
+            const resultsContainer = document.getElementById('searchResults');
+            const resultsList = document.getElementById('searchResultsList');
+            const resultsCount = document.getElementById('resultsCount');
+
+            if (searchTerm === '') {
+                closeSearchResults();
+                return;
+            }
+
+            const searchResults = mangas.filter(manga => 
+                manga.title.toLowerCase().includes(searchTerm) ||
+                manga.author.toLowerCase().includes(searchTerm) ||
+                manga.genres.some(genre => genre.toLowerCase().includes(searchTerm))
+            );
+
+            if (searchResults.length > 0) {
+                resultsList.innerHTML = '';
+                searchResults.forEach(manga => {
+                    const resultItem = document.createElement('a');
+                    resultItem.href = '#';
+                    resultItem.className = 'search-result-item';
+                    resultItem.onclick = () => {
+                        showMangaDetail(manga.id);
+                        closeSearchResults();
+                    };
+                    resultItem.innerHTML = `
+                        <img src="${manga.image}" alt="${manga.title}" class="search-result-image" style="width: 60px; height: 80px; object-fit: cover; border-radius: var(--radius-sm); border: 2px solid var(--primary-color);">
+                        <div class="search-result-info" style="flex: 1;">
+                            <div class="search-result-title" style="font-size: 16px; font-weight: 700; color: var(--primary-color); margin-bottom: 5px;">${manga.title}</div>
+                            <div class="search-result-author" style="font-size: 14px; color: var(--secondary-color); margin-bottom: 5px; font-style: italic;">${manga.author}</div>
+                            <div class="search-result-price" style="font-size: 16px; color: #228B22; font-weight: 700;">${manga.price} руб</div>
+                        </div>
+                    `;
+                    resultsList.appendChild(resultItem);
+                });
+                resultsCount.textContent = `Найдено: ${searchResults.length}`;
+            } else {
+                resultsList.innerHTML = `
+                    <div class="no-results" style="text-align: center; padding: 20px; color: var(--secondary-color);">
+                        <div style="font-size: 40px;">📚</div>
+                        <div style="margin-top: 10px; font-weight: 600;">Манги не найдены</div>
+                        <div style="font-size: 14px; margin-top: 5px;">Попробуйте изменить запрос</div>
+                    </div>
+                `;
+                resultsCount.textContent = 'Найдено: 0';
+            }
+
+            resultsContainer.style.display = 'block';
+        }
+
+        function closeSearchResults() {
+            document.getElementById('searchResults').style.display = 'none';
+        }
+
+        function toggleAdminPanel() {
+            if (!currentUser || !currentUser.isAdmin) {
+                showNotification('Доступ запрещен! Только администратор может открыть админ-панель.', 'info');
+                return;
+            }
+
+            const panel = document.getElementById('adminPanel');
+            const body = document.body;
+            
+            panel.classList.toggle('open');
+            body.classList.toggle('admin-panel-open');
+        }
+
+        function updateAuthButtons() {
+            const authButtons = document.getElementById('authButtons');
+            const adminPanelBtn = document.getElementById('adminPanelBtn');
+            
+            if (currentUser) {
+                const avatarLetter = currentUser.name.charAt(0).toUpperCase();
+                
+                authButtons.innerHTML = `
+                    <div class="user-menu">
+                        <div class="user-info" onclick="window.location.href='index.html#profile'">
+                            <div class="user-avatar">${avatarLetter}</div>
+                            <span class="user-name">${currentUser.name}</span>
+                        </div>
+                        <button class="logout-btn" onclick="userLogout()">Выйти</button>
+                    </div>
+                `;
+                
+                if (currentUser.isAdmin) {
+                    adminPanelBtn.classList.add('visible');
+                } else {
+                    adminPanelBtn.classList.remove('visible');
+                }
+            } else {
+                authButtons.innerHTML = `
+                    <button class="login-btn" onclick="window.location.href='index.html#auth'">Войти</button>
+                    <button class="register-btn" onclick="window.location.href='index.html#auth'">Регистрация</button>
+                `;
+                adminPanelBtn.classList.remove('visible');
+            }
+        }
+
+        function userLogout() {
+            if (currentUser && currentUser.isAdmin) {
+                localStorage.removeItem('adminLoggedIn');
+            }
+            
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            updateAuthButtons();
+            
+            const panel = document.getElementById('adminPanel');
+            const body = document.body;
+            panel.classList.remove('open');
+            body.classList.remove('admin-panel-open');
+        }
+
+        function updateCartCount() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+            const cartCountElement = document.getElementById('cart-count');
+            
+            if (cartCountElement) {
+                cartCountElement.textContent = totalCount;
+                if (totalCount > 0) {
+                    cartCountElement.style.display = 'flex';
+                } else {
+                    cartCountElement.style.display = 'none';
+                }
+            }
+        }
+
+        // ========== ФУНКЦИИ СТРАНИЦЫ МАНГИ ==========
+
+        function showMangaDetail(mangaId) {
+            const manga = mangas.find(m => m.id === mangaId);
+            if (!manga) return;
+
+            const modal = document.getElementById('mangaDetailModal');
+            const content = document.getElementById('mangaDetailContent');
+            
+            const genresHTML = manga.genres.map(genre => 
+                `<span class="product-genre" style="display: inline-block; margin-right: 5px; margin-bottom: 5px;">${genre}</span>`
+            ).join('');
+
+            content.innerHTML = `
+                <div class="manga-detail-image-container">
+                    <img src="${manga.image}" alt="${manga.title}" class="manga-detail-image"
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=280&h=400&fit=cover&q=80'; this.alt='Изображение недоступно'">
+                </div>
+                <div class="manga-detail-main">
+                    <h3 class="manga-detail-name">${manga.title}</h3>
+                    <p class="manga-detail-author">${manga.author}</p>
+                    
+                    <div class="manga-detail-description">
+                        <strong>Описание:</strong><br>
+                        ${manga.description}
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        ${genresHTML}
+                    </div>
+                    
+                    <div class="manga-details-grid">
+                        <div class="manga-detail-item">
+                            <div class="manga-detail-label">📅 Год издания</div>
+                            <div class="manga-detail-value">${manga.year}</div>
+                        </div>
+                        <div class="manga-detail-item">
+                            <div class="manga-detail-label">📖 Страниц</div>
+                            <div class="manga-detail-value">${manga.pages}</div>
+                        </div>
+                        <div class="manga-detail-item">
+                            <div class="manga-detail-label">🏷️ Издательство</div>
+                            <div class="manga-detail-value">${manga.publisher}</div>
+                        </div>
+                        <div class="manga-detail-item">
+                            <div class="manga-detail-label">🔤 Язык</div>
+                            <div class="manga-detail-value">${manga.language}</div>
+                        </div>
+                        <div class="manga-detail-item">
+                            <div class="manga-detail-label">📏 Размеры</div>
+                            <div class="manga-detail-value">${manga.dimensions}</div>
+                        </div>
+                        <div class="manga-detail-item">
+                            <div class="manga-detail-label">⚖️ Вес</div>
+                            <div class="manga-detail-value">${manga.weight} г</div>
+                        </div>
+                        <div class="manga-detail-item">
+                            <div class="manga-detail-label">⭐ Рейтинг</div>
+                            <div class="manga-detail-value">${manga.rating}/5 (${manga.ratingCount} оценок)</div>
+                        </div>
+                        <div class="manga-detail-item">
+                            <div class="manga-detail-label">🔢 ISBN</div>
+                            <div class="manga-detail-value">${manga.isbn}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="manga-detail-price">${manga.price} руб</div>
+                    
+                    <div class="manga-detail-actions">
+                        <button class="manga-detail-cart-btn" onclick="addToCartFromPage(${manga.id}); closeMangaDetail();">
+                            <span>🛒</span>
+                            <span>В корзину</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMangaDetail() {
+            const modal = document.getElementById('mangaDetailModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function filterProducts() {
+            const genre = document.getElementById('genreFilter').value;
+            const sort = document.getElementById('sortFilter').value;
+            const price = document.getElementById('priceFilter').value;
+            
+            let filtered = [...mangas];
+            
+            if (genre) {
+                filtered = filtered.filter(manga => manga.genre === genre);
+            }
+            
+            if (price) {
+                const [min, max] = price.split('-').map(Number);
+                filtered = filtered.filter(manga => manga.price >= min && manga.price <= max);
+            }
+            
+            switch(sort) {
+                case 'price-asc':
+                    filtered.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-desc':
+                    filtered.sort((a, b) => b.price - a.price);
+                    break;
+                case 'name-asc':
+                    filtered.sort((a, b) => a.title.localeCompare(b.title));
+                    break;
+                case 'name-desc':
+                    filtered.sort((a, b) => b.title.localeCompare(a.title));
+                    break;
+            }
+            
+            displayProducts(filtered);
+        }
+        
+        function displayProducts(products) {
+            const grid = document.getElementById('productsGrid');
+            const start = (currentPage - 1) * productsPerPage;
+            const end = start + productsPerPage;
+            const paginatedProducts = products.slice(start, end);
+            
+            grid.innerHTML = '';
+            
+            paginatedProducts.forEach(manga => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image-container" onclick="showMangaDetail(${manga.id})" style="cursor: pointer;">
+                        <img src="${manga.image}" alt="${manga.title}" class="product-image"
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=200&h=300&fit=cover&q=80'; this.alt='Изображение недоступно'">
+                    </div>
+                    <span class="product-genre">${manga.genre}</span>
+                    <div class="product-content">
+                        <h3 class="product-title" onclick="showMangaDetail(${manga.id})" style="cursor: pointer;">${manga.title}</h3>
+                        <p class="product-author">${manga.author}</p>
+                        <div class="product-meta">
+                            <span class="product-pages">${manga.pages} стр.</span>
+                            <span style="font-size: 12px; color: var(--accent-color); font-weight: 600;">
+                                ⭐ ${manga.rating}
+                            </span>
+                        </div>
+                        <div class="product-price-container">
+                            <div class="product-price">${manga.price} руб</div>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCartFromPage(${manga.id})">В корзину</button>
+                    </div>
+                `;
+                grid.appendChild(productCard);
+            });
+            
+            createPagination(products.length);
+        }
+        
+        function createPagination(totalProducts) {
+            const totalPages = Math.ceil(totalProducts / productsPerPage);
+            const pagination = document.getElementById('pagination');
+            
+            if (totalPages <= 1) {
+                pagination.innerHTML = '';
+                return;
+            }
+            
+            let html = '';
+            
+            if (currentPage > 1) {
+                html += `<button class="page-btn" onclick="changePage(${currentPage - 1})">‹</button>`;
+            }
+            
+            for (let i = 1; i <= totalPages; i++) {
+                if (i === currentPage) {
+                    html += `<button class="page-btn active">${i}</button>`;
+                } else if (i <= 3 || i > totalPages - 3 || Math.abs(currentPage - i) <= 2) {
+                    html += `<button class="page-btn" onclick="changePage(${i})">${i}</button>`;
+                } else if (i === 4 && currentPage > 4) {
+                    html += `<span style="padding: 12px;">...</span>`;
+                }
+            }
+            
+            if (currentPage < totalPages) {
+                html += `<button class="page-btn" onclick="changePage(${currentPage + 1})">›</button>`;
+            }
+            
+            pagination.innerHTML = html;
+        }
+        
+        function changePage(page) {
+            currentPage = page;
+            filterProducts();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function addToCartFromPage(mangaId) {
+            const manga = mangas.find(m => m.id === mangaId);
+            if (!manga) return;
+            
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const existingItem = cartItems.find(item => item.id === mangaId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cartItems.push({
+                    id: manga.id,
+                    title: manga.title,
+                    price: manga.price,
+                    image: manga.image,
+                    author: manga.author,
+                    quantity: 1
+                });
+            }
+            
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            updateCartCount();
+            showNotification(`"${manga.title}" добавлена в корзину!`, 'success');
+        }
+        
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type === 'success' ? '' : 'info'}`;
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <span>${type === 'success' ? '✅' : 'ℹ️'}</span>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideIn 0.3s ease reverse';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+        
+        // ========== ИНИЦИАЛИЗАЦИЯ ==========
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Инициализация пользователя
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                
+                if (currentUser.username === ADMIN_CREDENTIALS.login) {
+                    localStorage.setItem('adminLoggedIn', 'true');
+                }
+            }
+            
+            if (localStorage.getItem('adminLoggedIn') === 'true') {
+                if (!currentUser || currentUser.username !== ADMIN_CREDENTIALS.login) {
+                    currentUser = {
+                        id: 0,
+                        name: "Администратор",
+                        username: ADMIN_CREDENTIALS.login,
+                        isAdmin: true
+                    };
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                }
+            }
+            
+            updateAuthButtons();
+            updateCartCount();
+            
+            // Инициализация продуктов
+            filterProducts();
+            
+            // Обработчики событий
+            document.getElementById('headerSearch').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            let searchTimeout;
+            document.getElementById('headerSearch').addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(performSearch, 500);
+            });
+            
+            document.addEventListener('click', function(event) {
+                const searchResults = document.getElementById('searchResults');
+                const headerSearch = document.getElementById('headerSearch');
+                const searchButton = document.querySelector('.search-button');
+                
+                if (searchResults.style.display === 'block' && 
+                    !searchResults.contains(event.target) && 
+                    event.target !== headerSearch && 
+                    event.target !== searchButton) {
+                    closeSearchResults();
+                }
+                
+                const mangaDetailModal = document.getElementById('mangaDetailModal');
+                if (mangaDetailModal.classList.contains('active') && event.target === mangaDetailModal) {
+                    closeMangaDetail();
+                }
+            });
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeSearchResults();
+                    closeMangaDetail();
+                }
+            });
+            
+            // Стили для результатов поиска
+            const style = document.createElement('style');
+            style.textContent = `
+                .search-result-item {
+                    display: flex;
+                    gap: 15px;
+                    padding: 15px;
+                    border-radius: var(--radius-md);
+                    margin-bottom: 10px;
+                    transition: var(--transition);
+                    cursor: pointer;
+                    text-decoration: none;
+                    color: inherit;
+                    border: 2px solid transparent;
+                    background: white;
+                    box-shadow: var(--shadow-sm);
+                }
+                .search-result-item:hover {
+                    background: var(--light-color);
+                    border-color: var(--accent-color);
+                    transform: translateY(-2px);
+                    box-shadow: var(--shadow-md);
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>

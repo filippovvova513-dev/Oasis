@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Новинки - Литературный Оазис</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Georgia, serif;
+      background-color: #fff;
+      color: #e8d5c4;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #3498db;
+      margin-bottom: 40px;
+    }
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .book-card {
+      background: rgba(212, 163, 115, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      border: 2px solid  lch(60.16% 42.67 261.8);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .book-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+    .new-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #ff6b6b;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    .book-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .book-title {
+      font-size: 1.3rem;
+      color:  #2c3e50;
+      margin-bottom: 10px;
+    }
+    .book-author {
+      color: #95a5a6;
+      margin-bottom: 8px;
+    }
+    .book-pages, .book-genre {
+    color: #95a5a6;
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+    .back-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #3498db;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    .price {
+      color:  lch(60.16% 42.67 261.8);
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-button">← На главную</a>
+    <h1 class="section-title">Новинки 2024</h1>
+    
+    <div class="books-grid">
+      <div class="book-card">
+        <div class="new-badge">НОВИНКА</div>
+        <img src="https://i.imgur.com/placeholder-new1.jpg" alt="Последнее желание" class="book-image">
+        <h3 class="book-title">Последнее желание</h3>
+        <p class="book-author">Анджей Сапковский</p>
+        <p class="book-pages">384 страницы</p>
+        <p class="book-genre">Фэнтези</p>
+        <p class="price">890 ₽</p>
+      </div>
+      
+      <div class="book-card">
+        <div class="new-badge">НОВИНКА</div>
+        <img src="https://i.imgur.com/placeholder-new2.jpg" alt="Проект "Аве Мария"" class="book-image">
+        <h3 class="book-title">Проект "Аве Мария"</h3>
+        <p class="book-author">Энди Вейер</p>
+        <p class="book-pages">416 страниц</p>
+        <p class="book-genre">Научная фантастика</p>
+        <p class="price">950 ₽</p>
+      </div>
+      
+      <div class="book-card">
+        <div class="new-badge">НОВИНКА</div>
+        <img src="https://i.imgur.com/placeholder-new3.jpg" alt="Тонкое искусство пофигизма" class="book-image">
+        <h3 class="book-title">Тонкое искусство пофигизма</h3>
+        <p class="book-author">Марк Мэнсон</p>
+        <p class="book-pages">272 страницы</p>
+        <p class="book-genre">Психология, Саморазвитие</p>
+        <p class="price">680 ₽</p>
+      </div>
+      
+      <div class="book-card">
+        <div class="new-badge">НОВИНКА</div>
+        <img src="https://i.imgur.com/placeholder-new4.jpg" alt="Женщины, которые любят слишком сильно" class="book-image">
+        <h3 class="book-title">Женщины, которые любят слишком сильно</h3>
+        <p class="book-author">Робин Норвуд</p>
+        <p class="book-pages">320 страниц</p>
+        <p class="book-genre">Психология, Отношения</p>
+        <p class="price">750 ₽</p>
+      </div>
+      
+      <div class="book-card">
+        <div class="new-badge">НОВИНКА</div>
+        <img src="https://i.imgur.com/placeholder-new5.jpg" alt="Код да Винчи" class="book-image">
+        <h3 class="book-title">Код да Винчи</h3>
+        <p class="book-author">Дэн Браун</p>
+        <p class="book-pages">544 страницы</p>
+        <p class="book-genre">Детектив, Триллер</p>
+        <p class="price">820 ₽</p>
+      </div>
+      
+      <div class="book-card">
+        <div class="new-badge">НОВИНКА</div>
+        <img src="https://i.imgur.com/placeholder-new6.jpg" alt="Песнь Ахилла" class="book-image">
+        <h3 class="book-title">Песнь Ахилла</h3>
+        <p class="book-author">Мадлен Миллер</p>
+        <p class="book-pages">416 страниц</p>
+        <p class="book-genre">Исторический роман</p>
+        <p class="price">780 ₽</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,2298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Журналы - Литературный Оазис</title>
+    <style>
+        :root {
+            --primary-color: #8B4513; /* Теплый коричневый */
+            --secondary-color: #D2691E; /* Шоколадный */
+            --accent-color: #FF8C00; /* Теплый оранжевый */
+            --light-color: #FFF8DC; /* Миндальный */
+            --dark-color: #5D4037; /* Темно-коричневый */
+            --text-color: #3E2723;
+            --shadow-sm: 0 2px 8px rgba(139, 69, 19, 0.1);
+            --shadow-md: 0 4px 16px rgba(139, 69, 19, 0.15);
+            --shadow-lg: 0 8px 32px rgba(139, 69, 19, 0.2);
+            --shadow-interactive: 0 4px 12px rgba(210, 105, 30, 0.25);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: 
+                linear-gradient(rgba(255, 248, 220, 0.9), rgba(255, 248, 220, 0.95)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><defs><pattern id="books" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><rect fill="%23F5E6D3" opacity="0.4" x="0" y="0" width="40" height="40"/><path fill="%23D2691E" opacity="0.15" d="M8,8 L32,8 L32,32 L8,32 Z M10,10 L30,10 L30,30 L10,30 Z M12,12 L28,12 L28,18 L12,18 Z M12,20 L28,20 L28,26 L12,26 Z"/></pattern></defs><rect fill="url(%23books)" width="400" height="400"/></svg>'),
+                #FFF8DC;
+            background-size: 400px 400px, auto;
+            background-attachment: fixed;
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: margin-left 0.3s ease;
+        }
+
+        body.admin-panel-open {
+            margin-left: 420px;
+        }
+
+        /* Уведомления */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #228B22, #006400);
+            color: white;
+            padding: 15px 25px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideIn 0.3s ease;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .notification.info {
+            background: linear-gradient(135deg, var(--accent-color), #FFA500);
+        }
+
+        .notification button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Шапка - ТОЧНАЯ КОПИЯ С ГЛАВНОЙ СТРАНИЦЫ */
+        .header {
+            background: linear-gradient(135deg, var(--light-color), #F5E6D3);
+            padding: 15px 0;
+            border-bottom: 4px solid var(--primary-color);
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 0;
+            width: 100%;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 3700px;
+            margin: 0 auto;
+            padding: 0 30px;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+            text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2);
+        }
+
+        .nav {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--dark-color);
+            padding: 10px 16px;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            position: relative;
+            border: 2px solid transparent;
+            box-shadow: var(--shadow-sm);
+            white-space: nowrap;
+        }
+
+        .nav-item:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+            border-color: var(--accent-color);
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 6px;
+            background: rgba(139, 69, 19, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .nav-item:hover .nav-icon {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(135deg, #DC143C, #B22222);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            border: 3px solid var(--light-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Поиск в шапке */
+        .header-search {
+            display: flex;
+            gap: 10px;
+            margin-left: 20px;
+            position: relative;
+        }
+
+        .search-input {
+            padding: 12px 20px;
+            border: 3px solid var(--primary-color);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            background: white;
+            color: var(--text-color);
+            width: 280px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-interactive);
+            transform: translateY(-2px);
+        }
+
+        .search-button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+        }
+
+        .search-button:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+        }
+
+        /* Кнопки входа/регистрации */
+        .auth-buttons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .login-btn, .register-btn {
+            padding: 10px 18px;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .login-btn {
+            background: var(--light-color);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .login-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+        }
+
+        .register-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: 2px solid transparent;
+        }
+
+        .register-btn:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+        }
+
+        /* Меню пользователя */
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 16px;
+            background: rgba(139, 69, 19, 0.1);
+            border-radius: var(--radius-md);
+            border: 2px solid rgba(139, 69, 19, 0.2);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .user-info:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: 14px;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .user-action-btn {
+            padding: 10px 16px;
+            border: 2px solid var(--primary-color);
+            background: white;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: var(--transition);
+            color: var(--primary-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .user-action-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+        }
+
+        .logout-btn {
+            padding: 10px 16px;
+            background: linear-gradient(135deg, #DC143C, #B22222);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .logout-btn:hover {
+            background: linear-gradient(135deg, #B22222, #8B0000);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+        }
+
+        /* Кнопка админ-панели */
+        .admin-panel-btn {
+            background: linear-gradient(135deg, #228B22, #006400);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            padding: 10px 18px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow-sm);
+            display: none;
+        }
+
+        .admin-panel-btn.visible {
+            display: flex;
+        }
+
+        .admin-panel-btn:hover {
+            background: linear-gradient(135deg, #006400, #004d00);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Окно результатов поиска */
+        .search-results {
+            position: fixed;
+            top: 130px;
+            right: 30px;
+            width: 450px;
+            max-height: 600px;
+            background: var(--light-color);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            border: 3px solid var(--primary-color);
+            z-index: 1000;
+            display: none;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: auto;
+            padding: 0 30px;
+        }
+
+        /* Боковая админ-панель */
+        .admin-panel {
+            position: fixed;
+            left: -420px;
+            top: 0;
+            width: 420px;
+            height: 100vh;
+            background: linear-gradient(180deg, var(--dark-color) 0%, #4A3529 100%);
+            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 4px 0 40px rgba(0, 0, 0, 0.4);
+            border-right: 3px solid var(--accent-color);
+        }
+
+        .admin-panel.open {
+            left: 0;
+        }
+
+        /* Основной контент страницы */
+        .page-header {
+            margin-bottom: 30px;
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, var(--light-color), #F5E6D3);
+            border-radius: var(--radius-lg);
+            border: 3px solid var(--primary-color);
+            box-shadow: var(--shadow-md);
+            margin-top: 20px;
+        }
+
+        .page-title {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-subtitle {
+            color: var(--secondary-color);
+            font-size: 20px;
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .filter-section {
+            background: var(--light-color);
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-lg);
+            border: 3px solid var(--primary-color);
+        }
+
+        .filter-title {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(210, 105, 30, 0.2);
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .filter-label {
+            font-size: 16px;
+            color: var(--primary-color);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-select {
+            padding: 14px 20px;
+            border: 3px solid #E0D6CC;
+            border-radius: var(--radius-md);
+            font-size: 16px;
+            color: var(--text-color);
+            background: white;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-interactive);
+            transform: translateY(-2px);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        /* Карточка журнала */
+        .product-card {
+            background: var(--light-color);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            border: 3px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-lg), 0 15px 30px rgba(139, 69, 19, 0.25);
+            border-color: var(--accent-color);
+        }
+
+        .product-image-container {
+            width: 100%;
+            flex: 0 0 auto;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 320px;
+            background: linear-gradient(135deg, #FFF8DC, #F5E6D3);
+            border-radius: var(--radius-md);
+            padding: 15px;
+        }
+
+        .product-image {
+            width: 100%;
+            max-width: 200px;
+            height: 300px;
+            object-fit: contain;
+            object-position: center top;
+            border-radius: var(--radius-sm);
+            border: 3px solid var(--primary-color);
+            transition: var(--transition);
+            background-color: white;
+            padding: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.08) rotate(1deg);
+            border-color: var(--accent-color);
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
+        }
+
+        .product-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-title {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-weight: 700;
+            line-height: 1.3;
+            min-height: 52px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-author {
+            color: var(--secondary-color);
+            margin-bottom: 12px;
+            font-size: 16px;
+            font-style: italic;
+            min-height: 24px;
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px 0;
+            border-top: 2px solid rgba(139, 69, 19, 0.1);
+            border-bottom: 2px solid rgba(139, 69, 19, 0.1);
+        }
+
+        .product-pages {
+            color: var(--dark-color);
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .product-pages::before {
+            content: "📖";
+            font-size: 12px;
+        }
+
+        .product-genre {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            box-shadow: var(--shadow-sm);
+            z-index: 2;
+        }
+
+        .product-price-container {
+            margin-top: auto;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 26px;
+            color: #228B22;
+            font-weight: 800;
+            text-align: center;
+            padding: 10px;
+            background: rgba(34, 139, 34, 0.05);
+            border-radius: var(--radius-md);
+            border: 2px solid rgba(34, 139, 34, 0.1);
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 16px;
+            font-weight: 700;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .add-to-cart:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .add-to-cart::before {
+            content: "🛒";
+            font-size: 14px;
+        }
+
+        /* Модальное окно для подробностей журнала */
+        .magazine-detail-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(93, 64, 55, 0.95);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .magazine-detail-modal.active {
+            display: flex;
+        }
+
+        .magazine-detail-container {
+            background: var(--light-color);
+            border-radius: var(--radius-lg);
+            width: 90%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 3px solid var(--primary-color);
+            box-shadow: var(--shadow-lg);
+            transform: scale(0.98);
+            transition: transform 0.3s ease;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        .magazine-detail-container.active {
+            transform: scale(1);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(0.98);
+            }
+        }
+
+        .magazine-detail-header {
+            padding: 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        .magazine-detail-title {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .magazine-detail-title::before {
+            content: "📰";
+            font-size: 24px;
+        }
+
+        .close-detail-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .close-detail-btn:hover {
+            background: rgba(255, 140, 0, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .magazine-detail-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px;
+            display: flex;
+            gap: 40px;
+        }
+
+        .magazine-detail-image-container {
+            flex: 0 0 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .magazine-detail-image {
+            width: 100%;
+            max-width: 280px;
+            height: 400px;
+            object-fit: contain;
+            border-radius: var(--radius-lg);
+            border: 4px solid var(--primary-color);
+            box-shadow: var(--shadow-lg);
+            background: white;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .magazine-detail-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .magazine-detail-name {
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .magazine-detail-author {
+            font-size: 22px;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            font-style: italic;
+            border-bottom: 2px solid rgba(210, 105, 30, 0.2);
+            padding-bottom: 15px;
+        }
+
+        .magazine-detail-description {
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .magazine-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .magazine-detail-item {
+            background: linear-gradient(135deg, rgba(255, 248, 220, 0.8), rgba(245, 230, 211, 0.9));
+            padding: 20px;
+            border-radius: var(--radius-md);
+            border: 2px solid rgba(139, 69, 19, 0.2);
+            transition: var(--transition);
+        }
+
+        .magazine-detail-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .magazine-detail-label {
+            font-size: 14px;
+            color: var(--primary-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .magazine-detail-label::before {
+            font-size: 16px;
+        }
+
+        .magazine-detail-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+
+        .magazine-detail-price {
+            font-size: 36px;
+            color: #228B22;
+            font-weight: 800;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(34, 139, 34, 0.1), rgba(50, 205, 50, 0.05));
+            border-radius: var(--radius-lg);
+            border: 3px solid rgba(34, 139, 34, 0.2);
+            margin: 20px 0;
+        }
+
+        .magazine-detail-actions {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .magazine-detail-cart-btn {
+            flex: 1;
+            padding: 18px;
+            background: linear-gradient(135deg, #228B22, #006400);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 700;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .magazine-detail-cart-btn:hover {
+            background: linear-gradient(135deg, #006400, #004d00);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .page-btn {
+            padding: 12px 20px;
+            background: var(--light-color);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .page-btn:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            transform: translateY(-2px);
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-interactive);
+        }
+
+        .page-btn.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .footer {
+            background: linear-gradient(135deg, var(--dark-color), #4A3529);
+            color: #F5E6D3;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+            width: 100%;
+            border-top: 4px solid var(--accent-color);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer p {
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .magazine-detail-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .magazine-detail-image-container {
+                flex: 0 0 auto;
+                align-items: center;
+            }
+            
+            .magazine-details-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .nav {
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                margin-left: 0;
+                width: 100%;
+                gap: 8px;
+            }
+            
+            .header-search {
+                margin-left: 0;
+                width: 100%;
+                justify-content: flex-start;
+            }
+            
+            .search-input {
+                width: 100%;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .page-title {
+                font-size: 36px;
+            }
+            
+            .page-subtitle {
+                font-size: 18px;
+            }
+            
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .magazine-details-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-results {
+                width: 90%;
+                right: 5%;
+                top: 160px;
+            }
+
+            .admin-panel {
+                width: 100%;
+                left: -100%;
+            }
+
+            body.admin-panel-open {
+                margin-left: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .header-content {
+                padding: 0 20px;
+            }
+            
+            .magazine-detail-content {
+                padding: 20px;
+            }
+            
+            .magazine-detail-name {
+                font-size: 24px;
+            }
+            
+            .magazine-detail-author {
+                font-size: 18px;
+            }
+            
+            .magazine-detail-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка - ТОЧНАЯ КОПИЯ С ГЛАВНОЙ СТРАНИЦЫ -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                Литературный Оазис
+            </a>
+            
+            <nav class="nav">
+                <a href="index.html" class="nav-item">
+                    <span class="nav-icon">Г</span>
+                    Главная
+                </a>
+                <a href="manga.html" class="nav-item">
+                    <span class="nav-icon">М</span>
+                    Манга
+                </a>
+                <a href="textbooks.html" class="nav-item">
+                    <span class="nav-icon">У</span>
+                    Учебники
+                </a>
+                <a href="magazines.html" class="nav-item">
+                    <span class="nav-icon">Ж</span>
+                    Журналы
+                </a>
+                
+                <div class="header-search">
+                    <input type="text" class="search-input" placeholder="Поиск журналов..." id="headerSearch">
+                    <button class="search-button" onclick="performSearch()">
+                        <span class="nav-icon">П</span>
+                    </button>
+                </div>
+                
+                <!-- Кнопки входа/регистрации или информация о пользователе -->
+                <div class="auth-buttons" id="authButtons">
+                    <!-- Будет заполнено JavaScript -->
+                </div>
+                
+                <!-- Кнопка админ-панели (показывается только для админа) -->
+                <button class="admin-panel-btn" id="adminPanelBtn" onclick="toggleAdminPanel()">
+                    <span>⚡</span>
+                    <span>Админ-панель</span>
+                </button>
+                
+                <a href="cart.html" class="nav-item">
+                    <span class="nav-icon">К</span>
+                    Корзина
+                    <span class="cart-count" id="cart-count">0</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Окно результатов поиска -->
+    <div class="search-results" id="searchResults">
+        <div class="search-results-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <div class="search-results-title" style="font-size: 18px; font-weight: 700; color: var(--primary-color);">Результаты поиска</div>
+            <button style="background: none; border: none; color: var(--primary-color); font-size: 20px; cursor: pointer;" onclick="closeSearchResults()">×</button>
+        </div>
+        <div class="search-results-count" id="resultsCount" style="font-size: 14px; color: var(--secondary-color); margin-bottom: 15px;">Найдено: 0</div>
+        <div class="search-results-list" id="searchResultsList">
+            <!-- Результаты поиска будут здесь -->
+        </div>
+    </div>
+
+    <!-- Боковая админ-панель -->
+    <div class="admin-panel" id="adminPanel">
+        <button class="admin-close" onclick="toggleAdminPanel()" style="position: absolute; top: 30px; right: 30px; background: rgba(255, 255, 255, 0.15); border: 2px solid rgba(255, 255, 255, 0.2); color: #E0D6CC; width: 40px; height: 40px; border-radius: 10px; cursor: pointer; font-size: 24px; display: flex; align-items: center; justify-content: center; transition: var(--transition);">×</button>
+        <div class="admin-header" style="padding: 30px; background: rgba(62, 39, 35, 0.95); color: white; border-bottom: 2px solid var(--accent-color);">
+            <div class="admin-title-container" style="display: flex; align-items: center; gap: 15px; margin-bottom: 8px;">
+                <div class="admin-icon" style="width: 48px; height: 48px; background: linear-gradient(135deg, var(--accent-color), #FFA500); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: var(--shadow-md);">⚡</div>
+                <div>
+                    <div class="admin-title" style="font-size: 26px; font-weight: 700; margin: 0; color: var(--light-color);">Админ-панель</div>
+                    <div class="admin-subtitle" style="font-size: 14px; opacity: 0.8; margin-left: 63px; color: #E0D6CC;">Управление книжным магазином</div>
+                </div>
+            </div>
+        </div>
+        <div style="padding: 30px; text-align: center; color: #E0D6CC;">
+            <p>Для полной функциональности админ-панели используйте главную страницу</p>
+            <button onclick="window.location.href='index.html'" style="margin-top: 20px; padding: 12px 24px; background: linear-gradient(135deg, var(--accent-color), #FFA500); color: white; border: none; border-radius: var(--radius-md); cursor: pointer; font-size: 16px; font-weight: 600; transition: var(--transition);">Перейти на главную</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно для подробностей журнала -->
+    <div class="magazine-detail-modal" id="magazineDetailModal">
+        <div class="magazine-detail-container">
+            <div class="magazine-detail-header">
+                <h2 class="magazine-detail-title">Подробности журнала</h2>
+                <button class="close-detail-btn" onclick="closeMagazineDetail()">×</button>
+            </div>
+            <div class="magazine-detail-content" id="magazineDetailContent">
+                <!-- Содержимое будет заполнено через JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Периодические издания</h1>
+            <p class="page-subtitle">Современные журналы на любой вкус в эксклюзивной коллекции</p>
+        </div>
+
+        <div class="filter-section">
+            <h3 class="filter-title">🔍 Фильтры поиска</h3>
+            <div class="filter-grid">
+                <div class="filter-group">
+                    <label class="filter-label">
+                        <span>📊</span>
+                        Категория
+                    </label>
+                    <select class="filter-select" id="categoryFilter" onchange="filterProducts()">
+                        <option value="">Все категории</option>
+                        <option value="Наука">Наука</option>
+                        <option value="Бизнес">Бизнес</option>
+                        <option value="Мода">Мода</option>
+                        <option value="Техника">Техника</option>
+                        <option value="Стиль">Стиль</option>
+                        <option value="Женский">Женский</option>
+                        <option value="Новости">Новости</option>
+                        <option value="Культура">Культура</option>
+                        <option value="Мужской">Мужской</option>
+                        <option value="Лайфстайл">Лайфстайл</option>
+                        <option value="Путешествия">Путешествия</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">
+                        <span>🔄</span>
+                        Периодичность
+                    </label>
+                    <select class="filter-select" id="periodFilter" onchange="filterProducts()">
+                        <option value="">Любая</option>
+                        <option value="Ежемесячный">Ежемесячный</option>
+                        <option value="Еженедельный">Еженедельный</option>
+                        <option value="Двухнедельный">Двухнедельный</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">
+                        <span>📈</span>
+                        Сортировка
+                    </label>
+                    <select class="filter-select" id="sortFilter" onchange="filterProducts()">
+                        <option value="default">По умолчанию</option>
+                        <option value="price-asc">Цена (по возрастанию)</option>
+                        <option value="price-desc">Цена (по убыванию)</option>
+                        <option value="name-asc">Название (А-Я)</option>
+                        <option value="name-desc">Название (Я-А)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+            <!-- Журналы будут загружены через JavaScript -->
+        </div>
+
+        <div class="pagination" id="pagination">
+            <!-- Пагинация будет создана через JavaScript -->
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Литературный Оазис. Все права защищены.</p>
+        <p>Книжный магазин с душой | Ул. Бамбуково, д.13 | +7 (921) 756-77-44</p>
+    </footer>
+
+    <script>
+        // Расширенные данные журналов
+        const magazines = [
+            {
+                id: 28, 
+                title: "National Geographic", 
+                author: "Various", 
+                pages: 120, 
+                price: 350, 
+                genre: "Наука", 
+                category: "magazine", 
+                period: "Ежемесячный", 
+                image: "https://images.unsplash.com/photo-1589998059171-988d887df646?w=400&h=600&fit=crop&q=80",
+                description: "Журнал о природе и науке с потрясающими фотографиями и глубокими научными статьями. Каждый выпуск посвящен исследованию нашей планеты и ее чудес.",
+                year: 1888,
+                publisher: "National Geographic Society",
+                rating: 4.8,
+                ratingCount: 4567,
+                genres: ["Наука", "Путешествия", "Природа"],
+                isbn: "ISSN 0027-9358",
+                language: "Русский",
+                weight: 220,
+                dimensions: "28 x 21.5 x 0.8 см",
+                frequency: "Ежемесячный",
+                available: true
+            },
+            {
+                id: 29, 
+                title: "Forbes", 
+                author: "Various", 
+                pages: 100, 
+                price: 400, 
+                genre: "Бизнес", 
+                category: "magazine", 
+                period: "Ежемесячный", 
+                image: "https://images.unsplash.com/photo-1568667256549-094345857637?w=400&h=600&fit=crop&q=80",
+                description: "Ведущий бизнес-журнал, посвященный миру финансов, инвестиций и предпринимательства. Содержит рейтинги самых богатых людей и перспективных компаний.",
+                year: 1917,
+                publisher: "Forbes Media",
+                rating: 4.7,
+                ratingCount: 3890,
+                genres: ["Бизнес", "Финансы", "Предпринимательство"],
+                isbn: "ISSN 0015-6914",
+                language: "Русский",
+                weight: 200,
+                dimensions: "27.5 x 21 x 0.6 см",
+                frequency: "Ежемесячный",
+                available: true
+            },
+            {
+                id: 30, 
+                title: "Vogue", 
+                author: "Various", 
+                pages: 150, 
+                price: 450, 
+                genre: "Мода", 
+                category: "magazine", 
+                period: "Ежемесячный", 
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&q=80",
+                description: "Культовый журнал о моде, красоте и стиле жизни. Каждый выпуск представляет последние тренды, эксклюзивные фотосессии и интервью со знаменитостями.",
+                year: 1892,
+                publisher: "Condé Nast",
+                rating: 4.6,
+                ratingCount: 5123,
+                genres: ["Мода", "Стиль", "Красота"],
+                isbn: "ISSN 0042-8000",
+                language: "Русский",
+                weight: 280,
+                dimensions: "30 x 23 x 1.2 см",
+                frequency: "Ежемесячный",
+                available: true
+            },
+            {
+                id: 31, 
+                title: "Популярная механика", 
+                author: "Various", 
+                pages: 110, 
+                price: 320, 
+                genre: "Техника", 
+                category: "magazine", 
+                period: "Ежемесячный", 
+                image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=600&fit=crop&q=80",
+                description: "Журнал о науке и технике, рассказывающий о новейших технологиях, изобретениях и научных открытиях доступным языком.",
+                year: 2002,
+                publisher: "Фэшн Пресс",
+                rating: 4.5,
+                ratingCount: 2345,
+                genres: ["Техника", "Наука", "Технологии"],
+                isbn: "ISSN 1683-8615",
+                language: "Русский",
+                weight: 190,
+                dimensions: "26 x 20 x 0.7 см",
+                frequency: "Ежемесячный",
+                available: true
+            },
+            {
+                id: 32, 
+                title: "GQ", 
+                author: "Various", 
+                pages: 130, 
+                price: 380, 
+                genre: "Стиль", 
+                category: "magazine", 
+                period: "Ежемесячный", 
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop&q=80",
+                description: "Мужской журнал о стиле, культуре и роскошном образе жизни. Представляет лучшие в мире моды, гаджетов, автомобилей и путешествий.",
+                year: 1957,
+                publisher: "Condé Nast",
+                rating: 4.6,
+                ratingCount: 3123,
+                genres: ["Мужской", "Стиль", "Лайфстайл"],
+                isbn: "ISSN 0016-6979",
+                language: "Русский",
+                weight: 240,
+                dimensions: "28 x 21.5 x 0.9 см",
+                frequency: "Ежемесячный",
+                available: true
+            },
+            {
+                id: 33, 
+                title: "Cosmopolitan", 
+                author: "Various", 
+                pages: 140, 
+                price: 370, 
+                genre: "Женский", 
+                category: "magazine", 
+                period: "Ежемесячный", 
+                image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=600&fit=crop&q=80",
+                description: "Журнал для современных женщин, охватывающий темы моды, красоты, карьеры, отношений и саморазвития.",
+                year: 1886,
+                publisher: "Hearst Communications",
+                rating: 4.5,
+                ratingCount: 4987,
+                genres: ["Женский", "Мода", "Лайфстайл"],
+                isbn: "ISSN 0010-9541",
+                language: "Русский",
+                weight: 260,
+                dimensions: "28 x 21.5 x 1.0 см",
+                frequency: "Ежемесячный",
+                available: true
+            },
+            {
+                id: 34, 
+                title: "Time", 
+                author: "Various", 
+                pages: 90, 
+                price: 300, 
+                genre: "Новости", 
+                category: "magazine", 
+                period: "Еженедельный", 
+                image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=600&fit=crop&q=80",
+                description: "Еженедельный новостной журнал, предоставляющий анализ важнейших мировых событий в политике, экономике, культуре и науке.",
+                year: 1923,
+                publisher: "Time USA",
+                rating: 4.7,
+                ratingCount: 4321,
+                genres: ["Новости", "Политика", "Культура"],
+                isbn: "ISSN 0040-781X",
+                language: "Русский",
+                weight: 180,
+                dimensions: "27.5 x 21 x 0.5 см",
+                frequency: "Еженедельный",
+                available: true
+            },
+            {
+                id: 35, 
+                title: "The New Yorker", 
+                author: "Various", 
+                pages: 120, 
+                price: 350, 
+                genre: "Культура", 
+                category: "magazine", 
+                period: "Еженедельный", 
+                image: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=400&h=600&fit=crop&q=80",
+                description: "Литературный журнал, публикующий репортажи, эссе, сатирические материалы, а также художественную литературу и поэзию.",
+                year: 1925,
+                publisher: "Condé Nast",
+                rating: 4.8,
+                ratingCount: 3987,
+                genres: ["Культура", "Литература", "Искусство"],
+                isbn: "ISSN 0028-792X",
+                language: "Русский",
+                weight: 210,
+                dimensions: "28 x 21 x 0.7 см",
+                frequency: "Еженедельный",
+                available: true
+            },
+            {
+                id: 36, 
+                title: "Scientific American", 
+                author: "Various", 
+                pages: 100, 
+                price: 330, 
+                genre: "Наука", 
+                category: "magazine", 
+                period: "Ежемесячный", 
+                image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&h=600&fit=crop&q=80",
+                description: "Научный журнал, представляющий новейшие достижения в различных областях науки для широкой аудитории.",
+                year: 1845,
+                publisher: "Springer Nature",
+                rating: 4.7,
+                ratingCount: 3456,
+                genres: ["Наука", "Технологии", "Образование"],
+                isbn: "ISSN 0036-8733",
+                language: "Русский",
+                weight: 195,
+                dimensions: "27.5 x 21 x 0.6 см",
+                frequency: "Ежемесячный",
+                available: true
+            },
+            {
+                id: 37, 
+                title: "Esquire", 
+                author: "Various", 
+                pages: 115, 
+                price: 360, 
+                genre: "Мужской", 
+                category: "magazine", 
+                period: "Ежемесячный", 
+                image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=400&h=600&fit=crop&q=80",
+                description: "Мужской журнал, посвященный моде, культуре, политике и стилю жизни. Известен своими качественными интервью и литературными материалами.",
+                year: 1933,
+                publisher: "Hearst Communications",
+                rating: 4.5,
+                ratingCount: 2789,
+                genres: ["Мужской", "Стиль", "Культура"],
+                isbn: "ISSN 0194-9535",
+                language: "Русский",
+                weight: 225,
+                dimensions: "28 x 21.5 x 0.8 см",
+                frequency: "Ежемесячный",
+                available: true
+            },
+            {
+                id: 38, 
+                title: "ELLE", 
+                author: "Various", 
+                pages: 145, 
+                price: 390, 
+                genre: "Мода", 
+                category: "magazine", 
+                period: "Ежемесячный", 
+                image: "https://images.unsplash.com/photo-1592672690593-9fdf1779e457?w=400&h=600&fit=crop&q=80",
+                description: "Международный журнал о моде, публикующий последние тенденции, советы по стилю и эксклюзивные материалы от ведущих дизайнеров.",
+                year: 1945,
+                publisher: "Hachette Filipacchi Médias",
+                rating: 4.6,
+                ratingCount: 4123,
+                genres: ["Мода", "Красота", "Стиль"],
+                isbn: "ISSN 0935-462X",
+                language: "Русский",
+                weight: 270,
+                dimensions: "30 x 23 x 1.1 см",
+                frequency: "Ежемесячный",
+                available: true
+            },
+            {
+                id: 39, 
+                title: "Forbes Life", 
+                author: "Various", 
+                pages: 125, 
+                price: 420, 
+                genre: "Лайфстайл", 
+                category: "magazine", 
+                period: "Ежемесячный", 
+                image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=600&fit=crop&q=80",
+                description: "Журнал о роскошном образе жизни, представляющий лучшие отели, рестораны, яхты, автомобили и предметы роскоши.",
+                year: 2004,
+                publisher: "Forbes Media",
+                rating: 4.7,
+                ratingCount: 2345,
+                genres: ["Лайфстайл", "Роскошь", "Путешествия"],
+                isbn: "ISSN 1549-6158",
+                language: "Русский",
+                weight: 235,
+                dimensions: "28 x 21.5 x 0.9 см",
+                frequency: "Ежемесячный",
+                available: true
+            },
+            {
+                id: 54, 
+                title: "National Geographic Traveler", 
+                author: "Various", 
+                pages: 130, 
+                price: 380, 
+                genre: "Путешествия", 
+                category: "magazine", 
+                period: "Двухнедельный", 
+                image: "https://images.unsplash.com/photo-1589998059171-988d887df646?w=400&h=600&fit=crop&q=80",
+                description: "Журнал о путешествиях с уникальными маршрутами, советами опытных туристов и потрясающими фотографиями со всего мира.",
+                year: 1984,
+                publisher: "National Geographic Society",
+                rating: 4.8,
+                ratingCount: 3567,
+                genres: ["Путешествия", "Природа", "Культура"],
+                isbn: "ISSN 0747-0932",
+                language: "Русский",
+                weight: 240,
+                dimensions: "28 x 21.5 x 0.8 см",
+                frequency: "Двухнедельный",
+                available: true
+            },
+            {
+                id: 55, 
+                title: "Harvard Business Review", 
+                author: "Various", 
+                pages: 95, 
+                price: 450, 
+                genre: "Бизнес", 
+                category: "magazine", 
+                period: "Ежемесячный", 
+                image: "https://images.unsplash.com/photo-1568667256549-094345857637?w=400&h=600&fit=crop&q=80",
+                description: "Ведущий журнал по менеджменту, предлагающий стратегические идеи и лучшие практики от ведущих бизнес-мыслителей мира.",
+                year: 1922,
+                publisher: "Harvard University",
+                rating: 4.9,
+                ratingCount: 2987,
+                genres: ["Бизнес", "Менеджмент", "Лидерство"],
+                isbn: "ISSN 0017-8012",
+                language: "Русский",
+                weight: 185,
+                dimensions: "27.5 x 21 x 0.6 см",
+                frequency: "Ежемесячный",
+                available: true
+            },
+            {
+                id: 56, 
+                title: "Marie Claire", 
+                author: "Various", 
+                pages: 135, 
+                price: 370, 
+                genre: "Женский", 
+                category: "magazine", 
+                period: "Ежемесячный", 
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&q=80",
+                description: "Журнал для современных женщин, сочетающий моду, красоту, карьерные советы и социально значимые темы.",
+                year: 1937,
+                publisher: "Hearst Corporation",
+                rating: 4.6,
+                ratingCount: 3876,
+                genres: ["Женский", "Мода", "Феминизм"],
+                isbn: "ISSN 0025-3049",
+                language: "Русский",
+                weight: 250,
+                dimensions: "28 x 21.5 x 1.0 см",
+                frequency: "Ежемесячный",
+                available: true
+            },
+            {
+                id: 57, 
+                title: "Popular Science", 
+                author: "Various", 
+                pages: 105, 
+                price: 340, 
+                genre: "Наука", 
+                category: "magazine", 
+                period: "Ежемесячный", 
+                image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=600&fit=crop&q=80",
+                description: "Журнал о новейших достижениях в науке и технике, представленных в доступной и увлекательной форме.",
+                year: 1872,
+                publisher: "Bonnier Corporation",
+                rating: 4.5,
+                ratingCount: 3123,
+                genres: ["Наука", "Технологии", "Инновации"],
+                isbn: "ISSN 0161-7370",
+                language: "Русский",
+                weight: 195,
+                dimensions: "27.5 x 21 x 0.7 см",
+                frequency: "Ежемесячный",
+                available: true
+            },
+            {
+                id: 58, 
+                title: "Men's Health", 
+                author: "Various", 
+                pages: 125, 
+                price: 390, 
+                genre: "Мужской", 
+                category: "magazine", 
+                period: "Ежемесячный", 
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop&q=80",
+                description: "Журнал о здоровье, фитнесе, питании и образе жизни для мужчин. Содержит тренировочные программы и советы экспертов.",
+                year: 1987,
+                publisher: "Rodale, Inc.",
+                rating: 4.7,
+                ratingCount: 4567,
+                genres: ["Мужской", "Здоровье", "Фитнес"],
+                isbn: "ISSN 1054-4836",
+                language: "Русский",
+                weight: 230,
+                dimensions: "28 x 21.5 x 0.8 см",
+                frequency: "Ежемесячный",
+                available: true
+            },
+            {
+                id: 59, 
+                title: "Women's Health", 
+                author: "Various", 
+                pages: 130, 
+                price: 380, 
+                genre: "Женский", 
+                category: "magazine", 
+                period: "Ежемесячный", 
+                image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=600&fit=crop&q=80",
+                description: "Журнал о здоровье, фитнесе, питании и красоте для женщин. Предлагает практические советы для здорового образа жизни.",
+                year: 2005,
+                publisher: "Rodale, Inc.",
+                rating: 4.6,
+                ratingCount: 4123,
+                genres: ["Женский", "Здоровье", "Фитнес"],
+                isbn: "ISSN 0884-7355",
+                language: "Русский",
+                weight: 245,
+                dimensions: "28 x 21.5 x 0.9 см",
+                frequency: "Ежемесячный",
+                available: true
+            },
+            {
+                id: 60, 
+                title: "The Economist", 
+                author: "Various", 
+                pages: 110, 
+                price: 420, 
+                genre: "Бизнес", 
+                category: "magazine", 
+                period: "Еженедельный", 
+                image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=600&fit=crop&q=80",
+                description: "Еженедельный журнал, освещающий международные новости, экономику, политику, науку и технологии с аналитической глубиной.",
+                year: 1843,
+                publisher: "The Economist Group",
+                rating: 4.8,
+                ratingCount: 5123,
+                genres: ["Бизнес", "Экономика", "Политика"],
+                isbn: "ISSN 0013-0613",
+                language: "Русский",
+                weight: 200,
+                dimensions: "27.5 x 21 x 0.6 см",
+                frequency: "Еженедельный",
+                available: true
+            },
+            {
+                id: 61, 
+                title: "Forbes Woman", 
+                author: "Various", 
+                pages: 115, 
+                price: 400, 
+                genre: "Бизнес", 
+                category: "magazine", 
+                period: "Ежемесячный", 
+                image: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=400&h=600&fit=crop&q=80",
+                description: "Журнал для женщин в бизнесе, представляющий истории успеха, карьерные стратегии и советы по лидерству.",
+                year: 2008,
+                publisher: "Forbes Media",
+                rating: 4.7,
+                ratingCount: 2345,
+                genres: ["Бизнес", "Женский", "Карьера"],
+                isbn: "ISSN 2151-9463",
+                language: "Русский",
+                weight: 210,
+                dimensions: "28 x 21.5 x 0.7 см",
+                frequency: "Ежемесячный",
+                available: true
+            },
+            {
+                id: 62, 
+                title: "Glamour", 
+                author: "Various", 
+                pages: 140, 
+                price: 360, 
+                genre: "Мода", 
+                category: "magazine", 
+                period: "Ежемесячный", 
+                image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&h=600&fit=crop&q=80",
+                description: "Журнал о моде, красоте и стиле жизни для молодых женщин, известный своими смелыми фотосессиями и актуальными темами.",
+                year: 1939,
+                publisher: "Condé Nast",
+                rating: 4.5,
+                ratingCount: 3876,
+                genres: ["Мода", "Красота", "Стиль"],
+                isbn: "ISSN 0017-0747",
+                language: "Русский",
+                weight: 260,
+                dimensions: "28 x 21.5 x 1.0 см",
+                frequency: "Ежемесячный",
+                available: true
+            },
+            {
+                id: 63, 
+                title: "Maxim", 
+                author: "Various", 
+                pages: 120, 
+                price: 350, 
+                genre: "Мужской", 
+                category: "magazine", 
+                period: "Ежемесячный", 
+                image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=400&h=600&fit=crop&q=80",
+                description: "Мужской журнал в развлекательном формате, охватывающий темы стиля, гаджетов, автомобилей и мужского образа жизни.",
+                year: 1995,
+                publisher: "Biglari Holdings",
+                rating: 4.4,
+                ratingCount: 3123,
+                genres: ["Мужской", "Развлечения", "Стиль"],
+                isbn: "ISSN 1092-9789",
+                language: "Русский",
+                weight: 220,
+                dimensions: "28 x 21.5 x 0.8 см",
+                frequency: "Ежемесячный",
+                available: true
+            },
+            {
+                id: 64, 
+                title: "Playboy", 
+                author: "Various", 
+                pages: 150, 
+                price: 450, 
+                genre: "Мужской", 
+                category: "magazine", 
+                period: "Ежемесячный", 
+                image: "https://images.unsplash.com/photo-1592672690593-9fdf1779e457?w=400&h=600&fit=crop&q=80",
+                description: "Культовый мужской журнал, сочетающий развлекательный контент с серьезными интервью, литературными произведениями и журналистскими расследованиями.",
+                year: 1953,
+                publisher: "Playboy Enterprises",
+                rating: 4.3,
+                ratingCount: 4987,
+                genres: ["Мужской", "Культура", "Развлечения"],
+                isbn: "ISSN 0032-1478",
+                language: "Русский",
+                weight: 280,
+                dimensions: "30 x 23 x 1.2 см",
+                frequency: "Ежемесячный",
+                available: true
+            }
+        ];
+
+        let currentPage = 1;
+        const productsPerPage = 12;
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+        const ADMIN_CREDENTIALS = {
+            login: "8355Vova",
+            password: "Adf220906"
+        };
+
+        // ========== ФУНКЦИИ ШАПКИ ==========
+
+        function performSearch() {
+            const searchTerm = document.getElementById('headerSearch').value.toLowerCase().trim();
+            const resultsContainer = document.getElementById('searchResults');
+            const resultsList = document.getElementById('searchResultsList');
+            const resultsCount = document.getElementById('resultsCount');
+
+            if (searchTerm === '') {
+                closeSearchResults();
+                return;
+            }
+
+            const searchResults = magazines.filter(magazine => 
+                magazine.title.toLowerCase().includes(searchTerm) ||
+                magazine.author.toLowerCase().includes(searchTerm) ||
+                magazine.genre.toLowerCase().includes(searchTerm)
+            );
+
+            if (searchResults.length > 0) {
+                resultsList.innerHTML = '';
+                searchResults.forEach(magazine => {
+                    const resultItem = document.createElement('a');
+                    resultItem.href = '#';
+                    resultItem.className = 'search-result-item';
+                    resultItem.onclick = () => {
+                        showMagazineDetail(magazine.id);
+                        closeSearchResults();
+                    };
+                    resultItem.innerHTML = `
+                        <img src="${magazine.image}" alt="${magazine.title}" class="search-result-image" style="width: 60px; height: 80px; object-fit: cover; border-radius: var(--radius-sm); border: 2px solid var(--primary-color);">
+                        <div class="search-result-info" style="flex: 1;">
+                            <div class="search-result-title" style="font-size: 16px; font-weight: 700; color: var(--primary-color); margin-bottom: 5px;">${magazine.title}</div>
+                            <div class="search-result-author" style="font-size: 14px; color: var(--secondary-color); margin-bottom: 5px; font-style: italic;">${magazine.author}</div>
+                            <div class="search-result-price" style="font-size: 16px; color: #228B22; font-weight: 700;">${magazine.price} руб</div>
+                        </div>
+                    `;
+                    resultsList.appendChild(resultItem);
+                });
+                resultsCount.textContent = `Найдено: ${searchResults.length}`;
+            } else {
+                resultsList.innerHTML = `
+                    <div class="no-results" style="text-align: center; padding: 20px; color: var(--secondary-color);">
+                        <div style="font-size: 40px;">📰</div>
+                        <div style="margin-top: 10px; font-weight: 600;">Журналы не найдены</div>
+                        <div style="font-size: 14px; margin-top: 5px;">Попробуйте изменить запрос</div>
+                    </div>
+                `;
+                resultsCount.textContent = 'Найдено: 0';
+            }
+
+            resultsContainer.style.display = 'block';
+        }
+
+        function closeSearchResults() {
+            document.getElementById('searchResults').style.display = 'none';
+        }
+
+        function toggleAdminPanel() {
+            if (!currentUser || !currentUser.isAdmin) {
+                showNotification('Доступ запрещен! Только администратор может открыть админ-панель.', 'info');
+                return;
+            }
+
+            const panel = document.getElementById('adminPanel');
+            const body = document.body;
+            
+            panel.classList.toggle('open');
+            body.classList.toggle('admin-panel-open');
+        }
+
+        function updateAuthButtons() {
+            const authButtons = document.getElementById('authButtons');
+            const adminPanelBtn = document.getElementById('adminPanelBtn');
+            
+            if (currentUser) {
+                const avatarLetter = currentUser.name.charAt(0).toUpperCase();
+                
+                authButtons.innerHTML = `
+                    <div class="user-menu">
+                        <div class="user-info" onclick="window.location.href='index.html#profile'">
+                            <div class="user-avatar">${avatarLetter}</div>
+                            <span class="user-name">${currentUser.name}</span>
+                        </div>
+                        <button class="logout-btn" onclick="userLogout()">Выйти</button>
+                    </div>
+                `;
+                
+                if (currentUser.isAdmin) {
+                    adminPanelBtn.classList.add('visible');
+                } else {
+                    adminPanelBtn.classList.remove('visible');
+                }
+            } else {
+                authButtons.innerHTML = `
+                    <button class="login-btn" onclick="window.location.href='index.html#auth'">Войти</button>
+                    <button class="register-btn" onclick="window.location.href='index.html#auth'">Регистрация</button>
+                `;
+                adminPanelBtn.classList.remove('visible');
+            }
+        }
+
+        function userLogout() {
+            if (currentUser && currentUser.isAdmin) {
+                localStorage.removeItem('adminLoggedIn');
+            }
+            
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            updateAuthButtons();
+            
+            const panel = document.getElementById('adminPanel');
+            const body = document.body;
+            panel.classList.remove('open');
+            body.classList.remove('admin-panel-open');
+        }
+
+        function updateCartCount() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+            const cartCountElement = document.getElementById('cart-count');
+            
+            if (cartCountElement) {
+                cartCountElement.textContent = totalCount;
+                if (totalCount > 0) {
+                    cartCountElement.style.display = 'flex';
+                } else {
+                    cartCountElement.style.display = 'none';
+                }
+            }
+        }
+
+        // ========== ФУНКЦИИ СТРАНИЦЫ ЖУРНАЛОВ ==========
+
+        function showMagazineDetail(magazineId) {
+            const magazine = magazines.find(m => m.id === magazineId);
+            if (!magazine) return;
+
+            const modal = document.getElementById('magazineDetailModal');
+            const content = document.getElementById('magazineDetailContent');
+            
+            content.innerHTML = `
+                <div class="magazine-detail-image-container">
+                    <img src="${magazine.image}" alt="${magazine.title}" class="magazine-detail-image"
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=280&h=400&fit=cover&q=80'; this.alt='Изображение недоступно'">
+                </div>
+                <div class="magazine-detail-main">
+                    <h3 class="magazine-detail-name">${magazine.title}</h3>
+                    <p class="magazine-detail-author">${magazine.author}</p>
+                    
+                    <div class="magazine-detail-description">
+                        <strong>Описание:</strong><br>
+                        ${magazine.description}
+                    </div>
+                    
+                    <div class="magazine-details-grid">
+                        <div class="magazine-detail-item">
+                            <div class="magazine-detail-label">📅 Год основания</div>
+                            <div class="magazine-detail-value">${magazine.year}</div>
+                        </div>
+                        <div class="magazine-detail-item">
+                            <div class="magazine-detail-label">📖 Страниц</div>
+                            <div class="magazine-detail-value">${magazine.pages}</div>
+                        </div>
+                        <div class="magazine-detail-item">
+                            <div class="magazine-detail-label">🏷️ Издательство</div>
+                            <div class="magazine-detail-value">${magazine.publisher}</div>
+                        </div>
+                        <div class="magazine-detail-item">
+                            <div class="magazine-detail-label">🔄 Периодичность</div>
+                            <div class="magazine-detail-value">${magazine.frequency}</div>
+                        </div>
+                        <div class="magazine-detail-item">
+                            <div class="magazine-detail-label">🔤 Язык</div>
+                            <div class="magazine-detail-value">${magazine.language}</div>
+                        </div>
+                        <div class="magazine-detail-item">
+                            <div class="magazine-detail-label">📏 Размеры</div>
+                            <div class="magazine-detail-value">${magazine.dimensions}</div>
+                        </div>
+                        <div class="magazine-detail-item">
+                            <div class="magazine-detail-label">⚖️ Вес</div>
+                            <div class="magazine-detail-value">${magazine.weight} г</div>
+                        </div>
+                        <div class="magazine-detail-item">
+                            <div class="magazine-detail-label">⭐ Рейтинг</div>
+                            <div class="magazine-detail-value">${magazine.rating}/5 (${magazine.ratingCount} оценок)</div>
+                        </div>
+                        <div class="magazine-detail-item">
+                            <div class="magazine-detail-label">🎭 Жанр</div>
+                            <div class="magazine-detail-value">${magazine.genre}</div>
+                        </div>
+                        <div class="magazine-detail-item">
+                            <div class="magazine-detail-label">🔢 ISSN</div>
+                            <div class="magazine-detail-value">${magazine.isbn}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="magazine-detail-price">${magazine.price} руб</div>
+                    
+                    <div class="magazine-detail-actions">
+                        <button class="magazine-detail-cart-btn" onclick="addToCartFromPage(${magazine.id}); closeMagazineDetail();">
+                            <span>🛒</span>
+                            <span>В корзину</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMagazineDetail() {
+            const modal = document.getElementById('magazineDetailModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function filterProducts() {
+            const category = document.getElementById('categoryFilter').value;
+            const period = document.getElementById('periodFilter').value;
+            const sort = document.getElementById('sortFilter').value;
+            
+            let filtered = [...magazines];
+            
+            if (category) {
+                filtered = filtered.filter(magazine => magazine.genre === category);
+            }
+            
+            if (period) {
+                filtered = filtered.filter(magazine => magazine.period === period);
+            }
+            
+            switch(sort) {
+                case 'price-asc':
+                    filtered.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-desc':
+                    filtered.sort((a, b) => b.price - a.price);
+                    break;
+                case 'name-asc':
+                    filtered.sort((a, b) => a.title.localeCompare(b.title));
+                    break;
+                case 'name-desc':
+                    filtered.sort((a, b) => b.title.localeCompare(a.title));
+                    break;
+            }
+            
+            displayProducts(filtered);
+        }
+        
+        function displayProducts(products) {
+            const grid = document.getElementById('productsGrid');
+            const start = (currentPage - 1) * productsPerPage;
+            const end = start + productsPerPage;
+            const paginatedProducts = products.slice(start, end);
+            
+            grid.innerHTML = '';
+            
+            paginatedProducts.forEach(magazine => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image-container" onclick="showMagazineDetail(${magazine.id})" style="cursor: pointer;">
+                        <img src="${magazine.image}" alt="${magazine.title}" class="product-image"
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=200&h=300&fit=cover&q=80'; this.alt='Изображение недоступно'">
+                    </div>
+                    <span class="product-genre">${magazine.genre}</span>
+                    <div class="product-content">
+                        <h3 class="product-title" onclick="showMagazineDetail(${magazine.id})" style="cursor: pointer;">${magazine.title}</h3>
+                        <p class="product-author">${magazine.author}</p>
+                        <div class="product-meta">
+                            <span class="product-pages">${magazine.pages} стр.</span>
+                            <span style="font-size: 12px; color: var(--accent-color); font-weight: 600;">
+                                ⭐ ${magazine.rating}
+                            </span>
+                        </div>
+                        <div class="product-price-container">
+                            <div class="product-price">${magazine.price} руб</div>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCartFromPage(${magazine.id})">В корзину</button>
+                    </div>
+                `;
+                grid.appendChild(productCard);
+            });
+            
+            createPagination(products.length);
+        }
+        
+        function createPagination(totalProducts) {
+            const totalPages = Math.ceil(totalProducts / productsPerPage);
+            const pagination = document.getElementById('pagination');
+            
+            if (totalPages <= 1) {
+                pagination.innerHTML = '';
+                return;
+            }
+            
+            let html = '';
+            
+            if (currentPage > 1) {
+                html += `<button class="page-btn" onclick="changePage(${currentPage - 1})">‹</button>`;
+            }
+            
+            for (let i = 1; i <= totalPages; i++) {
+                if (i === currentPage) {
+                    html += `<button class="page-btn active">${i}</button>`;
+                } else if (i <= 3 || i > totalPages - 3 || Math.abs(currentPage - i) <= 2) {
+                    html += `<button class="page-btn" onclick="changePage(${i})">${i}</button>`;
+                } else if (i === 4 && currentPage > 4) {
+                    html += `<span style="padding: 12px;">...</span>`;
+                }
+            }
+            
+            if (currentPage < totalPages) {
+                html += `<button class="page-btn" onclick="changePage(${currentPage + 1})">›</button>`;
+            }
+            
+            pagination.innerHTML = html;
+        }
+        
+        function changePage(page) {
+            currentPage = page;
+            filterProducts();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function addToCartFromPage(magazineId) {
+            const magazine = magazines.find(m => m.id === magazineId);
+            if (!magazine) return;
+            
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const existingItem = cartItems.find(item => item.id === magazineId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cartItems.push({
+                    id: magazine.id,
+                    title: magazine.title,
+                    price: magazine.price,
+                    image: magazine.image,
+                    author: magazine.author,
+                    quantity: 1
+                });
+            }
+            
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            updateCartCount();
+            showNotification(`"${magazine.title}" добавлен в корзину!`, 'success');
+        }
+        
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type === 'success' ? '' : 'info'}`;
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <span>${type === 'success' ? '✅' : 'ℹ️'}</span>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideIn 0.3s ease reverse';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+        
+        // ========== ИНИЦИАЛИЗАЦИЯ ==========
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Инициализация пользователя
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                
+                if (currentUser.username === ADMIN_CREDENTIALS.login) {
+                    localStorage.setItem('adminLoggedIn', 'true');
+                }
+            }
+            
+            if (localStorage.getItem('adminLoggedIn') === 'true') {
+                if (!currentUser || currentUser.username !== ADMIN_CREDENTIALS.login) {
+                    currentUser = {
+                        id: 0,
+                        name: "Администратор",
+                        username: ADMIN_CREDENTIALS.login,
+                        isAdmin: true
+                    };
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                }
+            }
+            
+            updateAuthButtons();
+            updateCartCount();
+            
+            // Инициализация продуктов
+            filterProducts();
+            
+            // Обработчики событий
+            document.getElementById('headerSearch').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            let searchTimeout;
+            document.getElementById('headerSearch').addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(performSearch, 500);
+            });
+            
+            document.addEventListener('click', function(event) {
+                const searchResults = document.getElementById('searchResults');
+                const headerSearch = document.getElementById('headerSearch');
+                const searchButton = document.querySelector('.search-button');
+                
+                if (searchResults.style.display === 'block' && 
+                    !searchResults.contains(event.target) && 
+                    event.target !== headerSearch && 
+                    event.target !== searchButton) {
+                    closeSearchResults();
+                }
+                
+                const magazineDetailModal = document.getElementById('magazineDetailModal');
+                if (magazineDetailModal.classList.contains('active') && event.target === magazineDetailModal) {
+                    closeMagazineDetail();
+                }
+            });
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeSearchResults();
+                    closeMagazineDetail();
+                }
+            });
+            
+            // Стили для результатов поиска
+            const style = document.createElement('style');
+            style.textContent = `
+                .search-result-item {
+                    display: flex;
+                    gap: 15px;
+                    padding: 15px;
+                    border-radius: var(--radius-md);
+                    margin-bottom: 10px;
+                    transition: var(--transition);
+                    cursor: pointer;
+                    text-decoration: none;
+                    color: inherit;
+                    border: 2px solid transparent;
+                    background: white;
+                    box-shadow: var(--shadow-sm);
+                }
+                .search-result-item:hover {
+                    background: var(--light-color);
+                    border-color: var(--accent-color);
+                    transform: translateY(-2px);
+                    box-shadow: var(--shadow-md);
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>

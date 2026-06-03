@@ -1,0 +1,1895 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Учебники - Литературный Оазис</title>
+    <style>
+        :root {
+            --primary-color: #8B4513; /* Теплый коричневый */
+            --secondary-color: #D2691E; /* Шоколадный */
+            --accent-color: #FF8C00; /* Теплый оранжевый */
+            --light-color: #FFF8DC; /* Миндальный */
+            --dark-color: #5D4037; /* Темно-коричневый */
+            --text-color: #3E2723;
+            --shadow-sm: 0 2px 8px rgba(139, 69, 19, 0.1);
+            --shadow-md: 0 4px 16px rgba(139, 69, 19, 0.15);
+            --shadow-lg: 0 8px 32px rgba(139, 69, 19, 0.2);
+            --shadow-interactive: 0 4px 12px rgba(210, 105, 30, 0.25);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: 
+                linear-gradient(rgba(255, 248, 220, 0.9), rgba(255, 248, 220, 0.95)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><defs><pattern id="books" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><rect fill="%23F5E6D3" opacity="0.4" x="0" y="0" width="40" height="40"/><path fill="%23D2691E" opacity="0.15" d="M8,8 L32,8 L32,32 L8,32 Z M10,10 L30,10 L30,30 L10,30 Z M12,12 L28,12 L28,18 L12,18 Z M12,20 L28,20 L28,26 L12,26 Z"/></pattern></defs><rect fill="url(%23books)" width="400" height="400"/></svg>'),
+                #FFF8DC;
+            background-size: 400px 400px, auto;
+            background-attachment: fixed;
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Уведомления */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #228B22, #006400);
+            color: white;
+            padding: 15px 25px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideIn 0.3s ease;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .notification.info {
+            background: linear-gradient(135deg, var(--accent-color), #FFA500);
+        }
+
+        .notification button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Шапка */
+        .header {
+            background: linear-gradient(135deg, var(--light-color), #F5E6D3);
+            padding: 15px 0;
+            border-bottom: 4px solid var(--primary-color);
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 0;
+            width: 100%;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+            text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--dark-color);
+            padding: 10px 16px;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            position: relative;
+            border: 2px solid transparent;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-item:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+            border-color: var(--accent-color);
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 6px;
+            background: rgba(139, 69, 19, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .nav-item:hover .nav-icon {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(135deg, #DC143C, #B22222);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            border: 3px solid var(--light-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Кнопки входа/регистрации */
+        .auth-buttons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .login-btn, .register-btn {
+            padding: 10px 18px;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .login-btn {
+            background: var(--light-color);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .login-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+        }
+
+        .register-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: 2px solid transparent;
+        }
+
+        .register-btn:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+        }
+
+        /* Меню пользователя */
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 16px;
+            background: rgba(139, 69, 19, 0.1);
+            border-radius: var(--radius-md);
+            border: 2px solid rgba(139, 69, 19, 0.2);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .user-info:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: 14px;
+        }
+
+        .logout-btn {
+            padding: 10px 16px;
+            background: linear-gradient(135deg, #DC143C, #B22222);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .logout-btn:hover {
+            background: linear-gradient(135deg, #B22222, #8B0000);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .page-header {
+            margin-bottom: 30px;
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, var(--light-color), #F5E6D3);
+            border-radius: var(--radius-lg);
+            border: 3px solid var(--primary-color);
+            box-shadow: var(--shadow-md);
+            margin-top: 20px;
+        }
+
+        .page-title {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-subtitle {
+            color: var(--secondary-color);
+            font-size: 20px;
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .filter-section {
+            background: var(--light-color);
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-lg);
+            border: 3px solid var(--primary-color);
+        }
+
+        .filter-title {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(210, 105, 30, 0.2);
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .filter-label {
+            font-size: 16px;
+            color: var(--primary-color);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-select {
+            padding: 14px 20px;
+            border: 3px solid #E0D6CC;
+            border-radius: var(--radius-md);
+            font-size: 16px;
+            color: var(--text-color);
+            background: white;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-interactive);
+            transform: translateY(-2px);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        /* Карточка учебника */
+        .product-card {
+            background: var(--light-color);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            border: 3px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-lg), 0 15px 30px rgba(139, 69, 19, 0.25);
+            border-color: var(--accent-color);
+        }
+
+        .product-image-container {
+            width: 100%;
+            flex: 0 0 auto;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 320px;
+            background: linear-gradient(135deg, #FFF8DC, #F5E6D3);
+            border-radius: var(--radius-md);
+            padding: 15px;
+        }
+
+        .product-image {
+            width: 100%;
+            max-width: 200px;
+            height: 300px;
+            object-fit: contain;
+            object-position: center top;
+            border-radius: var(--radius-sm);
+            border: 3px solid var(--primary-color);
+            transition: var(--transition);
+            background-color: white;
+            padding: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.08) rotate(1deg);
+            border-color: var(--accent-color);
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.3);
+        }
+
+        .product-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-title {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-weight: 700;
+            line-height: 1.3;
+            min-height: 52px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-author {
+            color: var(--secondary-color);
+            margin-bottom: 12px;
+            font-size: 16px;
+            font-style: italic;
+            min-height: 24px;
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px 0;
+            border-top: 2px solid rgba(139, 69, 19, 0.1);
+            border-bottom: 2px solid rgba(139, 69, 19, 0.1);
+        }
+
+        .product-pages {
+            color: var(--dark-color);
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .product-pages::before {
+            content: "📖";
+            font-size: 12px;
+        }
+
+        .product-class {
+            color: var(--accent-color);
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .product-class::before {
+            content: "🏫";
+            font-size: 12px;
+        }
+
+        .product-genre {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            box-shadow: var(--shadow-sm);
+            z-index: 2;
+        }
+
+        .product-price-container {
+            margin-top: auto;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 26px;
+            color: #228B22;
+            font-weight: 800;
+            text-align: center;
+            padding: 10px;
+            background: rgba(34, 139, 34, 0.05);
+            border-radius: var(--radius-md);
+            border: 2px solid rgba(34, 139, 34, 0.1);
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 16px;
+            font-weight: 700;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .add-to-cart:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .add-to-cart::before {
+            content: "🛒";
+            font-size: 14px;
+        }
+
+        /* Модальное окно для подробностей учебника */
+        .textbook-detail-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(93, 64, 55, 0.95);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .textbook-detail-modal.active {
+            display: flex;
+        }
+
+        .textbook-detail-container {
+            background: var(--light-color);
+            border-radius: var(--radius-lg);
+            width: 90%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 3px solid var(--primary-color);
+            box-shadow: var(--shadow-lg);
+            transform: scale(0.98);
+            transition: transform 0.3s ease;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        .textbook-detail-container.active {
+            transform: scale(1);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(0.98);
+            }
+        }
+
+        .textbook-detail-header {
+            padding: 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        .textbook-detail-title {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .textbook-detail-title::before {
+            content: "📚";
+            font-size: 24px;
+        }
+
+        .close-detail-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .close-detail-btn:hover {
+            background: rgba(255, 140, 0, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .textbook-detail-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px;
+            display: flex;
+            gap: 40px;
+        }
+
+        .textbook-detail-image-container {
+            flex: 0 0 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .textbook-detail-image {
+            width: 100%;
+            max-width: 280px;
+            height: 400px;
+            object-fit: contain;
+            border-radius: var(--radius-lg);
+            border: 4px solid var(--primary-color);
+            box-shadow: var(--shadow-lg);
+            background: white;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .textbook-detail-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .textbook-detail-name {
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .textbook-detail-author {
+            font-size: 22px;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            font-style: italic;
+            border-bottom: 2px solid rgba(210, 105, 30, 0.2);
+            padding-bottom: 15px;
+        }
+
+        .textbook-detail-description {
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .textbook-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .textbook-detail-item {
+            background: linear-gradient(135deg, rgba(255, 248, 220, 0.8), rgba(245, 230, 211, 0.9));
+            padding: 20px;
+            border-radius: var(--radius-md);
+            border: 2px solid rgba(139, 69, 19, 0.2);
+            transition: var(--transition);
+        }
+
+        .textbook-detail-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .textbook-detail-label {
+            font-size: 14px;
+            color: var(--primary-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .textbook-detail-label::before {
+            font-size: 16px;
+        }
+
+        .textbook-detail-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+
+        .textbook-detail-price {
+            font-size: 36px;
+            color: #228B22;
+            font-weight: 800;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(34, 139, 34, 0.1), rgba(50, 205, 50, 0.05));
+            border-radius: var(--radius-lg);
+            border: 3px solid rgba(34, 139, 34, 0.2);
+            margin: 20px 0;
+        }
+
+        .textbook-detail-actions {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .textbook-detail-cart-btn {
+            flex: 1;
+            padding: 18px;
+            background: linear-gradient(135deg, #228B22, #006400);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 700;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .textbook-detail-cart-btn:hover {
+            background: linear-gradient(135deg, #006400, #004d00);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .page-btn {
+            padding: 12px 20px;
+            background: var(--light-color);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .page-btn:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            transform: translateY(-2px);
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-interactive);
+        }
+
+        .page-btn.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .footer {
+            background: linear-gradient(135deg, var(--dark-color), #4A3529);
+            color: #F5E6D3;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+            width: 100%;
+            border-top: 4px solid var(--accent-color);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer p {
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .textbook-detail-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .textbook-detail-image-container {
+                flex: 0 0 auto;
+                align-items: center;
+            }
+            
+            .textbook-details-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .nav {
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                width: 100%;
+                gap: 8px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .page-title {
+                font-size: 36px;
+            }
+            
+            .page-subtitle {
+                font-size: 18px;
+            }
+            
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .textbook-details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .header-content {
+                padding: 0 20px;
+            }
+            
+            .textbook-detail-content {
+                padding: 20px;
+            }
+            
+            .textbook-detail-name {
+                font-size: 24px;
+            }
+            
+            .textbook-detail-author {
+                font-size: 18px;
+            }
+            
+            .textbook-detail-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">LO</div>
+                Литературный Оазис
+            </a>
+            
+            <nav class="nav">
+                <a href="index.html" class="nav-item">
+                    <span class="nav-icon">Г</span>
+                    Главная
+                </a>
+                <a href="manga.html" class="nav-item">
+                    <span class="nav-icon">М</span>
+                    Манга
+                </a>
+                <a href="textbooks.html" class="nav-item">
+                    <span class="nav-icon">У</span>
+                    Учебники
+                </a>
+                <a href="magazines.html" class="nav-item">
+                    <span class="nav-icon">Ж</span>
+                    Журналы
+                </a>
+                
+                <div class="auth-buttons" id="authButtons">
+                    <!-- Будет заполнено через JavaScript -->
+                </div>
+                
+                <a href="cart.html" class="nav-item">
+                    <span class="nav-icon">К</span>
+                    Корзина
+                    <span class="cart-count" id="cart-count">0</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Модальное окно для подробностей учебника -->
+    <div class="textbook-detail-modal" id="textbookDetailModal">
+        <div class="textbook-detail-container">
+            <div class="textbook-detail-header">
+                <h2 class="textbook-detail-title">Подробности учебника</h2>
+                <button class="close-detail-btn" onclick="closeTextbookDetail()">×</button>
+            </div>
+            <div class="textbook-detail-content" id="textbookDetailContent">
+                <!-- Содержимое будет заполнено через JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Учебная литература</h1>
+            <p class="page-subtitle">Учебники для школьников и студентов</p>
+        </div>
+
+        <div class="filter-section">
+            <h3 class="filter-title">🔍 Фильтры поиска</h3>
+            <div class="filter-grid">
+                <div class="filter-group">
+                    <label class="filter-label">
+                        <span>📚</span>
+                        Предмет
+                    </label>
+                    <select class="filter-select" id="subjectFilter" onchange="filterProducts()">
+                        <option value="">Все предметы</option>
+                        <option value="Физика">Физика</option>
+                        <option value="Математика">Математика</option>
+                        <option value="Химия">Химия</option>
+                        <option value="Биология">Биология</option>
+                        <option value="История">История</option>
+                        <option value="География">География</option>
+                        <option value="Литература">Литература</option>
+                        <option value="Английский">Английский</option>
+                        <option value="Информатика">Информатика</option>
+                        <option value="Русский язык">Русский язык</option>
+                        <option value="Обществознание">Обществознание</option>
+                        <option value="Экономика">Экономика</option>
+                        <option value="ОБЖ">ОБЖ</option>
+                        <option value="Астрономия">Астрономия</option>
+                        <option value="Право">Право</option>
+                        <option value="Экология">Экология</option>
+                        <option value="МХК">МХК</option>
+                        <option value="Технология">Технология</option>
+                        <option value="Черчение">Черчение</option>
+                        <option value="Психология">Психология</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">
+                        <span>🏫</span>
+                        Класс
+                    </label>
+                    <select class="filter-select" id="classFilter" onchange="filterProducts()">
+                        <option value="">Все классы</option>
+                        <option value="10">10 класс</option>
+                        <option value="11">11 класс</option>
+                        <option value="10-11">10-11 классы</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">
+                        <span>📊</span>
+                        Сортировка
+                    </label>
+                    <select class="filter-select" id="sortFilter" onchange="filterProducts()">
+                        <option value="default">По умолчанию</option>
+                        <option value="price-asc">Цена (по возрастанию)</option>
+                        <option value="price-desc">Цена (по убыванию)</option>
+                        <option value="name-asc">Название (А-Я)</option>
+                        <option value="name-desc">Название (Я-А)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+            <!-- Учебники будут загружены через JavaScript -->
+        </div>
+
+        <div class="pagination" id="pagination">
+            <!-- Пагинация будет создана через JavaScript -->
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Литературный Оазис. Все права защищены.</p>
+        <p>Книжный магазин с душой | Ул. Бамбуково, д.13 | +7 (921) 756-77-44</p>
+    </footer>
+
+    <script>
+        // Расширенные данные учебников
+        const textbooks = [
+            {
+                id: 16, 
+                title: "Физика 10 класс", 
+                author: "А.В. Перышкин", 
+                pages: 320, 
+                price: 890, 
+                genre: "Физика", 
+                category: "textbook", 
+                class: "10",
+                image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=300&fit=crop&q=80",
+                description: "Полный учебник по физике для 10 класса. Содержит теоретический материал, практические задания, лабораторные работы и тесты для подготовки к экзаменам.",
+                year: 2022,
+                publisher: "Дрофа",
+                rating: 4.8,
+                ratingCount: 1234,
+                isbn: "978-5-358-23456-7",
+                language: "Русский",
+                weight: 650,
+                dimensions: "24 x 17 x 2 см",
+                available: true
+            },
+            {
+                id: 17, 
+                title: "Алгебра и начала анализа", 
+                author: "С.М. Никольский", 
+                pages: 350, 
+                price: 910, 
+                genre: "Математика", 
+                category: "textbook", 
+                class: "10-11",
+                image: "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=400&h=300&fit=crop&q=80",
+                description: "Учебник по математике для старших классов. Включает разделы по алгебре, началам математического анализа и геометрии.",
+                year: 2023,
+                publisher: "Просвещение",
+                rating: 4.7,
+                ratingCount: 987,
+                isbn: "978-5-09-089123-4",
+                language: "Русский",
+                weight: 720,
+                dimensions: "24 x 17 x 2.5 см",
+                available: true
+            },
+            {
+                id: 18, 
+                title: "Химия 11 класс", 
+                author: "О.С. Габриелян", 
+                pages: 310, 
+                price: 880, 
+                genre: "Химия", 
+                category: "textbook", 
+                class: "11",
+                image: "https://images.unsplash.com/photo-1554475900-0a0350bad5d5?w=400&h=300&fit=crop&q=80",
+                description: "Учебник по химии для 11 класса. Подробное изложение тем органической и неорганической химии с лабораторными работами.",
+                year: 2021,
+                publisher: "Вентана-Граф",
+                rating: 4.9,
+                ratingCount: 876,
+                isbn: "978-5-360-06789-0",
+                language: "Русский",
+                weight: 680,
+                dimensions: "24 x 17 x 1.8 см",
+                available: true
+            },
+            {
+                id: 19, 
+                title: "Биология", 
+                author: "В.В. Пасечник", 
+                pages: 340, 
+                price: 900, 
+                genre: "Биология", 
+                category: "textbook", 
+                class: "10-11",
+                image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&h=300&fit=crop&q=80",
+                description: "Учебник по биологии для 10-11 классов. Содержит информацию по общей биологии, генетике, экологии и эволюции.",
+                year: 2022,
+                publisher: "Владос",
+                rating: 4.6,
+                ratingCount: 654,
+                isbn: "978-5-691-02345-6",
+                language: "Русский",
+                weight: 700,
+                dimensions: "24 x 17 x 2.2 см",
+                available: true
+            },
+            {
+                id: 20, 
+                title: "История России", 
+                author: "А.С. Орлов", 
+                pages: 380, 
+                price: 950, 
+                genre: "История", 
+                category: "textbook", 
+                class: "10-11",
+                image: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=400&h=300&fit=crop&q=80",
+                description: "Учебник по истории России с древнейших времен до наших дней. Включает карты, иллюстрации и документы.",
+                year: 2023,
+                publisher: "Юрайт",
+                rating: 4.8,
+                ratingCount: 432,
+                isbn: "978-5-9916-4567-8",
+                language: "Русский",
+                weight: 750,
+                dimensions: "24 x 17 x 2.8 см",
+                available: true
+            },
+            {
+                id: 21, 
+                title: "География", 
+                author: "В.П. Максаковский", 
+                pages: 330, 
+                price: 870, 
+                genre: "География", 
+                category: "textbook", 
+                class: "10",
+                image: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=400&h=300&fit=crop&q=80",
+                description: "Учебник по географии для 10 класса. Мировая экономика и политическая география с современными статистическими данными.",
+                year: 2021,
+                publisher: "Вентана-Граф",
+                rating: 4.5,
+                ratingCount: 321,
+                isbn: "978-5-360-05678-8",
+                language: "Русский",
+                weight: 660,
+                dimensions: "24 x 17 x 1.9 см",
+                available: true
+            },
+            {
+                id: 22, 
+                title: "Обществознание", 
+                author: "Л.Н. Боголюбов", 
+                pages: 360, 
+                price: 920, 
+                genre: "Обществознание", 
+                category: "textbook", 
+                class: "10-11",
+                image: "https://images.unsplash.com/photo-1589256469067-ea99122bbdc4?w=400&h=300&fit=crop&q=80",
+                description: "Учебник по обществознанию для 10-11 классов. Философия, экономика, право, политика и социология в одном издании.",
+                year: 2022,
+                publisher: "Просвещение",
+                rating: 4.7,
+                ratingCount: 543,
+                isbn: "978-5-09-078912-9",
+                language: "Русский",
+                weight: 730,
+                dimensions: "24 x 17 x 2.4 см",
+                available: true
+            },
+            {
+                id: 23, 
+                title: "Литература 10 класс", 
+                author: "Ю.В. Лебедев", 
+                pages: 400, 
+                price: 980, 
+                genre: "Литература", 
+                category: "textbook", 
+                class: "10",
+                image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=300&fit=crop&q=80",
+                description: "Учебник по литературе 10 класс. Русская литература XIX века: Пушкин, Лермонтов, Гоголь, Тургенев и другие классики.",
+                year: 2023,
+                publisher: "Дрофа",
+                rating: 4.9,
+                ratingCount: 789,
+                isbn: "978-5-358-21234-5",
+                language: "Русский",
+                weight: 780,
+                dimensions: "24 x 17 x 3 см",
+                available: true
+            },
+            {
+                id: 24, 
+                title: "Английский язык", 
+                author: "В.П. Кузовлев", 
+                pages: 290, 
+                price: 850, 
+                genre: "Английский", 
+                category: "textbook", 
+                class: "10-11",
+                image: "https://images.unsplash.com/photo-1544716278-1345e641c0c4?w=400&h=300&fit=crop&q=80",
+                description: "Учебник по английскому языку для 10-11 классов. Современная методика обучения с аудио- и видеоматериалами.",
+                year: 2022,
+                publisher: "Просвещение",
+                rating: 4.6,
+                ratingCount: 567,
+                isbn: "978-5-09-067890-3",
+                language: "Русский/Английский",
+                weight: 620,
+                dimensions: "24 x 17 x 1.7 см",
+                available: true
+            },
+            {
+                id: 25, 
+                title: "Информатика", 
+                author: "К.Ю. Поляков", 
+                pages: 320, 
+                price: 890, 
+                genre: "Информатика", 
+                category: "textbook", 
+                class: "10-11",
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=300&fit=crop&q=80",
+                description: "Учебник по информатике для 10-11 классов. Программирование, алгоритмы, базы данных и компьютерные сети.",
+                year: 2023,
+                publisher: "БИНОМ",
+                rating: 4.8,
+                ratingCount: 890,
+                isbn: "978-5-9963-4567-1",
+                language: "Русский",
+                weight: 680,
+                dimensions: "24 x 17 x 2 см",
+                available: true
+            },
+            {
+                id: 26, 
+                title: "Русский язык", 
+                author: "А.Д. Шмелев", 
+                pages: 350, 
+                price: 910, 
+                genre: "Русский язык", 
+                category: "textbook", 
+                class: "10-11",
+                image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=400&h=300&fit=crop&q=80",
+                description: "Учебник по русскому языку для 10-11 классов. Подготовка к ЕГЭ с упражнениями, тестами и справочными материалами.",
+                year: 2022,
+                publisher: "Вентана-Граф",
+                rating: 4.7,
+                ratingCount: 678,
+                isbn: "978-5-360-04567-6",
+                language: "Русский",
+                weight: 710,
+                dimensions: "24 x 17 x 2.3 см",
+                available: true
+            },
+            {
+                id: 27, 
+                title: "Экономика", 
+                author: "И.В. Липсиц", 
+                pages: 370, 
+                price: 940, 
+                genre: "Экономика", 
+                category: "textbook", 
+                class: "10-11",
+                image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop&q=80",
+                description: "Учебник по экономике для 10-11 классов. Основы микро- и макроэкономики, финансовая грамотность, мировая экономика.",
+                year: 2021,
+                publisher: "Вита-Пресс",
+                rating: 4.9,
+                ratingCount: 456,
+                isbn: "978-5-7755-2345-6",
+                language: "Русский",
+                weight: 740,
+                dimensions: "24 x 17 x 2.6 см",
+                available: true
+            },
+            {
+                id: 44, 
+                title: "Геометрия", 
+                author: "Л.С. Атанасян", 
+                pages: 340, 
+                price: 900, 
+                genre: "Математика", 
+                category: "textbook", 
+                class: "10-11",
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&q=80",
+                description: "Учебник по геометрии для 10-11 классов. Стереометрия, планиметрия, векторы и координатный метод.",
+                year: 2022,
+                publisher: "Просвещение",
+                rating: 4.7,
+                ratingCount: 543,
+                isbn: "978-5-09-078901-2",
+                language: "Русский",
+                weight: 690,
+                dimensions: "24 x 17 x 2.1 см",
+                available: true
+            },
+            {
+                id: 45, 
+                title: "Физика 11 класс", 
+                author: "Г.Я. Мякишев", 
+                pages: 330, 
+                price: 910, 
+                genre: "Физика", 
+                category: "textbook", 
+                class: "11",
+                image: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=400&h=300&fit=crop&q=80",
+                description: "Учебник по физике для 11 класса. Квантовая физика, электродинамика, оптика и ядерная физика.",
+                year: 2023,
+                publisher: "Дрофа",
+                rating: 4.8,
+                ratingCount: 432,
+                isbn: "978-5-358-24567-8",
+                language: "Русский",
+                weight: 670,
+                dimensions: "24 x 17 x 2 см",
+                available: true
+            },
+            {
+                id: 46, 
+                title: "ОБЖ 10 класс", 
+                author: "М.П. Фролов", 
+                pages: 300, 
+                price: 830, 
+                genre: "ОБЖ", 
+                category: "textbook", 
+                class: "10",
+                image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=300&fit=crop&q=80",
+                description: "Учебник по ОБЖ для 10 класса. Основы безопасности жизнедеятельности, первая помощь, военная подготовка.",
+                year: 2022,
+                publisher: "Астрель",
+                rating: 4.5,
+                ratingCount: 234,
+                isbn: "978-5-271-45678-9",
+                language: "Русский",
+                weight: 610,
+                dimensions: "24 x 17 x 1.6 см",
+                available: true
+            },
+            {
+                id: 47, 
+                title: "Астрономия", 
+                author: "Б.А. Воронцов-Вельяминов", 
+                pages: 290, 
+                price: 870, 
+                genre: "Астрономия", 
+                category: "textbook", 
+                class: "11",
+                image: "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=400&h=300&fit=crop&q=80",
+                description: "Учебник по астрономии для 11 класса. Строение Вселенной, небесная механика, астрофизика и космология.",
+                year: 2021,
+                publisher: "Дрофа",
+                rating: 4.9,
+                ratingCount: 345,
+                isbn: "978-5-358-19876-5",
+                language: "Русский",
+                weight: 630,
+                dimensions: "24 x 17 x 1.8 см",
+                available: true
+            },
+            {
+                id: 48, 
+                title: "Право", 
+                author: "Е.А. Певцова", 
+                pages: 350, 
+                price: 920, 
+                genre: "Право", 
+                category: "textbook", 
+                class: "10-11",
+                image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=300&fit=crop&q=80",
+                description: "Учебник по праву для 10-11 классов. Основы правовых знаний, конституционное, гражданское и уголовное право.",
+                year: 2023,
+                publisher: "Русское слово",
+                rating: 4.7,
+                ratingCount: 456,
+                isbn: "978-5-533-01234-5",
+                language: "Русский",
+                weight: 720,
+                dimensions: "24 x 17 x 2.4 см",
+                available: true
+            },
+            {
+                id: 49, 
+                title: "Экология", 
+                author: "Н.М. Чернова", 
+                pages: 310, 
+                price: 860, 
+                genre: "Экология", 
+                category: "textbook", 
+                class: "10-11",
+                image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&h=300&fit=crop&q=80",
+                description: "Учебник по экологии для 10-11 классов. Экосистемы, биоразнообразие, охрана природы и устойчивое развитие.",
+                year: 2022,
+                publisher: "Дрофа",
+                rating: 4.6,
+                ratingCount: 321,
+                isbn: "978-5-358-20123-9",
+                language: "Русский",
+                weight: 650,
+                dimensions: "24 x 17 x 1.9 см",
+                available: true
+            },
+            {
+                id: 50, 
+                title: "Мировая художественная культура", 
+                author: "Л.А. Рапацкая", 
+                pages: 380, 
+                price: 940, 
+                genre: "МХК", 
+                category: "textbook", 
+                class: "10-11",
+                image: "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=400&h=300&fit=crop&q=80",
+                description: "Учебник по МХК для 10-11 классов. История искусства от древности до современности, шедевры мировой культуры.",
+                year: 2021,
+                publisher: "Владос",
+                rating: 4.8,
+                ratingCount: 234,
+                isbn: "978-5-691-01987-9",
+                language: "Русский",
+                weight: 760,
+                dimensions: "24 x 17 x 2.7 см",
+                available: true
+            },
+            {
+                id: 51, 
+                title: "Технология", 
+                author: "В.Д. Симоненко", 
+                pages: 320, 
+                price: 850, 
+                genre: "Технология", 
+                category: "textbook", 
+                class: "10-11",
+                image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=300&fit=crop&q=80",
+                description: "Учебник по технологии для 10-11 классов. Основы проектирования, материаловедение, современные технологии.",
+                year: 2022,
+                publisher: "Вентана-Граф",
+                rating: 4.5,
+                ratingCount: 198,
+                isbn: "978-5-360-03456-7",
+                language: "Русский",
+                weight: 680,
+                dimensions: "24 x 17 x 2 см",
+                available: true
+            },
+            {
+                id: 52, 
+                title: "Черчение", 
+                author: "А.Д. Ботвинников", 
+                pages: 280, 
+                price: 820, 
+                genre: "Черчение", 
+                category: "textbook", 
+                class: "10-11",
+                image: "https://images.unsplash.com/photo-1545235617-9465d2a55698?w=400&h=300&fit=crop&q=80",
+                description: "Учебник по черчению для 10-11 классов. Основы инженерной графики, проекционное черчение, машиностроительное черчение.",
+                year: 2021,
+                publisher: "Астрель",
+                rating: 4.6,
+                ratingCount: 176,
+                isbn: "978-5-271-40123-4",
+                language: "Русский",
+                weight: 590,
+                dimensions: "24 x 17 x 1.5 см",
+                available: true
+            },
+            {
+                id: 53, 
+                title: "Психология", 
+                author: "Р.С. Немов", 
+                pages: 360, 
+                price: 930, 
+                genre: "Психология", 
+                category: "textbook", 
+                class: "10-11",
+                image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=400&h=300&fit=crop&q=80",
+                description: "Учебник по психологии для 10-11 классов. Основы общей психологии, психология личности, социальная психология.",
+                year: 2023,
+                publisher: "Владос",
+                rating: 4.7,
+                ratingCount: 289,
+                isbn: "978-5-691-02345-7",
+                language: "Русский",
+                weight: 730,
+                dimensions: "24 x 17 x 2.5 см",
+                available: true
+            }
+        ];
+
+        let currentPage = 1;
+        const productsPerPage = 12;
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+
+        // ========== ФУНКЦИЯ: Показать детали учебника ==========
+        function showTextbookDetail(textbookId) {
+            const textbook = textbooks.find(t => t.id === textbookId);
+            if (!textbook) return;
+
+            const modal = document.getElementById('textbookDetailModal');
+            const content = document.getElementById('textbookDetailContent');
+            
+            content.innerHTML = `
+                <div class="textbook-detail-image-container">
+                    <img src="${textbook.image}" alt="${textbook.title}" class="textbook-detail-image"
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=280&h=400&fit=cover&q=80'; this.alt='Изображение недоступно'">
+                </div>
+                <div class="textbook-detail-main">
+                    <h3 class="textbook-detail-name">${textbook.title}</h3>
+                    <p class="textbook-detail-author">${textbook.author}</p>
+                    
+                    <div class="textbook-detail-description">
+                        <strong>Описание:</strong><br>
+                        ${textbook.description}
+                    </div>
+                    
+                    <div class="textbook-details-grid">
+                        <div class="textbook-detail-item">
+                            <div class="textbook-detail-label">📅 Год издания</div>
+                            <div class="textbook-detail-value">${textbook.year}</div>
+                        </div>
+                        <div class="textbook-detail-item">
+                            <div class="textbook-detail-label">📖 Страниц</div>
+                            <div class="textbook-detail-value">${textbook.pages}</div>
+                        </div>
+                        <div class="textbook-detail-item">
+                            <div class="textbook-detail-label">🏫 Класс</div>
+                            <div class="textbook-detail-value">${textbook.class}</div>
+                        </div>
+                        <div class="textbook-detail-item">
+                            <div class="textbook-detail-label">🏷️ Издательство</div>
+                            <div class="textbook-detail-value">${textbook.publisher}</div>
+                        </div>
+                        <div class="textbook-detail-item">
+                            <div class="textbook-detail-label">🔤 Язык</div>
+                            <div class="textbook-detail-value">${textbook.language}</div>
+                        </div>
+                        <div class="textbook-detail-item">
+                            <div class="textbook-detail-label">📏 Размеры</div>
+                            <div class="textbook-detail-value">${textbook.dimensions}</div>
+                        </div>
+                        <div class="textbook-detail-item">
+                            <div class="textbook-detail-label">⚖️ Вес</div>
+                            <div class="textbook-detail-value">${textbook.weight} г</div>
+                        </div>
+                        <div class="textbook-detail-item">
+                            <div class="textbook-detail-label">⭐ Рейтинг</div>
+                            <div class="textbook-detail-value">${textbook.rating}/5 (${textbook.ratingCount} оценок)</div>
+                        </div>
+                        <div class="textbook-detail-item">
+                            <div class="textbook-detail-label">🔢 ISBN</div>
+                            <div class="textbook-detail-value">${textbook.isbn}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="textbook-detail-price">${textbook.price} руб</div>
+                    
+                    <div class="textbook-detail-actions">
+                        <button class="textbook-detail-cart-btn" onclick="addToCartFromPage(${textbook.id}); closeTextbookDetail();">
+                            <span>🛒</span>
+                            <span>В корзину</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // ========== ФУНКЦИЯ: Закрыть детали учебника ==========
+        function closeTextbookDetail() {
+            const modal = document.getElementById('textbookDetailModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // ========== ФУНКЦИИ ДЛЯ ФИЛЬТРАЦИИ И ПАГИНАЦИИ ==========
+        
+        function filterProducts() {
+            const subject = document.getElementById('subjectFilter').value;
+            const classFilter = document.getElementById('classFilter').value;
+            const sort = document.getElementById('sortFilter').value;
+            
+            let filtered = [...textbooks];
+            
+            if (subject) {
+                filtered = filtered.filter(book => book.genre === subject);
+            }
+            
+            if (classFilter) {
+                filtered = filtered.filter(book => {
+                    if (classFilter === "10-11") {
+                        return book.class.includes("10") || book.class.includes("11");
+                    }
+                    return book.class.includes(classFilter);
+                });
+            }
+            
+            switch(sort) {
+                case 'price-asc':
+                    filtered.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-desc':
+                    filtered.sort((a, b) => b.price - a.price);
+                    break;
+                case 'name-asc':
+                    filtered.sort((a, b) => a.title.localeCompare(b.title));
+                    break;
+                case 'name-desc':
+                    filtered.sort((a, b) => b.title.localeCompare(a.title));
+                    break;
+            }
+            
+            displayProducts(filtered);
+        }
+        
+        function displayProducts(products) {
+            const grid = document.getElementById('productsGrid');
+            const start = (currentPage - 1) * productsPerPage;
+            const end = start + productsPerPage;
+            const paginatedProducts = products.slice(start, end);
+            
+            grid.innerHTML = '';
+            
+            paginatedProducts.forEach(textbook => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image-container" onclick="showTextbookDetail(${textbook.id})" style="cursor: pointer;">
+                        <img src="${textbook.image}" alt="${textbook.title}" class="product-image"
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=200&h=300&fit=cover&q=80'; this.alt='Изображение недоступно'">
+                    </div>
+                    <span class="product-genre">${textbook.genre}</span>
+                    <div class="product-content">
+                        <h3 class="product-title" onclick="showTextbookDetail(${textbook.id})" style="cursor: pointer;">${textbook.title}</h3>
+                        <p class="product-author">${textbook.author}</p>
+                        <div class="product-meta">
+                            <span class="product-pages">${textbook.pages} стр.</span>
+                            <span class="product-class">${textbook.class}</span>
+                        </div>
+                        <div class="product-price-container">
+                            <div class="product-price">${textbook.price} руб</div>
+                        </div>
+                        <button class="add-to-cart" onclick="addToCartFromPage(${textbook.id})">В корзину</button>
+                    </div>
+                `;
+                grid.appendChild(productCard);
+            });
+            
+            createPagination(products.length);
+        }
+        
+        function createPagination(totalProducts) {
+            const totalPages = Math.ceil(totalProducts / productsPerPage);
+            const pagination = document.getElementById('pagination');
+            
+            if (totalPages <= 1) {
+                pagination.innerHTML = '';
+                return;
+            }
+            
+            let html = '';
+            
+            if (currentPage > 1) {
+                html += `<button class="page-btn" onclick="changePage(${currentPage - 1})">‹</button>`;
+            }
+            
+            for (let i = 1; i <= totalPages; i++) {
+                if (i === currentPage) {
+                    html += `<button class="page-btn active">${i}</button>`;
+                } else if (i <= 3 || i > totalPages - 3 || Math.abs(currentPage - i) <= 2) {
+                    html += `<button class="page-btn" onclick="changePage(${i})">${i}</button>`;
+                } else if (i === 4 && currentPage > 4) {
+                    html += `<span style="padding: 12px;">...</span>`;
+                }
+            }
+            
+            if (currentPage < totalPages) {
+                html += `<button class="page-btn" onclick="changePage(${currentPage + 1})">›</button>`;
+            }
+            
+            pagination.innerHTML = html;
+        }
+        
+        function changePage(page) {
+            currentPage = page;
+            filterProducts();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // ========== ФУНКЦИИ КОРЗИНЫ ==========
+        
+        function addToCartFromPage(textbookId) {
+            const textbook = textbooks.find(t => t.id === textbookId);
+            if (!textbook) return;
+            
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const existingItem = cartItems.find(item => item.id === textbookId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cartItems.push({
+                    id: textbook.id,
+                    title: textbook.title,
+                    price: textbook.price,
+                    image: textbook.image,
+                    author: textbook.author,
+                    quantity: 1
+                });
+            }
+            
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            updateCartCount();
+            showNotification(`"${textbook.title}" добавлен в корзину!`, 'success');
+        }
+        
+        function updateCartCount() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+            const cartCountElement = document.getElementById('cart-count');
+            
+            if (cartCountElement) {
+                cartCountElement.textContent = totalCount;
+                if (totalCount > 0) {
+                    cartCountElement.style.display = 'flex';
+                } else {
+                    cartCountElement.style.display = 'none';
+                }
+            }
+        }
+        
+        // ========== ФУНКЦИИ ПОЛЬЗОВАТЕЛЯ ==========
+        
+        function updateAuthButtons() {
+            const authButtons = document.getElementById('authButtons');
+            
+            if (currentUser) {
+                const avatarLetter = currentUser.name.charAt(0).toUpperCase();
+                
+                authButtons.innerHTML = `
+                    <div class="user-menu">
+                        <div class="user-info" onclick="window.location.href='index.html#profile'">
+                            <div class="user-avatar">${avatarLetter}</div>
+                            <span class="user-name">${currentUser.name}</span>
+                        </div>
+                        <button class="logout-btn" onclick="userLogout()">Выйти</button>
+                    </div>
+                `;
+            } else {
+                authButtons.innerHTML = `
+                    <button class="login-btn" onclick="window.location.href='index.html#auth'">Войти</button>
+                    <button class="register-btn" onclick="window.location.href='index.html#auth'">Регистрация</button>
+                `;
+            }
+        }
+        
+        function userLogout() {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            updateAuthButtons();
+        }
+        
+        // ========== ФУНКЦИЯ УВЕДОМЛЕНИЙ ==========
+        
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type === 'success' ? '' : 'info'}`;
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <span>${type === 'success' ? '✅' : 'ℹ️'}</span>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideIn 0.3s ease reverse';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+        
+        // ========== ИНИЦИАЛИЗАЦИЯ ==========
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Инициализация пользователя
+            currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+            updateAuthButtons();
+            updateCartCount();
+            
+            // Инициализация продуктов
+            filterProducts();
+            
+            // Обработчик закрытия модального окна
+            const textbookDetailModal = document.getElementById('textbookDetailModal');
+            if (textbookDetailModal) {
+                textbookDetailModal.addEventListener('click', function(event) {
+                    if (event.target === textbookDetailModal) {
+                        closeTextbookDetail();
+                    }
+                });
+            }
+            
+            // Обработчик клавиши Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeTextbookDetail();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

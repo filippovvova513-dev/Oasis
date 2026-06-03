@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    .header {
+      padding: 16px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      border-bottom: 2px solid #e3f2fd;
+      gap: 32px;
+      box-shadow: 0 2px 10px rgba(33, 150, 243, 0.1);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .logo-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .logo-image {
+      height: 50px;
+      width: auto;
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 24px;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: #1976d2;
+      text-decoration: none;
+      font-size: 1rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      font-weight: 500;
+      border: 1px solid transparent;
+    }
+
+    .nav-link:hover {
+      background: #1976d2;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+    }
+
+    .cart-icon {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #1976d2;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      border: 1px solid transparent;
+      position: relative;
+    }
+
+    .cart-icon:hover {
+      background: #1976d2;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #e53935;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .header-tagline {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #42a5f5;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 1024px) {
+      .header {
+        flex-wrap: wrap;
+        padding: 16px 24px;
+        gap: 16px;
+      }
+      
+      .header-nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-nav {
+        gap: 12px;
+      }
+      
+      .nav-link {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+      }
+      
+      .header-tagline {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo-container">
+      <a href="index.html" class="logo-link">
+        <img src="img/nNKvvz5HE4nKCLIjqtiGoHgAny1un77MQYTkYx_VkZhX2gHWxNK7bEsse4jutoogXCLbLg7pQItw61NncpBwupaW.jpg" alt="Литературный Оазис" class="logo-image">
+      </a>
+    </div>
+    
+    <nav class="header-nav">
+      <a href="manga.html" class="nav-link">Манга</a>
+      <a href="magazines.html" class="nav-link">Журналы</a>
+      <a href="textbooks.html" class="nav-link">Учебники</a>
+      <a href="catalog.html" class="nav-link">Каталог</a>
+      <a href="new.html" class="nav-link">Новинки</a>
+      <a href="cart.html" class="cart-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        Корзина
+        <span class="cart-count" id="cart-count">0</span>
+      </a>
+    </nav>
+    
+    <div class="header-tagline">Литература для души и ума!</div>
+  </header>
+
+  <script>
+    // Функция для обновления счетчика корзины
+    function updateCartCount() {
+      try {
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        const totalCount = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        const cartCountElement = document.getElementById('cart-count');
+        if (cartCountElement) {
+          cartCountElement.textContent = totalCount;
+        }
+      } catch (error) {
+        console.error('Ошибка при обновлении счетчика корзины:', error);
+      }
+    }
+
+    // Обновляем счетчик при загрузке страницы
+    document.addEventListener('DOMContentLoaded', function() {
+      updateCartCount();
+      
+      // Также обновляем при изменении localStorage (если открыто несколько вкладок)
+      window.addEventListener('storage', function(e) {
+        if (e.key === 'cartItems') {
+          updateCartCount();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Поиск - Литературный Оазис</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Georgia, serif;
+      background-color: #1a1410;
+      color: #e8d5c4;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #d4a373;
+      margin-bottom: 40px;
+    }
+    .search-box {
+      max-width: 600px;
+      margin: 0 auto 40px;
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      padding: 15px 50px 15px 20px;
+      border: 2px solid #d4a373;
+      border-radius: 25px;
+      background: rgba(212, 163, 115, 0.1);
+      color: #e8d5c4;
+      font-size: 1rem;
+    }
+    .search-button {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #d4a373;
+      cursor: pointer;
+    }
+    .back-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #d4a373;
+      color: #1a1410;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    .search-results {
+      text-align: center;
+      color: #b89968;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-button">← На главную</a>
+    <h1 class="section-title">Поиск книг</h1>
+    
+    <div class="search-box">
+      <input type="text" class="search-input" placeholder="Введите название книги, автора или жанр...">
+      <button class="search-button">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </button>
+    </div>
+    
+    <div class="search-results">
+      <p>Введите запрос в поле выше для поиска книг в нашем каталоге</p>
+      <p>Доступно более 10,000 книг различных жанров</p>
+    </div>
+  </div>
+</body>
+</html>
