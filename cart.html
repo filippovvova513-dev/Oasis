@@ -28,8 +28,7 @@
 
         body {
             font-family: 'Georgia', 'Times New Roman', serif;
-            background: linear-gradient(rgba(255, 248, 220, 0.9), rgba(255, 248, 220, 0.95)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><defs><pattern id="books" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><rect fill="%23F5E6D3" opacity="0.4" x="0" y="0" width="40" height="40"/><path fill="%23D2691E" opacity="0.15" d="M8,8 L32,8 L32,32 L8,32 Z M10,10 L30,10 L30,30 L10,30 Z M12,12 L28,12 L28,18 L12,18 Z M12,20 L28,20 L28,26 L12,26 Z"/></pattern></defs><rect fill="url(%23books)" width="400" height="400"/></svg>'), #FFF8DC;
-            background-size: 400px 400px, auto;
+            background: linear-gradient(rgba(255, 248, 220, 0.9), rgba(255, 248, 220, 0.95)), #FFF8DC;
             background-attachment: fixed;
             color: var(--text-color);
             line-height: 1.6;
@@ -169,7 +168,7 @@
         .auth-error { background: rgba(220, 20, 60, 0.1); color: #DC143C; }
         .auth-success { background: rgba(34, 139, 34, 0.1); color: #228B22; }
 
-        /* ===== ШАПКА - ТОЧНАЯ КОПИЯ С ГЛАВНОЙ СТРАНИЦЫ ===== */
+        /* ===== ШАПКА - КАК НА ГЛАВНОЙ ===== */
         .header {
             background: linear-gradient(135deg, var(--light-color), #F5E6D3);
             padding: 15px 0;
@@ -398,7 +397,7 @@
         .admin-panel-btn.visible { display: flex; }
         .admin-panel-btn:hover { background: linear-gradient(135deg, #006400, #004d00); transform: translateY(-2px); box-shadow: var(--shadow-md); }
 
-        /* Основной контент - растягивается, чтобы прижать подвал */
+        /* Основной контент */
         .container {
             max-width: 1300px;
             margin: 0 auto;
@@ -1031,7 +1030,7 @@
             box-shadow: var(--shadow-interactive);
         }
 
-        /* Подвал - прибит к низу */
+        /* Подвал */
         .footer {
             background: linear-gradient(135deg, var(--dark-color), #4A3529);
             color: #F5E6D3;
@@ -1114,7 +1113,7 @@
         </div>
     </div>
 
-    <!-- Шапка - ТОЧНАЯ КОПИЯ С ГЛАВНОЙ СТРАНИЦЫ -->
+    <!-- Шапка -->
     <header class="header">
         <div class="header-content">
             <a href="index.html" class="logo">Литературный Оазис</a>
@@ -1376,7 +1375,7 @@
         }
         function showUserProfile() {
             if (!currentUser || currentUser.isAdmin) return;
-            alert(`👤 ${currentUser.name}\n📧 ${currentUser.email}\n📱 ${currentUser.phone}`);
+            alert(`Имя: ${currentUser.name}\nEmail: ${currentUser.email}\nТелефон: ${currentUser.phone}`);
         }
         function toggleAdminPanel() {
             if (!currentUser || !currentUser.isAdmin) { alert('Доступ запрещен!'); return; }
