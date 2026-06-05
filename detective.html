@@ -411,7 +411,7 @@
             transform: translateY(-2px);
         }
 
-        /* ===== ШАПКА ===== */
+        /* ===== ШАПКА - КАК НА ГЛАВНОЙ СТРАНИЦЕ ===== */
         .header {
             background: linear-gradient(135deg, var(--light-color), #F5E6D3);
             padding: 15px 0;
@@ -1184,36 +1184,32 @@
             <div class="admin-section" id="statsSection">
                 <h3 class="admin-section-title">Статистика продаж книг</h3>
                 <div class="admin-stats"><div class="stat-card"><div class="stat-value" id="totalBooksSold">0</div><div class="stat-label">Продано книг</div></div><div class="stat-card"><div class="stat-value" id="avgBookPrice">0</div><div class="stat-label">Средняя цена</div></div></div>
-                <div class="admin-table-container"><table class="admin-table"><thead><tr><th>Книга</th><th>Автор</th><th>Продано</th><th>Выручка</th><th>Популярность</th></tr></thead><tbody id="statsTable"></tbody></table></div>
+                <div class="admin-table-container"><table class="admin-table"><thead><tr><th>Книга</th><th>Автор</th><th>Продано</th><th>Выручка</th><th>Популярность</th></tr></thead><tbody id="statsTable"></tbody></tr></div>
                 <div class="admin-actions"><button class="admin-action-btn" onclick="refreshStats()">Обновить</button><button class="admin-action-btn secondary" onclick="exportStats()">График продаж</button></div>
             </div>
         </div>
     </div>
 
-    <!-- Шапка -->
+    <!-- Шапка - КАК НА ГЛАВНОЙ СТРАНИЦЕ (Главная, Манга, Учебники, Журналы) -->
     <header class="header">
-    <div class="header-content">
-        <a href="index.html" class="logo">Литературный Оазис</a>
-        <nav class="nav">
-            <a href="index.html" class="nav-item"><span class="icon icon-sm">Г</span>Главная</a>
-            <a href="horror.html" class="nav-item"><span class="icon icon-sm">У</span>Ужасы</a>
-            <a href="fantasy.html" class="nav-item"><span class="icon icon-sm">Ф</span>Фэнтези</a>
-            <a href="detective.html" class="nav-item"><span class="icon icon-sm">Д</span>Детективы</a>
-            <a href="romance.html" class="nav-item"><span class="icon icon-sm">Р</span>Романы</a>
-            <a href="scifi.html" class="nav-item"><span class="icon icon-sm">Н</span>Фантастика</a>
-            <a href="adventure.html" class="nav-item"><span class="icon icon-sm">П</span>Приключения</a>
-            <a href="textbooks.html" class="nav-item"><span class="icon icon-sm">У</span>Учебники</a>
-            <a href="magazines.html" class="nav-item"><span class="icon icon-sm">Ж</span>Журналы</a>
-            <div class="header-search">
-                <input type="text" class="search-input" placeholder="Поиск книг или авторов..." id="headerSearch">
-                <button class="search-button" onclick="performSearch()"><span class="icon icon-sm icon-search">П</span></button>
-            </div>
-            <div class="auth-buttons" id="authButtons"></div>
-            <button class="admin-panel-btn" id="adminPanelBtn" onclick="toggleAdminPanel()"><span class="icon icon-sm icon-white">A</span>Админ-панель</button>
-            <a href="cart.html" class="nav-item"><span class="icon icon-sm icon-cart">К</span>Корзина<span class="cart-count" id="cart-count">0</span></a>
-        </nav>
-    </div>
-</header>
+        <div class="header-content">
+            <a href="index.html" class="logo">Литературный Оазис</a>
+            <nav class="nav">
+                <a href="index.html" class="nav-item"><span class="icon-img icon-img-sm">🏠</span>Главная</a>
+                <a href="manga.html" class="nav-item"><span class="icon-img icon-img-sm">📖</span>Манга</a>
+                <a href="textbooks.html" class="nav-item"><span class="icon-img icon-img-sm">📘</span>Учебники</a>
+                <a href="magazines.html" class="nav-item"><span class="icon-img icon-img-sm">📰</span>Журналы</a>
+                <div class="header-search">
+                    <input type="text" class="search-input" placeholder="Поиск детективов..." id="headerSearch">
+                    <button class="search-button" onclick="performSearch()"><span class="icon-img icon-img-sm">🔍</span></button>
+                </div>
+                <div class="auth-buttons" id="authButtons"></div>
+                <button class="admin-panel-btn" id="adminPanelBtn" onclick="toggleAdminPanel()"><span class="icon-img icon-img-sm">⚡</span>Админ-панель</button>
+                <a href="cart.html" class="nav-item"><span class="icon-img icon-img-sm">🛒</span>Корзина<span class="cart-count" id="cart-count">0</span></a>
+            </nav>
+        </div>
+    </header>
+
     <!-- Заголовок страницы жанра -->
     <section class="genre-header">
         <div class="genre-header-content">
@@ -1238,7 +1234,7 @@
             <h2 class="filters-title">Фильтры и сортировка</h2>
             <div class="filters-grid">
                 <div class="filter-group">
-                    <label class="filter-label"><img src="img/icon-sort.png" class="icon-img icon-img-sm" alt="Сортировка" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M3 6h18M6 12h12M10 18h4\'%3E%3C/path%3E%3C/svg%3E'">Сортировать по:</label>
+                    <label class="filter-label">Сортировать по:</label>
                     <select class="filter-select" id="sortSelect">
                         <option value="popular">Популярности</option>
                         <option value="price-asc">Цене (по возрастанию)</option>
@@ -1248,7 +1244,7 @@
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label class="filter-label"><img src="img/icon-price.png" class="icon-img icon-img-sm" alt="Цена" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Ccircle cx=\'12\' cy=\'12\' r=\'10\'%3E%3C/circle%3E%3Cpath d=\'M16 8h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2z\'%3E%3C/path%3E%3C/svg%3E'">Цена:</label>
+                    <label class="filter-label">Цена:</label>
                     <select class="filter-select" id="priceSelect">
                         <option value="all">Любая</option>
                         <option value="0-500">До 500 руб</option>
@@ -1257,7 +1253,7 @@
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label class="filter-label"><img src="img/icon-author.png" class="icon-img icon-img-sm" alt="Автор" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z\'%3E%3C/path%3E%3C/svg%3E'">Автор:</label>
+                    <label class="filter-label">Автор:</label>
                     <select class="filter-select" id="authorSelect">
                         <option value="all">Все авторы</option>
                         <option value="Агата Кристи">Агата Кристи</option>
@@ -1288,7 +1284,7 @@
         // Данные книг в жанре детектив (с книгами Агаты Кристи)
         const detectiveBooks = [
             // Книги Агаты Кристи
-            { id: 301, title: "Немой свидетель", author: "Агата Кристи", pages: 320, price: 590, year: 1937, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=200&h=300&fit=crop&q=80", description: "Пожилая леди умирает при загадочных обстоятельствах, оставив состояние своей компаньонке. Эркюль Пуаро берётся за расследование этого запутанного дела, где главным свидетелем становится... собака!", rating: 4.7, ratingCount: 1890, genres: ["Классический детектив", "Загадочное убийство"], isbn: "978-5-04-105956-9", language: "Русский", weight: 380, dimensions: "20.5 x 13.5 x 2.2 см", publisher: "Эксмо", available: true, seriesBadge: "Пуаро" },
+            { id: 301, title: "Немой свидетель", author: "Агата Кристи", pages: 320, price: 590, year: 1937, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=200&h=300&fit=crop&q=80", description: "Пожилая леди умирает при загадочных обстоятельствах, оставив состояние своей компаньонке. Эркюль Пуаро берётся за расследование этого запутанного дела, где главным свидетелем становится... попугай!", rating: 4.7, ratingCount: 1890, genres: ["Классический детектив", "Загадочное убийство"], isbn: "978-5-04-105956-9", language: "Русский", weight: 380, dimensions: "20.5 x 13.5 x 2.2 см", publisher: "Эксмо", available: true, seriesBadge: "Пуаро" },
             { id: 302, title: "Рождество Эркюля Пуаро", author: "Агата Кристи", pages: 288, price: 580, year: 1938, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=200&h=300&fit=crop&q=80", description: "В канун Рождества богатый патриарх семейства зовёт всех родственников в своё поместье. В рождественскую ночь его находят убитым. Пуаро предстоит разгадать эту праздничную тайну.", rating: 4.8, ratingCount: 2345, genres: ["Классический детектив", "Семейная драма"], isbn: "978-5-04-105957-6", language: "Русский", weight: 360, dimensions: "20.5 x 13.5 x 2.0 см", publisher: "Эксмо", available: true, seriesBadge: "Пуаро" },
             { id: 303, title: "Убийство на поле для гольфа", author: "Агата Кристи", pages: 256, price: 560, year: 1923, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "https://images.unsplash.com/photo-1589998059171-988d887df646?w=200&h=300&fit=crop&q=80", description: "Романтический уик-энд Пуаро прерывается срочным вызовом. На поле для гольфа обнаружено тело миллионера с ножом в спине. Дело осложняется тем, что рядом найдена ещё одна жертва...", rating: 4.6, ratingCount: 1765, genres: ["Классический детектив", "Романтический"], isbn: "978-5-04-105958-3", language: "Русский", weight: 340, dimensions: "20.5 x 13.5 x 1.8 см", publisher: "Эксмо", available: true, seriesBadge: "Пуаро" },
             { id: 304, title: "Смерть в облаках", author: "Агата Кристи", pages: 240, price: 540, year: 1935, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?w=200&h=300&fit=crop&q=80", description: "Во время авиаперелёта через Ла-Манш одного из пассажиров находят мёртвым. По счастливой случайности на борту оказывается Эркюль Пуаро, которому предстоит раскрыть преступление, совершённое на высоте 3000 метров.", rating: 4.7, ratingCount: 1987, genres: ["Классический детектив", "Закрытая комната"], isbn: "978-5-04-105959-0", language: "Русский", weight: 330, dimensions: "20.5 x 13.5 x 1.7 см", publisher: "Эксмо", available: true, seriesBadge: "Пуаро" },
@@ -1570,7 +1566,7 @@
         function loadStatsTable() {
             const stats = JSON.parse(localStorage.getItem('bookStatistics')) || [];
             document.getElementById('totalBooksSold').textContent = stats.reduce((s,st)=>s+st.sold,0);
-            document.getElementById('statsTable').innerHTML = stats.map(s => `<tr><td>${s.bookTitle}</td><td>${s.author}</td><td>${s.sold}</td><td>${s.revenue} руб</td><td>${s.sold>10?'⭐⭐⭐':'⭐'}</td></tr>`).join('');
+            document.getElementById('statsTable').innerHTML = stats.map(s => `<tr><td>${s.bookTitle}</td><td>${s.author}</td><td>${s.sold}</td><td>${s.revenue} руб</td><td>${s.sold>10?'⭐⭐⭐':'⭐'}<tr></tr>`).join('');
         }
         function refreshUsers() { loadUsersTable(); showNotification('Обновлено!','success'); }
         function refreshOrders() { loadOrdersTable(); showNotification('Обновлено!','success'); }
