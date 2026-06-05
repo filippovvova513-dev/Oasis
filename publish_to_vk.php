@@ -3,7 +3,7 @@ header('Content-Type: application/json');
 
 // ========== ВАШИ ДАННЫЕ ДЛЯ ВКОНТАКТЕ ==========
 $access_token = "vk1.a.jpx_GVj8ILIYTMRoo0eqk7vVHj4ZcHDTjwJRBpyiNMaiUeNmEVdJD8yQ5hwqofn0hYchonNR33Er5CsMjNCjiQNB78wiLyaqAqLFBpDUvMUWvUI4_aO9uzr23WArAvTTxlS6bY88VXfKF74c40_6Dk5GRa2OOqxZkHBEeLqASKahPtkLqHGFa-bKMiFZSVJJ";
-$group_id = "-vk1.a.jpx_GVj8ILIYTMRoo0eqk7vVHj4ZcHDTjwJRBpyiNMaiUeNmEVdJD8yQ5hwqofn0hYchonNR33Er5CsMjNCjiQNB78wiLyaqAqLFBpDUvMUWvUI4_aO9uzr23WArAvTTxlS6bY88VXfKF74c40_6Dk5GRa2OOqxZkHBEeLqASKahPtkLqHGFa-bKMiFZSVJJ"; // ВАЖНО: ВСТАВЬТЕ СЮДА ID ВАШЕГО СООБЩЕСТВА С МИНУСОМ! Например: -123456789
+$group_id = "-233877928"; // ВАЖНО: ВСТАВЬТЕ СЮДА ID ВАШЕГО СООБЩЕСТВА С МИНУСОМ! Например: -123456789
 $api_version = "5.131";
 // =============================================
 
