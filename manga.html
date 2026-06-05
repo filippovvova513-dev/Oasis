@@ -63,7 +63,108 @@
         .notification.info { background: linear-gradient(135deg, var(--accent-color), #FFA500); }
         @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
-        /* ===== ШАПКА - ЕДИНЫЙ СТИЛЬ ===== */
+        /* ===== МОДАЛЬНОЕ ОКНО АВТОРИЗАЦИИ ===== */
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(93, 64, 55, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        .auth-modal.active { display: flex; }
+        .auth-form {
+            background: var(--light-color);
+            border-radius: var(--radius-lg);
+            width: 90%;
+            max-width: 450px;
+            border: 3px solid var(--primary-color);
+            position: relative;
+            box-shadow: var(--shadow-lg);
+        }
+        .close-auth-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--dark-color);
+            transition: var(--transition);
+            z-index: 10;
+        }
+        .close-auth-btn:hover { transform: rotate(90deg); color: var(--accent-color); }
+        .auth-tabs {
+            display: flex;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        .auth-tab {
+            flex: 1;
+            padding: 16px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--dark-color);
+            transition: var(--transition);
+            position: relative;
+        }
+        .auth-tab.active { color: var(--primary-color); }
+        .auth-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 3px 3px 0 0;
+        }
+        .auth-content { padding: 30px; }
+        .auth-title { text-align: center; color: var(--primary-color); margin-bottom: 25px; font-size: 24px; }
+        .form-group { margin-bottom: 20px; }
+        .form-label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark-color); }
+        .form-input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #E0D6CC;
+            border-radius: var(--radius-md);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        .form-input:focus { outline: none; border-color: var(--accent-color); }
+        .auth-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: var(--transition);
+        }
+        .auth-btn:hover { background: linear-gradient(135deg, var(--secondary-color), var(--accent-color)); transform: translateY(-2px); }
+        .auth-error, .auth-success {
+            display: none;
+            margin-top: 15px;
+            padding: 10px;
+            text-align: center;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+        }
+        .auth-error { background: rgba(220, 20, 60, 0.1); color: #DC143C; }
+        .auth-success { background: rgba(34, 139, 34, 0.1); color: #228B22; }
+
+        /* ===== ШАПКА ===== */
         .header {
             background: linear-gradient(135deg, var(--light-color), #F5E6D3);
             padding: 15px 0;
@@ -416,42 +517,6 @@
             transition: var(--transition);
         }
         .admin-close:hover { background: rgba(255, 140, 0, 0.3); color: white; transform: rotate(90deg); }
-        .admin-tabs {
-            display: flex;
-            background: rgba(62, 39, 35, 0.95);
-            border-bottom: 2px solid var(--accent-color);
-            padding: 0 20px;
-        }
-        .admin-tab {
-            flex: 1;
-            padding: 20px;
-            background: none;
-            border: none;
-            color: #E0D6CC;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-            transition: var(--transition);
-            text-align: center;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-        .admin-tab:hover { background: rgba(255, 140, 0, 0.1); color: white; transform: translateY(-2px); }
-        .admin-tab.active { color: white; background: linear-gradient(135deg, rgba(139, 69, 19, 0.3), rgba(210, 105, 30, 0.2)); }
-        .admin-tab.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-color), #FFA500);
-            border-radius: 4px 4px 0 0;
-        }
-        .admin-content { flex: 1; overflow-y: auto; padding: 25px; }
 
         /* Основной контент страницы */
         .page-header {
@@ -994,7 +1059,37 @@
     </style>
 </head>
 <body>
-    <!-- Шапка - ЕДИНЫЙ СТИЛЬ С ГЛАВНОЙ СТРАНИЦЕЙ -->
+    <!-- Модальное окно авторизации -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-form">
+            <button class="close-auth-btn" onclick="closeAuthModal()">×</button>
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchAuthTab('login')">Вход</button>
+                <button class="auth-tab" onclick="switchAuthTab('register')">Регистрация</button>
+            </div>
+            <div id="loginForm" class="auth-content">
+                <h3 class="auth-title">Вход в систему</h3>
+                <div class="form-group"><label class="form-label">Логин</label><input type="text" id="loginUsername" class="form-input" placeholder="Введите логин"></div>
+                <div class="form-group"><label class="form-label">Пароль</label><input type="password" id="loginPassword" class="form-input" placeholder="Введите пароль"></div>
+                <button class="auth-btn" onclick="userLogin()">Войти</button>
+                <div id="loginError" class="auth-error">Неверный логин или пароль</div>
+                <div id="loginSuccess" class="auth-success">Вход выполнен!</div>
+            </div>
+            <div id="registerForm" class="auth-content" style="display:none">
+                <h3 class="auth-title">Регистрация</h3>
+                <div class="form-group"><label class="form-label">Имя</label><input type="text" id="regName" class="form-input" placeholder="Ваше имя"></div>
+                <div class="form-group"><label class="form-label">Логин</label><input type="text" id="regUsername" class="form-input" placeholder="Придумайте логин"></div>
+                <div class="form-group"><label class="form-label">Пароль</label><input type="password" id="regPassword" class="form-input" placeholder="Придумайте пароль"></div>
+                <div class="form-group"><label class="form-label">Email</label><input type="email" id="regEmail" class="form-input" placeholder="Ваш email"></div>
+                <div class="form-group"><label class="form-label">Телефон</label><input type="tel" id="regPhone" class="form-input" placeholder="+7 (900) 123-45-67"></div>
+                <button class="auth-btn" onclick="userRegister()">Зарегистрироваться</button>
+                <div id="regError" class="auth-error">Ошибка регистрации</div>
+                <div id="regSuccess" class="auth-success">Регистрация успешна!</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Шапка -->
     <header class="header">
         <div class="header-content">
             <a href="index.html" class="logo">Литературный Оазис</a>
@@ -1133,7 +1228,133 @@
         let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
         const ADMIN_CREDENTIALS = { login: "8355Vova", password: "Adf220906" };
 
+        // ========== ФУНКЦИИ АВТОРИЗАЦИИ ==========
+        function showAuthModal(type) {
+            document.getElementById('authModal').style.display = 'flex';
+            switchAuthTab(type);
+        }
+        function closeAuthModal() {
+            document.getElementById('authModal').style.display = 'none';
+            document.getElementById('loginError').style.display = 'none';
+            document.getElementById('loginSuccess').style.display = 'none';
+            document.getElementById('regError').style.display = 'none';
+            document.getElementById('regSuccess').style.display = 'none';
+            document.getElementById('loginUsername').value = '';
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('regName').value = '';
+            document.getElementById('regUsername').value = '';
+            document.getElementById('regPassword').value = '';
+            document.getElementById('regEmail').value = '';
+            document.getElementById('regPhone').value = '';
+        }
+        function switchAuthTab(tab) {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const tabs = document.querySelectorAll('.auth-tab');
+            if (tab === 'login') {
+                tabs[0].classList.add('active');
+                tabs[1].classList.remove('active');
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+            } else {
+                tabs[1].classList.add('active');
+                tabs[0].classList.remove('active');
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+            }
+        }
+        function userLogin() {
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+            const errorEl = document.getElementById('loginError');
+            const successEl = document.getElementById('loginSuccess');
+            if (username === ADMIN_CREDENTIALS.login && password === ADMIN_CREDENTIALS.password) {
+                currentUser = { id: 0, name: "Администратор", username: ADMIN_CREDENTIALS.login, isAdmin: true, lastLogin: new Date().toISOString() };
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                successEl.style.display = 'block';
+                errorEl.style.display = 'none';
+                updateAuthButtons();
+                updateCartCount();
+                setTimeout(() => closeAuthModal(), 1000);
+                return;
+            }
+            const users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+            const user = users.find(u => u.username === username && u.password === password);
+            if (user) {
+                currentUser = user;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                successEl.style.display = 'block';
+                errorEl.style.display = 'none';
+                updateAuthButtons();
+                updateCartCount();
+                setTimeout(() => closeAuthModal(), 1000);
+            } else {
+                errorEl.style.display = 'block';
+                successEl.style.display = 'none';
+            }
+        }
+        function userRegister() {
+            const name = document.getElementById('regName').value.trim();
+            const username = document.getElementById('regUsername').value.trim();
+            const password = document.getElementById('regPassword').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const phone = document.getElementById('regPhone').value.trim();
+            const errorEl = document.getElementById('regError');
+            const successEl = document.getElementById('regSuccess');
+            if (!name || !username || !password || !email) {
+                errorEl.textContent = 'Заполните все поля!';
+                errorEl.style.display = 'block';
+                return;
+            }
+            if (password.length < 6) {
+                errorEl.textContent = 'Пароль минимум 6 символов';
+                errorEl.style.display = 'block';
+                return;
+            }
+            let users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+            if (users.some(u => u.username === username)) {
+                errorEl.textContent = 'Логин уже существует';
+                errorEl.style.display = 'block';
+                return;
+            }
+            const newUser = { id: users.length + 1, name, username, password, email, phone: phone || 'Не указан', registrationDate: new Date().toISOString().split('T')[0], orders: [], isAdmin: false };
+            users.push(newUser);
+            localStorage.setItem('registeredUsers', JSON.stringify(users));
+            currentUser = newUser;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            successEl.style.display = 'block';
+            errorEl.style.display = 'none';
+            updateAuthButtons();
+            updateCartCount();
+            setTimeout(() => closeAuthModal(), 1500);
+        }
+        function userLogout() {
+            if (currentUser && currentUser.isAdmin) localStorage.removeItem('adminLoggedIn');
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            updateAuthButtons();
+            document.getElementById('adminPanel').classList.remove('open');
+            document.body.classList.remove('admin-panel-open');
+        }
+
         // ========== ФУНКЦИИ ШАПКИ ==========
+        function updateAuthButtons() {
+            const authButtons = document.getElementById('authButtons');
+            const adminPanelBtn = document.getElementById('adminPanelBtn');
+            if (currentUser) {
+                const avatarLetter = currentUser.name.charAt(0).toUpperCase();
+                authButtons.innerHTML = `<div class="user-menu"><div class="user-info" onclick="showUserProfile()"><div class="user-avatar">${avatarLetter}</div><span class="user-name">${currentUser.name}</span></div><button class="logout-btn" onclick="userLogout()">Выйти</button></div>`;
+                if (currentUser.isAdmin) adminPanelBtn.classList.add('visible');
+                else adminPanelBtn.classList.remove('visible');
+            } else {
+                authButtons.innerHTML = `<button class="login-btn" onclick="showAuthModal('login')">Войти</button><button class="register-btn" onclick="showAuthModal('register')">Регистрация</button>`;
+                adminPanelBtn.classList.remove('visible');
+            }
+        }
+        function showUserProfile() {
+            if (!currentUser || currentUser.isAdmin) return;
+            alert(`👤 ${currentUser.name}\n📧 ${currentUser.email}\n📱 ${currentUser.phone}`);
+        }
         function performSearch() {
             const searchTerm = document.getElementById('headerSearch').value.toLowerCase().trim();
             const resultsContainer = document.getElementById('searchResults');
@@ -1162,27 +1383,6 @@
             if (!currentUser || !currentUser.isAdmin) { showNotification('Доступ запрещен!', 'info'); return; }
             document.getElementById('adminPanel').classList.toggle('open');
             document.body.classList.toggle('admin-panel-open');
-        }
-        function updateAuthButtons() {
-            const authButtons = document.getElementById('authButtons');
-            const adminPanelBtn = document.getElementById('adminPanelBtn');
-            if (currentUser) {
-                const avatarLetter = currentUser.name.charAt(0).toUpperCase();
-                authButtons.innerHTML = `<div class="user-menu"><div class="user-info" onclick="window.location.href='index.html#profile'"><div class="user-avatar">${avatarLetter}</div><span class="user-name">${currentUser.name}</span></div><button class="logout-btn" onclick="userLogout()">Выйти</button></div>`;
-                if (currentUser.isAdmin) adminPanelBtn.classList.add('visible');
-                else adminPanelBtn.classList.remove('visible');
-            } else {
-                authButtons.innerHTML = `<button class="login-btn" onclick="window.location.href='index.html#auth'">Войти</button><button class="register-btn" onclick="window.location.href='index.html#auth'">Регистрация</button>`;
-                adminPanelBtn.classList.remove('visible');
-            }
-        }
-        function userLogout() {
-            if (currentUser && currentUser.isAdmin) localStorage.removeItem('adminLoggedIn');
-            currentUser = null;
-            localStorage.removeItem('currentUser');
-            updateAuthButtons();
-            document.getElementById('adminPanel').classList.remove('open');
-            document.body.classList.remove('admin-panel-open');
         }
         function updateCartCount() {
             const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
@@ -1294,7 +1494,7 @@
             showNotification(`"${manga.title}" добавлена в корзину!`, 'success');
         }
         function buyNow(bookId) {
-            if (!currentUser) { alert('Авторизуйтесь для покупки!'); return; }
+            if (!currentUser) { showAuthModal('login'); showNotification('Авторизуйтесь для покупки!', 'error'); return; }
             showNotification(`Оформление заказа`, 'info');
         }
         function showNotification(message, type) {
@@ -1318,7 +1518,11 @@
             filterProducts();
             document.getElementById('headerSearch').addEventListener('input', function() { setTimeout(performSearch, 500); });
             document.addEventListener('click', function(e) { if (!e.target.closest('.search-results') && !e.target.closest('.header-search')) closeSearchResults(); });
-            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeSearchResults(); closeMangaDetail(); } });
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeSearchResults(); closeMangaDetail(); closeAuthModal(); } });
+            
+            // Инициализация данных пользователей если нет
+            if (!localStorage.getItem('registeredUsers')) localStorage.setItem('registeredUsers', JSON.stringify([]));
+            if (!localStorage.getItem('cartItems')) localStorage.setItem('cartItems', JSON.stringify([]));
         });
     </script>
 </body>
