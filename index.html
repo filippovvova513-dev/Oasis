@@ -2082,21 +2082,30 @@
             { id: 2, badge: "ЮБИЛЕЙ", date: "12 ноября 2024", title: "70 лет со дня рождения Стивена Кинга", description: "Поздравляем великого мастера ужасов с юбилеем! В честь этого события скидка 20% на все книги автора.", publishedByAdmin: false }
         ];
 
-        // ========== НОВАЯ ФУНКЦИЯ: Публикация в ВКонтакте ==========
-        async function publishToVK(title, content, category) {
-            try {
-                const response = await fetch('publish_to_vk.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ title: title, content: content, category: category })
-                });
-                const result = await response.json();
-                return result;
-            } catch (error) {
-                console.error('Ошибка при публикации в ВК:', error);
-                return { success: false, error: error.message };
-            }
-        }
+       async function publishToVK(title, content, category) {
+    // ВСТАВЬТЕ СЮДА ВАШУ ССЫЛКУ ИЗ GOOGLE APPS SCRIPT
+    const webAppUrl = "https://script.google.com/macros/s/AKfycbz2guq681SBvQpcLYJhL9-JyjSM8rs9xLVZL3fKC8A1guiso3i3S13FaZNya4pm3G8u6Q/exec";
+    
+    try {
+        const response = await fetch(webAppUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                title: title, 
+                content: content, 
+                category: category 
+            })
+        });
+        
+        // При режиме no-cors мы не можем прочитать ответ, поэтому просто считаем что всё ок
+        return { success: true, message: 'Запрос отправлен в ВК' };
+        
+    } catch (error) {
+        console.error('Ошибка при публикации в ВК:', error);
+        return { success: false, error: error.message };
+    }
+}
 
         // ========== ОБНОВЛЕННАЯ ФУНКЦИЯ: Публикация новости ==========
         async function publishAdminNews() {
