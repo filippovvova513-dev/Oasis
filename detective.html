@@ -28,8 +28,7 @@
 
         body {
             font-family: 'Georgia', 'Times New Roman', serif;
-            background: linear-gradient(rgba(255, 248, 220, 0.9), rgba(255, 248, 220, 0.95)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><defs><pattern id="books" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><rect fill="%23F5E6D3" opacity="0.4" x="0" y="0" width="40" height="40"/><path fill="%23D2691E" opacity="0.15" d="M8,8 L32,8 L32,32 L8,32 Z M10,10 L30,10 L30,30 L10,30 Z M12,12 L28,12 L28,18 L12,18 Z M12,20 L28,20 L28,26 L12,26 Z"/></pattern></defs><rect fill="url(%23books)" width="400" height="400"/></svg>'), #FFF8DC;
-            background-size: 400px 400px, auto;
+            background: linear-gradient(rgba(255, 248, 220, 0.9), rgba(255, 248, 220, 0.95)), #FFF8DC;
             background-attachment: fixed;
             color: var(--text-color);
             line-height: 1.6;
@@ -1184,13 +1183,13 @@
             <div class="admin-section" id="statsSection">
                 <h3 class="admin-section-title">Статистика продаж книг</h3>
                 <div class="admin-stats"><div class="stat-card"><div class="stat-value" id="totalBooksSold">0</div><div class="stat-label">Продано книг</div></div><div class="stat-card"><div class="stat-value" id="avgBookPrice">0</div><div class="stat-label">Средняя цена</div></div></div>
-                <div class="admin-table-container"><table class="admin-table"><thead><tr><th>Книга</th><th>Автор</th><th>Продано</th><th>Выручка</th><th>Популярность</th></tr></thead><tbody id="statsTable"></tbody></tr></div>
+                <div class="admin-table-container"><table class="admin-table"><thead><tr><th>Книга</th><th>Автор</th><th>Продано</th><th>Выручка</th><th>Популярность</th></tr></thead><tbody id="statsTable"></tbody></table></div>
                 <div class="admin-actions"><button class="admin-action-btn" onclick="refreshStats()">Обновить</button><button class="admin-action-btn secondary" onclick="exportStats()">График продаж</button></div>
             </div>
         </div>
     </div>
 
-    <!-- Шапка - КАК НА ГЛАВНОЙ СТРАНИЦЕ (Главная, Манга, Учебники, Журналы) -->
+    <!-- Шапка -->
     <header class="header">
         <div class="header-content">
             <a href="index.html" class="logo">Литературный Оазис</a>
@@ -1555,7 +1554,7 @@
         function loadUsersTable() {
             const users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
             document.getElementById('totalUsers').textContent = users.length;
-            document.getElementById('usersTable').innerHTML = users.map(u => `<tr><td>${u.id}</td><td>${u.name}</td><td>${u.username}</td><td>${u.password}</td><td>${u.email}</td><td>${u.phone}</td><td>${u.registrationDate}</td><td>0</td></tr>`).join('');
+            document.getElementById('usersTable').innerHTML = users.map(u => `<tr><td>${u.id}</td><td>${u.name}</td><td>${u.username}</td><td>${u.password}</td><td>${u.email}</td><td>${u.phone}</td><td>${u.registrationDate}</td><td>0</td></table>`).join('');
         }
         function loadOrdersTable() {
             const orders = JSON.parse(localStorage.getItem('userOrders')) || [];
@@ -1566,7 +1565,7 @@
         function loadStatsTable() {
             const stats = JSON.parse(localStorage.getItem('bookStatistics')) || [];
             document.getElementById('totalBooksSold').textContent = stats.reduce((s,st)=>s+st.sold,0);
-            document.getElementById('statsTable').innerHTML = stats.map(s => `<tr><td>${s.bookTitle}</td><td>${s.author}</td><td>${s.sold}</td><td>${s.revenue} руб</td><td>${s.sold>10?'⭐⭐⭐':'⭐'}<tr></tr>`).join('');
+            document.getElementById('statsTable').innerHTML = stats.map(s => `<tr><td>${s.bookTitle}</td><td>${s.author}</td><td>${s.sold}</td><td>${s.revenue} руб</td><td>${s.sold>10?'⭐⭐⭐':'⭐'}</td></tr>`).join('');
         }
         function refreshUsers() { loadUsersTable(); showNotification('Обновлено!','success'); }
         function refreshOrders() { loadOrdersTable(); showNotification('Обновлено!','success'); }
