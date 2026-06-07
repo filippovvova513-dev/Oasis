@@ -1035,6 +1035,359 @@
                 gap: 6px;
             }
         }
+        /* ===== РАСТЯНУТАЯ ШАПКА ДЛЯ ПК (ВО ВСЮ ШИРИНУ) ===== */
+.header {
+    background: linear-gradient(135deg, var(--light-color), #F5E6D3);
+    border-bottom: 4px solid var(--primary-color);
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    position: relative;
+    z-index: 1001;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 12px 30px;
+    width: 100%;
+}
+
+/* Логотип слева */
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Навигация - растягивается */
+.nav {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--dark-color);
+    padding: 8px 14px;
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    position: relative;
+    border: 2px solid transparent;
+    background: rgba(139, 69, 19, 0.05);
+    white-space: nowrap;
+}
+
+.nav-item:hover {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    transform: translateY(-2px);
+    border-color: var(--accent-color);
+}
+
+/* Поиск */
+.header-search {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.search-input {
+    padding: 8px 14px;
+    border: 2px solid var(--primary-color);
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    background: white;
+    width: 220px;
+}
+
+.search-button {
+    padding: 8px 14px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+}
+
+/* Кнопки авторизации */
+.auth-buttons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-left: auto;
+}
+
+.login-btn, .register-btn {
+    padding: 8px 14px;
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+}
+
+.login-btn {
+    background: var(--light-color);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.register-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: rgba(139, 69, 19, 0.1);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+}
+
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.user-name {
+    font-weight: 600;
+    color: var(--dark-color);
+    font-size: 13px;
+}
+
+.logout-btn {
+    padding: 6px 12px;
+    background: linear-gradient(135deg, #DC143C, #B22222);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.admin-panel-btn {
+    background: linear-gradient(135deg, #228B22, #006400);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 8px 14px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    display: none;
+}
+
+.admin-panel-btn.visible {
+    display: flex;
+}
+
+.cart-count {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: linear-gradient(135deg, #DC143C, #B22222);
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    border: 2px solid var(--light-color);
+}
+
+/* ===== ДЛЯ ТЕЛЕФОНОВ - ШАПКА В 2 СТРОКИ ===== */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 15px;
+    }
+    
+    .logo {
+        font-size: 20px;
+        text-align: center;
+        justify-content: center;
+        width: 100%;
+        white-space: normal;
+    }
+    
+    .nav {
+        justify-content: center;
+        width: 100%;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-left: 0;
+        flex: none;
+    }
+    
+    .nav-item {
+        padding: 6px 12px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+    
+    .nav-item .icon-img-sm {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .header-search {
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    .search-input {
+        width: 100%;
+        font-size: 14px;
+    }
+    
+    .auth-buttons {
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
+    }
+    
+    .user-menu {
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .cart-count {
+        width: 18px;
+        height: 18px;
+        font-size: 9px;
+        top: -5px;
+        right: -5px;
+    }
+    
+    /* Кнопки - увеличиваем для пальцев */
+    .nav-item, .add-to-cart, .login-btn, .register-btn, .logout-btn, 
+    .page-btn, .search-button, .auth-btn, .close-detail-btn, 
+    .close-auth-btn, .magazine-detail-cart-btn {
+        min-height: 44px;
+    }
+    
+    /* Убираем hover на мобильных */
+    .product-card:hover, .nav-item:hover, .add-to-cart:hover {
+        transform: none;
+    }
+    
+    .nav-item:active, .add-to-cart:active {
+        opacity: 0.7;
+        transform: scale(0.97);
+    }
+    
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    input, select, textarea {
+        font-size: 16px;
+    }
+    
+    body {
+        overflow-x: hidden;
+    }
+}
+
+/* Для маленьких телефонов (до 480px) */
+@media (max-width: 480px) {
+    .logo {
+        font-size: 18px;
+    }
+    
+    .nav-item {
+        padding: 4px 10px;
+        font-size: 11px;
+    }
+    
+    .login-btn, .register-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .user-info {
+        padding: 5px 10px;
+    }
+    
+    .user-avatar {
+        width: 26px;
+        height: 26px;
+        font-size: 12px;
+    }
+    
+    .user-name {
+        font-size: 12px;
+    }
+    
+    .logout-btn {
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+}
+
+/* Для очень маленьких телефонов */
+@media (max-width: 360px) {
+    .nav-item {
+        padding: 4px 8px;
+        font-size: 10px;
+    }
+    
+    .user-menu {
+        flex-direction: column;
+        gap: 6px;
+    }
+}
+
+/* Для альбомной ориентации */
+@media (max-width: 768px) and (orientation: landscape) {
+    .nav {
+        gap: 4px;
+    }
+    
+    .nav-item {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+}
     </style>
 </head>
 <body>
