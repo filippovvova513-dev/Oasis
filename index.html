@@ -36,6 +36,7 @@
             min-height: 100vh;
         }
 
+        /* ===== СТИЛИЗОВАННЫЕ ИКОНКИ ===== */
         .icon-img { width: 20px; height: 20px; object-fit: contain; vertical-align: middle; }
         .icon-img-sm { width: 16px; height: 16px; }
         .icon-img-lg { width: 28px; height: 28px; }
@@ -878,17 +879,17 @@
         <div class="header-content">
             <a href="index.html" class="logo">Литературный Оазис</a>
             <nav class="nav">
-               <a href="index.html" class="nav-item"><img src="img/icon-home.png" class="icon-img icon-img-sm" alt="Главная" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-5v-8H7v8H2a2 2 0 0 1-2-2z\'%3E%3C/path%3E%3C/svg%3E'">Главная</a>
+                <a href="index.html" class="nav-item"><img src="img/icon-home.png" class="icon-img icon-img-sm" alt="Главная" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-5v-8H7v8H2a2 2 0 0 1-2-2z\'%3E%3C/path%3E%3C/svg%3E'">Главная</a>
                 <a href="manga.html" class="nav-item"><img src="img/icon-manga.png" class="icon-img icon-img-sm" alt="Манга" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Crect x=\'2\' y=\'3\' width=\'20\' height=\'18\' rx=\'2\'%3E%3C/rect%3E%3Cpath d=\'M8 7h8M8 11h6M8 15h4\'%3E%3C/path%3E%3C/svg%3E'">Манга</a>
                 <a href="textbooks.html" class="nav-item"><img src="img/icon-textbook.png" class="icon-img icon-img-sm" alt="Учебники" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M4 19.5A2.5 2.5 0 0 1 6.5 17H20\'%3E%3C/path%3E%3Cpath d=\'M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z\'%3E%3C/path%3E%3C/svg%3E'">Учебники</a>
                 <a href="magazines.html" class="nav-item"><img src="img/icon-magazine.png" class="icon-img icon-img-sm" alt="Журналы" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M4 4h16v16H4z\'%3E%3C/path%3E%3Cpath d=\'M8 8h8M8 12h6M8 16h4\'%3E%3C/path%3E%3C/svg%3E'">Журналы</a>
                 <div class="header-search">
                     <input type="text" class="search-input" placeholder="Поиск книг или авторов..." id="headerSearch">
-                    <button class="search-button" onclick="performSearch()">🔍</button>
+                    <button class="search-button" onclick="performSearch()"><img src="img/icon-search.png" class="icon-img icon-img-sm" alt="Поиск" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\'%3E%3Ccircle cx=\'11\' cy=\'11\' r=\'8\'%3E%3C/circle%3E%3Cpath d=\'m21 21-4.35-4.35\'%3E%3C/path%3E%3C/svg%3E'"></button>
                 </div>
                 <div class="auth-buttons" id="authButtons"></div>
-                <button class="admin-panel-btn" id="adminPanelBtn" onclick="toggleAdminFooterPanel()">⚡ Админ-панель</button>
-                <a href="cart.html" class="nav-item">🛒 Корзина<span class="cart-count" id="cart-count">0</span></a>
+                <button class="admin-panel-btn" id="adminPanelBtn" onclick="toggleAdminFooterPanel()"><img src="img/icon-admin.png" class="icon-img icon-img-sm" alt="Админ" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\'%3E%3Cpath d=\'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\'%3E%3C/path%3E%3C/svg%3E'">Админ-панель</button>
+                <a href="cart.html" class="nav-item"><img src="img/icon-cart.png" class="icon-img icon-img-sm" alt="Корзина" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Ccircle cx=\'9\' cy=\'21\' r=\'1\'%3E%3C/circle%3E%3Ccircle cx=\'20\' cy=\'21\' r=\'1\'%3E%3C/circle%3E%3Cpath d=\'M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6\'%3E%3C/path%3E%3C/svg%3E'">Корзина<span class="cart-count" id="cart-count">0</span></a>
             </nav>
         </div>
     </header>
@@ -936,9 +937,9 @@
         <section class="genres-section">
             <h2 class="section-title">Жанры литературы</h2>
             <div class="genres-grid">
-                <a href="horror.html" class="genre-card"><div class="genre-icon-container">👻</div><h3 class="genre-title">Ужасы</h3><p class="genre-description">Мрачные истории, которые заставят вас бояться темноты</p><div class="genre-stats"><span class="genre-count">+250 книг</span></div></a>
-                <a href="fantasy.html" class="genre-card"><div class="genre-icon-container">🐉</div><h3 class="genre-title">Фэнтези</h3><p class="genre-description">Мир магии, драконов и эпических приключений</p><div class="genre-stats"><span class="genre-count">+350 книг</span></div></a>
-                <a href="detective.html" class="genre-card"><div class="genre-icon-container">🔍</div><h3 class="genre-title">Детективы</h3><p class="genre-description">Захватывающие расследования и запутанные преступления</p><div class="genre-stats"><span class="genre-count">+180 книг</span></div></a>
+                <a href="horror.html" class="genre-card"><div class="genre-icon-container"><img src="img/genre-horror.png" class="genre-icon" alt="Ужасы" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'42\' height=\'42\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M12 2a10 10 0 1 0 10 10 10 10 0 0 0-10-10z\'%3E%3C/path%3E%3Cpath d=\'M12 6v4M12 14h.01\'%3E%3C/path%3E%3C/svg%3E'"></div><h3 class="genre-title">Ужасы</h3><p class="genre-description">Мрачные истории, которые заставят вас бояться темноты</p><div class="genre-stats"><span class="genre-count">+250 книг</span></div></a>
+                <a href="fantasy.html" class="genre-card"><div class="genre-icon-container"><img src="img/genre-fantasy.png" class="genre-icon" alt="Фэнтези" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'42\' height=\'42\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5\'%3E%3C/path%3E%3C/svg%3E'"></div><h3 class="genre-title">Фэнтези</h3><p class="genre-description">Мир магии, драконов и эпических приключений</p><div class="genre-stats"><span class="genre-count">+350 книг</span></div></a>
+                <a href="detective.html" class="genre-card"><div class="genre-icon-container"><img src="img/genre-detective.png" class="genre-icon" alt="Детективы" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'42\' height=\'42\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Ccircle cx=\'11\' cy=\'11\' r=\'8\'%3E%3C/circle%3E%3Cpath d=\'m21 21-4.35-4.35\'%3E%3C/path%3E%3C/svg%3E'"></div><h3 class="genre-title">Детективы</h3><p class="genre-description">Захватывающие расследования и запутанные преступления</p><div class="genre-stats"><span class="genre-count">+180 книг</span></div></a>
             </div>
         </section>
 
@@ -980,9 +981,9 @@
             </div>
         </div>
         <div class="admin-footer-tabs">
-            <button class="admin-footer-tab active" onclick="switchAdminFooterTab('users')">👥 Пользователи</button>
-            <button class="admin-footer-tab" onclick="switchAdminFooterTab('orders')">📦 Заказы</button>
-            <button class="admin-footer-tab" onclick="switchAdminFooterTab('stats')">📊 Статистика</button>
+            <button class="admin-footer-tab active" onclick="switchAdminFooterTab('users')">Пользователи</button>
+            <button class="admin-footer-tab" onclick="switchAdminFooterTab('orders')">Заказы</button>
+            <button class="admin-footer-tab" onclick="switchAdminFooterTab('stats')">Статистика</button>
         </div>
         <div class="admin-footer-content">
             <div class="admin-footer-section active" id="adminFooterUsers">
@@ -994,17 +995,17 @@
                     <div class="admin-footer-stat-card"><div class="admin-footer-stat-value" id="footerTotalRevenue">0</div><div class="admin-footer-stat-label">Общая выручка</div></div>
                 </div>
                 <div class="admin-footer-table-container"><table class="admin-footer-table"><thead><tr><th>ID</th><th>Имя</th><th>Логин</th><th>Email</th><th>Телефон</th><th>Регистрация</th></tr></thead><tbody id="footerUsersTable"></tbody></table></div>
-                <div class="admin-footer-actions"><button class="admin-footer-action-btn" onclick="refreshAdminFooterData()">🔄 Обновить</button><button class="admin-footer-action-btn secondary" onclick="exportAdminData()">📥 Экспорт CSV</button></div>
+                <div class="admin-footer-actions"><button class="admin-footer-action-btn" onclick="refreshAdminFooterData()">Обновить</button><button class="admin-footer-action-btn secondary" onclick="exportAdminData()">Экспорт CSV</button></div>
             </div>
             <div class="admin-footer-section" id="adminFooterOrders">
                 <h3 class="admin-footer-section-title">История заказов</h3>
                 <div class="admin-footer-table-container"><table class="admin-footer-table"><thead><tr><th>ID</th><th>Пользователь</th><th>Книги</th><th>Сумма</th><th>Дата</th><th>Статус</th></tr></thead><tbody id="footerOrdersTable"></tbody></table></div>
-                <div class="admin-footer-actions"><button class="admin-footer-action-btn" onclick="refreshAdminFooterData()">🔄 Обновить</button><button class="admin-footer-action-btn secondary" onclick="exportAdminData()">📥 Экспорт CSV</button></div>
+                <div class="admin-footer-actions"><button class="admin-footer-action-btn" onclick="refreshAdminFooterData()">Обновить</button><button class="admin-footer-action-btn secondary" onclick="exportAdminData()">Экспорт CSV</button></div>
             </div>
             <div class="admin-footer-section" id="adminFooterStats">
                 <h3 class="admin-footer-section-title">Статистика продаж книг</h3>
                 <div class="admin-footer-table-container"><table class="admin-footer-table"><thead><tr><th>Книга</th><th>Автор</th><th>Продано</th><th>Выручка</th></tr></thead><tbody id="footerStatsTable"></tbody></table></div>
-                <div class="admin-footer-actions"><button class="admin-footer-action-btn" onclick="refreshAdminFooterData()">🔄 Обновить</button></div>
+                <div class="admin-footer-actions"><button class="admin-footer-action-btn" onclick="refreshAdminFooterData()">Обновить</button></div>
             </div>
         </div>
     </div>
@@ -1015,16 +1016,16 @@
     </footer>
 
     <script>
-        // Данные книг с реальными изображениями (рабочие ссылки)
+        // Данные книг с изображениями
         const books = [
-            { id: 1, title: "Мастер и Маргарита", author: "Михаил Булгаков", pages: 480, price: 650, genre: "роман", image: "img/master-i-margarita.jpg", description: "Мистический роман о дьяволе, посетившем Москву 1930-х годов.", year: 1967, publisher: "Художественная литература", rating: 4.8, ratingCount: 2345 },
-            { id: 2, title: "1984", author: "Джордж Оруэлл", pages: 320, price: 550, genre: "антиутопия", image: "img/1984.jpg", description: "Антиутопия о тоталитарном обществе и потере свободы.", year: 1949, publisher: "Secker & Warburg", rating: 4.7, ratingCount: 1890 },
-            { id: 3, title: "Гарри Поттер", author: "Джоан Роулинг", pages: 432, price: 890, genre: "фэнтези", image: "img/harry-potter.jpg", description: "Начало магических приключений юного волшебника.", year: 1997, publisher: "Bloomsbury", rating: 4.9, ratingCount: 5678 },
-            { id: 4, title: "Наруто. Том 1", author: "Масаси Кисимото", pages: 192, price: 450, genre: "манга", image: "img/naruto.jpg", description: "Начало пути ниндзя-неудачника.", year: 1999, publisher: "Shueisha", rating: 4.6, ratingCount: 3210 },
-            { id: 5, title: "Война и мир", author: "Лев Толстой", pages: 1225, price: 950, genre: "роман-эпопея", image: "img/war-and-peace.jpg", description: "Эпическое произведение о войне 1812 года.", year: 1869, publisher: "Русский вестник", rating: 4.5, ratingCount: 1567 },
-            { id: 6, title: "Атака Титанов", author: "Хадзиме Исаяма", pages: 200, price: 480, genre: "манга", image: "img/attack-on-titan.jpg", description: "Битва человечества против гигантских титанов.", year: 2009, publisher: "Kodansha", rating: 4.8, ratingCount: 4321 },
-            { id: 7, title: "Преступление и наказание", author: "Фёдор Достоевский", pages: 672, price: 720, genre: "роман", image: "img/crime-and-punishment.jpg", description: "Психологический роман о преступлении.", year: 1866, publisher: "Русский вестник", rating: 4.7, ratingCount: 2345 },
-            { id: 8, title: "Маленький принц", author: "Антуан де Сент-Экзюпери", pages: 96, price: 450, genre: "сказка", image: "img/little-prince.jpg", description: "Философская сказка о дружбе.", year: 1943, publisher: "Reynal & Hitchcock", rating: 4.9, ratingCount: 6789 }
+            { id: 1, title: "Мастер и Маргарита", author: "Михаил Булгаков", pages: 480, price: 650, genre: "роман", image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=200&h=300&fit=crop", description: "Мистический роман о дьяволе, посетившем Москву 1930-х годов.", year: 1967, publisher: "Художественная литература", rating: 4.8, ratingCount: 2345 },
+            { id: 2, title: "1984", author: "Джордж Оруэлл", pages: 320, price: 550, genre: "антиутопия", image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=200&h=300&fit=crop", description: "Антиутопия о тоталитарном обществе и потере свободы.", year: 1949, publisher: "Secker & Warburg", rating: 4.7, ratingCount: 1890 },
+            { id: 3, title: "Гарри Поттер", author: "Джоан Роулинг", pages: 432, price: 890, genre: "фэнтези", image: "https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?w=200&h=300&fit=crop", description: "Начало магических приключений юного волшебника.", year: 1997, publisher: "Bloomsbury", rating: 4.9, ratingCount: 5678 },
+            { id: 4, title: "Наруто. Том 1", author: "Масаси Кисимото", pages: 192, price: 450, genre: "манга", image: "https://images.unsplash.com/photo-1589998059171-988d887df646?w=200&h=300&fit=crop", description: "Начало пути ниндзя-неудачника.", year: 1999, publisher: "Shueisha", rating: 4.6, ratingCount: 3210 },
+            { id: 5, title: "Война и мир", author: "Лев Толстой", pages: 1225, price: 950, genre: "роман-эпопея", image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=200&h=300&fit=crop", description: "Эпическое произведение о войне 1812 года.", year: 1869, publisher: "Русский вестник", rating: 4.5, ratingCount: 1567 },
+            { id: 6, title: "Атака Титанов", author: "Хадзиме Исаяма", pages: 200, price: 480, genre: "манга", image: "https://images.unsplash.com/photo-1568667256549-094345857637?w=200&h=300&fit=crop", description: "Битва человечества против гигантских титанов.", year: 2009, publisher: "Kodansha", rating: 4.8, ratingCount: 4321 },
+            { id: 7, title: "Преступление и наказание", author: "Фёдор Достоевский", pages: 672, price: 720, genre: "роман", image: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=200&h=300&fit=crop", description: "Психологический роман о преступлении.", year: 1866, publisher: "Русский вестник", rating: 4.7, ratingCount: 2345 },
+            { id: 8, title: "Маленький принц", author: "Антуан де Сент-Экзюпери", pages: 96, price: 450, genre: "сказка", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=300&fit=crop", description: "Философская сказка о дружбе.", year: 1943, publisher: "Reynal & Hitchcock", rating: 4.9, ratingCount: 6789 }
         ];
 
         const bookSuggestions = ["Отличный выбор!", "Эта книга может стать вашим новым любимым произведением!", "Идеально подходит для вечернего чтения!", "Классика, которую должен прочитать каждый!", "Книга, от которой невозможно оторваться!"];
@@ -1354,7 +1355,7 @@
             if (userOrders.length === 0) {
                 content.innerHTML = `<div class="no-orders"><p>У вас пока нет ни одного заказа.</p><p>Перейдите в <a href="index.html" onclick="closeUserOrders()">каталог книг</a>, чтобы сделать первый заказ!</p></div>`;
             } else {
-                let html = '<table class="orders-table"><thead><tr><th>№</th><th>Книги</th><th>Сумма</th><th>Дата</th><th>Статус</th></tr></thead><tbody>';
+                let html = '<table class="orders-table"><thead><tr><th>№</th><th>Книги</th><th>Сумма</th><th>Дата</th><th>Статус</th><tr></thead><tbody>';
                 userOrders.forEach(o => {
                     const itemsHtml = o.items.map(item => `${item.title} (${item.quantity} шт)`).join('<br>');
                     html += `<tr><td>#${o.id}</td><td>${itemsHtml}</td><td>${o.total} руб</td><td>${new Date(o.date).toLocaleDateString()}</td><td><span class="status-badge status-active">Выполнен</span></td></tr>`;
@@ -1444,7 +1445,7 @@
         function startAutoSlide() { autoSlideInterval = setInterval(() => moveSlide(1), 5000); }
         function resetAutoSlide() { clearInterval(autoSlideInterval); startAutoSlide(); }
 
-        // Функция отображения книг на главной странице (картинка сверху, информация снизу) - ВСЁ РАБОТАЕТ!
+        // Функция отображения книг на главной странице (картинка сверху, информация снизу)
         function displayBooks() {
             const grid = document.getElementById('booksGrid');
             grid.innerHTML = '';
@@ -1466,7 +1467,7 @@
                         <div class="book-price-container">
                             <div class="book-price">${book.price} ₽</div>
                         </div>
-                        <button class="add-to-cart" onclick="event.stopPropagation(); addToCart(${book.id})">🛒 В корзину</button>
+                        <button class="add-to-cart" onclick="event.stopPropagation(); addToCart(${book.id})">В корзину</button>
                     </div>
                 `;
                 grid.appendChild(card);
