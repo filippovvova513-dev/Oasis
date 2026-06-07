@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>Детективы - Литературный Оазис</title>
     <style>
         :root {
@@ -28,7 +28,8 @@
 
         body {
             font-family: 'Georgia', 'Times New Roman', serif;
-            background: linear-gradient(rgba(255, 248, 220, 0.9), rgba(255, 248, 220, 0.95)), #FFF8DC;
+            background: linear-gradient(rgba(255, 248, 220, 0.9), rgba(255, 248, 220, 0.95)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><defs><pattern id="books" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><rect fill="%23F5E6D3" opacity="0.4" x="0" y="0" width="40" height="40"/><path fill="%23D2691E" opacity="0.15" d="M8,8 L32,8 L32,32 L8,32 Z M10,10 L30,10 L30,30 L10,30 Z M12,12 L28,12 L28,18 L12,18 Z M12,20 L28,20 L28,26 L12,26 Z"/></pattern></defs><rect fill="url(%23books)" width="400" height="400"/></svg>'), #FFF8DC;
+            background-size: 400px 400px, auto;
             background-attachment: fixed;
             color: var(--text-color);
             line-height: 1.6;
@@ -329,109 +330,123 @@
             box-shadow: var(--shadow-lg);
         }
 
-        /* ===== ШАПКА - КАК НА ГЛАВНОЙ ===== */
+        /* ===== ШАПКА - ДВЕ СТРОКИ ===== */
         .header {
             background: linear-gradient(135deg, var(--light-color), #F5E6D3);
-            padding: 15px 0;
             border-bottom: 4px solid var(--primary-color);
             box-shadow: var(--shadow-lg);
-            margin-bottom: 0;
             width: 100%;
             position: relative;
             z-index: 1001;
         }
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 3700px;
-            margin: 0 auto;
-            padding: 0 30px;
-            width: 100%;
+
+        .header-row-top {
+            text-align: center;
+            padding: 15px 20px 5px 20px;
+            border-bottom: 1px solid rgba(139, 69, 19, 0.1);
         }
+
         .logo {
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 800;
             color: var(--primary-color);
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 12px;
             text-decoration: none;
             transition: var(--transition);
-            white-space: nowrap;
         }
-        .logo:hover { transform: translateY(-2px); text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2); }
+
+        .logo:hover {
+            transform: translateY(-2px);
+            text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2);
+        }
+
+        .header-row-bottom {
+            padding: 10px 20px 15px 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
         .nav {
             display: flex;
-            gap: 12px;
+            gap: 8px;
             align-items: center;
-            margin-left: auto;
+            flex-wrap: wrap;
         }
+
         .nav-item {
             display: flex;
             align-items: center;
             text-decoration: none;
             color: var(--dark-color);
-            padding: 10px 16px;
+            padding: 8px 14px;
             border-radius: var(--radius-md);
             transition: var(--transition);
-            gap: 10px;
-            font-size: 14px;
+            gap: 8px;
+            font-size: 13px;
             font-weight: 600;
             position: relative;
             border: 2px solid transparent;
-            box-shadow: var(--shadow-sm);
-            white-space: nowrap;
+            background: rgba(139, 69, 19, 0.05);
         }
+
         .nav-item:hover {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             transform: translateY(-2px);
-            box-shadow: var(--shadow-interactive);
             border-color: var(--accent-color);
         }
+
         .cart-count {
             position: absolute;
-            top: -8px;
-            right: -8px;
+            top: -6px;
+            right: -6px;
             background: linear-gradient(135deg, #DC143C, #B22222);
             color: white;
             border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            font-size: 12px;
+            width: 20px;
+            height: 20px;
+            font-size: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            border: 3px solid var(--light-color);
-            box-shadow: var(--shadow-sm);
+            border: 2px solid var(--light-color);
         }
+
         .header-search {
             display: flex;
-            gap: 10px;
-            margin-left: 20px;
-            position: relative;
+            gap: 8px;
         }
+
         .search-input {
-            padding: 12px 20px;
-            border: 3px solid var(--primary-color);
+            padding: 8px 14px;
+            border: 2px solid var(--primary-color);
             border-radius: var(--radius-md);
-            font-size: 14px;
+            font-size: 13px;
             background: white;
-            color: var(--text-color);
-            width: 280px;
-            transition: var(--transition);
-            box-shadow: var(--shadow-sm);
+            width: 220px;
         }
+
         .search-input:focus {
             outline: none;
             border-color: var(--accent-color);
             box-shadow: var(--shadow-interactive);
             transform: translateY(-2px);
         }
+
         .search-button {
-            padding: 12px 18px;
+            padding: 8px 14px;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             border: none;
@@ -442,58 +457,76 @@
             align-items: center;
             justify-content: center;
         }
+
         .search-button:hover {
             background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
             transform: translateY(-2px);
             box-shadow: var(--shadow-interactive);
         }
-        .auth-buttons { display: flex; gap: 12px; align-items: center; }
+
+        .auth-buttons {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
         .login-btn, .register-btn {
-            padding: 10px 18px;
+            padding: 8px 14px;
             border-radius: var(--radius-md);
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            transition: var(--transition);
             border: none;
-            box-shadow: var(--shadow-sm);
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
+
         .login-btn {
             background: var(--light-color);
             color: var(--primary-color);
             border: 2px solid var(--primary-color);
         }
-        .login-btn:hover { background: var(--primary-color); color: white; transform: translateY(-2px); box-shadow: var(--shadow-interactive); }
+
+        .login-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+        }
+
         .register-btn {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            border: 2px solid transparent;
         }
+
         .register-btn:hover {
             background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
             transform: translateY(-2px);
             box-shadow: var(--shadow-interactive);
         }
-        .user-menu { display: flex; align-items: center; gap: 15px; }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .user-info {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 10px 16px;
+            gap: 8px;
+            padding: 6px 12px;
             background: rgba(139, 69, 19, 0.1);
             border-radius: var(--radius-md);
-            border: 2px solid rgba(139, 69, 19, 0.2);
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
             cursor: pointer;
         }
-        .user-info:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+        .user-info:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
         .user-avatar {
-            width: 36px;
-            height: 36px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
             color: white;
@@ -501,61 +534,51 @@
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 16px;
-            box-shadow: var(--shadow-md);
+            font-size: 14px;
         }
-        .user-name { font-weight: 600; color: var(--dark-color); font-size: 14px; }
-        .user-actions { display: flex; gap: 10px; }
-        .user-action-btn {
-            padding: 10px 16px;
-            border: 2px solid var(--primary-color);
-            background: white;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            font-size: 13px;
+
+        .user-name {
             font-weight: 600;
-            transition: var(--transition);
-            color: var(--primary-color);
-            box-shadow: var(--shadow-sm);
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            color: var(--dark-color);
+            font-size: 13px;
         }
-        .user-action-btn:hover { background: var(--primary-color); color: white; transform: translateY(-2px); box-shadow: var(--shadow-interactive); }
+
         .logout-btn {
-            padding: 10px 16px;
+            padding: 6px 12px;
             background: linear-gradient(135deg, #DC143C, #B22222);
             color: white;
             border: none;
             border-radius: var(--radius-sm);
             cursor: pointer;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
-            transition: var(--transition);
-            box-shadow: var(--shadow-sm);
-            display: flex;
-            align-items: center;
-            gap: 6px;
         }
-        .logout-btn:hover { background: linear-gradient(135deg, #B22222, #8B0000); transform: translateY(-2px); box-shadow: var(--shadow-interactive); }
+
+        .logout-btn:hover {
+            background: linear-gradient(135deg, #B22222, #8B0000);
+            transform: translateY(-2px);
+        }
+
         .admin-panel-btn {
             background: linear-gradient(135deg, #228B22, #006400);
             color: white;
             border: none;
             border-radius: var(--radius-md);
-            padding: 10px 18px;
+            padding: 8px 14px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: var(--shadow-sm);
             display: none;
         }
-        .admin-panel-btn.visible { display: flex; }
-        .admin-panel-btn:hover { background: linear-gradient(135deg, #006400, #004d00); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+        .admin-panel-btn.visible {
+            display: flex;
+        }
+
+        .admin-panel-btn:hover {
+            background: linear-gradient(135deg, #006400, #004d00);
+            transform: translateY(-2px);
+        }
 
         /* Основной контент */
         .container {
@@ -969,28 +992,44 @@
         }
         .footer p { font-size: 16px; margin-bottom: 15px; font-weight: 600; }
 
+        /* ===== АДАПТИВ ДЛЯ ТЕЛЕФОНОВ ===== */
         @media (max-width: 1024px) {
-            .books-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+            .books-grid { grid-template-columns: repeat(2, 1fr); }
             .genre-title { font-size: 36px; }
             .genre-subtitle { font-size: 20px; }
             .book-detail-content { flex-direction: column; gap: 30px; }
             .book-detail-image-container { flex: 0 0 auto; align-items: center; }
             .book-details-grid { grid-template-columns: repeat(2, 1fr); }
         }
+
         @media (max-width: 768px) {
-            .header-content { flex-direction: column; gap: 15px; align-items: flex-start; }
-            .nav { flex-wrap: wrap; justify-content: flex-start; margin-left: 0; width: 100%; gap: 8px; }
-            .header-search { margin-left: 0; width: 100%; justify-content: flex-start; }
-            .search-input { width: 100%; }
+            .header-row-top { padding: 12px 15px 5px 15px; }
+            .logo { font-size: 22px; }
+            .header-row-bottom { padding: 8px 15px 12px 15px; }
+            .header-content { flex-direction: column; gap: 10px; }
+            .nav { justify-content: center; width: 100%; gap: 6px; }
+            .nav-item { padding: 6px 12px; font-size: 12px; }
+            .header-search { width: 100%; }
+            .search-input { width: 100%; font-size: 14px; }
+            .auth-buttons { width: 100%; justify-content: center; }
+            .user-menu { justify-content: center; width: 100%; }
+            .cart-count { width: 18px; height: 18px; font-size: 9px; top: -5px; right: -5px; }
+            
             .genre-header { padding: 40px 0; }
             .genre-title { font-size: 32px; }
             .genre-subtitle { font-size: 18px; }
             .genre-stats { flex-direction: column; gap: 20px; }
-            .books-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+            .books-grid { grid-template-columns: 1fr; gap: 20px; }
             .filters-grid { grid-template-columns: 1fr; }
             .book-details-grid { grid-template-columns: 1fr; }
             .book-detail-actions { flex-direction: column; }
+            
+            .nav-item, .add-to-cart, .login-btn, .register-btn, .logout-btn, 
+            .search-button, .auth-btn, .admin-panel-btn, .filter-btn {
+                min-height: 44px;
+            }
         }
+
         @media (max-width: 480px) {
             .container { padding: 0 20px; }
             .books-grid { grid-template-columns: 1fr; max-width: 300px; margin-left: auto; margin-right: auto; }
@@ -999,10 +1038,37 @@
             .book-detail-content { padding: 20px; }
             .book-detail-name { font-size: 24px; }
             .book-detail-author { font-size: 18px; }
+            .logo { font-size: 20px; }
+            .nav-item { padding: 4px 10px; font-size: 11px; }
+            .login-btn, .register-btn { padding: 6px 12px; font-size: 12px; }
         }
     </style>
 </head>
 <body>
+    <!-- Шапка - две строки -->
+    <header class="header">
+        <div class="header-row-top">
+            <a href="index.html" class="logo">Литературный Оазис</a>
+        </div>
+        <div class="header-row-bottom">
+            <div class="header-content">
+                <nav class="nav">
+                    <a href="index.html" class="nav-item"><img src="img/icon-home.png" class="icon-img icon-img-sm" alt="Главная" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-5v-8H7v8H2a2 2 0 0 1-2-2z\'%3E%3C/path%3E%3C/svg%3E'">Главная</a>
+                    <a href="manga.html" class="nav-item"><img src="img/icon-manga.png" class="icon-img icon-img-sm" alt="Манга" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Crect x=\'2\' y=\'3\' width=\'20\' height=\'18\' rx=\'2\'%3E%3C/rect%3E%3Cpath d=\'M8 7h8M8 11h6M8 15h4\'%3E%3C/path%3E%3C/svg%3E'">Манга</a>
+                    <a href="textbooks.html" class="nav-item"><img src="img/icon-textbook.png" class="icon-img icon-img-sm" alt="Учебники" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M4 19.5A2.5 2.5 0 0 1 6.5 17H20\'%3E%3C/path%3E%3Cpath d=\'M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z\'%3E%3C/path%3E%3C/svg%3E'">Учебники</a>
+                    <a href="magazines.html" class="nav-item"><img src="img/icon-magazine.png" class="icon-img icon-img-sm" alt="Журналы" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M4 4h16v16H4z\'%3E%3C/path%3E%3Cpath d=\'M8 8h8M8 12h6M8 16h4\'%3E%3C/path%3E%3C/svg%3E'">Журналы</a>
+                </nav>
+                <div class="header-search">
+                    <input type="text" class="search-input" placeholder="Поиск детективов..." id="headerSearch">
+                    <button class="search-button" onclick="performSearch()"><img src="img/icon-search.png" class="icon-img icon-img-sm" alt="Поиск" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\'%3E%3Ccircle cx=\'11\' cy=\'11\' r=\'8\'%3E%3C/circle%3E%3Cpath d=\'m21 21-4.35-4.35\'%3E%3C/path%3E%3C/svg%3E'"></button>
+                </div>
+                <div class="auth-buttons" id="authButtons"></div>
+                <button class="admin-panel-btn" id="adminPanelBtn" onclick="toggleAdminPanel()"><img src="img/icon-admin.png" class="icon-img icon-img-sm" alt="Админ" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\'%3E%3Cpath d=\'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\'%3E%3C/path%3E%3C/svg%3E'">Админ</button>
+                <a href="cart.html" class="nav-item"><img src="img/icon-cart.png" class="icon-img icon-img-sm" alt="Корзина" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Ccircle cx=\'9\' cy=\'21\' r=\'1\'%3E%3C/circle%3E%3Ccircle cx=\'20\' cy=\'21\' r=\'1\'%3E%3C/circle%3E%3Cpath d=\'M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6\'%3E%3C/path%3E%3C/svg%3E'">Корзина<span class="cart-count" id="cart-count">0</span></a>
+            </div>
+        </div>
+    </header>
+
     <!-- Модальное окно авторизации -->
     <div class="auth-modal" id="authModal">
         <div class="auth-form">
@@ -1083,26 +1149,6 @@
         </div>
     </div>
 
-    <!-- Шапка - как на главной странице -->
-    <header class="header">
-        <div class="header-content">
-            <a href="index.html" class="logo">Литературный Оазис</a>
-            <nav class="nav">
-                <a href="index.html" class="nav-item"><img src="img/icon-home.png" class="icon-img icon-img-sm" alt="Главная" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-5v-8H7v8H2a2 2 0 0 1-2-2z\'%3E%3C/path%3E%3C/svg%3E'">Главная</a>
-                <a href="manga.html" class="nav-item"><img src="img/icon-manga.png" class="icon-img icon-img-sm" alt="Манга" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Crect x=\'2\' y=\'3\' width=\'20\' height=\'18\' rx=\'2\'%3E%3C/rect%3E%3Cpath d=\'M8 7h8M8 11h6M8 15h4\'%3E%3C/path%3E%3C/svg%3E'">Манга</a>
-                <a href="textbooks.html" class="nav-item"><img src="img/icon-textbook.png" class="icon-img icon-img-sm" alt="Учебники" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M4 19.5A2.5 2.5 0 0 1 6.5 17H20\'%3E%3C/path%3E%3Cpath d=\'M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z\'%3E%3C/path%3E%3C/svg%3E'">Учебники</a>
-                <a href="magazines.html" class="nav-item"><img src="img/icon-magazine.png" class="icon-img icon-img-sm" alt="Журналы" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M4 4h16v16H4z\'%3E%3C/path%3E%3Cpath d=\'M8 8h8M8 12h6M8 16h4\'%3E%3C/path%3E%3C/svg%3E'">Журналы</a>
-                <div class="header-search">
-                    <input type="text" class="search-input" placeholder="Поиск детективов..." id="headerSearch">
-                    <button class="search-button" onclick="performSearch()"><img src="img/icon-search.png" class="icon-img icon-img-sm" alt="Поиск" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\'%3E%3Ccircle cx=\'11\' cy=\'11\' r=\'8\'%3E%3C/circle%3E%3Cpath d=\'m21 21-4.35-4.35\'%3E%3C/path%3E%3C/svg%3E'"></button>
-                </div>
-                <div class="auth-buttons" id="authButtons"></div>
-                <button class="admin-panel-btn" id="adminPanelBtn" onclick="toggleAdminPanel()"><img src="img/icon-admin.png" class="icon-img icon-img-sm" alt="Админ" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\'%3E%3Cpath d=\'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\'%3E%3C/path%3E%3C/svg%3E'">Админ-панель</button>
-                <a href="cart.html" class="nav-item"><img src="img/icon-cart.png" class="icon-img icon-img-sm" alt="Корзина" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Ccircle cx=\'9\' cy=\'21\' r=\'1\'%3E%3C/circle%3E%3Ccircle cx=\'20\' cy=\'21\' r=\'1\'%3E%3C/circle%3E%3Cpath d=\'M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6\'%3E%3C/path%3E%3C/svg%3E'">Корзина<span class="cart-count" id="cart-count">0</span></a>
-            </nav>
-        </div>
-    </header>
-
     <!-- Заголовок страницы жанра -->
     <section class="genre-header">
         <div class="genre-header-content">
@@ -1174,7 +1220,7 @@
     </footer>
 
     <script>
-        // Данные книг в жанре детектив (только 8 книг - убраны последние 4)
+        // Данные книг в жанре детектив
         const detectiveBooks = [
             { id: 301, title: "Немой свидетель", author: "Агата Кристи", pages: 320, price: 590, year: 1937, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "img/d1.jpg", description: "Пожилая леди умирает при загадочных обстоятельствах, оставив состояние своей компаньонке. Эркюль Пуаро берётся за расследование этого запутанного дела, где главным свидетелем становится... собака!", rating: 4.7, ratingCount: 1890, genres: ["Классический детектив", "Загадочное убийство"], isbn: "978-5-04-105956-9", language: "Русский", weight: 380, dimensions: "20.5 x 13.5 x 2.2 см", publisher: "Эксмо", available: true, seriesBadge: "Пуаро" },
             { id: 302, title: "Рождество Эркюля Пуаро", author: "Агата Кристи", pages: 288, price: 580, year: 1938, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "img/d2.jpg", description: "В канун Рождества богатый патриарх семейства зовёт всех родственников в своё поместье. В рождественскую ночь его находят убитым. Пуаро предстоит разгадать эту праздничную тайну.", rating: 4.8, ratingCount: 2345, genres: ["Классический детектив", "Семейная драма"], isbn: "978-5-04-105957-6", language: "Русский", weight: 360, dimensions: "20.5 x 13.5 x 2.0 см", publisher: "Эксмо", available: true, seriesBadge: "Пуаро" },
@@ -1188,35 +1234,26 @@
 
         let currentBooks = [...detectiveBooks];
         let currentUser = null;
-        let bookRatings = {};
         const ADMIN_CREDENTIALS = { login: "8355Vova", password: "Adf220906" };
 
-        // ========== ФУНКЦИИ АВТОРИЗАЦИИ ==========
+        // Авторизация
         function showAuthModal(type) {
             document.getElementById('authModal').style.display = 'flex';
             switchAuthTab(type);
         }
         function closeAuthModal() {
             document.getElementById('authModal').style.display = 'none';
-            document.getElementById('loginError').style.display = 'none';
-            document.getElementById('loginSuccess').style.display = 'none';
-            document.getElementById('regError').style.display = 'none';
-            document.getElementById('regSuccess').style.display = 'none';
         }
         function switchAuthTab(tab) {
             const loginForm = document.getElementById('loginForm');
             const registerForm = document.getElementById('registerForm');
             const tabs = document.querySelectorAll('.auth-tab');
             if (tab === 'login') {
-                tabs[0].classList.add('active');
-                tabs[1].classList.remove('active');
-                loginForm.style.display = 'block';
-                registerForm.style.display = 'none';
+                tabs[0].classList.add('active'); tabs[1].classList.remove('active');
+                loginForm.style.display = 'block'; registerForm.style.display = 'none';
             } else {
-                tabs[1].classList.add('active');
-                tabs[0].classList.remove('active');
-                loginForm.style.display = 'none';
-                registerForm.style.display = 'block';
+                tabs[1].classList.add('active'); tabs[0].classList.remove('active');
+                loginForm.style.display = 'none'; registerForm.style.display = 'block';
             }
         }
         function userLogin() {
@@ -1252,16 +1289,10 @@
             const username = document.getElementById('regUsername').value.trim();
             const password = document.getElementById('regPassword').value.trim();
             const email = document.getElementById('regEmail').value.trim();
-            const phone = document.getElementById('regPhone').value.trim();
             const errorEl = document.getElementById('regError');
             const successEl = document.getElementById('regSuccess');
             if (!name || !username || !password || !email) {
                 errorEl.textContent = 'Заполните все поля!';
-                errorEl.style.display = 'block';
-                return;
-            }
-            if (password.length < 6) {
-                errorEl.textContent = 'Пароль минимум 6 символов';
                 errorEl.style.display = 'block';
                 return;
             }
@@ -1271,7 +1302,7 @@
                 errorEl.style.display = 'block';
                 return;
             }
-            const newUser = { id: users.length + 1, name, username, password, email, phone: phone || 'Не указан', registrationDate: new Date().toISOString().split('T')[0], orders: [], isAdmin: false };
+            const newUser = { id: users.length + 1, name, username, password, email, isAdmin: false };
             users.push(newUser);
             localStorage.setItem('registeredUsers', JSON.stringify(users));
             currentUser = newUser;
@@ -1300,7 +1331,7 @@
             }
         }
 
-        // ========== ФУНКЦИИ ДЛЯ РАБОТЫ С КОРЗИНОЙ ==========
+        // Корзина
         function addToCart(bookId) {
             const book = detectiveBooks.find(b => b.id === bookId);
             let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
@@ -1326,7 +1357,7 @@
             setTimeout(() => n.remove(), 3000);
         }
 
-        // ========== ФУНКЦИИ ОТОБРАЖЕНИЯ ==========
+        // Отображение
         function showBookDetail(bookId) {
             const book = detectiveBooks.find(b => b.id === bookId);
             if (!book) return;
@@ -1420,7 +1451,7 @@
             displayBooks();
         }
 
-        // ========== АДМИН-ПАНЕЛЬ ==========
+        // Админ-панель
         function toggleAdminPanel() {
             if (!currentUser || !currentUser.isAdmin) { alert('Доступ запрещен!'); return; }
             document.getElementById('adminPanel').classList.toggle('open');
@@ -1455,7 +1486,7 @@
         function exportOrders() { showNotification('Экспортировано!','success'); }
         function exportStats() { showNotification('График открывается...','info'); }
 
-        // ========== ИНИЦИАЛИЗАЦИЯ ==========
+        // Инициализация
         document.addEventListener('DOMContentLoaded', function() {
             const saved = localStorage.getItem('currentUser');
             if (saved) { currentUser = JSON.parse(saved); }
