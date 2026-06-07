@@ -16,10 +16,9 @@
             background: #FFF8DC;
             color: #3E2723;
             line-height: 1.6;
-            min-height: 100vh;
         }
 
-        /* ===== ШАПКА ===== */
+        /* ШАПКА */
         .header {
             background: linear-gradient(135deg, #FFF8DC, #F5E6D3);
             padding: 15px 0;
@@ -40,15 +39,10 @@
             gap: 15px;
         }
         .logo {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 800;
             color: #8B4513;
             text-decoration: none;
-            white-space: nowrap;
-        }
-        .logo:hover {
-            transform: translateY(-2px);
-            text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2);
         }
         .nav {
             display: flex;
@@ -56,22 +50,21 @@
             flex-wrap: wrap;
             align-items: center;
         }
-        .nav a, .nav .nav-link {
+        .nav a {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 10px 16px;
+            gap: 5px;
+            padding: 8px 15px;
             color: #5D4037;
             text-decoration: none;
             font-weight: 600;
-            border-radius: 12px;
+            border-radius: 10px;
             transition: all 0.3s;
             background: rgba(255, 248, 220, 0.8);
         }
-        .nav a:hover, .nav .nav-link:hover {
+        .nav a:hover {
             background: linear-gradient(135deg, #8B4513, #D2691E);
             color: white;
-            transform: translateY(-2px);
         }
         .cart-count {
             background: #DC143C;
@@ -90,18 +83,17 @@
             gap: 8px;
         }
         .header-search input {
-            padding: 10px 16px;
+            padding: 8px 15px;
             border: 2px solid #8B4513;
-            border-radius: 12px;
+            border-radius: 10px;
             font-size: 14px;
-            width: 250px;
         }
         .header-search button {
-            padding: 10px 16px;
+            padding: 8px 15px;
             background: linear-gradient(135deg, #8B4513, #D2691E);
             color: white;
             border: none;
-            border-radius: 12px;
+            border-radius: 10px;
             cursor: pointer;
         }
         .auth-buttons {
@@ -109,8 +101,8 @@
             gap: 10px;
         }
         .login-btn, .register-btn {
-            padding: 10px 20px;
-            border-radius: 12px;
+            padding: 8px 20px;
+            border-radius: 10px;
             font-weight: 600;
             cursor: pointer;
             border: none;
@@ -132,15 +124,15 @@
         .user-info {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 8px 16px;
+            gap: 8px;
+            padding: 5px 15px;
             background: rgba(139, 69, 19, 0.1);
-            border-radius: 12px;
+            border-radius: 10px;
             cursor: pointer;
         }
         .user-avatar {
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             background: linear-gradient(135deg, #8B4513, #FF8C00);
             border-radius: 50%;
             display: flex;
@@ -150,38 +142,37 @@
             font-weight: bold;
         }
         .logout-btn {
-            padding: 8px 16px;
+            padding: 6px 15px;
             background: #DC143C;
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             cursor: pointer;
         }
 
-        /* ===== БАННЕР ===== */
+        /* БАННЕР */
         .main-banner {
             background: linear-gradient(135deg, #FFF8DC, #F5E6D3);
-            padding: 60px 20px;
+            padding: 50px 20px;
             text-align: center;
             border-bottom: 3px solid #8B4513;
         }
         .banner-title {
-            font-size: 56px;
+            font-size: 48px;
             color: #8B4513;
-            margin-bottom: 15px;
         }
         .banner-slogan {
-            font-size: 22px;
+            font-size: 20px;
             color: #D2691E;
             font-style: italic;
-            max-width: 800px;
-            margin: 0 auto;
+            max-width: 700px;
+            margin: 10px auto;
         }
         .banner-contacts {
             display: flex;
             justify-content: center;
-            gap: 40px;
-            margin-top: 30px;
+            gap: 30px;
+            margin-top: 25px;
             flex-wrap: wrap;
         }
         .contact-item {
@@ -192,7 +183,7 @@
             color: #8B4513;
         }
 
-        /* ===== КАРТОЧКИ ТОВАРОВ ===== */
+        /* КАРТОЧКИ КНИГ */
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -200,13 +191,13 @@
         }
         .section-title {
             text-align: center;
-            font-size: 36px;
+            font-size: 32px;
             color: #8B4513;
             margin-bottom: 40px;
         }
         .books-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
             gap: 30px;
         }
         .book-card {
@@ -216,7 +207,6 @@
             display: flex;
             gap: 20px;
             padding: 20px;
-            cursor: pointer;
             transition: all 0.3s;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
@@ -226,16 +216,14 @@
             border-color: #FF8C00;
         }
         .book-image {
-            flex: 0 0 110px;
+            flex: 0 0 100px;
         }
         .book-image img {
-            width: 110px;
-            height: 160px;
-            object-fit: contain;
+            width: 100px;
+            height: 150px;
+            object-fit: cover;
             border-radius: 8px;
             border: 2px solid #8B4513;
-            background: white;
-            padding: 5px;
         }
         .book-info {
             flex: 1;
@@ -244,13 +232,12 @@
             font-size: 18px;
             font-weight: bold;
             color: #8B4513;
-            margin-bottom: 5px;
         }
         .book-author {
             color: #D2691E;
             font-style: italic;
-            margin-bottom: 10px;
             font-size: 14px;
+            margin: 5px 0;
         }
         .book-details {
             margin: 10px 0;
@@ -259,11 +246,10 @@
             display: flex;
             justify-content: space-between;
             font-size: 13px;
-            padding: 4px 0;
-            border-bottom: 1px dashed #E0D6CC;
+            padding: 3px 0;
         }
         .book-price {
-            font-size: 22px;
+            font-size: 20px;
             color: #228B22;
             font-weight: bold;
             text-align: right;
@@ -271,47 +257,42 @@
         }
         .add-to-cart-btn {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             background: linear-gradient(135deg, #8B4513, #D2691E);
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
-            transition: all 0.3s;
         }
         .add-to-cart-btn:hover {
             background: linear-gradient(135deg, #D2691E, #FF8C00);
-            transform: translateY(-2px);
         }
 
         @media (max-width: 768px) {
             .books-grid { grid-template-columns: 1fr; }
             .book-card { flex-direction: column; text-align: center; }
-            .book-image { flex: 0 0 auto; display: flex; justify-content: center; }
+            .book-image { display: flex; justify-content: center; }
             .book-price { text-align: center; }
-            .header-content { flex-direction: column; }
-            .nav { justify-content: center; }
         }
 
-        /* ===== МОДАЛЬНОЕ ОКНО ===== */
-        .auth-modal {
+        /* ===== МОДАЛЬНОЕ ОКНО (НОРМАЛЬНОЕ) ===== */
+        .modal {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
             justify-content: center;
             align-items: center;
-            backdrop-filter: blur(5px);
         }
-        .auth-modal.active {
+        .modal.show {
             display: flex;
         }
-        .auth-modal-content {
+        .modal-content {
             background: #FFF8DC;
             border-radius: 20px;
             width: 90%;
@@ -319,25 +300,23 @@
             max-height: 90vh;
             overflow-y: auto;
             border: 3px solid #8B4513;
-            animation: modalIn 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
-        @keyframes modalIn {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .auth-modal-header {
+        .modal-header {
             background: linear-gradient(135deg, #8B4513, #5D4037);
             padding: 20px;
+            border-radius: 17px 17px 0 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 3px solid #FF8C00;
         }
-        .auth-modal-header h2 {
+        .modal-header h2 {
             color: white;
             margin: 0;
+            font-size: 22px;
         }
-        .auth-modal-close {
+        .modal-close {
             background: rgba(255,255,255,0.2);
             border: none;
             font-size: 28px;
@@ -346,112 +325,96 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .auth-modal-body {
+        .modal-close:hover {
+            background: rgba(255,140,0,0.5);
+        }
+        .modal-body {
             padding: 30px;
         }
-        .auth-form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        .form-group {
+            margin-bottom: 20px;
         }
-        .auth-input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .auth-input-group label {
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
             font-weight: 600;
             color: #5D4037;
         }
-        .auth-input-group input, .auth-input-group select {
-            padding: 12px 16px;
+        .form-group input {
+            width: 100%;
+            padding: 12px;
             border: 2px solid #E0D6CC;
-            border-radius: 12px;
+            border-radius: 10px;
             font-size: 16px;
         }
-        .auth-input-group input:focus {
+        .form-group input:focus {
             outline: none;
             border-color: #FF8C00;
         }
-        .auth-submit-btn {
+        .form-group input.error {
+            border-color: #DC143C;
+        }
+        .error-text {
+            color: #DC143C;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        .error-text.show {
+            display: block;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
             background: linear-gradient(135deg, #8B4513, #D2691E);
             color: white;
             border: none;
-            padding: 14px;
-            border-radius: 12px;
+            border-radius: 10px;
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
             margin-top: 10px;
         }
-        .auth-switch {
-            text-align: center;
-            margin-top: 15px;
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #D2691E, #FF8C00);
         }
-        .auth-switch a {
+        .switch-text {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .switch-text a {
             color: #FF8C00;
-            text-decoration: none;
             cursor: pointer;
-        }
-        .auth-error {
-            color: #DC143C;
-            text-align: center;
-            padding: 10px;
-            background: rgba(220,20,60,0.1);
-            border-radius: 8px;
-            display: none;
-        }
-        .auth-error.show {
-            display: block;
+            text-decoration: none;
         }
 
         /* Модальное окно профиля */
-        .profile-modal, .orders-modal {
+        .profile-modal {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 2000;
+            background: rgba(0,0,0,0.8);
+            z-index: 9999;
             justify-content: center;
             align-items: center;
         }
-        .profile-modal.active, .orders-modal.active {
+        .profile-modal.show {
             display: flex;
         }
-        .profile-content, .orders-content {
+        .profile-content {
             background: #FFF8DC;
             border-radius: 20px;
             width: 90%;
-            max-width: 500px;
+            max-width: 450px;
             padding: 30px;
             border: 3px solid #8B4513;
-        }
-        .orders-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .orders-table th, .orders-table td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #E0D6CC;
-        }
-        .no-orders {
-            text-align: center;
-            padding: 30px;
-        }
-        .no-orders a {
-            color: #FF8C00;
-        }
-        .status-badge {
-            background: rgba(34,139,34,0.1);
-            color: #228B22;
-            padding: 4px 8px;
-            border-radius: 20px;
-            font-size: 12px;
         }
 
         .footer {
@@ -479,10 +442,11 @@
                 <button onclick="searchBooks()">🔍</button>
             </div>
             <div class="auth-buttons" id="authButtons">
-                <button class="login-btn" onclick="openAuthModal()">Войти</button>
-                <button class="register-btn" onclick="openAuthModal()">Регистрация</button>
+                <button class="login-btn" onclick="openModal('login')">Войти</button>
+                <button class="register-btn" onclick="openModal('register')">Регистрация</button>
             </div>
-            <a href="#" class="nav-link" onclick="viewCart()">🛒 Корзина <span class="cart-count" id="cartCount">0</span></a>
+            <a href="#" onclick="viewCart(); return false;">🛒 Корзина <span class="cart-count" id="cartCount">0</span></a>
+            <a href="#" onclick="showUserOrders(); return false;">📋 Заказы</a>
         </nav>
     </div>
 </header>
@@ -504,57 +468,64 @@
     <div class="books-grid" id="booksGrid"></div>
 </div>
 
-<!-- МОДАЛЬНОЕ ОКНО АВТОРИЗАЦИИ -->
-<div id="authModal" class="auth-modal">
-    <div class="auth-modal-content">
-        <div class="auth-modal-header">
-            <h2 id="authTitle">Вход в аккаунт</h2>
-            <button class="auth-modal-close" onclick="closeAuthModal()">×</button>
+<!-- ===== МОДАЛЬНОЕ ОКНО ВХОДА/РЕГИСТРАЦИИ ===== -->
+<div id="authModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">Вход в аккаунт</h2>
+            <button class="modal-close" onclick="closeModal()">×</button>
         </div>
-        <div class="auth-modal-body">
+        <div class="modal-body">
             <!-- Форма входа -->
-            <form id="loginForm" class="auth-form" style="display: block;">
-                <div class="auth-input-group">
+            <form id="loginFormModal" style="display: block;">
+                <div class="form-group">
                     <label>Логин</label>
                     <input type="text" id="loginUsername" placeholder="Введите логин">
                 </div>
-                <div class="auth-input-group">
+                <div class="form-group">
                     <label>Пароль</label>
                     <input type="password" id="loginPassword" placeholder="Введите пароль">
                 </div>
-                <button type="button" class="auth-submit-btn" onclick="submitLogin()">Войти</button>
-                <div class="auth-switch">Нет аккаунта? <a onclick="switchToRegister()">Зарегистрироваться</a></div>
-                <div id="loginError" class="auth-error"></div>
+                <button type="button" class="submit-btn" onclick="submitLogin()">Войти</button>
+                <div class="switch-text">Нет аккаунта? <a onclick="switchToRegister()">Зарегистрироваться</a></div>
+                <div id="loginErrorMsg" class="error-text"></div>
             </form>
+            
             <!-- Форма регистрации -->
-            <form id="registerForm" class="auth-form" style="display: none;">
-                <div class="auth-input-group">
+            <form id="registerFormModal" style="display: none;">
+                <div class="form-group">
                     <label>Имя</label>
                     <input type="text" id="regName" placeholder="Ваше имя">
+                    <div class="error-text" id="nameError">Только буквы</div>
                 </div>
-                <div class="auth-input-group">
+                <div class="form-group">
                     <label>Логин</label>
-                    <input type="text" id="regUsername" placeholder="Логин (латиница, цифры)">
+                    <input type="text" id="regUsername" placeholder="Логин (латиница, цифры, _)">
+                    <div class="error-text" id="usernameError">Только латиница, цифры, _</div>
                 </div>
-                <div class="auth-input-group">
+                <div class="form-group">
                     <label>Пароль</label>
                     <input type="password" id="regPassword" placeholder="Минимум 6 символов">
+                    <div class="error-text" id="passwordError">Минимум 6 символов</div>
                 </div>
-                <div class="auth-input-group">
+                <div class="form-group">
                     <label>Подтверждение пароля</label>
                     <input type="password" id="regPasswordConfirm" placeholder="Повторите пароль">
+                    <div class="error-text" id="passwordConfirmError">Пароли не совпадают</div>
                 </div>
-                <div class="auth-input-group">
+                <div class="form-group">
                     <label>Email</label>
                     <input type="email" id="regEmail" placeholder="example@mail.com">
+                    <div class="error-text" id="emailError">Введите корректный email</div>
                 </div>
-                <div class="auth-input-group">
+                <div class="form-group">
                     <label>Телефон</label>
-                    <input type="tel" id="regPhone" placeholder="+7 (___) ___-__-__" oninput="formatPhone(this)">
+                    <input type="tel" id="regPhone" placeholder="+7 (___) ___-__-__" oninput="formatPhoneInput(this)">
+                    <div class="error-text" id="phoneError">Неверный формат (+7XXXXXXXXXX)</div>
                 </div>
-                <button type="button" class="auth-submit-btn" onclick="submitRegister()">Зарегистрироваться</button>
-                <div class="auth-switch">Уже есть аккаунт? <a onclick="switchToLogin()">Войти</a></div>
-                <div id="registerError" class="auth-error"></div>
+                <button type="button" class="submit-btn" onclick="submitRegister()">Зарегистрироваться</button>
+                <div class="switch-text">Уже есть аккаунт? <a onclick="switchToLogin()">Войти</a></div>
+                <div id="registerErrorMsg" class="error-text"></div>
             </form>
         </div>
     </div>
@@ -564,23 +535,11 @@
 <div id="profileModal" class="profile-modal">
     <div class="profile-content">
         <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-            <h2>Мой профиль</h2>
+            <h2>👤 Мой профиль</h2>
             <button onclick="closeProfileModal()" style="font-size: 24px; background: none; border: none; cursor: pointer;">×</button>
         </div>
         <div id="profileInfo"></div>
-        <button onclick="closeProfileModal()" style="margin-top: 20px; padding: 10px; background: #8B4513; color: white; border: none; border-radius: 8px;">Закрыть</button>
-    </div>
-</div>
-
-<!-- МОДАЛЬНОЕ ОКНО ЗАКАЗОВ -->
-<div id="ordersModal" class="orders-modal">
-    <div class="orders-content">
-        <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-            <h2>Мои заказы</h2>
-            <button onclick="closeOrdersModal()" style="font-size: 24px; background: none; border: none; cursor: pointer;">×</button>
-        </div>
-        <div id="ordersList"></div>
-        <button onclick="closeOrdersModal()" style="margin-top: 20px; padding: 10px; background: #8B4513; color: white; border: none; border-radius: 8px;">Закрыть</button>
+        <button onclick="closeProfileModal()" style="margin-top: 20px; width: 100%; padding: 12px; background: #8B4513; color: white; border: none; border-radius: 8px; cursor: pointer;">Закрыть</button>
     </div>
 </div>
 
@@ -590,33 +549,26 @@
 </footer>
 
 <script>
-    // ========== ДАННЫЕ КНИГ ==========
+    // ========== ДАННЫЕ ==========
     const books = [
-        { id: 1, title: "Мастер и Маргарита", author: "Михаил Булгаков", pages: 480, price: 650, year: 1967, rating: 4.8, image: "https://via.placeholder.com/110x160?text=Мастер+и+Маргарита" },
-        { id: 2, title: "1984", author: "Джордж Оруэлл", pages: 320, price: 550, year: 1949, rating: 4.7, image: "https://via.placeholder.com/110x160?text=1984" },
-        { id: 3, title: "Гарри Поттер", author: "Джоан Роулинг", pages: 432, price: 890, year: 1997, rating: 4.9, image: "https://via.placeholder.com/110x160?text=Гарри+Поттер" },
-        { id: 4, title: "Наруто. Том 1", author: "Масаси Кисимото", pages: 192, price: 450, year: 1999, rating: 4.6, image: "https://via.placeholder.com/110x160?text=Наруто" },
-        { id: 5, title: "Война и мир", author: "Лев Толстой", pages: 1225, price: 950, year: 1869, rating: 4.5, image: "https://via.placeholder.com/110x160?text=Война+и+мир" },
-        { id: 6, title: "Атака Титанов", author: "Хадзиме Исаяма", pages: 200, price: 480, year: 2009, rating: 4.8, image: "https://via.placeholder.com/110x160?text=Атака+Титанов" },
-        { id: 7, title: "Преступление и наказание", author: "Фёдор Достоевский", pages: 672, price: 720, year: 1866, rating: 4.7, image: "https://via.placeholder.com/110x160?text=Преступление+и+наказание" },
-        { id: 8, title: "Маленький принц", author: "Антуан де Сент-Экзюпери", pages: 96, price: 450, year: 1943, rating: 4.9, image: "https://via.placeholder.com/110x160?text=Маленький+принц" }
+        { id: 1, title: "Мастер и Маргарита", author: "Михаил Булгаков", pages: 480, price: 650, year: 1967, rating: 4.8, image: "https://via.placeholder.com/100x150?text=Мастер+и+Маргарита" },
+        { id: 2, title: "1984", author: "Джордж Оруэлл", pages: 320, price: 550, year: 1949, rating: 4.7, image: "https://via.placeholder.com/100x150?text=1984" },
+        { id: 3, title: "Гарри Поттер", author: "Джоан Роулинг", pages: 432, price: 890, year: 1997, rating: 4.9, image: "https://via.placeholder.com/100x150?text=Гарри+Поттер" },
+        { id: 4, title: "Наруто. Том 1", author: "Масаси Кисимото", pages: 192, price: 450, year: 1999, rating: 4.6, image: "https://via.placeholder.com/100x150?text=Наруто" },
+        { id: 5, title: "Война и мир", author: "Лев Толстой", pages: 1225, price: 950, year: 1869, rating: 4.5, image: "https://via.placeholder.com/100x150?text=Война+и+мир" },
+        { id: 6, title: "Атака Титанов", author: "Хадзиме Исаяма", pages: 200, price: 480, year: 2009, rating: 4.8, image: "https://via.placeholder.com/100x150?text=Атака+Титанов" },
+        { id: 7, title: "Преступление и наказание", author: "Фёдор Достоевский", pages: 672, price: 720, year: 1866, rating: 4.7, image: "https://via.placeholder.com/100x150?text=Преступление+и+наказание" },
+        { id: 8, title: "Маленький принц", author: "Антуан де Сент-Экзюпери", pages: 96, price: 450, year: 1943, rating: 4.9, image: "https://via.placeholder.com/100x150?text=Маленький+принц" }
     ];
 
-    // ========== ПЕРЕМЕННЫЕ ==========
     let currentUser = null;
     const ADMIN_CREDENTIALS = { login: "8355Vova", password: "Adf220906" };
 
-    // ========== ФУНКЦИИ ДЛЯ ПОЛУЧЕНИЯ КЛЮЧЕЙ ПОЛЬЗОВАТЕЛЯ ==========
+    // ========== КЛЮЧИ ДЛЯ ХРАНЕНИЯ ==========
     function getCartKey() {
-        if (!currentUser) return 'cart_guest';
-        return `cart_user_${currentUser.id}`;
+        return currentUser ? `cart_user_${currentUser.id}` : 'cart_guest';
     }
 
-    function getOrdersKey() {
-        return `orders_user_${currentUser ? currentUser.id : 'guest'}`;
-    }
-
-    // ========== КОРЗИНА ==========
     function getCart() {
         return JSON.parse(localStorage.getItem(getCartKey())) || [];
     }
@@ -626,39 +578,40 @@
         updateCartCount();
     }
 
+    function updateCartCount() {
+        const cart = getCart();
+        const total = cart.reduce((s, i) => s + (i.quantity || 1), 0);
+        document.getElementById('cartCount').textContent = total;
+    }
+
     function addToCart(bookId) {
         const book = books.find(b => b.id === bookId);
         const cart = getCart();
         const existing = cart.find(i => i.id === bookId);
         if (existing) {
-            existing.quantity++;
+            existing.quantity = (existing.quantity || 1) + 1;
         } else {
             cart.push({ id: book.id, title: book.title, price: book.price, image: book.image, quantity: 1 });
         }
         saveCart(cart);
-        showNotification(`"${book.title}" добавлена в корзину!`, 'success');
-    }
-
-    function updateCartCount() {
-        const cart = getCart();
-        const total = cart.reduce((s, i) => s + i.quantity, 0);
-        document.getElementById('cartCount').textContent = total;
+        showMessage(`"${book.title}" добавлена в корзину!`, 'success');
     }
 
     function viewCart() {
         const cart = getCart();
         if (cart.length === 0) {
-            showNotification('Корзина пуста!', 'info');
+            alert('Корзина пуста!');
             return;
         }
-        let message = '📦 ВАША КОРЗИНА:\n\n';
+        let msg = '📦 ВАША КОРЗИНА:\n\n';
         let total = 0;
         cart.forEach(item => {
-            message += `📖 ${item.title} - ${item.quantity} шт × ${item.price} руб = ${item.price * item.quantity} руб\n`;
-            total += item.price * item.quantity;
+            const qty = item.quantity || 1;
+            msg += `📖 ${item.title} - ${qty} шт × ${item.price} руб = ${item.price * qty} руб\n`;
+            total += item.price * qty;
         });
-        message += `\n💰 ИТОГО: ${total} руб\n\n✅ Для оформления заказа авторизуйтесь!`;
-        alert(message);
+        msg += `\n💰 ИТОГО: ${total} руб\n\n✅ Для оформления заказа авторизуйтесь!`;
+        alert(msg);
     }
 
     // ========== ЗАКАЗЫ ==========
@@ -668,52 +621,187 @@
         return JSON.parse(localStorage.getItem(key)) || [];
     }
 
-    function addOrder(orderData) {
-        if (!currentUser || currentUser.isAdmin) {
-            showNotification('Авторизуйтесь для оформления заказа!', 'error');
-            return null;
+    function showUserOrders() {
+        if (!currentUser) {
+            alert('Авторизуйтесь чтобы увидеть свои заказы!');
+            openModal('login');
+            return;
+        }
+        if (currentUser.isAdmin) {
+            alert('У администратора нет заказов');
+            return;
         }
         const orders = getUserOrders();
-        const newOrder = {
-            id: orders.length + 1,
-            ...orderData,
-            date: new Date().toISOString(),
-            status: 'completed'
+        if (orders.length === 0) {
+            alert('📭 У вас пока нет заказов.\nПерейдите в каталог и добавьте книги в корзину!');
+        } else {
+            let msg = '📋 ВАШИ ЗАКАЗЫ:\n\n';
+            orders.forEach(order => {
+                msg += `━━━━━━━━━━━━━━━━━━━━\n`;
+                msg += `📦 ЗАКАЗ #${order.id}\n`;
+                msg += `📅 Дата: ${new Date(order.date).toLocaleDateString()}\n`;
+                msg += `📚 Книги:\n`;
+                order.items.forEach(item => {
+                    msg += `   • ${item.title} - ${item.quantity} шт × ${item.price} руб\n`;
+                });
+                msg += `💰 Итого: ${order.total} руб\n`;
+                msg += `✅ Статус: Выполнен\n\n`;
+            });
+            alert(msg);
+        }
+    }
+
+    function createOrder() {
+        if (!currentUser || currentUser.isAdmin) {
+            alert('Авторизуйтесь для оформления заказа!');
+            openModal('login');
+            return false;
+        }
+        const cart = getCart();
+        if (cart.length === 0) {
+            alert('Корзина пуста!');
+            return false;
+        }
+        const total = cart.reduce((s, i) => s + (i.price * (i.quantity || 1)), 0);
+        const order = {
+            id: Date.now(),
+            items: cart.map(i => ({ ...i })),
+            total: total,
+            date: new Date().toISOString()
         };
-        orders.push(newOrder);
+        const orders = getUserOrders();
+        orders.push(order);
         localStorage.setItem(`orders_user_${currentUser.id}`, JSON.stringify(orders));
-        
-        // Очищаем корзину
         localStorage.removeItem(getCartKey());
         updateCartCount();
+        alert(`✅ Заказ оформлен!\n💳 Сумма: ${total} руб\n📦 Спасибо за покупку, ${currentUser.name}!`);
+        return true;
+    }
+
+    // ========== МОДАЛЬНОЕ ОКНО ==========
+    function openModal(type) {
+        const modal = document.getElementById('authModal');
+        const loginForm = document.getElementById('loginFormModal');
+        const registerForm = document.getElementById('registerFormModal');
+        const title = document.getElementById('modalTitle');
         
-        return newOrder;
+        if (type === 'login') {
+            loginForm.style.display = 'block';
+            registerForm.style.display = 'none';
+            title.textContent = 'Вход в аккаунт';
+        } else {
+            loginForm.style.display = 'none';
+            registerForm.style.display = 'block';
+            title.textContent = 'Регистрация';
+        }
+        modal.classList.add('show');
+        clearErrors();
     }
 
-    // ========== АВТОРИЗАЦИЯ ==========
-    function openAuthModal() {
-        document.getElementById('authModal').classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeAuthModal() {
-        document.getElementById('authModal').classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    function switchToRegister() {
-        document.getElementById('loginForm').style.display = 'none';
-        document.getElementById('registerForm').style.display = 'block';
-        document.getElementById('authTitle').textContent = 'Регистрация';
+    function closeModal() {
+        document.getElementById('authModal').classList.remove('show');
+        clearErrors();
     }
 
     function switchToLogin() {
-        document.getElementById('registerForm').style.display = 'none';
-        document.getElementById('loginForm').style.display = 'block';
-        document.getElementById('authTitle').textContent = 'Вход в аккаунт';
+        document.getElementById('loginFormModal').style.display = 'block';
+        document.getElementById('registerFormModal').style.display = 'none';
+        document.getElementById('modalTitle').textContent = 'Вход в аккаунт';
+        clearErrors();
     }
 
-    function formatPhone(input) {
+    function switchToRegister() {
+        document.getElementById('registerFormModal').style.display = 'block';
+        document.getElementById('loginFormModal').style.display = 'none';
+        document.getElementById('modalTitle').textContent = 'Регистрация';
+        clearErrors();
+    }
+
+    function clearErrors() {
+        document.querySelectorAll('.error-text').forEach(el => el.classList.remove('show'));
+        document.querySelectorAll('.form-group input').forEach(el => el.classList.remove('error'));
+        document.getElementById('loginErrorMsg').classList.remove('show');
+        document.getElementById('registerErrorMsg').classList.remove('show');
+    }
+
+    // ===== ВАЛИДАЦИЯ РЕГИСТРАЦИИ =====
+    function validateName() {
+        const input = document.getElementById('regName');
+        const val = input.value.trim();
+        const isValid = /^[а-яА-ЯёЁa-zA-Z\s]+$/.test(val) && val.length > 0;
+        const errorEl = document.getElementById('nameError');
+        if (!isValid && val.length > 0) {
+            errorEl.classList.add('show');
+            input.classList.add('error');
+        } else {
+            errorEl.classList.remove('show');
+            input.classList.remove('error');
+        }
+        return isValid;
+    }
+
+    function validateRegUsername() {
+        const input = document.getElementById('regUsername');
+        const val = input.value.trim();
+        const isValid = /^[a-zA-Z0-9_]+$/.test(val) && val.length > 0;
+        const errorEl = document.getElementById('usernameError');
+        if (!isValid && val.length > 0) {
+            errorEl.classList.add('show');
+            input.classList.add('error');
+        } else {
+            errorEl.classList.remove('show');
+            input.classList.remove('error');
+        }
+        return isValid;
+    }
+
+    function validatePassword() {
+        const input = document.getElementById('regPassword');
+        const val = input.value;
+        const isValid = val.length >= 6;
+        const errorEl = document.getElementById('passwordError');
+        if (!isValid && val.length > 0) {
+            errorEl.classList.add('show');
+            input.classList.add('error');
+        } else {
+            errorEl.classList.remove('show');
+            input.classList.remove('error');
+        }
+        return isValid;
+    }
+
+    function validatePasswordConfirm() {
+        const password = document.getElementById('regPassword').value;
+        const confirm = document.getElementById('regPasswordConfirm').value;
+        const isValid = password === confirm && password.length > 0;
+        const errorEl = document.getElementById('passwordConfirmError');
+        const input = document.getElementById('regPasswordConfirm');
+        if (!isValid && confirm.length > 0) {
+            errorEl.classList.add('show');
+            input.classList.add('error');
+        } else {
+            errorEl.classList.remove('show');
+            input.classList.remove('error');
+        }
+        return isValid;
+    }
+
+    function validateEmail() {
+        const input = document.getElementById('regEmail');
+        const val = input.value.trim();
+        const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+        const errorEl = document.getElementById('emailError');
+        if (!isValid && val.length > 0) {
+            errorEl.classList.add('show');
+            input.classList.add('error');
+        } else {
+            errorEl.classList.remove('show');
+            input.classList.remove('error');
+        }
+        return isValid;
+    }
+
+    function formatPhoneInput(input) {
         let value = input.value.replace(/\D/g, '');
         if (value.length > 11) value = value.substring(0, 11);
         let formatted = '';
@@ -723,12 +811,23 @@
         if (value.length > 7) formatted += '-' + value.substring(7, 9);
         if (value.length > 9) formatted += '-' + value.substring(9, 11);
         input.value = formatted;
+        
+        const isValid = value.length === 11;
+        const errorEl = document.getElementById('phoneError');
+        if (!isValid && value.length > 0) {
+            errorEl.classList.add('show');
+            input.classList.add('error');
+        } else {
+            errorEl.classList.remove('show');
+            input.classList.remove('error');
+        }
     }
 
+    // ===== АВТОРИЗАЦИЯ =====
     function submitLogin() {
         const username = document.getElementById('loginUsername').value.trim();
         const password = document.getElementById('loginPassword').value.trim();
-        const errorEl = document.getElementById('loginError');
+        const errorEl = document.getElementById('loginErrorMsg');
         
         if (!username || !password) {
             errorEl.textContent = 'Заполните все поля!';
@@ -736,13 +835,12 @@
             return;
         }
         
-        // Администратор
         if (username === ADMIN_CREDENTIALS.login && password === ADMIN_CREDENTIALS.password) {
             currentUser = { id: 0, name: 'Администратор', username: ADMIN_CREDENTIALS.login, isAdmin: true };
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
             updateUI();
-            closeAuthModal();
-            showNotification('Добро пожаловать, администратор!', 'success');
+            closeModal();
+            showMessage('Добро пожаловать, администратор!', 'success');
             return;
         }
         
@@ -753,8 +851,8 @@
             currentUser = user;
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
             updateUI();
-            closeAuthModal();
-            showNotification(`Добро пожаловать, ${user.name}!`, 'success');
+            closeModal();
+            showMessage(`Добро пожаловать, ${user.name}!`, 'success');
         } else {
             errorEl.textContent = 'Неверный логин или пароль';
             errorEl.classList.add('show');
@@ -765,38 +863,20 @@
         const name = document.getElementById('regName').value.trim();
         const username = document.getElementById('regUsername').value.trim();
         const password = document.getElementById('regPassword').value;
-        const passwordConfirm = document.getElementById('regPasswordConfirm').value;
         const email = document.getElementById('regEmail').value.trim();
         const phone = document.getElementById('regPhone').value.trim();
-        const errorEl = document.getElementById('registerError');
+        const errorEl = document.getElementById('registerErrorMsg');
         
-        if (!name || !username || !password || !email) {
-            errorEl.textContent = 'Заполните все поля!';
-            errorEl.classList.add('show');
-            return;
-        }
-        
-        if (password.length < 6) {
-            errorEl.textContent = 'Пароль должен быть минимум 6 символов';
-            errorEl.classList.add('show');
-            return;
-        }
-        
-        if (password !== passwordConfirm) {
-            errorEl.textContent = 'Пароли не совпадают';
-            errorEl.classList.add('show');
-            return;
-        }
-        
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            errorEl.textContent = 'Введите корректный email';
-            errorEl.classList.add('show');
-            return;
-        }
-        
+        const isNameValid = validateName();
+        const isUsernameValid = validateRegUsername();
+        const isPasswordValid = validatePassword();
+        const isPasswordConfirmValid = validatePasswordConfirm();
+        const isEmailValid = validateEmail();
         const phoneDigits = phone.replace(/\D/g, '');
-        if (phoneDigits.length !== 11) {
-            errorEl.textContent = 'Введите корректный номер телефона (+7XXXXXXXXXX)';
+        const isPhoneValid = phoneDigits.length === 11;
+        
+        if (!isNameValid || !isUsernameValid || !isPasswordValid || !isPasswordConfirmValid || !isEmailValid || !isPhoneValid) {
+            errorEl.textContent = 'Заполните все поля корректно!';
             errorEl.classList.add('show');
             return;
         }
@@ -815,96 +895,73 @@
             registrationDate: new Date().toISOString().split('T')[0],
             isAdmin: false
         };
-        
         users.push(newUser);
         localStorage.setItem('registeredUsers', JSON.stringify(users));
         
         currentUser = newUser;
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
         updateUI();
-        closeAuthModal();
-        showNotification('Регистрация успешна!', 'success');
+        closeModal();
+        showMessage('Регистрация успешна!', 'success');
     }
 
     function userLogout() {
         currentUser = null;
         localStorage.removeItem('currentUser');
         updateUI();
-        showNotification('Вы вышли из аккаунта', 'info');
+        showMessage('Вы вышли из аккаунта', 'info');
     }
 
-    // ========== ПРОФИЛЬ И ЗАКАЗЫ ==========
-    function showUserProfile() {
-        if (!currentUser || currentUser.isAdmin) return;
+    // ===== ПРОФИЛЬ =====
+    function showProfile() {
+        if (!currentUser) {
+            alert('Авторизуйтесь чтобы увидеть профиль!');
+            openModal('login');
+            return;
+        }
+        if (currentUser.isAdmin) {
+            alert('Вы вошли как администратор');
+            return;
+        }
         const orders = getUserOrders();
         const totalSpent = orders.reduce((s, o) => s + o.total, 0);
-        const content = document.getElementById('profileInfo');
-        content.innerHTML = `
-            <div><strong>👤 Имя:</strong> ${currentUser.name}</div>
-            <div><strong>📧 Email:</strong> ${currentUser.email}</div>
-            <div><strong>📱 Телефон:</strong> ${currentUser.phone}</div>
-            <div><strong>📦 Заказов:</strong> ${orders.length}</div>
-            <div><strong>💰 Потрачено:</strong> ${totalSpent} руб</div>
+        document.getElementById('profileInfo').innerHTML = `
+            <div style="margin-bottom: 15px;"><strong>👤 Имя:</strong> ${currentUser.name}</div>
+            <div style="margin-bottom: 15px;"><strong>📧 Email:</strong> ${currentUser.email}</div>
+            <div style="margin-bottom: 15px;"><strong>📱 Телефон:</strong> +7${currentUser.phone}</div>
+            <div style="margin-bottom: 15px;"><strong>📦 Заказов:</strong> ${orders.length}</div>
+            <div style="margin-bottom: 15px;"><strong>💰 Потрачено:</strong> ${totalSpent} руб</div>
         `;
-        document.getElementById('profileModal').classList.add('active');
+        document.getElementById('profileModal').classList.add('show');
     }
 
     function closeProfileModal() {
-        document.getElementById('profileModal').classList.remove('active');
+        document.getElementById('profileModal').classList.remove('show');
     }
 
-    function showUserOrders() {
-        if (!currentUser || currentUser.isAdmin) return;
-        const orders = getUserOrders();
-        const content = document.getElementById('ordersList');
-        
-        if (orders.length === 0) {
-            content.innerHTML = `
-                <div class="no-orders">
-                    <p>📭 У вас пока нет ни одного заказа.</p>
-                    <p>Перейдите в <a href="#" onclick="closeOrdersModal()">каталог книг</a>, чтобы сделать первый заказ!</p>
-                </div>
-            `;
-        } else {
-            let html = '<table class="orders-table"><thead><tr><th>№</th><th>Книги</th><th>Сумма</th><th>Дата</th><th>Статус</th></tr></thead><tbody>';
-            orders.forEach(order => {
-                const itemsText = order.items.map(i => `${i.title} (${i.quantity} шт)`).join('<br>');
-                html += `<tr><td>#${order.id}</td><td>${itemsText}</td><td>${order.total} руб</td><td>${new Date(order.date).toLocaleDateString()}</td><td><span class="status-badge">✅ Выполнен</span></td></tr>`;
-            });
-            html += '</tbody></table>';
-            content.innerHTML = html;
-        }
-        document.getElementById('ordersModal').classList.add('active');
-    }
-
-    function closeOrdersModal() {
-        document.getElementById('ordersModal').classList.remove('active');
-    }
-
-    // ========== ОБНОВЛЕНИЕ ИНТЕРФЕЙСА ==========
+    // ===== ОБНОВЛЕНИЕ ИНТЕРФЕЙСА =====
     function updateUI() {
         const authDiv = document.getElementById('authButtons');
         if (currentUser) {
             authDiv.innerHTML = `
                 <div class="user-menu">
-                    <div class="user-info" onclick="showUserProfile()">
+                    <div class="user-info" onclick="showProfile()">
                         <div class="user-avatar">${currentUser.name.charAt(0)}</div>
                         <span>${currentUser.name}</span>
                     </div>
-                    <button class="user-info" onclick="showUserOrders()">📋 Мои заказы</button>
                     <button class="logout-btn" onclick="userLogout()">🚪 Выйти</button>
                 </div>
             `;
         } else {
             authDiv.innerHTML = `
-                <button class="login-btn" onclick="openAuthModal()">🔑 Войти</button>
-                <button class="register-btn" onclick="openAuthModal()">📝 Регистрация</button>
+                <button class="login-btn" onclick="openModal('login')">🔑 Войти</button>
+                <button class="register-btn" onclick="openModal('register')">📝 Регистрация</button>
             `;
         }
         updateCartCount();
     }
 
-    // ========== ОТОБРАЖЕНИЕ КНИГ ==========
+    // ===== ОТОБРАЖЕНИЕ КНИГ =====
     function displayBooks() {
         const grid = document.getElementById('booksGrid');
         grid.innerHTML = '';
@@ -961,20 +1018,20 @@
         });
     }
 
-    function showNotification(msg, type) {
+    function showMessage(msg, type) {
         const n = document.createElement('div');
-        n.style.cssText = `position:fixed; bottom:20px; right:20px; background:${type === 'success' ? '#228B22' : '#FF8C00'}; color:white; padding:15px 25px; border-radius:12px; z-index:10001; animation:slideIn 0.3s;`;
+        n.style.cssText = `position:fixed; bottom:20px; right:20px; background:${type === 'success' ? '#228B22' : '#FF8C00'}; color:white; padding:12px 20px; border-radius:10px; z-index:10001; animation:slideIn 0.3s; cursor:pointer;`;
         n.textContent = msg;
         document.body.appendChild(n);
         setTimeout(() => n.remove(), 3000);
     }
 
-    // Добавляем стиль анимации
-    const style = document.createElement('style');
-    style.textContent = `@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }`;
-    document.head.appendChild(style);
+    // Добавляем анимацию
+    const styleAnim = document.createElement('style');
+    styleAnim.textContent = `@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }`;
+    document.head.appendChild(styleAnim);
 
-    // ========== ИНИЦИАЛИЗАЦИЯ ==========
+    // Инициализация
     function init() {
         const saved = localStorage.getItem('currentUser');
         if (saved) currentUser = JSON.parse(saved);
@@ -985,14 +1042,19 @@
             localStorage.setItem('registeredUsers', JSON.stringify([]));
         }
         
-        // Закрытие модального окна по Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                closeAuthModal();
+                closeModal();
                 closeProfileModal();
-                closeOrdersModal();
             }
         });
+        
+        // Добавляем обработчики валидации
+        document.getElementById('regName').addEventListener('input', validateName);
+        document.getElementById('regUsername').addEventListener('input', validateRegUsername);
+        document.getElementById('regPassword').addEventListener('input', validatePassword);
+        document.getElementById('regPasswordConfirm').addEventListener('input', validatePasswordConfirm);
+        document.getElementById('regEmail').addEventListener('input', validateEmail);
     }
 
     init();
