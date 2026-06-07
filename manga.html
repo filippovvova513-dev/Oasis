@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Манга - Литературный Оазис</title>
     <style>
         :root {
@@ -742,31 +742,6 @@
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
         }
-        .buy-now-btn {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, var(--buy-color), var(--buy-hover));
-            color: white;
-            border: none;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 16px;
-            font-weight: 700;
-            box-shadow: var(--shadow-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            z-index: 2;
-            position: relative;
-            margin-top: 10px;
-        }
-        .buy-now-btn:hover {
-            background: linear-gradient(135deg, var(--buy-hover), #4A5D23);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
 
         /* Модальное окно для подробностей манги */
         .manga-detail-modal {
@@ -962,28 +937,6 @@
             transform: translateY(-3px);
             box-shadow: var(--shadow-lg);
         }
-        .manga-detail-buy-btn {
-            flex: 1;
-            padding: 18px;
-            background: linear-gradient(135deg, var(--buy-color), var(--buy-hover));
-            color: white;
-            border: none;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: 700;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: var(--shadow-md);
-        }
-        .manga-detail-buy-btn:hover {
-            background: linear-gradient(135deg, var(--buy-hover), #4A5D23);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
 
         .pagination {
             display: flex;
@@ -1027,6 +980,7 @@
         }
         .footer p { font-size: 16px; margin-bottom: 15px; font-weight: 600; }
 
+        /* Адаптивность */
         @media (max-width: 1200px) { .products-grid { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 900px) {
             .products-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1057,6 +1011,7 @@
             .manga-detail-actions { flex-direction: column; }
         }
     </style>
+    <!-- Подключаем мобильную версию -->
     <link rel="stylesheet" href="css/mobile.css">
 </head>
 <body>
@@ -1159,7 +1114,7 @@
             <h3 class="filter-title">Фильтры поиска</h3>
             <div class="filter-grid">
                 <div class="filter-group">
-                    <label class="filter-label"><img src="img/icon-genre.png" class="icon-img icon-img-sm" alt="Жанр" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5\'%3E%3C/path%3E%3C/svg%3E'">Жанр</label>
+                    <label class="filter-label">Жанр</label>
                     <select class="filter-select" id="genreFilter" onchange="filterProducts()">
                         <option value="">Все жанры</option>
                         <option value="Сёнэн">Сёнэн</option>
@@ -1173,7 +1128,7 @@
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label class="filter-label"><img src="img/icon-sort.png" class="icon-img icon-img-sm" alt="Сортировка" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M3 6h18M6 12h12M10 18h4\'%3E%3C/path%3E%3C/svg%3E'">Сортировка</label>
+                    <label class="filter-label">Сортировка</label>
                     <select class="filter-select" id="sortFilter" onchange="filterProducts()">
                         <option value="default">По умолчанию</option>
                         <option value="price-asc">Цена (по возрастанию)</option>
@@ -1183,7 +1138,7 @@
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label class="filter-label"><img src="img/icon-price.png" class="icon-img icon-img-sm" alt="Цена" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Ccircle cx=\'12\' cy=\'12\' r=\'10\'%3E%3C/circle%3E%3Cpath d=\'M16 8h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2z\'%3E%3C/path%3E%3C/svg%3E'">Цена</label>
+                    <label class="filter-label">Цена</label>
                     <select class="filter-select" id="priceFilter" onchange="filterProducts()">
                         <option value="">Все цены</option>
                         <option value="0-500">До 500 руб</option>
@@ -1204,24 +1159,24 @@
     </footer>
 
     <script>
-        // Расширенные данные манги
+        // Данные манги с простыми названиями изображений
         const mangas = [
-            { id: 4, title: "Наруто: Том 1", author: "Масаси Кисимото", pages: 192, price: 450, genre: "Сёнэн", category: "manga", image: "img/naruto.jpg", description: "История о Наруто Узумаки — мальчике-ниндзя, который хочет заслужить признание в своей деревне и стать Хокаге.", year: 1999, publisher: "Shueisha", rating: 4.6, ratingCount: 3210, genres: ["Сёнэн", "Боевые искусства", "Приключения"], isbn: "978-4-08-872840-7", language: "Японский (перевод)", weight: 180, dimensions: "17.5 x 11.5 x 1.5 см", available: true },
-            { id: 5, title: "Атака Титанов", author: "Хадзиме Исаяма", pages: 200, price: 480, genre: "Сёнэн", category: "manga", image: "img/attack-on-titan.jpg", description: "Человечество живет в городах, окруженных стенами, которые защищают от гигантских титанов.", year: 2009, publisher: "Kodansha", rating: 4.8, ratingCount: 4321, genres: ["Сёнэн", "Постапокалипсис", "Ужасы"], isbn: "978-4-06-384276-0", language: "Японский (перевод)", weight: 190, dimensions: "17.5 x 11.5 x 1.6 см", available: true },
-            { id: 6, title: "Ван Пис", author: "Эйитиро Ода", pages: 210, price: 470, genre: "Сёнэн", category: "manga", image: "https://images.unsplash.com/photo-1592672690593-9fdf1779e457?w=400&h=600&fit=crop&q=80", description: "Приключения пирата Монки Д. Луффи, который ищет легендарное сокровище Ван Пис.", year: 1997, publisher: "Shueisha", rating: 4.9, ratingCount: 5123, genres: ["Сёнэн", "Приключения", "Комедия"], isbn: "978-4-08-872509-3", language: "Японский (перевод)", weight: 195, dimensions: "17.5 x 11.5 x 1.5 см", available: true },
-            { id: 7, title: "Токийские мстители", author: "Кэн Вакуи", pages: 190, price: 460, genre: "Сёнэн", category: "manga", image: "https://images.unsplash.com/photo-1572817519562-8f828eefb3b1?w=400&h=600&fit=crop&q=80", description: "Такиши Ханагиши получает возможность отправиться в прошлое, чтобы предотвратить смерть бывшей девушки.", year: 2017, publisher: "Kodansha", rating: 4.5, ratingCount: 2345, genres: ["Сёнэн", "Боевые искусства", "Драма"], isbn: "978-4-06-395607-9", language: "Японский (перевод)", weight: 185, dimensions: "17.5 x 11.5 x 1.4 см", available: true },
-            { id: 8, title: "Моб Психо 100", author: "ONE", pages: 180, price: 440, genre: "Комедия", category: "manga", image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=400&h=600&fit=crop&q=80", description: "Шигэо Кагеяма — школьник с огромными экстрасенсорными способностями.", year: 2012, publisher: "Shogakukan", rating: 4.7, ratingCount: 3123, genres: ["Комедия", "Экшен", "Сверхъестественное"], isbn: "978-4-09-126311-9", language: "Японский (перевод)", weight: 175, dimensions: "17.5 x 11.5 x 1.3 см", available: true },
-            { id: 9, title: "Блич", author: "Тайто Кубо", pages: 195, price: 455, genre: "Сёнэн", category: "manga", image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=600&fit=crop&q=80", description: "Ичиго Куросаки получает силы синигами и защищает людей от злых духов.", year: 2001, publisher: "Shueisha", rating: 4.4, ratingCount: 3987, genres: ["Сёнэн", "Боевые искусства", "Сверхъестественное"], isbn: "978-4-08-873213-8", language: "Японский (перевод)", weight: 185, dimensions: "17.5 x 11.5 x 1.4 см", available: true },
-            { id: 10, title: "Хантер х Хантер", author: "Ёсихиро Тогаси", pages: 205, price: 465, genre: "Сёнэн", category: "manga", image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=600&fit=crop&q=80", description: "Гон Фрикс отправляется на экзамен, чтобы стать Охотником, как его пропавший отец.", year: 1998, publisher: "Shueisha", rating: 4.8, ratingCount: 4231, genres: ["Сёнэн", "Приключения", "Фэнтези"], isbn: "978-4-08-872571-0", language: "Японский (перевод)", weight: 190, dimensions: "17.5 x 11.5 x 1.5 см", available: true },
-            { id: 11, title: "Моя геройская академия", author: "Кохэй Хорикоси", pages: 198, price: 460, genre: "Сёнэн", category: "manga", image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=600&fit=crop&q=80", description: "Изуку Мидория рождается без сверхспособностей, но мечтает стать героем.", year: 2014, publisher: "Shueisha", rating: 4.7, ratingCount: 4567, genres: ["Сёнэн", "Супергерои", "Школа"], isbn: "978-4-08-880264-0", language: "Японский (перевод)", weight: 188, dimensions: "17.5 x 11.5 x 1.5 см", available: true },
-            { id: 12, title: "Клинок, рассекающий демонов", author: "Койхару Готогэ", pages: 192, price: 450, genre: "Сёнэн", category: "manga", image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&q=80", description: "Танджиро Камадо становится истребителем демонов, чтобы спасти сестру.", year: 2016, publisher: "Shueisha", rating: 4.9, ratingCount: 4987, genres: ["Сёнэн", "Исторический", "Боевые искусства"], isbn: "978-4-08-880723-2", language: "Японский (перевод)", weight: 180, dimensions: "17.5 x 11.5 x 1.4 см", available: true },
-            { id: 13, title: "Джоджо", author: "Хирохико Араки", pages: 220, price: 490, genre: "Приключения", category: "manga", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop&q=80", description: "Эпическая сага о семье Джостаров и их борьбе со сверхъестественными силами.", year: 1987, publisher: "Shueisha", rating: 4.6, ratingCount: 3876, genres: ["Приключения", "Сверхъестественное", "Боевик"], isbn: "978-4-08-851126-9", language: "Японский (перевод)", weight: 210, dimensions: "17.5 x 11.5 x 1.6 см", available: true },
-            { id: 14, title: "Самурай Чамплу", author: "Синъитиро Ватанабэ", pages: 188, price: 445, genre: "Приключения", category: "manga", image: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=400&h=600&fit=crop&q=80", description: "Путешествие бродячего самурая и девушки-сироты по феодальной Японии.", year: 2004, publisher: "Shogakukan", rating: 4.5, ratingCount: 2345, genres: ["Приключения", "Комедия", "Исторический"], isbn: "978-4-09-127341-5", language: "Японский (перевод)", weight: 175, dimensions: "17.5 x 11.5 x 1.4 см", available: true },
-            { id: 15, title: "Евангелион", author: "Хидэаки Анно", pages: 195, price: 480, genre: "Мекха", category: "manga", image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=600&fit=crop&q=80", description: "Подростки пилотируют гигантских роботов, чтобы защитить человечество от Ангелов.", year: 1995, publisher: "Kadokawa Shoten", rating: 4.8, ratingCount: 4123, genres: ["Мекха", "Психологический", "Драма"], isbn: "978-4-04-713151-3", language: "Японский (перевод)", weight: 190, dimensions: "17.5 x 11.5 x 1.5 см", available: true },
-            { id: 40, title: "Тетрадь смерти", author: "Цугуми Ооба", pages: 185, price: 475, genre: "Сёдзё", category: "manga", image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=600&fit=crop&q=80", description: "Старшеклассник Лайт Ягами находит тетрадь, позволяющую убивать, записывая имена.", year: 2003, publisher: "Shueisha", rating: 4.7, ratingCount: 4567, genres: ["Сёдзё", "Детектив", "Психологический"], isbn: "978-4-08-873621-1", language: "Японский (перевод)", weight: 180, dimensions: "17.5 x 11.5 x 1.4 см", available: true },
-            { id: 41, title: "Стальной алхимик", author: "Хирому Аракава", pages: 205, price: 490, genre: "Сёнэн", category: "manga", image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=600&fit=crop&q=80", description: "Братья Элрики нарушают запрет алхимии, пытаясь воскресить мать.", year: 2001, publisher: "Square Enix", rating: 4.9, ratingCount: 5123, genres: ["Сёнэн", "Фэнтези", "Приключения"], isbn: "978-4-7575-0628-5", language: "Японский (перевод)", weight: 195, dimensions: "17.5 x 11.5 x 1.5 см", available: true },
-            { id: 42, title: "Баскетбол Куроко", author: "Тадатоси Фудзимаки", pages: 195, price: 465, genre: "Спорт", category: "manga", image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=600&fit=crop&q=80", description: "История о школьной баскетбольной команде и гениальном игроке Куроко.", year: 2008, publisher: "Shueisha", rating: 4.6, ratingCount: 3456, genres: ["Спорт", "Школа", "Комедия"], isbn: "978-4-08-874552-7", language: "Японский (перевод)", weight: 185, dimensions: "17.5 x 11.5 x 1.4 см", available: true },
-            { id: 43, title: "Сейлор Мун", author: "Наоко Такэути", pages: 175, price: 420, genre: "Сёдзё", category: "manga", image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&q=80", description: "Усаги Цукино становится воином-защитником Сейлор Мун.", year: 1992, publisher: "Kodansha", rating: 4.7, ratingCount: 4987, genres: ["Сёдзё", "Махо-сёдзё", "Романтика"], isbn: "978-4-06-178721-6", language: "Японский (перевод)", weight: 170, dimensions: "17.5 x 11.5 x 1.3 см", available: true }
+            { id: 4, title: "Наруто: Том 1", author: "Масаси Кисимото", pages: 192, price: 450, genre: "Сёнэн", category: "manga", image: "img/one-piece.jpg", description: "История о Наруто Узумаки — мальчике-ниндзя, который хочет заслужить признание в своей деревне и стать Хокаге.", year: 1999, publisher: "Shueisha", rating: 4.6, ratingCount: 3210, genres: ["Сёнэн", "Боевые искусства", "Приключения"], isbn: "978-4-08-872840-7", language: "Японский (перевод)", weight: 180, dimensions: "17.5 x 11.5 x 1.5 см", available: true },
+            { id: 5, title: "Атака Титанов", author: "Хадзиме Исаяма", pages: 200, price: 480, genre: "Сёнэн", category: "manga", image: "img/one-piece.jpg", description: "Человечество живет в городах, окруженных стенами, которые защищают от гигантских титанов.", year: 2009, publisher: "Kodansha", rating: 4.8, ratingCount: 4321, genres: ["Сёнэн", "Постапокалипсис", "Ужасы"], isbn: "978-4-06-384276-0", language: "Японский (перевод)", weight: 190, dimensions: "17.5 x 11.5 x 1.6 см", available: true },
+            { id: 6, title: "Ван Пис", author: "Эйитиро Ода", pages: 210, price: 470, genre: "Сёнэн", category: "manga", image: "img/one-piece.jpg", description: "Приключения пирата Монки Д. Луффи, который ищет легендарное сокровище Ван Пис.", year: 1997, publisher: "Shueisha", rating: 4.9, ratingCount: 5123, genres: ["Сёнэн", "Приключения", "Комедия"], isbn: "978-4-08-872509-3", language: "Японский (перевод)", weight: 195, dimensions: "17.5 x 11.5 x 1.5 см", available: true },
+            { id: 7, title: "Токийские мстители", author: "Кэн Вакуи", pages: 190, price: 460, genre: "Сёнэн", category: "manga", image: "img/one-piece.jpg", description: "Такиши Ханагиши получает возможность отправиться в прошлое, чтобы предотвратить смерть бывшей девушки.", year: 2017, publisher: "Kodansha", rating: 4.5, ratingCount: 2345, genres: ["Сёнэн", "Боевые искусства", "Драма"], isbn: "978-4-06-395607-9", language: "Японский (перевод)", weight: 185, dimensions: "17.5 x 11.5 x 1.4 см", available: true },
+            { id: 8, title: "Моб Психо 100", author: "ONE", pages: 180, price: 440, genre: "Комедия", category: "manga", image: "img/one-piece.jpg", description: "Шигэо Кагеяма — школьник с огромными экстрасенсорными способностями.", year: 2012, publisher: "Shogakukan", rating: 4.7, ratingCount: 3123, genres: ["Комедия", "Экшен", "Сверхъестественное"], isbn: "978-4-09-126311-9", language: "Японский (перевод)", weight: 175, dimensions: "17.5 x 11.5 x 1.3 см", available: true },
+            { id: 9, title: "Блич", author: "Тайто Кубо", pages: 195, price: 455, genre: "Сёнэн", category: "manga", image: "img/one-piece.jpg", description: "Ичиго Куросаки получает силы синигами и защищает людей от злых духов.", year: 2001, publisher: "Shueisha", rating: 4.4, ratingCount: 3987, genres: ["Сёнэн", "Боевые искусства", "Сверхъестественное"], isbn: "978-4-08-873213-8", language: "Японский (перевод)", weight: 185, dimensions: "17.5 x 11.5 x 1.4 см", available: true },
+            { id: 10, title: "Хантер х Хантер", author: "Ёсихиро Тогаси", pages: 205, price: 465, genre: "Сёнэн", category: "manga", image: "img/one-piece.jpg", description: "Гон Фрикс отправляется на экзамен, чтобы стать Охотником, как его пропавший отец.", year: 1998, publisher: "Shueisha", rating: 4.8, ratingCount: 4231, genres: ["Сёнэн", "Приключения", "Фэнтези"], isbn: "978-4-08-872571-0", language: "Японский (перевод)", weight: 190, dimensions: "17.5 x 11.5 x 1.5 см", available: true },
+            { id: 11, title: "Моя геройская академия", author: "Кохэй Хорикоси", pages: 198, price: 460, genre: "Сёнэн", category: "manga", image: "img/one-piece.jpg", description: "Изуку Мидория рождается без сверхспособностей, но мечтает стать героем.", year: 2014, publisher: "Shueisha", rating: 4.7, ratingCount: 4567, genres: ["Сёнэн", "Супергерои", "Школа"], isbn: "978-4-08-880264-0", language: "Японский (перевод)", weight: 188, dimensions: "17.5 x 11.5 x 1.5 см", available: true },
+            { id: 12, title: "Клинок, рассекающий демонов", author: "Койхару Готогэ", pages: 192, price: 450, genre: "Сёнэн", category: "manga", image: "img/one-piece.jpg", description: "Танджиро Камадо становится истребителем демонов, чтобы спасти сестру.", year: 2016, publisher: "Shueisha", rating: 4.9, ratingCount: 4987, genres: ["Сёнэн", "Исторический", "Боевые искусства"], isbn: "978-4-08-880723-2", language: "Японский (перевод)", weight: 180, dimensions: "17.5 x 11.5 x 1.4 см", available: true },
+            { id: 13, title: "Джоджо", author: "Хирохико Араки", pages: 220, price: 490, genre: "Приключения", category: "manga", image: "img/one-piece.jpg", description: "Эпическая сага о семье Джостаров и их борьбе со сверхъестественными силами.", year: 1987, publisher: "Shueisha", rating: 4.6, ratingCount: 3876, genres: ["Приключения", "Сверхъестественное", "Боевик"], isbn: "978-4-08-851126-9", language: "Японский (перевод)", weight: 210, dimensions: "17.5 x 11.5 x 1.6 см", available: true },
+            { id: 14, title: "Самурай Чамплу", author: "Синъитиро Ватанабэ", pages: 188, price: 445, genre: "Приключения", category: "manga", image: "img/one-piece.jpg", description: "Путешествие бродячего самурая и девушки-сироты по феодальной Японии.", year: 2004, publisher: "Shogakukan", rating: 4.5, ratingCount: 2345, genres: ["Приключения", "Комедия", "Исторический"], isbn: "978-4-09-127341-5", language: "Японский (перевод)", weight: 175, dimensions: "17.5 x 11.5 x 1.4 см", available: true },
+            { id: 15, title: "Евангелион", author: "Хидэаки Анно", pages: 195, price: 480, genre: "Мекха", category: "manga", image: "img/one-piece.jpg", description: "Подростки пилотируют гигантских роботов, чтобы защитить человечество от Ангелов.", year: 1995, publisher: "Kadokawa Shoten", rating: 4.8, ratingCount: 4123, genres: ["Мекха", "Психологический", "Драма"], isbn: "978-4-04-713151-3", language: "Японский (перевод)", weight: 190, dimensions: "17.5 x 11.5 x 1.5 см", available: true },
+            { id: 40, title: "Тетрадь смерти", author: "Цугуми Ооба", pages: 185, price: 475, genre: "Сёдзё", category: "manga", image: "img/one-piece.jpg", description: "Старшеклассник Лайт Ягами находит тетрадь, позволяющую убивать, записывая имена.", year: 2003, publisher: "Shueisha", rating: 4.7, ratingCount: 4567, genres: ["Сёдзё", "Детектив", "Психологический"], isbn: "978-4-08-873621-1", language: "Японский (перевод)", weight: 180, dimensions: "17.5 x 11.5 x 1.4 см", available: true },
+            { id: 41, title: "Стальной алхимик", author: "Хирому Аракава", pages: 205, price: 490, genre: "Сёнэн", category: "manga", image: "img/one-piece.jpg", description: "Братья Элрики нарушают запрет алхимии, пытаясь воскресить мать.", year: 2001, publisher: "Square Enix", rating: 4.9, ratingCount: 5123, genres: ["Сёнэн", "Фэнтези", "Приключения"], isbn: "978-4-7575-0628-5", language: "Японский (перевод)", weight: 195, dimensions: "17.5 x 11.5 x 1.5 см", available: true },
+            { id: 42, title: "Баскетбол Куроко", author: "Тадатоси Фудзимаки", pages: 195, price: 465, genre: "Спорт", category: "manga", image: "img/one-piece.jpg", description: "История о школьной баскетбольной команде и гениальном игроке Куроко.", year: 2008, publisher: "Shueisha", rating: 4.6, ratingCount: 3456, genres: ["Спорт", "Школа", "Комедия"], isbn: "978-4-08-874552-7", language: "Японский (перевод)", weight: 185, dimensions: "17.5 x 11.5 x 1.4 см", available: true },
+            { id: 43, title: "Сейлор Мун", author: "Наоко Такэути", pages: 175, price: 420, genre: "Сёдзё", category: "manga", image: "img/one-piece.jpg", description: "Усаги Цукино становится воином-защитником Сейлор Мун.", year: 1992, publisher: "Kodansha", rating: 4.7, ratingCount: 4987, genres: ["Сёдзё", "Махо-сёдзё", "Романтика"], isbn: "978-4-06-178721-6", language: "Японский (перевод)", weight: 170, dimensions: "17.5 x 11.5 x 1.3 см", available: true }
         ];
 
         let currentPage = 1;
@@ -1369,7 +1324,7 @@
                     const resultItem = document.createElement('div');
                     resultItem.className = 'search-result-item';
                     resultItem.onclick = () => { showMangaDetail(manga.id); closeSearchResults(); };
-                    resultItem.innerHTML = `<img src="${manga.image}" class="search-result-image"><div class="search-result-info"><div class="search-result-title">${manga.title}</div><div class="search-result-author">${manga.author}</div><div class="search-result-price">${manga.price} руб</div></div>`;
+                    resultItem.innerHTML = `<img src="${manga.image}" class="search-result-image" onerror="this.src='https://via.placeholder.com/60x80?text=Манга'"><div class="search-result-info"><div class="search-result-title">${manga.title}</div><div class="search-result-author">${manga.author}</div><div class="search-result-price">${manga.price} руб</div></div>`;
                     resultsList.appendChild(resultItem);
                 });
                 resultsCount.textContent = `Найдено: ${searchResults.length}`;
@@ -1402,7 +1357,7 @@
             const modal = document.getElementById('mangaDetailModal');
             const content = document.getElementById('mangaDetailContent');
             content.innerHTML = `
-                <div class="manga-detail-image-container"><img src="${manga.image}" class="manga-detail-image"></div>
+                <div class="manga-detail-image-container"><img src="${manga.image}" class="manga-detail-image" onerror="this.src='https://via.placeholder.com/280x400?text=${manga.title}'"></div>
                 <div class="manga-detail-main">
                     <h3 class="manga-detail-name">${manga.title}</h3>
                     <p class="manga-detail-author">${manga.author}</p>
@@ -1416,7 +1371,6 @@
                     </div>
                     <div class="manga-detail-price">${manga.price} руб</div>
                     <div class="manga-detail-actions">
-
                         <button class="manga-detail-cart-btn" onclick="addToCartFromPage(${manga.id}); closeMangaDetail();">В корзину</button>
                     </div>
                 </div>
@@ -1453,14 +1407,13 @@
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 card.innerHTML = `
-                    <div class="product-image-container" onclick="showMangaDetail(${manga.id})"><img src="${manga.image}" class="product-image"></div>
+                    <div class="product-image-container" onclick="showMangaDetail(${manga.id})"><img src="${manga.image}" class="product-image" onerror="this.src='https://via.placeholder.com/200x300?text=${manga.title}'"></div>
                     <span class="product-genre">${manga.genre}</span>
                     <div class="product-content">
                         <h3 class="product-title" onclick="showMangaDetail(${manga.id})">${manga.title}</h3>
                         <p class="product-author">${manga.author}</p>
                         <div class="product-meta"><span class="product-pages">${manga.pages} стр.</span><span>${manga.rating}★</span></div>
                         <div class="product-price-container"><div class="product-price">${manga.price} руб</div></div>
-                        
                         <button class="add-to-cart" onclick="addToCartFromPage(${manga.id})">В корзину</button>
                     </div>
                 `;
@@ -1494,10 +1447,6 @@
             updateCartCount();
             showNotification(`"${manga.title}" добавлена в корзину!`, 'success');
         }
-        function buyNow(bookId) {
-            if (!currentUser) { showAuthModal('login'); showNotification('Авторизуйтесь для покупки!', 'error'); return; }
-            showNotification(`Оформление заказа`, 'info');
-        }
         function showNotification(message, type) {
             const n = document.createElement('div');
             n.style.cssText = `position:fixed; top:20px; right:20px; background:${type==='success'?'#228B22':'#FF8C00'}; color:white; padding:15px 20px; border-radius:12px; z-index:3000; animation:slideIn 0.3s ease;`;
@@ -1521,7 +1470,6 @@
             document.addEventListener('click', function(e) { if (!e.target.closest('.search-results') && !e.target.closest('.header-search')) closeSearchResults(); });
             document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeSearchResults(); closeMangaDetail(); closeAuthModal(); } });
             
-            // Инициализация данных пользователей если нет
             if (!localStorage.getItem('registeredUsers')) localStorage.setItem('registeredUsers', JSON.stringify([]));
             if (!localStorage.getItem('cartItems')) localStorage.setItem('cartItems', JSON.stringify([]));
         });
