@@ -162,7 +162,7 @@
         .auth-error { background: rgba(220, 20, 60, 0.1); color: #DC143C; }
         .auth-success { background: rgba(34, 139, 34, 0.1); color: #228B22; }
 
-        /* ===== ШАПКА ===== */
+        /* ===== ШАПКА - ДЛЯ КОМПЬЮТЕРА (ОДНА СТРОКА) ===== */
         .header {
             background: linear-gradient(135deg, var(--light-color), #F5E6D3);
             border-bottom: 4px solid var(--primary-color);
@@ -190,11 +190,11 @@
             text-decoration: none;
             white-space: nowrap;
         }
+        .logo:hover { transform: translateY(-2px); text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2); }
         .nav {
             display: flex;
             gap: 8px;
             align-items: center;
-            flex-wrap: wrap;
         }
         .nav-item {
             display: flex;
@@ -245,6 +245,12 @@
             background: white;
             width: 220px;
         }
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-interactive);
+            transform: translateY(-2px);
+        }
         .search-button {
             padding: 8px 14px;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
@@ -252,6 +258,15 @@
             border: none;
             border-radius: var(--radius-md);
             cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .search-button:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
         }
         .auth-buttons { display: flex; gap: 8px; align-items: center; }
         .login-btn, .register-btn {
@@ -267,11 +282,17 @@
             color: var(--primary-color);
             border: 2px solid var(--primary-color);
         }
+        .login-btn:hover { background: var(--primary-color); color: white; transform: translateY(-2px); box-shadow: var(--shadow-interactive); }
         .register-btn {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
         }
-        .user-menu { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .register-btn:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+        }
+        .user-menu { display: flex; align-items: center; gap: 10px; }
         .user-info {
             display: flex;
             align-items: center;
@@ -281,6 +302,7 @@
             border-radius: var(--radius-md);
             cursor: pointer;
         }
+        .user-info:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
         .user-avatar {
             width: 30px;
             height: 30px;
@@ -304,6 +326,7 @@
             font-size: 12px;
             font-weight: 600;
         }
+        .logout-btn:hover { background: linear-gradient(135deg, #B22222, #8B0000); transform: translateY(-2px); }
         .admin-panel-btn {
             background: linear-gradient(135deg, #228B22, #006400);
             color: white;
@@ -316,6 +339,7 @@
             display: none;
         }
         .admin-panel-btn.visible { display: flex; }
+        .admin-panel-btn:hover { background: linear-gradient(135deg, #006400, #004d00); transform: translateY(-2px); }
 
         /* Окно результатов поиска */
         .search-results {
@@ -342,6 +366,12 @@
             cursor: pointer;
             background: white;
         }
+        .search-result-item:hover {
+            background: var(--light-color);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
         .search-result-image {
             width: 50px;
             height: 70px;
@@ -353,10 +383,13 @@
             font-size: 14px;
             font-weight: 700;
             color: var(--primary-color);
+            margin-bottom: 5px;
         }
         .search-result-author {
             font-size: 12px;
             color: var(--secondary-color);
+            margin-bottom: 5px;
+            font-style: italic;
         }
         .search-result-price {
             font-size: 14px;
@@ -577,6 +610,7 @@
         }
         .add-to-cart:hover {
             background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            transform: translateY(-2px);
         }
 
         /* Модальное окно для подробностей журнала */
@@ -720,6 +754,11 @@
             font-size: 14px;
             font-weight: 600;
         }
+        .page-btn:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            transform: translateY(-2px);
+        }
         .page-btn.active {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
@@ -734,7 +773,7 @@
         }
         .footer p { font-size: 14px; margin-bottom: 10px; }
 
-        /* ===== МОБИЛЬНАЯ ВЕРСИЯ - ПОЛНОСТЬЮ АДАПТИРОВАНА ===== */
+        /* ===== ТОЛЬКО ДЛЯ ПЛАНШЕТОВ ===== */
         @media (max-width: 1024px) {
             .products-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -749,8 +788,9 @@
             }
         }
 
+        /* ===== ТОЛЬКО ДЛЯ ТЕЛЕФОНОВ - ШАПКА СТАНОВИТСЯ В 2 СТРОКИ ===== */
         @media (max-width: 768px) {
-            /* ШАПКА - компактная, элементы в 2 ряда */
+            /* ШАПКА - перестраивается в 2 ряда только на телефонах */
             .header-content {
                 flex-direction: column !important;
                 gap: 10px !important;
@@ -1186,16 +1226,16 @@
     </footer>
 
     <script>
-        // Данные журналов (8 штук)
+        // Данные журналов
         const magazines = [
-            { id: 28, title: "National Geographic", author: "Various", pages: 120, price: 350, genre: "Наука", category: "magazine", period: "Ежемесячный", image: "img/mag1.jpg", description: "Журнал о природе и науке с потрясающими фотографиями и глубокими научными статьями. Каждый выпуск посвящен исследованию нашей планеты и ее чудес.", year: 1888, publisher: "National Geographic Society", rating: 4.8, ratingCount: 4567, isbn: "ISSN 0027-9358", language: "Русский", frequency: "Ежемесячный", available: true },
-            { id: 29, title: "Forbes", author: "Various", pages: 100, price: 400, genre: "Бизнес", category: "magazine", period: "Ежемесячный", image: "img/mag2.jpg", description: "Ведущий бизнес-журнал, посвященный миру финансов, инвестиций и предпринимательства.", year: 1917, publisher: "Forbes Media", rating: 4.7, ratingCount: 3890, isbn: "ISSN 0015-6914", language: "Русский", frequency: "Ежемесячный", available: true },
-            { id: 30, title: "Vogue", author: "Various", pages: 150, price: 450, genre: "Мода", category: "magazine", period: "Ежемесячный", image: "img/mag3.jpg", description: "Культовый журнал о моде, красоте и стиле жизни.", year: 1892, publisher: "Condé Nast", rating: 4.6, ratingCount: 5123, isbn: "ISSN 0042-8000", language: "Русский", frequency: "Ежемесячный", available: true },
-            { id: 31, title: "Популярная механика", author: "Various", pages: 110, price: 320, genre: "Техника", category: "magazine", period: "Ежемесячный", image: "img/mag4.jpg", description: "Журнал о науке и технике, рассказывающий о новейших технологиях.", year: 2002, publisher: "Фэшн Пресс", rating: 4.5, ratingCount: 2345, isbn: "ISSN 1683-8615", language: "Русский", frequency: "Ежемесячный", available: true },
-            { id: 32, title: "GQ", author: "Various", pages: 130, price: 380, genre: "Стиль", category: "magazine", period: "Ежемесячный", image: "img/mag5.jpg", description: "Мужской журнал о стиле, культуре и роскошном образе жизни.", year: 1957, publisher: "Condé Nast", rating: 4.6, ratingCount: 3123, isbn: "ISSN 0016-6979", language: "Русский", frequency: "Ежемесячный", available: true },
-            { id: 33, title: "Cosmopolitan", author: "Various", pages: 140, price: 370, genre: "Женский", category: "magazine", period: "Ежемесячный", image: "img/mag6.jpg", description: "Журнал для современных женщин, охватывающий темы моды, красоты, карьеры.", year: 1886, publisher: "Hearst Communications", rating: 4.5, ratingCount: 4987, isbn: "ISSN 0010-9541", language: "Русский", frequency: "Ежемесячный", available: true },
-            { id: 34, title: "Time", author: "Various", pages: 90, price: 300, genre: "Новости", category: "magazine", period: "Еженедельный", image: "img/mag7.jpg", description: "Еженедельный новостной журнал, предоставляющий анализ важнейших мировых событий.", year: 1923, publisher: "Time USA", rating: 4.7, ratingCount: 4321, isbn: "ISSN 0040-781X", language: "Русский", frequency: "Еженедельный", available: true },
-            { id: 35, title: "The New Yorker", author: "Various", pages: 120, price: 350, genre: "Культура", category: "magazine", period: "Еженедельный", image: "img/mag8.jpg", description: "Литературный журнал, публикующий репортажи, эссе, сатирические материалы.", year: 1925, publisher: "Condé Nast", rating: 4.8, ratingCount: 3987, isbn: "ISSN 0028-792X", language: "Русский", frequency: "Еженедельный", available: true }
+            { id: 28, title: "National Geographic", author: "Various", pages: 120, price: 350, genre: "Наука", period: "Ежемесячный", image: "img/mag1.jpg", description: "Журнал о природе и науке с потрясающими фотографиями.", year: 1888, publisher: "National Geographic Society", rating: 4.8, ratingCount: 4567, language: "Русский", frequency: "Ежемесячный" },
+            { id: 29, title: "Forbes", author: "Various", pages: 100, price: 400, genre: "Бизнес", period: "Ежемесячный", image: "img/mag2.jpg", description: "Ведущий бизнес-журнал о финансах и предпринимательстве.", year: 1917, publisher: "Forbes Media", rating: 4.7, ratingCount: 3890, language: "Русский", frequency: "Ежемесячный" },
+            { id: 30, title: "Vogue", author: "Various", pages: 150, price: 450, genre: "Мода", period: "Ежемесячный", image: "img/mag3.jpg", description: "Культовый журнал о моде, красоте и стиле жизни.", year: 1892, publisher: "Condé Nast", rating: 4.6, ratingCount: 5123, language: "Русский", frequency: "Ежемесячный" },
+            { id: 31, title: "Популярная механика", author: "Various", pages: 110, price: 320, genre: "Техника", period: "Ежемесячный", image: "img/mag4.jpg", description: "Журнал о науке, технике и новых технологиях.", year: 2002, publisher: "Фэшн Пресс", rating: 4.5, ratingCount: 2345, language: "Русский", frequency: "Ежемесячный" },
+            { id: 32, title: "GQ", author: "Various", pages: 130, price: 380, genre: "Стиль", period: "Ежемесячный", image: "img/mag5.jpg", description: "Мужской журнал о стиле, культуре и образе жизни.", year: 1957, publisher: "Condé Nast", rating: 4.6, ratingCount: 3123, language: "Русский", frequency: "Ежемесячный" },
+            { id: 33, title: "Cosmopolitan", author: "Various", pages: 140, price: 370, genre: "Женский", period: "Ежемесячный", image: "img/mag6.jpg", description: "Журнал для современных женщин о моде и карьере.", year: 1886, publisher: "Hearst", rating: 4.5, ratingCount: 4987, language: "Русский", frequency: "Ежемесячный" },
+            { id: 34, title: "Time", author: "Various", pages: 90, price: 300, genre: "Новости", period: "Еженедельный", image: "img/mag7.jpg", description: "Еженедельный новостной журнал о мировых событиях.", year: 1923, publisher: "Time USA", rating: 4.7, ratingCount: 4321, language: "Русский", frequency: "Еженедельный" },
+            { id: 35, title: "The New Yorker", author: "Various", pages: 120, price: 350, genre: "Культура", period: "Еженедельный", image: "img/mag8.jpg", description: "Литературный журнал с репортажами и эссе.", year: 1925, publisher: "Condé Nast", rating: 4.8, ratingCount: 3987, language: "Русский", frequency: "Еженедельный" }
         ];
 
         let currentPage = 1;
@@ -1203,32 +1243,18 @@
         let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
         const ADMIN_CREDENTIALS = { login: "8355Vova", password: "Adf220906" };
 
-        // ========== ФУНКЦИИ АВТОРИЗАЦИИ ==========
-        function showAuthModal(type) {
-            document.getElementById('authModal').style.display = 'flex';
-            switchAuthTab(type);
-        }
-        function closeAuthModal() {
-            document.getElementById('authModal').style.display = 'none';
-            document.getElementById('loginError').style.display = 'none';
-            document.getElementById('loginSuccess').style.display = 'none';
-            document.getElementById('regError').style.display = 'none';
-            document.getElementById('regSuccess').style.display = 'none';
-        }
+        function showAuthModal(type) { document.getElementById('authModal').style.display = 'flex'; switchAuthTab(type); }
+        function closeAuthModal() { document.getElementById('authModal').style.display = 'none'; }
         function switchAuthTab(tab) {
             const loginForm = document.getElementById('loginForm');
             const registerForm = document.getElementById('registerForm');
             const tabs = document.querySelectorAll('.auth-tab');
             if (tab === 'login') {
-                tabs[0].classList.add('active');
-                tabs[1].classList.remove('active');
-                loginForm.style.display = 'block';
-                registerForm.style.display = 'none';
+                tabs[0].classList.add('active'); tabs[1].classList.remove('active');
+                loginForm.style.display = 'block'; registerForm.style.display = 'none';
             } else {
-                tabs[1].classList.add('active');
-                tabs[0].classList.remove('active');
-                loginForm.style.display = 'none';
-                registerForm.style.display = 'block';
+                tabs[1].classList.add('active'); tabs[0].classList.remove('active');
+                loginForm.style.display = 'none'; registerForm.style.display = 'block';
             }
         }
         function userLogin() {
@@ -1295,26 +1321,19 @@
             localStorage.removeItem('currentUser');
             updateAuthButtons();
             document.getElementById('adminPanel').classList.remove('open');
-            document.body.classList.remove('admin-panel-open');
         }
-
-        // ========== ФУНКЦИИ ШАПКИ ==========
         function updateAuthButtons() {
             const authButtons = document.getElementById('authButtons');
             const adminPanelBtn = document.getElementById('adminPanelBtn');
             if (currentUser) {
                 const avatarLetter = currentUser.name.charAt(0).toUpperCase();
-                authButtons.innerHTML = `<div class="user-menu"><div class="user-info" onclick="showUserProfile()"><div class="user-avatar">${avatarLetter}</div><span class="user-name">${currentUser.name}</span></div><button class="logout-btn" onclick="userLogout()">Выйти</button></div>`;
+                authButtons.innerHTML = `<div class="user-menu"><div class="user-info" onclick="alert('Профиль: ${currentUser.name}\\nEmail: ${currentUser.email}')"><div class="user-avatar">${avatarLetter}</div><span class="user-name">${currentUser.name}</span></div><button class="logout-btn" onclick="userLogout()">Выйти</button></div>`;
                 if (currentUser.isAdmin) adminPanelBtn.classList.add('visible');
                 else adminPanelBtn.classList.remove('visible');
             } else {
                 authButtons.innerHTML = `<button class="login-btn" onclick="showAuthModal('login')">Войти</button><button class="register-btn" onclick="showAuthModal('register')">Регистрация</button>`;
                 adminPanelBtn.classList.remove('visible');
             }
-        }
-        function showUserProfile() {
-            if (!currentUser || currentUser.isAdmin) return;
-            alert(`👤 ${currentUser.name}\n📧 ${currentUser.email}`);
         }
         function performSearch() {
             const searchTerm = document.getElementById('headerSearch').value.toLowerCase().trim();
@@ -1343,36 +1362,31 @@
         function toggleAdminPanel() {
             if (!currentUser || !currentUser.isAdmin) { showNotification('Доступ запрещен!'); return; }
             document.getElementById('adminPanel').classList.toggle('open');
-            document.body.classList.toggle('admin-panel-open');
         }
         function updateCartCount() {
             const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
             const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-            const cartCountElement = document.getElementById('cart-count');
-            if (cartCountElement) cartCountElement.textContent = totalCount;
+            document.getElementById('cart-count').textContent = totalCount;
         }
-
-        // ========== ФУНКЦИИ СТРАНИЦЫ ==========
-        function showMagazineDetail(magazineId) {
-            const magazine = magazines.find(m => m.id === magazineId);
-            if (!magazine) return;
+        function showMagazineDetail(id) {
+            const mag = magazines.find(m => m.id === id);
+            if (!mag) return;
             const modal = document.getElementById('magazineDetailModal');
             const content = document.getElementById('magazineDetailContent');
             content.innerHTML = `
-                <div class="magazine-detail-image-container"><img src="${magazine.image}" class="magazine-detail-image"></div>
+                <div class="magazine-detail-image-container"><img src="${mag.image}" class="magazine-detail-image"></div>
                 <div class="magazine-detail-main">
-                    <h3 class="magazine-detail-name">${magazine.title}</h3>
-                    <p class="magazine-detail-author">${magazine.author}</p>
-                    <div class="magazine-detail-description">${magazine.description}</div>
+                    <h3 class="magazine-detail-name">${mag.title}</h3>
+                    <p class="magazine-detail-author">${mag.author}</p>
+                    <div class="magazine-detail-description">${mag.description}</div>
                     <div class="magazine-details-grid">
-                        <div class="magazine-detail-item"><div class="magazine-detail-label">Год основания</div><div class="magazine-detail-value">${magazine.year}</div></div>
-                        <div class="magazine-detail-item"><div class="magazine-detail-label">Страниц</div><div class="magazine-detail-value">${magazine.pages}</div></div>
-                        <div class="magazine-detail-item"><div class="magazine-detail-label">Издательство</div><div class="magazine-detail-value">${magazine.publisher}</div></div>
-                        <div class="magazine-detail-item"><div class="magazine-detail-label">Периодичность</div><div class="magazine-detail-value">${magazine.frequency}</div></div>
-                        <div class="magazine-detail-item"><div class="magazine-detail-label">Рейтинг</div><div class="magazine-detail-value">${magazine.rating}/5</div></div>
+                        <div class="magazine-detail-item"><div class="magazine-detail-label">Год</div><div class="magazine-detail-value">${mag.year}</div></div>
+                        <div class="magazine-detail-item"><div class="magazine-detail-label">Страниц</div><div class="magazine-detail-value">${mag.pages}</div></div>
+                        <div class="magazine-detail-item"><div class="magazine-detail-label">Издатель</div><div class="magazine-detail-value">${mag.publisher}</div></div>
+                        <div class="magazine-detail-item"><div class="magazine-detail-label">Рейтинг</div><div class="magazine-detail-value">${mag.rating}/5</div></div>
                     </div>
-                    <div class="magazine-detail-price">${magazine.price} руб</div>
-                    <button class="magazine-detail-cart-btn" onclick="addToCartFromPage(${magazine.id}); closeMagazineDetail();">В корзину</button>
+                    <div class="magazine-detail-price">${mag.price} ₽</div>
+                    <button class="magazine-detail-cart-btn" onclick="addToCart(${mag.id}); closeMagazineDetail();">В корзину</button>
                 </div>
             `;
             modal.classList.add('active');
@@ -1397,9 +1411,9 @@
         function displayProducts(products) {
             const grid = document.getElementById('productsGrid');
             const start = (currentPage - 1) * productsPerPage;
-            const paginatedProducts = products.slice(start, start + productsPerPage);
+            const paginated = products.slice(start, start + productsPerPage);
             grid.innerHTML = '';
-            paginatedProducts.forEach(mag => {
+            paginated.forEach(mag => {
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 card.innerHTML = `
@@ -1410,7 +1424,7 @@
                         <p class="product-author">${mag.author}</p>
                         <div class="product-meta"><span>📄 ${mag.pages} стр.</span><span>⭐ ${mag.rating}</span></div>
                         <div class="product-price">${mag.price} ₽</div>
-                        <button class="add-to-cart" onclick="addToCartFromPage(${mag.id})">🛒 В корзину</button>
+                        <button class="add-to-cart" onclick="addToCart(${mag.id})">🛒 В корзину</button>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -1428,18 +1442,18 @@
             pagination.innerHTML = html;
         }
         function changePage(page) { currentPage = page; filterProducts(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-        function addToCartFromPage(magId) {
-            const mag = magazines.find(m => m.id === magId);
+        function addToCart(id) {
+            const mag = magazines.find(m => m.id === id);
             if (!mag) return;
-            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-            const existing = cartItems.find(item => item.id === magId);
+            let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const existing = cart.find(item => item.id === id);
             if (existing) existing.quantity++;
-            else cartItems.push({ id: mag.id, title: mag.title, price: mag.price, image: mag.image, author: mag.author, quantity: 1 });
-            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            else cart.push({ id: mag.id, title: mag.title, price: mag.price, image: mag.image, quantity: 1 });
+            localStorage.setItem('cartItems', JSON.stringify(cart));
             updateCartCount();
-            showNotification(`"${mag.title}" добавлен в корзину!`);
+            showNotification(`"${mag.title}" добавлен в корзину!`, 'success');
         }
-        function showNotification(msg) {
+        function showNotification(msg, type) {
             const n = document.createElement('div');
             n.className = 'notification';
             n.innerHTML = msg;
@@ -1447,8 +1461,9 @@
             setTimeout(() => n.remove(), 2000);
         }
 
-        // Инициализация
         document.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('currentUser');
+            if (saved) currentUser = JSON.parse(saved);
             updateAuthButtons();
             updateCartCount();
             filterProducts();
