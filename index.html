@@ -1224,7 +1224,7 @@
             books.forEach(book => {
                 const card = document.createElement('div');
                 card.className = 'book-card';
-                card.innerHTML = `<div class="book-image-container" onclick="showBookDetail(${book.id})"><img src="${book.image}" class="book-image" onerror="this.src='https://via.placeholder.com/200x300?text=${encodeURIComponent(book.title)}'"></div><div class="book-content"><h3 class="book-title" onclick="showBookDetail(${book.id})">${book.title}</h3><p class="book-author">${book.author}</p><div class="book-meta"><span class="book-pages">${book.pages} стр.</span><span class="book-genre">${book.genre}</span></div><div class="book-price-container"><div class="book-price">${book.price} руб</div></div><button class="buy-now-btn" onclick="buyNow(${book.id})">Купить сразу</button><button class="add-to-cart" onclick="addToCart(${book.id})">В корзину</button></div>`;
+             
                 grid.appendChild(card);
             });
         }
