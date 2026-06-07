@@ -803,7 +803,6 @@
                     </div>
                     <div class="random-book-price">${randomBook.price} ₽</div>
                     <div class="random-book-actions">
-                        <button class="random-book-action-btn random-book-buy-btn" onclick="buyNow(${randomBook.id}); closeRandomBook();">Купить сейчас</button>
                         <button class="random-book-action-btn random-book-cart-btn" onclick="addToCart(${randomBook.id}); closeRandomBook();">В корзину</button>
                     </div>
                 </div>
@@ -838,7 +837,7 @@
                     </div>
                     <div class="book-detail-price">${book.price} ₽</div>
                     <div class="book-detail-actions">
-                        <button class="book-detail-buy-btn" onclick="buyNow(${book.id}); closeBookDetail();">Купить сейчас</button>
+                        
                         <button class="book-detail-cart-btn" onclick="addToCart(${book.id}); closeBookDetail();">В корзину</button>
                     </div>
                 </div>
