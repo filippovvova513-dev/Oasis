@@ -1259,8 +1259,9 @@
         }
 
         function addToCart(bookId) {
-            const book = books.find(b=>b.id===bookId);
-            let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const book = books.find(b => b.id === bookId);
+    window.addToCart(book); // используем функцию из user-data.js
+}
             const existing = cart.find(i=>i.id===bookId);
             if(existing) existing.quantity++;
             else cart.push({id:book.id, title:book.title, price:book.price, image:book.image, quantity:1});
