@@ -38,12 +38,10 @@
         }
         body.admin-panel-open { margin-left: 420px; }
 
-        /* ===== СТИЛИЗОВАННЫЕ ИКОНКИ ===== */
         .icon-img { width: 20px; height: 20px; object-fit: contain; vertical-align: middle; }
         .icon-img-sm { width: 16px; height: 16px; }
         .icon-img-lg { width: 28px; height: 28px; }
 
-        /* ===== МОДАЛЬНЫЕ ОКНА ===== */
         .random-book-modal, .book-detail-modal {
             display: none;
             position: fixed;
@@ -201,7 +199,7 @@
             margin-top: 20px;
         }
         
-        .random-book-action-btn, .book-detail-cart-btn, .book-detail-buy-btn {
+        .random-book-cart-btn, .book-detail-cart-btn {
             flex: 1;
             padding: 16px;
             border: none;
@@ -215,16 +213,14 @@
             justify-content: center;
             gap: 10px;
             box-shadow: var(--shadow-md);
-        }
-        
-        .random-book-cart-btn, .book-detail-cart-btn {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
         }
         
-        .random-book-buy-btn, .book-detail-buy-btn {
-            background: linear-gradient(135deg, var(--buy-color), var(--buy-hover));
-            color: white;
+        .random-book-cart-btn:hover, .book-detail-cart-btn:hover {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
         
         .random-book-genres, .book-detail-genres {
@@ -271,7 +267,6 @@
             .random-book-actions, .book-detail-actions { flex-direction: column; }
         }
 
-        /* АВТОРИЗАЦИЯ */
         .close-auth-btn {
             position: absolute;
             top: 15px;
@@ -314,7 +309,6 @@
             border-radius: 3px 3px 0 0;
         }
 
-        /* ОСНОВНЫЕ СТИЛИ */
         .main-banner { background: linear-gradient(135deg, var(--light-color) 0%, #F5E6D3 100%); padding: 80px 20px 40px 20px; margin-bottom: 40px; border-bottom: 3px solid var(--primary-color); box-shadow: var(--shadow-lg); position: relative; border-radius: 0 0 var(--radius-lg) var(--radius-lg); margin-top: -1px; min-height: 320px; display: flex; align-items: center; overflow: visible; }
         .banner-content { max-width: 1300px; margin: 0 auto; display: flex; align-items: center; justify-content: center; position: relative; padding: 0 30px 0 260px; width: 100%; }
         .banner-text { flex: 1; text-align: center; position: relative; z-index: 1; }
@@ -487,7 +481,6 @@
         .news-description { color: var(--text-color); font-size: 16px; line-height: 1.6; }
         .show-more-btn { display: block; margin: 0 auto; padding: 18px 40px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; border: none; border-radius: var(--radius-md); cursor: pointer; font-size: 18px; font-weight: 700; transition: var(--transition); display: flex; align-items: center; gap: 10px; box-shadow: var(--shadow-md); }
         .show-more-btn:hover { background: linear-gradient(135deg, var(--secondary-color), var(--accent-color)); transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-        .hidden-news { display: none; }
         .books-section { margin-bottom: 60px; }
         .books-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; margin-bottom: 50px; }
         .book-card { background: var(--light-color); border-radius: var(--radius-lg); padding: 20px; box-shadow: var(--shadow-lg); transition: var(--transition); border: 3px solid var(--primary-color); display: flex; flex-direction: column; height: 100%; position: relative; overflow: hidden; cursor: pointer; }
@@ -505,12 +498,9 @@
         .book-price { font-size: 26px; color: #228B22; font-weight: 800; text-align: center; padding: 10px; background: rgba(34, 139, 34, 0.05); border-radius: var(--radius-md); border: 2px solid rgba(34, 139, 34, 0.1); }
         .add-to-cart { width: 100%; padding: 14px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; border: none; border-radius: var(--radius-md); cursor: pointer; transition: var(--transition); font-size: 16px; font-weight: 700; box-shadow: var(--shadow-md); display: flex; align-items: center; justify-content: center; gap: 8px; z-index: 2; position: relative; }
         .add-to-cart:hover { background: linear-gradient(135deg, var(--secondary-color), var(--accent-color)); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
-        .buy-now-btn { width: 100%; padding: 14px; background: linear-gradient(135deg, var(--buy-color), var(--buy-hover)); color: white; border: none; border-radius: var(--radius-md); cursor: pointer; transition: var(--transition); font-size: 16px; font-weight: 700; box-shadow: var(--shadow-md); display: flex; align-items: center; justify-content: center; gap: 8px; z-index: 2; position: relative; margin-top: 10px; }
-        .buy-now-btn:hover { background: linear-gradient(135deg, var(--buy-hover), #4A5D23); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
         .footer { background: linear-gradient(135deg, var(--dark-color), #4A3529); color: #F5E6D3; padding: 40px; text-align: center; margin-top: 50px; width: 100%; border-top: 4px solid var(--accent-color); box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2); }
         .footer p { font-size: 16px; margin-bottom: 15px; font-weight: 600; }
         @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
         .search-result-item { display: flex; gap: 15px; padding: 15px; border-radius: var(--radius-md); margin-bottom: 10px; transition: var(--transition); cursor: pointer; text-decoration: none; color: inherit; border: 2px solid transparent; background: white; box-shadow: var(--shadow-sm); }
         .search-result-item:hover { background: var(--light-color); border-color: var(--accent-color); transform: translateY(-2px); box-shadow: var(--shadow-md); }
         .search-result-image { width: 60px; height: 80px; object-fit: cover; border-radius: var(--radius-sm); border: 2px solid var(--primary-color); }
@@ -583,7 +573,7 @@
         </div>
     </div>
 
-    <!-- Модальное окно случайной книги (УЛУЧШЕННОЕ) -->
+    <!-- Модальное окно случайной книги -->
     <div class="random-book-modal" id="randomBookModal">
         <div class="random-book-container">
             <div class="random-book-tag">Случайная рекомендация</div>
@@ -749,16 +739,15 @@
     </footer>
 
     <script>
-        // Данные книг - ВСЕ ИЗОБРАЖЕНИЯ ТЕПЕРЬ ИЗ ПАПКИ img/
         const books = [
-            { id: 1, title: "Мастер и Маргарита", author: "Михаил Булгаков", pages: 480, price: 650, genre: "romance", category: "book", image: "img/master-i-margarita.jpg", description: "Мистический роман о дьяволе, посетившем Москву 1930-х годов.", year: 1967, publisher: "Художественная литература", rating: 4.8, ratingCount: 2345, genres: ["Роман", "Мистика"], isbn: "978-5-699-12345-6", language: "Русский", weight: 450, dimensions: "20.5x13.5x2.8", available: true },
-            { id: 2, title: "1984", author: "Джордж Оруэлл", pages: 320, price: 550, genre: "sci-fi", category: "book", image: "img/1984.jpg", description: "Антиутопия о тоталитарном обществе и потере свободы.", year: 1949, publisher: "Secker & Warburg", rating: 4.7, ratingCount: 1890, genres: ["Антиутопия"], isbn: "978-5-17-080115-2", language: "Русский", weight: 380, dimensions: "20.8x13.5x2.2", available: true },
-            { id: 3, title: "Гарри Поттер и философский камень", author: "Джоан Роулинг", pages: 432, price: 890, genre: "fantasy", category: "book", image: "img/harry-potter.jpg", description: "Начало магических приключений юного волшебника.", year: 1997, publisher: "Bloomsbury", rating: 4.9, ratingCount: 5678, genres: ["Фэнтези"], isbn: "978-5-389-07435-4", language: "Русский", weight: 520, dimensions: "22.5x14.5x3.2", available: true },
-            { id: 4, title: "Наруто: Том 1", author: "Масаси Кисимото", pages: 192, price: 450, genre: "fantasy", category: "manga", image: "img/naruto.jpg", description: "Начало пути ниндзя-неудачника.", year: 1999, publisher: "Shueisha", rating: 4.6, ratingCount: 3210, genres: ["Манга"], isbn: "978-4-08-872840-7", language: "Японский", weight: 180, dimensions: "17.5x11.5x1.5", available: true },
-            { id: 5, title: "Война и мир", author: "Лев Толстой", pages: 1225, price: 950, genre: "romance", category: "book", image: "img/war-and-peace.jpg", description: "Эпическое произведение о войне 1812 года.", year: 1869, publisher: "Русский вестник", rating: 4.5, ratingCount: 1567, genres: ["Роман-эпопея"], isbn: "978-5-17-090195-1", language: "Русский", weight: 1200, dimensions: "24.5x17.5x4.5", available: true },
-            { id: 6, title: "Атака Титанов", author: "Хадзиме Исаяма", pages: 200, price: 480, genre: "fantasy", category: "manga", image: "img/attack-on-titan.jpg", description: "Битва человечества против гигантских титанов.", year: 2009, publisher: "Kodansha", rating: 4.8, ratingCount: 4321, genres: ["Манга"], isbn: "978-4-06-384276-0", language: "Японский", weight: 190, dimensions: "17.5x11.5x1.6", available: true },
-            { id: 7, title: "Преступление и наказание", author: "Фёдор Достоевский", pages: 672, price: 720, genre: "detective", category: "book", image: "img/crime-and-punishment.jpg", description: "Психологический роман о преступлении.", year: 1866, publisher: "Русский вестник", rating: 4.7, ratingCount: 2345, genres: ["Психологический роман"], isbn: "978-5-17-090196-8", language: "Русский", weight: 650, dimensions: "21.5x14.5x3.5", available: true },
-            { id: 8, title: "Маленький принц", author: "Антуан де Сент-Экзюпери", pages: 96, price: 450, genre: "adventure", category: "book", image: "img/little-prince.jpg", description: "Философская сказка о дружбе.", year: 1943, publisher: "Reynal & Hitchcock", rating: 4.9, ratingCount: 6789, genres: ["Философская сказка"], isbn: "978-5-389-07436-1", language: "Русский", weight: 220, dimensions: "20.5x13.5x1.2", available: true }
+            { id: 1, title: "Мастер и Маргарита", author: "Михаил Булгаков", pages: 480, price: 650, genre: "роман", category: "book", image: "img/master-i-margarita.jpg", description: "Мистический роман о дьяволе, посетившем Москву 1930-х годов.", year: 1967, publisher: "Художественная литература", rating: 4.8, ratingCount: 2345, genres: ["Роман", "Мистика"], isbn: "978-5-699-12345-6", language: "Русский", weight: 450, dimensions: "20.5x13.5x2.8", available: true },
+            { id: 2, title: "1984", author: "Джордж Оруэлл", pages: 320, price: 550, genre: "антиутопия", category: "book", image: "img/1984.jpg", description: "Антиутопия о тоталитарном обществе и потере свободы.", year: 1949, publisher: "Secker & Warburg", rating: 4.7, ratingCount: 1890, genres: ["Антиутопия"], isbn: "978-5-17-080115-2", language: "Русский", weight: 380, dimensions: "20.8x13.5x2.2", available: true },
+            { id: 3, title: "Гарри Поттер и философский камень", author: "Джоан Роулинг", pages: 432, price: 890, genre: "фэнтези", category: "book", image: "img/harry-potter.jpg", description: "Начало магических приключений юного волшебника.", year: 1997, publisher: "Bloomsbury", rating: 4.9, ratingCount: 5678, genres: ["Фэнтези"], isbn: "978-5-389-07435-4", language: "Русский", weight: 520, dimensions: "22.5x14.5x3.2", available: true },
+            { id: 4, title: "Наруто: Том 1", author: "Масаси Кисимото", pages: 192, price: 450, genre: "манга", category: "manga", image: "img/naruto.jpg", description: "Начало пути ниндзя-неудачника.", year: 1999, publisher: "Shueisha", rating: 4.6, ratingCount: 3210, genres: ["Манга"], isbn: "978-4-08-872840-7", language: "Японский", weight: 180, dimensions: "17.5x11.5x1.5", available: true },
+            { id: 5, title: "Война и мир", author: "Лев Толстой", pages: 1225, price: 950, genre: "роман-эпопея", category: "book", image: "img/war-and-peace.jpg", description: "Эпическое произведение о войне 1812 года.", year: 1869, publisher: "Русский вестник", rating: 4.5, ratingCount: 1567, genres: ["Роман-эпопея"], isbn: "978-5-17-090195-1", language: "Русский", weight: 1200, dimensions: "24.5x17.5x4.5", available: true },
+            { id: 6, title: "Атака Титанов", author: "Хадзиме Исаяма", pages: 200, price: 480, genre: "манга", category: "manga", image: "img/attack-on-titan.jpg", description: "Битва человечества против гигантских титанов.", year: 2009, publisher: "Kodansha", rating: 4.8, ratingCount: 4321, genres: ["Манга"], isbn: "978-4-06-384276-0", language: "Японский", weight: 190, dimensions: "17.5x11.5x1.6", available: true },
+            { id: 7, title: "Преступление и наказание", author: "Фёдор Достоевский", pages: 672, price: 720, genre: "роман", category: "book", image: "img/crime-and-punishment.jpg", description: "Психологический роман о преступлении.", year: 1866, publisher: "Русский вестник", rating: 4.7, ratingCount: 2345, genres: ["Психологический роман"], isbn: "978-5-17-090196-8", language: "Русский", weight: 650, dimensions: "21.5x14.5x3.5", available: true },
+            { id: 8, title: "Маленький принц", author: "Антуан де Сент-Экзюпери", pages: 96, price: 450, genre: "сказка", category: "book", image: "img/little-prince.jpg", description: "Философская сказка о дружбе.", year: 1943, publisher: "Reynal & Hitchcock", rating: 4.9, ratingCount: 6789, genres: ["Философская сказка"], isbn: "978-5-389-07436-1", language: "Русский", weight: 220, dimensions: "20.5x13.5x1.2", available: true }
         ];
 
         const bookSuggestions = ["Отличный выбор!", "Эта книга может стать вашим новым любимым произведением!", "Идеально подходит для вечернего чтения!", "Классика, которую должен прочитать каждый!", "Книга, от которой невозможно оторваться!"];
@@ -770,13 +759,11 @@
         let showAllNews = false;
         let isAdminLoggedIn = false;
         let currentUser = null;
-        let currentBookForCheckout = null;
         let news = JSON.parse(localStorage.getItem('adminNews')) || [
             { id: 1, badge: "НОВОСТИ МАГАЗИНА", date: "15 ноября 2024", title: "Открытие нового филиала", description: "Рады сообщить об открытии нового филиала нашего магазина в центре города! Ждем всех любителей книг по адресу: ул. Читательская, 25.", publishedByAdmin: false },
             { id: 2, badge: "ЮБИЛЕЙ", date: "12 ноября 2024", title: "70 лет со дня рождения Стивена Кинга", description: "Поздравляем великого мастера ужасов с юбилеем! В честь этого события скидка 20% на все книги автора.", publishedByAdmin: false }
         ];
 
-        // ===== НОВЫЕ ФУНКЦИИ ДЛЯ МОДАЛЬНЫХ ОКОН =====
         function showRandomBook() {
             const randomBook = books[Math.floor(Math.random() * books.length)];
             const randomMessage = bookSuggestions[Math.floor(Math.random() * bookSuggestions.length)];
@@ -803,8 +790,7 @@
                     </div>
                     <div class="random-book-price">${randomBook.price} ₽</div>
                     <div class="random-book-actions">
-                        <button class="random-book-action-btn random-book-buy-btn" onclick="buyNow(${randomBook.id}); closeRandomBook();">Купить сейчас</button>
-                        <button class="random-book-action-btn random-book-cart-btn" onclick="addToCart(${randomBook.id}); closeRandomBook();">В корзину</button>
+                        <button class="random-book-cart-btn" onclick="addToCart(${randomBook.id}); closeRandomBook();">В корзину</button>
                     </div>
                 </div>
             `;
@@ -838,7 +824,6 @@
                     </div>
                     <div class="book-detail-price">${book.price} ₽</div>
                     <div class="book-detail-actions">
-                        <button class="book-detail-buy-btn" onclick="buyNow(${book.id}); closeBookDetail();">Купить сейчас</button>
                         <button class="book-detail-cart-btn" onclick="addToCart(${book.id}); closeBookDetail();">В корзину</button>
                     </div>
                 </div>
@@ -856,7 +841,6 @@
             showBookDetail(bookId);
         }
 
-        // ===== ОБНОВЛЕННАЯ ФУНКЦИЯ ПОИСКА =====
         function performSearch() {
             const term = document.getElementById('headerSearch').value.toLowerCase().trim();
             const results = books.filter(b => b.title.toLowerCase().includes(term) || b.author.toLowerCase().includes(term));
@@ -877,14 +861,6 @@
 
         function closeSearchResults() { document.getElementById('searchResults').style.display = 'none'; }
 
-        // ===== ФУНКЦИИ ДЛЯ ПОКУПКИ =====
-        function buyNow(bookId) {
-            if (!currentUser) { showAuthModal('login'); showNotification('Авторизуйтесь для покупки!', 'error'); return; }
-            const book = books.find(b => b.id === bookId);
-            showNotification(`Оформление заказа для "${book.title}"`, 'info');
-        }
-
-        // ВСЕ ОСТАЛЬНЫЕ ФУНКЦИИ
         async function publishToVK(title, content, category) {
             const webAppUrl = "https://script.google.com/macros/s/AKfycbz2guq681SBvQpcLYJhL9-JyjSM8rs9xLVZL3fKC8A1guiso3i3S13FaZNya4pm3G8u6Q/exec";
             try {
@@ -1103,9 +1079,9 @@
             if (!currentUser || currentUser.isAdmin) return;
             const allOrders = JSON.parse(localStorage.getItem('userOrders')) || [];
             const userOrders = allOrders.filter(o => o.userId === currentUser.id);
-            let html = '<table style="width:100%; border-collapse:collapse;"><tr><th>№</th><th>Книга</th><th>Сумма</th><th>Дата</th></tr>';
+            let html = '<div style="background:#FFF8DC; padding:20px; border-radius:16px;"><h3>Мои заказы</h3><table style="width:100%; border-collapse:collapse;"><tr><th>№</th><th>Книга</th><th>Сумма</th><th>Дата</th></tr>';
             userOrders.forEach(o => { html += `<tr><td>#${o.id}</td><td>${o.items[0].title}</td><td>${o.total} руб</td><td>${o.date}</td></tr>`; });
-            html += '</table><button onclick="closeUserOrders()" style="margin-top:20px; padding:10px; background:#8B4513; color:white; border:none; border-radius:8px;">Закрыть</button>';
+            html += '</table><button onclick="closeUserOrders()" style="margin-top:20px; padding:10px; background:#8B4513; color:white; border:none; border-radius:8px;">Закрыть</button></div>';
             document.getElementById('userOrdersContent').innerHTML = html;
             document.getElementById('userOrdersModal').style.display = 'flex';
         }
@@ -1150,7 +1126,7 @@
             const users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
             const tbody = document.getElementById('ordersTable');
             tbody.innerHTML = '';
-            orders.forEach(o => { const user = users.find(u=>u.id===o.userId); tbody.innerHTML += `<tr><td>#${o.id}</td><td>${user ? user.name : 'Пользователь'}</td><td>${o.items[0].title}</td><td>1</td><td>${o.total} руб</td><td>${o.date}</td><td><span class="status-badge status-active">Завершен</span></td></tr>`; });
+            orders.forEach(o => { const user = users.find(u=>u.id===o.userId); tbody.innerHTML += `<tr><td>#${o.id}</td><td>${user ? user.name : 'Пользователь'}</td><td>${o.items[0].title}</td><td>1</td><td>${o.total} руб</td><td>${o.date}</td><td>Завершен</td><tr>`; });
         }
 
         function loadStatsTable() {
@@ -1224,7 +1200,7 @@
             books.forEach(book => {
                 const card = document.createElement('div');
                 card.className = 'book-card';
-                card.innerHTML = `<div class="book-image-container" onclick="showBookDetail(${book.id})"><img src="${book.image}" class="book-image" onerror="this.src='https://via.placeholder.com/200x300?text=${encodeURIComponent(book.title)}'"></div><div class="book-content"><h3 class="book-title" onclick="showBookDetail(${book.id})">${book.title}</h3><p class="book-author">${book.author}</p><div class="book-meta"><span class="book-pages">${book.pages} стр.</span><span class="book-genre">${book.genre}</span></div><div class="book-price-container"><div class="book-price">${book.price} руб</div></div><button class="buy-now-btn" onclick="buyNow(${book.id})">Купить сразу</button><button class="add-to-cart" onclick="addToCart(${book.id})">В корзину</button></div>`;
+                card.innerHTML = `<div class="book-image-container" onclick="showBookDetail(${book.id})"><img src="${book.image}" class="book-image" onerror="this.src='https://via.placeholder.com/200x300?text=${encodeURIComponent(book.title)}'"></div><div class="book-content"><h3 class="book-title" onclick="showBookDetail(${book.id})">${book.title}</h3><p class="book-author">${book.author}</p><div class="book-meta"><span class="book-pages">${book.pages} стр.</span><span class="book-genre">${book.genre}</span></div><div class="book-price-container"><div class="book-price">${book.price} руб</div></div><button class="add-to-cart" onclick="addToCart(${book.id})">В корзину</button></div>`;
                 grid.appendChild(card);
             });
         }
