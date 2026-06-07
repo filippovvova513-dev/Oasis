@@ -1010,10 +1010,10 @@
             .magazine-detail-actions { flex-direction: column; }
         }
         /* ============================================
- /* ============================================
+/* ============================================
    МОБИЛЬНАЯ ВЕРСИЯ ДЛЯ ВСЕХ СТРАНИЦ
    Литературный Оазис - Книжный магазин
-   Версия 2.0 - Полностью адаптивная
+   Версия 2.1 - Компактная шапка в 2 ряда
    ============================================ */
 
 /* Планшеты (768px - 1024px) */
@@ -1094,103 +1094,114 @@
         margin-bottom: 20px;
     }
     
-    /* ----- ШАПКА (ДЛЯ ВСЕХ СТРАНИЦ) ----- */
+    /* ===== ШАПКА - КОМПАКТНАЯ, 2 РЯДА ===== */
     .header {
-        padding: 10px 0;
+        padding: 8px 0;
     }
     
     .header-content {
         flex-direction: column;
-        gap: 12px;
-        padding: 0 15px;
+        gap: 8px;
+        padding: 0 12px;
     }
     
+    /* Логотип - компактный */
     .logo {
-        font-size: 20px;
+        font-size: 18px;
         text-align: center;
         justify-content: center;
         white-space: normal;
         width: 100%;
+        padding: 4px 0;
     }
     
+    /* Навигация - 2 ряда через flex-wrap */
     .nav {
+        display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        align-items: center;
         margin-left: 0;
         width: 100%;
-        gap: 8px;
+        gap: 6px;
     }
     
     .nav-item {
-        padding: 8px 14px;
-        font-size: 13px;
+        padding: 6px 12px;
+        font-size: 12px;
         white-space: nowrap;
+        flex: 0 0 auto;
     }
     
+    /* Поиск - отдельная строка */
     .header-search {
         width: 100%;
         margin-left: 0;
+        display: flex;
+        gap: 6px;
     }
     
     .search-input {
         width: 100%;
-        font-size: 14px;
-        padding: 10px 16px;
+        font-size: 13px;
+        padding: 8px 14px;
     }
     
     .search-button {
-        padding: 10px 16px;
+        padding: 8px 14px;
     }
     
+    /* Кнопки авторизации и админ-панель - компактно */
     .auth-buttons {
         width: 100%;
         justify-content: center;
-        gap: 10px;
+        gap: 8px;
     }
     
     .login-btn, .register-btn {
-        padding: 8px 16px;
-        font-size: 13px;
-    }
-    
-    .user-menu {
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-    
-    .user-info {
-        padding: 8px 12px;
-    }
-    
-    .user-avatar {
-        width: 32px;
-        height: 32px;
-        font-size: 14px;
-    }
-    
-    .user-name {
-        font-size: 13px;
-    }
-    
-    .logout-btn, .user-action-btn {
-        padding: 8px 12px;
+        padding: 6px 14px;
         font-size: 12px;
     }
     
     .admin-panel-btn {
-        padding: 8px 14px;
-        font-size: 13px;
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    /* Пользовательское меню */
+    .user-menu {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    
+    .user-info {
+        padding: 6px 10px;
+    }
+    
+    .user-avatar {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+    
+    .user-name {
+        font-size: 12px;
+    }
+    
+    .logout-btn, .user-action-btn {
+        padding: 6px 12px;
+        font-size: 11px;
     }
     
     /* Корзина в шапке */
     .cart-count {
-        width: 20px;
-        height: 20px;
-        font-size: 10px;
-        top: -6px;
-        right: -6px;
+        width: 18px;
+        height: 18px;
+        font-size: 9px;
+        top: -5px;
+        right: -5px;
     }
     
     /* ----- БАННЕР (ГЛАВНАЯ СТРАНИЦА) ----- */
@@ -1930,7 +1941,7 @@
 /* Маленькие телефоны (до 480px) */
 @media (max-width: 480px) {
     .logo {
-        font-size: 18px;
+        font-size: 16px;
     }
     
     .section-title,
@@ -2002,9 +2013,10 @@
         font-size: 14px;
     }
     
+    /* Навигация на маленьких телефонах - более компактная */
     .nav-item {
-        padding: 6px 12px;
-        font-size: 12px;
+        padding: 5px 10px;
+        font-size: 11px;
     }
     
     .cart-item-title {
@@ -2018,6 +2030,11 @@
     .checkout-btn {
         padding: 12px;
         font-size: 15px;
+    }
+    
+    /* Логотип на маленьких экранах */
+    .logo {
+        font-size: 16px;
     }
 }
 
@@ -2040,10 +2057,21 @@
         height: 200px;
     }
     
+    /* Навигация - 2 ряда, более компактно */
+    .nav-item {
+        padding: 4px 8px;
+        font-size: 10px;
+    }
+    
+    .login-btn, .register-btn {
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+    
     .user-menu {
         flex-direction: column;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
     }
     
     .user-actions {
@@ -2082,7 +2110,7 @@
    УЛУЧШЕНИЯ ДЛЯ СЕНСОРНОГО УПРАВЛЕНИЯ
    ============================================ */
 @media (max-width: 768px) {
-    /* Увеличенные области нажатия для пальцев (минимум 44px) */
+    /* Увеличенные области нажатия для пальцев (минимум 40px) */
     .nav-item,
     .add-to-cart,
     .cart-btn-right,
@@ -2104,10 +2132,8 @@
     .close-detail-btn,
     .page-btn,
     .search-button,
-    .admin-panel-btn,
-    .cart-count {
-        min-height: 44px;
-        min-width: 44px;
+    .admin-panel-btn {
+        min-height: 40px;
     }
     
     /* Упрощаем навигацию - убираем сложные анимации */
@@ -2120,13 +2146,12 @@
         transition: none;
     }
     
-    /* На мобильных устройствах hover эффекты не работают,
-       поэтому оставляем только активные состояния */
+    /* На мобильных устройствах hover эффекты не работают */
     .nav-item:active,
     .add-to-cart:active,
     .cart-btn-right:active {
-        opacity: 0.8;
-        transform: scale(0.98);
+        opacity: 0.7;
+        transform: scale(0.97);
     }
     
     /* Плавная прокрутка */
@@ -2134,7 +2159,7 @@
         scroll-behavior: smooth;
     }
     
-    /* Отключаем масштабирование при фокусе на iOS (чтобы не увеличивалось) */
+    /* Отключаем масштабирование при фокусе на iOS */
     input,
     select,
     textarea {
@@ -2217,6 +2242,16 @@
             width: 120px;
             height: 170px;
         }
+        
+        /* Шапка в альбомной ориентации */
+        .nav {
+            gap: 4px;
+        }
+        
+        .nav-item {
+            padding: 4px 8px;
+            font-size: 11px;
+        }
     }
 }
 
@@ -2239,7 +2274,7 @@
     }
 }
 
-/* Стили для печати (если пользователь захочет распечатать страницу) */
+/* Стили для печати */
 @media print {
     .header,
     .footer,
