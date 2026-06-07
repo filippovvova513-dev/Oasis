@@ -41,6 +41,7 @@
         /* ===== СТИЛИЗОВАННЫЕ ИКОНКИ ===== */
         .icon-img { width: 20px; height: 20px; object-fit: contain; vertical-align: middle; }
         .icon-img-sm { width: 16px; height: 16px; }
+        .icon-img-lg { width: 28px; height: 28px; }
 
         /* Уведомления */
         .notification {
@@ -190,14 +191,7 @@
             flex-direction: column;
             border: 3px solid var(--primary-color);
             box-shadow: var(--shadow-lg);
-            transform: scale(0.98);
-            transition: transform 0.3s ease;
-            animation: modalSlideIn 0.3s ease;
-        }
-        .book-detail-container.active { transform: scale(1); }
-        @keyframes modalSlideIn {
-            from { opacity: 0; transform: translateY(-50px) scale(0.9); }
-            to { opacity: 1; transform: translateY(0) scale(0.98); }
+            position: relative;
         }
         .book-detail-header {
             padding: 30px;
@@ -357,61 +351,8 @@
             transform: translateY(-3px);
             box-shadow: var(--shadow-lg);
         }
-        .rating-system {
-            margin: 20px 0;
-            padding: 20px;
-            background: rgba(255, 248, 220, 0.5);
-            border-radius: var(--radius-md);
-            border: 2px solid rgba(139, 69, 19, 0.2);
-        }
-        .rating-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .stars-container { display: flex; gap: 5px; margin-bottom: 15px; }
-        .star {
-            font-size: 28px;
-            cursor: pointer;
-            color: #ccc;
-            transition: all 0.2s ease;
-        }
-        .star:hover, .star.active { color: #FFD700; transform: scale(1.2); }
-        .rating-message {
-            font-size: 14px;
-            color: var(--secondary-color);
-            margin-top: 10px;
-            min-height: 20px;
-        }
-        .rating-message.success { color: #228B22; }
-        .rating-message.error { color: #DC143C; }
-        .rating-login-prompt {
-            padding: 15px;
-            background: linear-gradient(135deg, rgba(255, 140, 0, 0.1), rgba(210, 105, 30, 0.05));
-            border-radius: var(--radius-md);
-            border: 2px solid rgba(255, 140, 0, 0.2);
-            text-align: center;
-        }
-        .rating-login-btn {
-            padding: 10px 20px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-        .rating-login-btn:hover {
-            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
-            transform: translateY(-2px);
-        }
 
-        /* ===== ШАПКА ===== */
+        /* ===== ШАПКА - КАК НА ГЛАВНОЙ ===== */
         .header {
             background: linear-gradient(135deg, var(--light-color), #F5E6D3);
             padding: 15px 0;
@@ -1144,7 +1085,7 @@
     <div class="book-detail-modal" id="bookDetailModal">
         <div class="book-detail-container">
             <div class="book-detail-header">
-                <h2 class="book-detail-title">Подробности книги</h2>
+                <h2>Подробности книги</h2>
                 <button class="close-detail-btn" onclick="closeBookDetail()">×</button>
             </div>
             <div id="bookDetailContent" class="book-detail-content"></div>
@@ -1172,7 +1113,7 @@
             <div class="admin-section active" id="usersSection">
                 <h3 class="admin-section-title">Зарегистрированные пользователи</h3>
                 <div class="admin-stats"><div class="stat-card"><div class="stat-value" id="totalUsers">0</div><div class="stat-label">Всего пользователей</div></div><div class="stat-card"><div class="stat-value" id="activeUsers">0</div><div class="stat-label">Активных сегодня</div></div></div>
-                <div class="admin-table-container"><table class="admin-table"><thead><tr><th>ID</th><th>Имя</th><th>Логин</th><th>Пароль</th><th>Email</th><th>Телефон</th><th>Регистрация</th><th>Заказов</th></tr></thead><tbody id="usersTable"></tbody></td></div>
+                <div class="admin-table-container"><table class="admin-table"><thead><tr><th>ID</th><th>Имя</th><th>Логин</th><th>Пароль</th><th>Email</th><th>Телефон</th><th>Регистрация</th><th>Заказов</th></tr></thead><tbody id="usersTable"></tbody></table></div>
                 <div class="admin-actions"><button class="admin-action-btn" onclick="refreshUsers()">Обновить</button><button class="admin-action-btn secondary" onclick="exportUsers()">Экспорт CSV</button></div>
             </div>
             <div class="admin-section" id="ordersSection">
@@ -1190,12 +1131,17 @@
         </div>
     </div>
 
-    <!-- Шапка -->
+    <!-- Шапка - полностью как на главной странице -->
     <header class="header">
         <div class="header-content">
             <a href="index.html" class="logo">Литературный Оазис</a>
-           <div class="header-search">
-                    <input type="text" class="search-input" placeholder="Поиск книг фэнтези..." id="headerSearch">
+            <nav class="nav">
+                <a href="index.html" class="nav-item"><img src="img/icon-home.png" class="icon-img icon-img-sm" alt="Главная" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-5v-8H7v8H2a2 2 0 0 1-2-2z\'%3E%3C/path%3E%3C/svg%3E'">Главная</a>
+                <a href="manga.html" class="nav-item"><img src="img/icon-manga.png" class="icon-img icon-img-sm" alt="Манга" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Crect x=\'2\' y=\'3\' width=\'20\' height=\'18\' rx=\'2\'%3E%3C/rect%3E%3Cpath d=\'M8 7h8M8 11h6M8 15h4\'%3E%3C/path%3E%3C/svg%3E'">Манга</a>
+                <a href="textbooks.html" class="nav-item"><img src="img/icon-textbook.png" class="icon-img icon-img-sm" alt="Учебники" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M4 19.5A2.5 2.5 0 0 1 6.5 17H20\'%3E%3C/path%3E%3Cpath d=\'M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z\'%3E%3C/path%3E%3C/svg%3E'">Учебники</a>
+                <a href="magazines.html" class="nav-item"><img src="img/icon-magazine.png" class="icon-img icon-img-sm" alt="Журналы" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M4 4h16v16H4z\'%3E%3C/path%3E%3Cpath d=\'M8 8h8M8 12h6M8 16h4\'%3E%3C/path%3E%3C/svg%3E'">Журналы</a>
+                <div class="header-search">
+                    <input type="text" class="search-input" placeholder="Поиск книг или авторов..." id="headerSearch">
                     <button class="search-button" onclick="performSearch()"><img src="img/icon-search.png" class="icon-img icon-img-sm" alt="Поиск" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\'%3E%3Ccircle cx=\'11\' cy=\'11\' r=\'8\'%3E%3C/circle%3E%3Cpath d=\'m21 21-4.35-4.35\'%3E%3C/path%3E%3C/svg%3E'"></button>
                 </div>
                 <div class="auth-buttons" id="authButtons"></div>
@@ -1229,7 +1175,7 @@
             <h2 class="filters-title">Фильтры и сортировка</h2>
             <div class="filters-grid">
                 <div class="filter-group">
-                    <label class="filter-label"><img src="img/icon-sort.png" class="icon-img icon-img-sm" alt="Сортировка" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M3 6h18M6 12h12M10 18h4\'%3E%3C/path%3E%3C/svg%3E'">Сортировать по:</label>
+                    <label class="filter-label">Сортировать по:</label>
                     <select class="filter-select" id="sortSelect">
                         <option value="popular">Популярности</option>
                         <option value="price-asc">Цене (по возрастанию)</option>
@@ -1239,7 +1185,7 @@
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label class="filter-label"><img src="img/icon-price.png" class="icon-img icon-img-sm" alt="Цена" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Ccircle cx=\'12\' cy=\'12\' r=\'10\'%3E%3C/circle%3E%3Cpath d=\'M16 8h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2z\'%3E%3C/path%3E%3C/svg%3E'">Цена:</label>
+                    <label class="filter-label">Цена:</label>
                     <select class="filter-select" id="priceSelect">
                         <option value="all">Любая</option>
                         <option value="0-500">До 500 руб</option>
@@ -1248,7 +1194,7 @@
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label class="filter-label"><img src="img/icon-subgenre.png" class="icon-img icon-img-sm" alt="Поджанр" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M20 7h-4.18A3 3 0 0 0 16 5.18V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v1.18A3 3 0 0 0 8.18 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z\'%3E%3C/path%3E%3C/svg%3E'">Поджанр:</label>
+                    <label class="filter-label">Поджанр:</label>
                     <select class="filter-select" id="subgenreSelect">
                         <option value="all">Все поджанры</option>
                         <option value="Высокое фэнтези">Высокое фэнтези</option>
@@ -1541,7 +1487,7 @@
         function loadUsersTable() {
             const users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
             document.getElementById('totalUsers').textContent = users.length;
-            document.getElementById('usersTable').innerHTML = users.map(u => `<tr><td>${u.id}</td><td>${u.name}</td><td>${u.username}</td><td>${u.password}</td><td>${u.email}</td><td>${u.phone}</td><td>${u.registrationDate}</td><td>0</td>`).join('');
+            document.getElementById('usersTable').innerHTML = users.map(u => `<tr><td>${u.id}</td><td>${u.name}</td><td>${u.username}</td><td>${u.password}</td><td>${u.email}</td><td>${u.phone}</td><td>${u.registrationDate}</td><td>0</td></tr>`).join('');
         }
         function loadOrdersTable() {
             const orders = JSON.parse(localStorage.getItem('userOrders')) || [];
