@@ -40,6 +40,7 @@
         /* ===== СТИЛИЗОВАННЫЕ ИКОНКИ ===== */
         .icon-img { width: 20px; height: 20px; object-fit: contain; vertical-align: middle; }
         .icon-img-sm { width: 16px; height: 16px; }
+        .icon-img-lg { width: 28px; height: 28px; }
 
         /* Уведомления */
         .notification {
@@ -189,14 +190,7 @@
             flex-direction: column;
             border: 3px solid var(--primary-color);
             box-shadow: var(--shadow-lg);
-            transform: scale(0.98);
-            transition: transform 0.3s ease;
-            animation: modalSlideIn 0.3s ease;
-        }
-        .book-detail-container.active { transform: scale(1); }
-        @keyframes modalSlideIn {
-            from { opacity: 0; transform: translateY(-50px) scale(0.9); }
-            to { opacity: 1; transform: translateY(0) scale(0.98); }
+            position: relative;
         }
         .book-detail-header {
             padding: 30px;
@@ -334,83 +328,8 @@
             transform: translateY(-3px);
             box-shadow: var(--shadow-lg);
         }
-        .book-detail-buy-btn {
-            flex: 1;
-            padding: 16px;
-            background: linear-gradient(135deg, var(--buy-color), var(--buy-hover));
-            color: white;
-            border: none;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: 700;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: var(--shadow-md);
-        }
-        .book-detail-buy-btn:hover {
-            background: linear-gradient(135deg, var(--buy-hover), #4A5D23);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
-        .rating-system {
-            margin: 20px 0;
-            padding: 20px;
-            background: rgba(255, 248, 220, 0.5);
-            border-radius: var(--radius-md);
-            border: 2px solid rgba(139, 69, 19, 0.2);
-        }
-        .rating-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .stars-container { display: flex; gap: 5px; margin-bottom: 15px; }
-        .star {
-            font-size: 28px;
-            cursor: pointer;
-            color: #ccc;
-            transition: all 0.2s ease;
-        }
-        .star:hover, .star.active { color: #FFD700; transform: scale(1.2); }
-        .rating-message {
-            font-size: 14px;
-            color: var(--secondary-color);
-            margin-top: 10px;
-            min-height: 20px;
-        }
-        .rating-message.success { color: #228B22; }
-        .rating-message.error { color: #DC143C; }
-        .rating-login-prompt {
-            padding: 15px;
-            background: linear-gradient(135deg, rgba(255, 140, 0, 0.1), rgba(210, 105, 30, 0.05));
-            border-radius: var(--radius-md);
-            border: 2px solid rgba(255, 140, 0, 0.2);
-            text-align: center;
-        }
-        .rating-login-btn {
-            padding: 10px 20px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-        .rating-login-btn:hover {
-            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
-            transform: translateY(-2px);
-        }
 
-        /* ===== ШАПКА - КАК НА ГЛАВНОЙ СТРАНИЦЕ ===== */
+        /* ===== ШАПКА - КАК НА ГЛАВНОЙ ===== */
         .header {
             background: linear-gradient(135deg, var(--light-color), #F5E6D3);
             padding: 15px 0;
@@ -1037,31 +956,6 @@
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
         }
-        .buy-now-btn {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, var(--buy-color), var(--buy-hover));
-            color: white;
-            border: none;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 16px;
-            font-weight: 700;
-            box-shadow: var(--shadow-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            z-index: 2;
-            position: relative;
-            margin-top: 10px;
-        }
-        .buy-now-btn:hover {
-            background: linear-gradient(135deg, var(--buy-hover), #4A5D23);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
 
         .footer {
             background: linear-gradient(135deg, var(--dark-color), #4A3529);
@@ -1143,7 +1037,7 @@
     <div class="book-detail-modal" id="bookDetailModal">
         <div class="book-detail-container">
             <div class="book-detail-header">
-                <h2 class="book-detail-title">Подробности книги</h2>
+                <h2>Подробности книги</h2>
                 <button class="close-detail-btn" onclick="closeBookDetail()">×</button>
             </div>
             <div id="bookDetailContent" class="book-detail-content"></div>
@@ -1189,22 +1083,22 @@
         </div>
     </div>
 
-    <!-- Шапка -->
+    <!-- Шапка - как на главной странице -->
     <header class="header">
         <div class="header-content">
             <a href="index.html" class="logo">Литературный Оазис</a>
             <nav class="nav">
-                <a href="index.html" class="nav-item"><span class="icon-img icon-img-sm">🏠</span>Главная</a>
-                <a href="manga.html" class="nav-item"><span class="icon-img icon-img-sm">📖</span>Манга</a>
-                <a href="textbooks.html" class="nav-item"><span class="icon-img icon-img-sm">📘</span>Учебники</a>
-                <a href="magazines.html" class="nav-item"><span class="icon-img icon-img-sm">📰</span>Журналы</a>
+                <a href="index.html" class="nav-item"><img src="img/icon-home.png" class="icon-img icon-img-sm" alt="Главная" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-5v-8H7v8H2a2 2 0 0 1-2-2z\'%3E%3C/path%3E%3C/svg%3E'">Главная</a>
+                <a href="manga.html" class="nav-item"><img src="img/icon-manga.png" class="icon-img icon-img-sm" alt="Манга" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Crect x=\'2\' y=\'3\' width=\'20\' height=\'18\' rx=\'2\'%3E%3C/rect%3E%3Cpath d=\'M8 7h8M8 11h6M8 15h4\'%3E%3C/path%3E%3C/svg%3E'">Манга</a>
+                <a href="textbooks.html" class="nav-item"><img src="img/icon-textbook.png" class="icon-img icon-img-sm" alt="Учебники" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M4 19.5A2.5 2.5 0 0 1 6.5 17H20\'%3E%3C/path%3E%3Cpath d=\'M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z\'%3E%3C/path%3E%3C/svg%3E'">Учебники</a>
+                <a href="magazines.html" class="nav-item"><img src="img/icon-magazine.png" class="icon-img icon-img-sm" alt="Журналы" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M4 4h16v16H4z\'%3E%3C/path%3E%3Cpath d=\'M8 8h8M8 12h6M8 16h4\'%3E%3C/path%3E%3C/svg%3E'">Журналы</a>
                 <div class="header-search">
                     <input type="text" class="search-input" placeholder="Поиск детективов..." id="headerSearch">
-                    <button class="search-button" onclick="performSearch()"><span class="icon-img icon-img-sm">🔍</span></button>
+                    <button class="search-button" onclick="performSearch()"><img src="img/icon-search.png" class="icon-img icon-img-sm" alt="Поиск" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\'%3E%3Ccircle cx=\'11\' cy=\'11\' r=\'8\'%3E%3C/circle%3E%3Cpath d=\'m21 21-4.35-4.35\'%3E%3C/path%3E%3C/svg%3E'"></button>
                 </div>
                 <div class="auth-buttons" id="authButtons"></div>
-                <button class="admin-panel-btn" id="adminPanelBtn" onclick="toggleAdminPanel()"><span class="icon-img icon-img-sm">⚡</span>Админ-панель</button>
-                <a href="cart.html" class="nav-item"><span class="icon-img icon-img-sm">🛒</span>Корзина<span class="cart-count" id="cart-count">0</span></a>
+                <button class="admin-panel-btn" id="adminPanelBtn" onclick="toggleAdminPanel()"><img src="img/icon-admin.png" class="icon-img icon-img-sm" alt="Админ" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\'%3E%3Cpath d=\'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\'%3E%3C/path%3E%3C/svg%3E'">Админ-панель</button>
+                <a href="cart.html" class="nav-item"><img src="img/icon-cart.png" class="icon-img icon-img-sm" alt="Корзина" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Ccircle cx=\'9\' cy=\'21\' r=\'1\'%3E%3C/circle%3E%3Ccircle cx=\'20\' cy=\'21\' r=\'1\'%3E%3C/circle%3E%3Cpath d=\'M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6\'%3E%3C/path%3E%3C/svg%3E'">Корзина<span class="cart-count" id="cart-count">0</span></a>
             </nav>
         </div>
     </header>
@@ -1280,22 +1174,16 @@
     </footer>
 
     <script>
-        // Данные книг в жанре детектив (с книгами Агаты Кристи)
+        // Данные книг в жанре детектив (только 8 книг - убраны последние 4)
         const detectiveBooks = [
-            // Книги Агаты Кристи
             { id: 301, title: "Немой свидетель", author: "Агата Кристи", pages: 320, price: 590, year: 1937, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=200&h=300&fit=crop&q=80", description: "Пожилая леди умирает при загадочных обстоятельствах, оставив состояние своей компаньонке. Эркюль Пуаро берётся за расследование этого запутанного дела, где главным свидетелем становится... попугай!", rating: 4.7, ratingCount: 1890, genres: ["Классический детектив", "Загадочное убийство"], isbn: "978-5-04-105956-9", language: "Русский", weight: 380, dimensions: "20.5 x 13.5 x 2.2 см", publisher: "Эксмо", available: true, seriesBadge: "Пуаро" },
             { id: 302, title: "Рождество Эркюля Пуаро", author: "Агата Кристи", pages: 288, price: 580, year: 1938, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=200&h=300&fit=crop&q=80", description: "В канун Рождества богатый патриарх семейства зовёт всех родственников в своё поместье. В рождественскую ночь его находят убитым. Пуаро предстоит разгадать эту праздничную тайну.", rating: 4.8, ratingCount: 2345, genres: ["Классический детектив", "Семейная драма"], isbn: "978-5-04-105957-6", language: "Русский", weight: 360, dimensions: "20.5 x 13.5 x 2.0 см", publisher: "Эксмо", available: true, seriesBadge: "Пуаро" },
             { id: 303, title: "Убийство на поле для гольфа", author: "Агата Кристи", pages: 256, price: 560, year: 1923, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "https://images.unsplash.com/photo-1589998059171-988d887df646?w=200&h=300&fit=crop&q=80", description: "Романтический уик-энд Пуаро прерывается срочным вызовом. На поле для гольфа обнаружено тело миллионера с ножом в спине. Дело осложняется тем, что рядом найдена ещё одна жертва...", rating: 4.6, ratingCount: 1765, genres: ["Классический детектив", "Романтический"], isbn: "978-5-04-105958-3", language: "Русский", weight: 340, dimensions: "20.5 x 13.5 x 1.8 см", publisher: "Эксмо", available: true, seriesBadge: "Пуаро" },
             { id: 304, title: "Смерть в облаках", author: "Агата Кристи", pages: 240, price: 540, year: 1935, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?w=200&h=300&fit=crop&q=80", description: "Во время авиаперелёта через Ла-Манш одного из пассажиров находят мёртвым. По счастливой случайности на борту оказывается Эркюль Пуаро, которому предстоит раскрыть преступление, совершённое на высоте 3000 метров.", rating: 4.7, ratingCount: 1987, genres: ["Классический детектив", "Закрытая комната"], isbn: "978-5-04-105959-0", language: "Русский", weight: 330, dimensions: "20.5 x 13.5 x 1.7 см", publisher: "Эксмо", available: true, seriesBadge: "Пуаро" },
-            // Другие детективы
             { id: 305, title: "Собака Баскервилей", author: "Артур Конан Дойл", pages: 256, price: 580, year: 1902, subgenre: "Классический детектив", series: "Шерлок Холмс", image: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=200&h=300&fit=crop&q=80", description: "Знаменитая повесть о Шерлоке Холмсе, расследующем тайну проклятия рода Баскервилей. Смерть сэра Чарльза Баскервиля и загадочный призрачный пёс, преследующий наследников.", rating: 4.9, ratingCount: 5678, genres: ["Классический детектив", "Готический"], isbn: "978-5-17-090196-8", language: "Русский", weight: 380, dimensions: "21 x 14 x 2.5 см", publisher: "АСТ", available: true, seriesBadge: "Шерлок Холмс" },
             { id: 306, title: "Убийство в Восточном экспрессе", author: "Агата Кристи", pages: 320, price: 620, year: 1934, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "https://images.unsplash.com/photo-1568667256549-094345857637?w=200&h=300&fit=crop&q=80", description: "Поезд «Восточный экспресс» застревает в снежных заносах, а ночью происходит убийство. Пуаро предстоит допросить всех пассажиров и раскрыть самое знаменитое преступление в истории детективного жанра.", rating: 4.9, ratingCount: 7890, genres: ["Классический детектив", "Закрытая комната"], isbn: "978-5-04-105960-6", language: "Русский", weight: 400, dimensions: "21 x 14 x 2.8 см", publisher: "Эксмо", available: true, seriesBadge: "Пуаро" },
             { id: 307, title: "Десять негритят", author: "Агата Кристи", pages: 288, price: 600, year: 1939, subgenre: "Психологический триллер", series: "Отдельный роман", image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=200&h=300&fit=crop&q=80", description: "Десять человек, незнакомых друг с другом, получают приглашение на остров. Постепенно они начинают погибать один за другим в соответствии с детской считалкой.", rating: 4.9, ratingCount: 6789, genres: ["Психологический триллер", "Загадка"], isbn: "978-5-04-105961-3", language: "Русский", weight: 370, dimensions: "21 x 14 x 2.3 см", publisher: "Эксмо", available: true },
-            { id: 308, title: "Золотой жук", author: "Эдгар Аллан По", pages: 256, price: 520, year: 1843, subgenre: "Мистический детектив", series: "Отдельный роман", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=300&fit=crop&q=80", description: "Рассказ о поиске сокровищ, зашифрованных в криптограмме. Считается одним из первых детективных произведений в истории литературы.", rating: 4.5, ratingCount: 2345, genres: ["Мистический детектив", "Приключения"], isbn: "978-5-17-090197-4", language: "Русский", weight: 350, dimensions: "20 x 13 x 2 см", publisher: "АСТ", available: true },
-            { id: 309, title: "Ребекка", author: "Дафна Дюморье", pages: 416, price: 690, year: 1938, subgenre: "Психологический триллер", series: "Отдельный роман", image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=200&h=300&fit=crop&q=80", description: "Готический роман о молодой женщине, которая выходит замуж за вдовца и сталкивается с призраком его первой жены Ребекки.", rating: 4.7, ratingCount: 3456, genres: ["Психологический триллер", "Готический"], isbn: "978-5-17-090198-1", language: "Русский", weight: 450, dimensions: "21 x 14 x 3 см", publisher: "АСТ", available: true },
-            { id: 310, title: "Убийство Роджера Экройда", author: "Агата Кристи", pages: 304, price: 590, year: 1926, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "https://images.unsplash.com/photo-1580477667995-2b94f01c9516?w=200&h=300&fit=crop&q=80", description: "Роман, который шокировал читателей неожиданной развязкой и навсегда изменил жанр детектива. Пуаро расследует убийство богатого вдовца.", rating: 4.8, ratingCount: 4567, genres: ["Классический детектив", "Неожиданный финал"], isbn: "978-5-04-105962-0", language: "Русский", weight: 380, dimensions: "21 x 14 x 2.5 см", publisher: "Эксмо", available: true, seriesBadge: "Пуаро" },
-            { id: 311, title: "Этюд в багровых тонах", author: "Артур Конан Дойл", pages: 208, price: 490, year: 1887, subgenre: "Классический детектив", series: "Шерлок Холмс", image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=200&h=300&fit=crop&q=80", description: "Первая книга о Шерлоке Холмсе, в которой читатель знакомится с великим сыщиком и доктором Ватсоном. Дело об убийстве, оставленном словом «Месть».", rating: 4.7, ratingCount: 5678, genres: ["Классический детектив", "Дебют"], isbn: "978-5-17-090199-8", language: "Русский", weight: 320, dimensions: "20 x 13 x 1.8 см", publisher: "АСТ", available: true, seriesBadge: "Шерлок Холмс" },
-            { id: 312, title: "Загадка Эндхауза", author: "Агата Кристи", pages: 280, price: 570, year: 1932, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "https://images.unsplash.com/photo-1589998059171-988d887df646?w=200&h=300&fit=crop&q=80", description: "Пуаро расследует покушения на молодую наследницу. Несколько раз её пытались убить, но каждый раз она чудом выживала. Кто стоит за этим?", rating: 4.6, ratingCount: 2345, genres: ["Классический детектив", "Семейная тайна"], isbn: "978-5-04-105963-7", language: "Русский", weight: 360, dimensions: "20.5 x 13.5 x 2 см", publisher: "Эксмо", available: true, seriesBadge: "Пуаро" }
+            { id: 308, title: "Убийство Роджера Экройда", author: "Агата Кристи", pages: 304, price: 590, year: 1926, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "https://images.unsplash.com/photo-1580477667995-2b94f01c9516?w=200&h=300&fit=crop&q=80", description: "Роман, который шокировал читателей неожиданной развязкой и навсегда изменил жанр детектива. Пуаро расследует убийство богатого вдовца.", rating: 4.8, ratingCount: 4567, genres: ["Классический детектив", "Неожиданный финал"], isbn: "978-5-04-105962-0", language: "Русский", weight: 380, dimensions: "21 x 14 x 2.5 см", publisher: "Эксмо", available: true, seriesBadge: "Пуаро" }
         ];
 
         let currentBooks = [...detectiveBooks];
@@ -1423,11 +1311,6 @@
             updateCartCount();
             showNotification(`"${book.title}" добавлена в корзину!`, 'success');
         }
-        function buyNow(bookId) {
-            if (!currentUser) { showAuthModal('login'); showNotification('Авторизуйтесь для покупки!', 'error'); return; }
-            const book = detectiveBooks.find(b => b.id === bookId);
-            showNotification(`Оформление заказа для "${book.title}"`, 'info');
-        }
         function updateCartCount() {
             const cart = JSON.parse(localStorage.getItem('cartItems')) || [];
             const total = cart.reduce((s, i) => s + i.quantity, 0);
@@ -1464,7 +1347,6 @@
                     </div>
                     <div class="book-detail-price">${book.price} ₽</div>
                     <div class="book-detail-actions">
-                        <button class="book-detail-buy-btn" onclick="buyNow(${book.id}); closeBookDetail();">Купить сейчас</button>
                         <button class="book-detail-cart-btn" onclick="addToCart(${book.id}); closeBookDetail();">В корзину</button>
                     </div>
                 </div>
@@ -1492,7 +1374,6 @@
                         ${seriesBadge}
                         <div class="book-meta"><span class="book-pages">${book.pages} стр.</span><span style="font-size:12px; color:var(--accent-color);">${book.year} г.</span></div>
                         <div class="book-price-container"><div class="book-price">${book.price} руб</div></div>
-                        <button class="buy-now-btn" onclick="buyNow(${book.id})">Купить сразу</button>
                         <button class="add-to-cart" onclick="addToCart(${book.id})">В корзину</button>
                     </div>
                 `;
@@ -1554,7 +1435,7 @@
         function loadUsersTable() {
             const users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
             document.getElementById('totalUsers').textContent = users.length;
-            document.getElementById('usersTable').innerHTML = users.map(u => `<tr><td>${u.id}</td><td>${u.name}</td><td>${u.username}</td><td>${u.password}</td><td>${u.email}</td><td>${u.phone}</td><td>${u.registrationDate}</td><td>0</td></table>`).join('');
+            document.getElementById('usersTable').innerHTML = users.map(u => `<tr><td>${u.id}</td><td>${u.name}</td><td>${u.username}</td><td>${u.password}</td><td>${u.email}</td><td>${u.phone}</td><td>${u.registrationDate}</td><td>0</td></tr>`).join('');
         }
         function loadOrdersTable() {
             const orders = JSON.parse(localStorage.getItem('userOrders')) || [];
