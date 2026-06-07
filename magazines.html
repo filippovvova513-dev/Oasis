@@ -773,7 +773,7 @@
         }
         .footer p { font-size: 14px; margin-bottom: 10px; }
 
-        /* ===== ТОЛЬКО ДЛЯ ПЛАНШЕТОВ ===== */
+        /* ===== ДЛЯ ПЛАНШЕТОВ ===== */
         @media (max-width: 1024px) {
             .products-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -788,202 +788,197 @@
             }
         }
 
-        /* ===== ТОЛЬКО ДЛЯ ТЕЛЕФОНОВ - ШАПКА СТАНОВИТСЯ В 2 СТРОКИ ===== */
+        /* ===== ДЛЯ ТЕЛЕФОНОВ - ШАПКА В 2 СТРОКИ ===== */
         @media (max-width: 768px) {
-            /* ШАПКА - перестраивается в 2 ряда только на телефонах */
+            /* ШАПКА - 2 строки */
             .header-content {
-                flex-direction: column !important;
-                gap: 10px !important;
-                padding: 10px 15px !important;
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px 15px;
             }
             
             .logo {
-                font-size: 20px !important;
-                text-align: center !important;
-                justify-content: center !important;
-                width: 100% !important;
-                white-space: normal !important;
+                font-size: 20px;
+                text-align: center;
+                justify-content: center;
+                width: 100%;
+                white-space: normal;
             }
             
             .nav {
-                justify-content: center !important;
-                width: 100% !important;
-                gap: 6px !important;
-                margin-left: 0 !important;
+                justify-content: center;
+                width: 100%;
+                gap: 6px;
+                margin-left: 0;
             }
             
             .nav-item {
-                padding: 6px 12px !important;
-                font-size: 12px !important;
-                white-space: nowrap !important;
+                padding: 6px 12px;
+                font-size: 12px;
+                white-space: nowrap;
             }
             
             .nav-item .icon-img-sm {
-                width: 14px !important;
-                height: 14px !important;
+                width: 14px;
+                height: 14px;
             }
             
             .header-search {
-                width: 100% !important;
-                margin-left: 0 !important;
+                width: 100%;
+                margin-left: 0;
             }
             
             .search-input {
-                width: 100% !important;
-                font-size: 14px !important;
+                width: 100%;
+                font-size: 14px;
             }
             
             .auth-buttons {
-                width: 100% !important;
-                justify-content: center !important;
+                width: 100%;
+                justify-content: center;
             }
             
             .user-menu {
-                justify-content: center !important;
-                width: 100% !important;
+                justify-content: center;
+                width: 100%;
             }
             
             .cart-count {
-                width: 18px !important;
-                height: 18px !important;
-                font-size: 9px !important;
-                top: -5px !important;
-                right: -5px !important;
+                width: 18px;
+                height: 18px;
+                font-size: 9px;
+                top: -5px;
+                right: -5px;
             }
             
             /* СЕТКА ТОВАРОВ - 1 колонка */
             .products-grid {
-                grid-template-columns: 1fr !important;
-                max-width: 380px !important;
-                margin-left: auto !important;
-                margin-right: auto !important;
-                gap: 20px !important;
-            }
-            
-            .product-card {
-                margin: 0 auto !important;
-                width: 100% !important;
+                grid-template-columns: 1fr;
+                max-width: 380px;
+                margin-left: auto;
+                margin-right: auto;
+                gap: 20px;
             }
             
             /* ЗАГОЛОВКИ */
             .page-title {
-                font-size: 28px !important;
+                font-size: 28px;
             }
             
             .page-subtitle {
-                font-size: 14px !important;
+                font-size: 14px;
             }
             
             /* ФИЛЬТРЫ */
             .filter-grid {
-                grid-template-columns: 1fr !important;
-                gap: 12px !important;
+                grid-template-columns: 1fr;
+                gap: 12px;
             }
             
             .filter-select {
-                width: 100% !important;
-                padding: 10px !important;
+                width: 100%;
+                padding: 10px;
             }
             
             .filter-section {
-                padding: 20px !important;
+                padding: 20px;
             }
             
             .filter-title {
-                font-size: 20px !important;
+                font-size: 20px;
             }
             
             /* МОДАЛЬНОЕ ОКНО */
             .magazine-detail-content {
-                flex-direction: column !important;
-                padding: 20px !important;
-                gap: 20px !important;
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
             }
             
             .magazine-detail-image-container {
-                text-align: center !important;
+                text-align: center;
             }
             
             .magazine-detail-image {
-                max-width: 180px !important;
+                max-width: 180px;
             }
             
             .magazine-detail-name {
-                font-size: 22px !important;
-                text-align: center !important;
+                font-size: 22px;
+                text-align: center;
             }
             
             .magazine-detail-author {
-                font-size: 16px !important;
-                text-align: center !important;
+                font-size: 16px;
+                text-align: center;
             }
             
             .magazine-details-grid {
-                grid-template-columns: 1fr !important;
-                gap: 10px !important;
+                grid-template-columns: 1fr;
+                gap: 10px;
             }
             
             .magazine-detail-price {
-                font-size: 26px !important;
+                font-size: 26px;
             }
             
             /* ПАГИНАЦИЯ */
             .pagination {
-                gap: 6px !important;
+                gap: 6px;
             }
             
             .page-btn {
-                padding: 8px 14px !important;
-                font-size: 13px !important;
+                padding: 8px 14px;
+                font-size: 13px;
             }
             
             /* ПОИСК */
             .search-results {
-                width: 90% !important;
-                right: 5% !important;
-                left: 5% !important;
-                top: 100px !important;
+                width: 90%;
+                right: 5%;
+                left: 5%;
+                top: 100px;
             }
             
             /* АДМИН-ПАНЕЛЬ */
             .admin-panel {
-                width: 85% !important;
-                left: -85% !important;
+                width: 85%;
+                left: -85%;
             }
             
             body.admin-panel-open {
-                margin-left: 85% !important;
+                margin-left: 85%;
             }
             
             /* ПОДВАЛ */
             .footer {
-                padding: 25px 15px !important;
-                margin-top: 30px !important;
+                padding: 25px 15px;
+                margin-top: 30px;
             }
             
             .footer p {
-                font-size: 11px !important;
+                font-size: 11px;
             }
             
             /* УВЕДОМЛЕНИЯ */
             .notification {
-                top: auto !important;
-                bottom: 20px !important;
-                left: 20px !important;
-                right: 20px !important;
-                text-align: center !important;
+                top: auto;
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+                text-align: center;
             }
             
             /* КНОПКИ - увеличиваем для пальцев */
             .nav-item, .add-to-cart, .login-btn, .register-btn, .logout-btn, 
             .page-btn, .search-button, .auth-btn, .close-detail-btn, 
             .close-auth-btn, .magazine-detail-cart-btn {
-                min-height: 44px !important;
+                min-height: 44px;
             }
             
             /* Убираем hover на мобильных */
             .product-card:hover, .nav-item:hover, .add-to-cart:hover {
-                transform: none !important;
+                transform: none;
             }
             
             .nav-item:active, .add-to-cart:active {
@@ -991,14 +986,12 @@
                 transform: scale(0.97);
             }
             
-            /* Плавная прокрутка */
             html {
                 scroll-behavior: smooth;
             }
             
-            /* Отключаем масштабирование при фокусе */
             input, select, textarea {
-                font-size: 16px !important;
+                font-size: 16px;
             }
             
             body {
@@ -1008,72 +1001,72 @@
 
         @media (max-width: 480px) {
             .logo {
-                font-size: 18px !important;
+                font-size: 18px;
             }
             
             .page-title {
-                font-size: 24px !important;
+                font-size: 24px;
             }
             
             .product-title {
-                font-size: 16px !important;
+                font-size: 16px;
             }
             
             .product-price {
-                font-size: 20px !important;
+                font-size: 20px;
             }
             
             .nav-item {
-                padding: 4px 10px !important;
-                font-size: 11px !important;
+                padding: 4px 10px;
+                font-size: 11px;
             }
             
             .login-btn, .register-btn {
-                padding: 6px 12px !important;
-                font-size: 12px !important;
+                padding: 6px 12px;
+                font-size: 12px;
             }
             
             .user-info {
-                padding: 5px 10px !important;
+                padding: 5px 10px;
             }
             
             .user-avatar {
-                width: 26px !important;
-                height: 26px !important;
-                font-size: 12px !important;
+                width: 26px;
+                height: 26px;
+                font-size: 12px;
             }
             
             .user-name {
-                font-size: 12px !important;
+                font-size: 12px;
             }
             
             .logout-btn {
-                padding: 5px 10px !important;
-                font-size: 11px !important;
+                padding: 5px 10px;
+                font-size: 11px;
             }
             
             .magazine-detail-name {
-                font-size: 20px !important;
+                font-size: 20px;
             }
             
             .magazine-detail-price {
-                font-size: 24px !important;
+                font-size: 24px;
             }
         }
 
         @media (max-width: 360px) {
             .nav-item {
-                padding: 4px 8px !important;
-                font-size: 10px !important;
+                padding: 4px 8px;
+                font-size: 10px;
             }
             
             .product-image {
-                max-width: 140px !important;
+                max-width: 140px;
             }
             
             .user-menu {
-                flex-direction: column !important;
-                gap: 6px !important;
+                flex-direction: column;
+                gap: 6px;
             }
         }
     </style>
@@ -1226,7 +1219,7 @@
     </footer>
 
     <script>
-        // Данные журналов
+        // Данные журналов (8 штук)
         const magazines = [
             { id: 28, title: "National Geographic", author: "Various", pages: 120, price: 350, genre: "Наука", period: "Ежемесячный", image: "img/mag1.jpg", description: "Журнал о природе и науке с потрясающими фотографиями.", year: 1888, publisher: "National Geographic Society", rating: 4.8, ratingCount: 4567, language: "Русский", frequency: "Ежемесячный" },
             { id: 29, title: "Forbes", author: "Various", pages: 100, price: 400, genre: "Бизнес", period: "Ежемесячный", image: "img/mag2.jpg", description: "Ведущий бизнес-журнал о финансах и предпринимательстве.", year: 1917, publisher: "Forbes Media", rating: 4.7, ratingCount: 3890, language: "Русский", frequency: "Ежемесячный" },
