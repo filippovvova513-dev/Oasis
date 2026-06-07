@@ -1,0 +1,937 @@
+/* ============================================
+   МОБИЛЬНАЯ ВЕРСИЯ ДЛЯ ВСЕХ СТРАНИЦ
+   Литературный Оазис - Книжный магазин
+   ============================================ */
+
+/* Планшеты (768px - 1024px) */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    .books-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .genres-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .filters-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .genre-header {
+        padding: 40px 0;
+    }
+    
+    .genre-title {
+        font-size: 36px;
+    }
+    
+    .genre-subtitle {
+        font-size: 20px;
+    }
+    
+    .banner-title {
+        font-size: 48px;
+    }
+    
+    .banner-slogan {
+        font-size: 20px;
+    }
+}
+
+/* Телефоны (до 768px) - ОСНОВНАЯ МОБИЛЬНАЯ ВЕРСИЯ */
+@media (max-width: 768px) {
+    /* ----- ОБЩИЕ СТИЛИ ----- */
+    body {
+        font-size: 14px;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+        margin-bottom: 25px;
+    }
+    
+    /* ----- ШАПКА (ДЛЯ ВСЕХ СТРАНИЦ) ----- */
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .logo {
+        font-size: 22px;
+        text-align: center;
+        justify-content: center;
+        white-space: normal;
+    }
+    
+    .nav {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+    }
+    
+    .nav-item {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 16px;
+    }
+    
+    .header-search {
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    .search-input {
+        width: 100%;
+        font-size: 14px;
+    }
+    
+    .search-button {
+        padding: 12px 18px;
+    }
+    
+    .auth-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .user-menu {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .user-info {
+        padding: 8px 12px;
+    }
+    
+    .user-avatar {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+    
+    .logout-btn, .user-action-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    /* ----- БАННЕР (ГЛАВНАЯ СТРАНИЦА) ----- */
+    .main-banner {
+        padding: 40px 15px;
+    }
+    
+    .banner-content {
+        flex-direction: column;
+        padding: 0 15px;
+    }
+    
+    .banner-logo-corner {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin: 0 auto 20px auto;
+    }
+    
+    .banner-logo-frame {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .banner-logo-inner {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .banner-title {
+        font-size: 28px;
+    }
+    
+    .banner-subtitle {
+        font-size: 14px;
+    }
+    
+    .banner-slogan {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+    
+    .banner-contacts {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .contact-item {
+        padding: 15px;
+    }
+    
+    .contact-label {
+        font-size: 14px;
+    }
+    
+    .contact-value {
+        font-size: 16px;
+    }
+    
+    /* ----- СЕТКА КНИГ (ДЛЯ ВСЕХ СТРАНИЦ) ----- */
+    .books-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .book-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+    
+    .book-image-left {
+        margin: 0 auto;
+        flex: 0 0 auto;
+    }
+    
+    .book-image-left img {
+        width: 130px;
+        height: 180px;
+    }
+    
+    .book-info-right {
+        text-align: center;
+        margin-top: 10px;
+    }
+    
+    .book-price-right {
+        text-align: center;
+    }
+    
+    .book-details-list {
+        text-align: left;
+        max-width: 250px;
+        margin: 0 auto;
+    }
+    
+    .cart-btn-right {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    /* ----- СТРАНИЦЫ ЖАНРОВ (horror, fantasy, detective) ----- */
+    .genre-header {
+        padding: 30px 15px;
+    }
+    
+    .genre-header-content {
+        padding: 0;
+    }
+    
+    .genre-title {
+        font-size: 28px;
+    }
+    
+    .genre-subtitle {
+        font-size: 16px;
+    }
+    
+    .genre-description {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+    
+    .genre-stats {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 25px;
+    }
+    
+    .stat-item {
+        text-align: center;
+    }
+    
+    .stat-value {
+        font-size: 28px;
+    }
+    
+    .stat-label {
+        font-size: 14px;
+    }
+    
+    /* ----- ФИЛЬТРЫ (ДЛЯ ВСЕХ СТРАНИЦ С ФИЛЬТРАМИ) ----- */
+    .filters-section {
+        padding: 20px;
+        margin-bottom: 25px;
+    }
+    
+    .filters-title {
+        font-size: 20px;
+        text-align: center;
+    }
+    
+    .filters-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .filter-group {
+        width: 100%;
+    }
+    
+    .filter-label {
+        font-size: 14px;
+    }
+    
+    .filter-select {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .filter-actions {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+    }
+    
+    .filter-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    /* ----- КАРУСЕЛЬ (ГЛАВНАЯ СТРАНИЦА) ----- */
+    .carousel-container {
+        height: auto;
+        min-height: 500px;
+        padding: 20px;
+    }
+    
+    .carousel-slide {
+        flex-direction: column;
+        gap: 20px;
+        padding: 15px;
+    }
+    
+    .carousel-image {
+        width: 200px;
+        height: 260px;
+        margin: 0 auto;
+    }
+    
+    .carousel-content {
+        text-align: center;
+        padding: 10px;
+    }
+    
+    .carousel-book-title {
+        font-size: 22px;
+    }
+    
+    .carousel-book-author {
+        font-size: 16px;
+    }
+    
+    .carousel-book-description {
+        font-size: 13px;
+        max-height: 80px;
+        overflow-y: auto;
+    }
+    
+    .carousel-meta {
+        justify-content: center;
+        gap: 20px;
+    }
+    
+    .meta-value {
+        font-size: 18px;
+    }
+    
+    .meta-label {
+        font-size: 12px;
+    }
+    
+    .carousel-price {
+        font-size: 24px;
+    }
+    
+    .carousel-btn {
+        padding: 12px 20px;
+        font-size: 16px;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .carousel-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
+    .carousel-prev {
+        left: 10px;
+    }
+    
+    .carousel-next {
+        right: 10px;
+    }
+    
+    /* ----- ЖАНРЫ НА ГЛАВНОЙ СТРАНИЦЕ ----- */
+    .genres-grid {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+        margin: 0 auto;
+        gap: 20px;
+    }
+    
+    .genre-card {
+        padding: 25px 20px;
+    }
+    
+    .genre-icon-container {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .genre-icon {
+        font-size: 32px;
+    }
+    
+    .genre-title {
+        font-size: 22px;
+    }
+    
+    .genre-description {
+        font-size: 13px;
+    }
+    
+    .genre-count {
+        font-size: 12px;
+    }
+    
+    /* ----- НОВОСТИ ----- */
+    .news-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .news-card {
+        padding: 20px;
+    }
+    
+    .news-badge {
+        font-size: 12px;
+        padding: 6px 15px;
+    }
+    
+    .news-date {
+        font-size: 12px;
+    }
+    
+    .news-title {
+        font-size: 18px;
+    }
+    
+    .news-description {
+        font-size: 13px;
+    }
+    
+    .show-more-btn {
+        padding: 12px 25px;
+        font-size: 14px;
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
+    }
+    
+    /* ----- МОДАЛЬНЫЕ ОКНА (ДЕТАЛИ КНИГИ, АВТОРИЗАЦИЯ) ----- */
+    .book-detail-content {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+    
+    .book-detail-image-container {
+        margin: 0 auto;
+        flex: 0 0 auto;
+    }
+    
+    .book-detail-image {
+        max-width: 180px;
+        height: 260px;
+    }
+    
+    .book-detail-name {
+        font-size: 24px;
+        text-align: center;
+    }
+    
+    .book-detail-author {
+        font-size: 18px;
+        text-align: center;
+    }
+    
+    .book-detail-description {
+        font-size: 14px;
+        padding: 15px;
+    }
+    
+    .book-details-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .book-detail-item {
+        padding: 10px;
+    }
+    
+    .book-detail-price {
+        font-size: 28px;
+        padding: 15px;
+    }
+    
+    .book-detail-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .book-detail-cart-btn {
+        padding: 12px;
+        font-size: 16px;
+    }
+    
+    /* Модальное окно авторизации */
+    .auth-modal .auth-form {
+        width: 95%;
+        padding: 20px;
+    }
+    
+    .auth-content {
+        padding: 20px;
+    }
+    
+    .auth-title {
+        font-size: 20px;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .form-input {
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .auth-btn {
+        padding: 12px;
+        font-size: 16px;
+    }
+    
+    .auth-tab {
+        padding: 12px;
+        font-size: 16px;
+    }
+    
+    /* ----- АДМИН-ПАНЕЛЬ ВНИЗУ ----- */
+    .admin-footer-panel {
+        margin-top: 40px;
+    }
+    
+    .admin-footer-header {
+        padding: 20px;
+    }
+    
+    .admin-footer-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    
+    .admin-footer-title {
+        font-size: 20px;
+    }
+    
+    .admin-footer-subtitle {
+        font-size: 11px;
+    }
+    
+    .admin-footer-tabs {
+        flex-direction: column;
+        padding: 0;
+    }
+    
+    .admin-footer-tab {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+        justify-content: center;
+    }
+    
+    .admin-footer-content {
+        padding: 20px;
+    }
+    
+    .admin-footer-section-title {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+    
+    .admin-footer-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .admin-footer-stat-card {
+        padding: 15px;
+    }
+    
+    .admin-footer-stat-value {
+        font-size: 24px;
+    }
+    
+    .admin-footer-stat-label {
+        font-size: 11px;
+    }
+    
+    .admin-footer-table-container {
+        overflow-x: auto;
+        margin-bottom: 15px;
+    }
+    
+    .admin-footer-table {
+        font-size: 11px;
+        min-width: 500px;
+    }
+    
+    .admin-footer-table th,
+    .admin-footer-table td {
+        padding: 8px 12px;
+    }
+    
+    .admin-footer-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .admin-footer-action-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 10px;
+        font-size: 13px;
+    }
+    
+    /* ----- СТРАНИЦА КОРЗИНЫ (cart.html) ----- */
+    .cart-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .cart-items {
+        padding: 20px;
+    }
+    
+    .cart-items-title {
+        font-size: 20px;
+    }
+    
+    .cart-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+        gap: 15px;
+    }
+    
+    .cart-item-image {
+        width: 120px;
+        height: 170px;
+        margin: 0 auto;
+    }
+    
+    .cart-item-info {
+        text-align: center;
+    }
+    
+    .cart-item-title {
+        font-size: 18px;
+    }
+    
+    .cart-item-author {
+        font-size: 14px;
+    }
+    
+    .cart-item-price {
+        font-size: 20px;
+        justify-content: center;
+    }
+    
+    .cart-item-actions {
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        gap: 15px;
+    }
+    
+    .quantity-control {
+        padding: 8px 12px;
+    }
+    
+    .quantity-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+    
+    .quantity {
+        font-size: 18px;
+    }
+    
+    .remove-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .cart-summary {
+        padding: 20px;
+        position: static;
+    }
+    
+    .summary-title {
+        font-size: 22px;
+    }
+    
+    .summary-total {
+        font-size: 26px;
+        padding: 15px;
+    }
+    
+    .checkout-btn {
+        padding: 15px;
+        font-size: 18px;
+    }
+    
+    /* ----- ПУСТАЯ КОРЗИНА ----- */
+    .empty-cart {
+        padding: 50px 20px;
+    }
+    
+    .empty-icon {
+        font-size: 60px;
+    }
+    
+    .empty-title {
+        font-size: 24px;
+    }
+    
+    .empty-text {
+        font-size: 14px;
+    }
+    
+    .continue-shopping {
+        padding: 14px 25px;
+        font-size: 16px;
+    }
+    
+    /* ----- ПОДВАЛ ----- */
+    .footer {
+        padding: 30px 15px;
+        margin-top: 40px;
+    }
+    
+    .footer p {
+        font-size: 12px;
+    }
+    
+    /* ----- РЕЗУЛЬТАТЫ ПОИСКА ----- */
+    .search-results {
+        width: 95%;
+        right: 2.5%;
+        left: 2.5%;
+        top: 80px;
+        max-height: 80vh;
+    }
+    
+    .search-result-item {
+        padding: 10px;
+        gap: 10px;
+    }
+    
+    .search-result-image {
+        width: 50px;
+        height: 70px;
+    }
+    
+    .search-result-title {
+        font-size: 14px;
+    }
+    
+    .search-result-author {
+        font-size: 12px;
+    }
+    
+    .search-result-price {
+        font-size: 14px;
+    }
+}
+
+/* Маленькие телефоны (до 480px) */
+@media (max-width: 480px) {
+    .logo {
+        font-size: 18px;
+    }
+    
+    .section-title {
+        font-size: 24px;
+    }
+    
+    .book-title-right {
+        font-size: 16px;
+    }
+    
+    .book-price-right {
+        font-size: 18px;
+    }
+    
+    .genre-title {
+        font-size: 24px;
+    }
+    
+    .book-detail-name {
+        font-size: 20px;
+    }
+    
+    .book-detail-author {
+        font-size: 16px;
+    }
+    
+    .book-detail-price {
+        font-size: 24px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 15px;
+    }
+    
+    .form-input {
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .admin-footer-stat-value {
+        font-size: 20px;
+    }
+    
+    .admin-footer-stat-label {
+        font-size: 10px;
+    }
+}
+
+/* Очень маленькие телефоны (до 360px) */
+@media (max-width: 360px) {
+    .banner-title {
+        font-size: 24px;
+    }
+    
+    .book-image-left img {
+        width: 100px;
+        height: 150px;
+    }
+    
+    .carousel-image {
+        width: 160px;
+        height: 220px;
+    }
+    
+    .user-menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .user-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .user-action-btn, .logout-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Улучшения для сенсорного управления */
+@media (max-width: 768px) {
+    /* Увеличенные области нажатия для пальцев */
+    .nav-item,
+    .add-to-cart,
+    .cart-btn-right,
+    .filter-btn,
+    .auth-btn,
+    .login-btn,
+    .register-btn,
+    .logout-btn,
+    .user-action-btn,
+    .checkout-btn,
+    .continue-shopping,
+    .show-more-btn,
+    .carousel-btn,
+    .quantity-btn,
+    .remove-btn,
+    .submit-order,
+    .cancel-order,
+    .admin-footer-action-btn,
+    .modal-close,
+    .close-auth-btn,
+    .close-detail-btn,
+    .close-orders-btn,
+    .close-profile-btn,
+    .close-random-book-btn {
+        min-height: 44px;
+    }
+    
+    /* Убираем hover эффекты на мобильных (они не работают) */
+    .book-card:hover,
+    .genre-card:hover,
+    .nav-item:hover,
+    .add-to-cart:hover,
+    .cart-btn-right:hover {
+        transform: none;
+    }
+    
+    /* Плавная прокрутка */
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    /* Отключаем масштабирование при фокусе на iOS */
+    input,
+    select,
+    textarea {
+        font-size: 16px;
+    }
+    
+    /* Улучшаем прокрутку */
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: #F5E6D3;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: #8B4513;
+        border-radius: 5px;
+    }
+}
