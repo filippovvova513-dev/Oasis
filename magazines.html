@@ -1010,8 +1010,10 @@
             .magazine-detail-actions { flex-direction: column; }
         }
         /* ============================================
+ /* ============================================
    МОБИЛЬНАЯ ВЕРСИЯ ДЛЯ ВСЕХ СТРАНИЦ
    Литературный Оазис - Книжный магазин
+   Версия 2.0 - Полностью адаптивная
    ============================================ */
 
 /* Планшеты (768px - 1024px) */
@@ -1020,7 +1022,8 @@
         padding: 0 20px;
     }
     
-    .books-grid {
+    .books-grid,
+    .products-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
     }
@@ -1030,7 +1033,8 @@
         gap: 20px;
     }
     
-    .filters-grid {
+    .filters-grid,
+    .filter-grid {
         grid-template-columns: repeat(2, 1fr);
     }
     
@@ -1038,11 +1042,13 @@
         padding: 40px 0;
     }
     
-    .genre-title {
+    .genre-title,
+    .page-title {
         font-size: 36px;
     }
     
-    .genre-subtitle {
+    .genre-subtitle,
+    .page-subtitle {
         font-size: 20px;
     }
     
@@ -1053,6 +1059,20 @@
     .banner-slogan {
         font-size: 20px;
     }
+    
+    .magazine-detail-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .magazine-detail-image-container {
+        flex: 0 0 auto;
+        align-items: center;
+    }
+    
+    .magazine-details-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 /* Телефоны (до 768px) - ОСНОВНАЯ МОБИЛЬНАЯ ВЕРСИЯ */
@@ -1060,41 +1080,51 @@
     /* ----- ОБЩИЕ СТИЛИ ----- */
     body {
         font-size: 14px;
+        overflow-x: hidden;
     }
     
     .container {
         padding: 0 15px;
+        max-width: 100%;
     }
     
-    .section-title {
-        font-size: 28px;
-        margin-bottom: 25px;
+    .section-title,
+    .filter-title {
+        font-size: 24px;
+        margin-bottom: 20px;
     }
     
     /* ----- ШАПКА (ДЛЯ ВСЕХ СТРАНИЦ) ----- */
+    .header {
+        padding: 10px 0;
+    }
+    
     .header-content {
         flex-direction: column;
-        gap: 15px;
-        padding: 15px;
+        gap: 12px;
+        padding: 0 15px;
     }
     
     .logo {
-        font-size: 22px;
+        font-size: 20px;
         text-align: center;
         justify-content: center;
         white-space: normal;
+        width: 100%;
     }
     
     .nav {
-        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-left: 0;
         width: 100%;
         gap: 8px;
     }
     
     .nav-item {
-        width: 100%;
-        justify-content: center;
-        padding: 12px 16px;
+        padding: 8px 14px;
+        font-size: 13px;
+        white-space: nowrap;
     }
     
     .header-search {
@@ -1105,21 +1135,29 @@
     .search-input {
         width: 100%;
         font-size: 14px;
+        padding: 10px 16px;
     }
     
     .search-button {
-        padding: 12px 18px;
+        padding: 10px 16px;
     }
     
     .auth-buttons {
         width: 100%;
         justify-content: center;
+        gap: 10px;
+    }
+    
+    .login-btn, .register-btn {
+        padding: 8px 16px;
+        font-size: 13px;
     }
     
     .user-menu {
         width: 100%;
         justify-content: center;
         flex-wrap: wrap;
+        gap: 10px;
     }
     
     .user-info {
@@ -1132,19 +1170,38 @@
         font-size: 14px;
     }
     
+    .user-name {
+        font-size: 13px;
+    }
+    
     .logout-btn, .user-action-btn {
         padding: 8px 12px;
         font-size: 12px;
     }
     
+    .admin-panel-btn {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+    
+    /* Корзина в шапке */
+    .cart-count {
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+        top: -6px;
+        right: -6px;
+    }
+    
     /* ----- БАННЕР (ГЛАВНАЯ СТРАНИЦА) ----- */
     .main-banner {
-        padding: 40px 15px;
+        padding: 30px 15px;
     }
     
     .banner-content {
         flex-direction: column;
-        padding: 0 15px;
+        padding: 0 10px;
+        text-align: center;
     }
     
     .banner-logo-corner {
@@ -1155,13 +1212,14 @@
     }
     
     .banner-logo-frame {
-        width: 150px;
-        height: 150px;
+        width: 120px;
+        height: 120px;
     }
     
     .banner-logo-inner {
-        width: 120px;
-        height: 120px;
+        width: 95px;
+        height: 95px;
+        font-size: 28px;
     }
     
     .banner-title {
@@ -1173,73 +1231,99 @@
     }
     
     .banner-slogan {
-        font-size: 14px;
+        font-size: 13px;
         padding: 0 10px;
     }
     
     .banner-contacts {
         grid-template-columns: 1fr;
-        gap: 15px;
+        gap: 12px;
         margin-top: 20px;
     }
     
     .contact-item {
-        padding: 15px;
+        padding: 12px;
     }
     
     .contact-label {
-        font-size: 14px;
+        font-size: 13px;
     }
     
     .contact-value {
-        font-size: 16px;
+        font-size: 15px;
     }
     
-    /* ----- СЕТКА КНИГ (ДЛЯ ВСЕХ СТРАНИЦ) ----- */
-    .books-grid {
+    /* ----- СЕТКА КНИГ И ЖУРНАЛОВ (ДЛЯ ВСЕХ СТРАНИЦ) ----- */
+    .books-grid,
+    .products-grid {
         grid-template-columns: 1fr;
         gap: 20px;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
     }
     
+    .product-card,
     .book-card {
         flex-direction: column;
         text-align: center;
         padding: 15px;
+        cursor: pointer;
     }
     
-    .book-image-left {
-        margin: 0 auto;
-        flex: 0 0 auto;
+    .product-image-container {
+        min-height: 240px;
+        padding: 15px;
     }
     
-    .book-image-left img {
-        width: 130px;
-        height: 180px;
+    .product-image {
+        max-width: 150px;
+        height: auto;
+        max-height: 220px;
     }
     
-    .book-info-right {
-        text-align: center;
-        margin-top: 10px;
+    .product-genre {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 5px 12px;
+        font-size: 11px;
     }
     
-    .book-price-right {
-        text-align: center;
+    .product-title {
+        font-size: 18px;
+        min-height: auto;
     }
     
-    .book-details-list {
-        text-align: left;
-        max-width: 250px;
-        margin: 0 auto;
+    .product-author {
+        font-size: 14px;
     }
     
-    .cart-btn-right {
+    .product-price {
+        font-size: 22px;
+    }
+    
+    .add-to-cart {
         padding: 12px;
         font-size: 14px;
     }
     
-    /* ----- СТРАНИЦЫ ЖАНРОВ (horror, fantasy, detective) ----- */
+    /* ----- СТРАНИЦЫ ЖАНРОВ ----- */
+    .page-header {
+        padding: 25px 15px;
+        margin-top: 15px;
+    }
+    
+    .page-title {
+        font-size: 28px;
+    }
+    
+    .page-subtitle {
+        font-size: 16px;
+    }
+    
     .genre-header {
-        padding: 30px 15px;
+        padding: 25px 15px;
     }
     
     .genre-header-content {
@@ -1255,14 +1339,14 @@
     }
     
     .genre-description {
-        font-size: 14px;
+        font-size: 13px;
         padding: 0 10px;
     }
     
     .genre-stats {
         flex-direction: column;
-        gap: 15px;
-        margin-top: 25px;
+        gap: 12px;
+        margin-top: 20px;
     }
     
     .stat-item {
@@ -1270,27 +1354,31 @@
     }
     
     .stat-value {
-        font-size: 28px;
+        font-size: 24px;
     }
     
     .stat-label {
-        font-size: 14px;
+        font-size: 12px;
     }
     
     /* ----- ФИЛЬТРЫ (ДЛЯ ВСЕХ СТРАНИЦ С ФИЛЬТРАМИ) ----- */
+    .filter-section,
     .filters-section {
-        padding: 20px;
+        padding: 20px 15px;
         margin-bottom: 25px;
     }
     
+    .filter-title,
     .filters-title {
         font-size: 20px;
         text-align: center;
+        margin-bottom: 15px;
     }
     
+    .filter-grid,
     .filters-grid {
         grid-template-columns: 1fr;
-        gap: 15px;
+        gap: 12px;
     }
     
     .filter-group {
@@ -1303,38 +1391,26 @@
     
     .filter-select {
         width: 100%;
-        padding: 10px;
-        font-size: 14px;
-    }
-    
-    .filter-actions {
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 20px;
-    }
-    
-    .filter-btn {
-        width: 100%;
-        padding: 12px;
+        padding: 10px 14px;
         font-size: 14px;
     }
     
     /* ----- КАРУСЕЛЬ (ГЛАВНАЯ СТРАНИЦА) ----- */
     .carousel-container {
         height: auto;
-        min-height: 500px;
-        padding: 20px;
+        min-height: 450px;
+        padding: 15px;
     }
     
     .carousel-slide {
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
         padding: 15px;
     }
     
     .carousel-image {
-        width: 200px;
-        height: 260px;
+        width: 160px;
+        height: 220px;
         margin: 0 auto;
     }
     
@@ -1344,185 +1420,242 @@
     }
     
     .carousel-book-title {
-        font-size: 22px;
+        font-size: 20px;
     }
     
     .carousel-book-author {
-        font-size: 16px;
+        font-size: 15px;
     }
     
     .carousel-book-description {
-        font-size: 13px;
-        max-height: 80px;
+        font-size: 12px;
+        max-height: 70px;
         overflow-y: auto;
     }
     
     .carousel-meta {
         justify-content: center;
-        gap: 20px;
+        gap: 15px;
+        flex-wrap: wrap;
     }
     
     .meta-value {
-        font-size: 18px;
+        font-size: 16px;
     }
     
     .meta-label {
-        font-size: 12px;
+        font-size: 11px;
     }
     
     .carousel-price {
-        font-size: 24px;
+        font-size: 22px;
     }
     
     .carousel-btn {
-        padding: 12px 20px;
-        font-size: 16px;
+        padding: 10px 16px;
+        font-size: 14px;
         width: 100%;
         justify-content: center;
     }
     
     .carousel-arrow {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
     }
     
     .carousel-prev {
-        left: 10px;
+        left: 5px;
     }
     
     .carousel-next {
-        right: 10px;
+        right: 5px;
     }
     
     /* ----- ЖАНРЫ НА ГЛАВНОЙ СТРАНИЦЕ ----- */
     .genres-grid {
         grid-template-columns: 1fr;
-        max-width: 320px;
+        max-width: 300px;
         margin: 0 auto;
-        gap: 20px;
+        gap: 15px;
     }
     
     .genre-card {
-        padding: 25px 20px;
+        padding: 20px 15px;
     }
     
     .genre-icon-container {
-        width: 70px;
-        height: 70px;
+        width: 60px;
+        height: 60px;
     }
     
     .genre-icon {
-        font-size: 32px;
+        font-size: 28px;
     }
     
-    .genre-title {
-        font-size: 22px;
+    .genre-card .genre-title {
+        font-size: 20px;
     }
     
-    .genre-description {
-        font-size: 13px;
+    .genre-card .genre-description {
+        font-size: 12px;
     }
     
     .genre-count {
-        font-size: 12px;
+        font-size: 11px;
     }
     
     /* ----- НОВОСТИ ----- */
     .news-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 15px;
     }
     
     .news-card {
-        padding: 20px;
+        padding: 15px;
     }
     
     .news-badge {
-        font-size: 12px;
-        padding: 6px 15px;
+        font-size: 11px;
+        padding: 5px 12px;
     }
     
     .news-date {
-        font-size: 12px;
+        font-size: 11px;
     }
     
     .news-title {
-        font-size: 18px;
+        font-size: 16px;
     }
     
     .news-description {
-        font-size: 13px;
+        font-size: 12px;
     }
     
     .show-more-btn {
-        padding: 12px 25px;
-        font-size: 14px;
+        padding: 10px 20px;
+        font-size: 13px;
         width: 100%;
-        max-width: 250px;
+        max-width: 200px;
         justify-content: center;
     }
     
-    /* ----- МОДАЛЬНЫЕ ОКНА (ДЕТАЛИ КНИГИ, АВТОРИЗАЦИЯ) ----- */
+    /* ----- МОДАЛЬНЫЕ ОКНА ----- */
+    /* Детали книги/журнала */
+    .magazine-detail-modal .magazine-detail-container,
+    .book-detail-modal .book-detail-container {
+        width: 95%;
+        max-height: 85vh;
+    }
+    
+    .magazine-detail-header,
+    .book-detail-header {
+        padding: 20px;
+    }
+    
+    .magazine-detail-title,
+    .book-detail-title {
+        font-size: 22px;
+    }
+    
+    .magazine-detail-content,
     .book-detail-content {
         flex-direction: column;
         padding: 20px;
         gap: 20px;
     }
     
+    .magazine-detail-image-container,
     .book-detail-image-container {
         margin: 0 auto;
         flex: 0 0 auto;
     }
     
+    .magazine-detail-image,
     .book-detail-image {
-        max-width: 180px;
-        height: 260px;
+        max-width: 160px;
+        height: auto;
+        max-height: 240px;
     }
     
+    .magazine-detail-name,
     .book-detail-name {
-        font-size: 24px;
+        font-size: 22px;
         text-align: center;
     }
     
+    .magazine-detail-author,
     .book-detail-author {
-        font-size: 18px;
+        font-size: 16px;
         text-align: center;
+        margin-bottom: 15px;
     }
     
+    .magazine-detail-description,
     .book-detail-description {
-        font-size: 14px;
-        padding: 15px;
+        font-size: 13px;
+        padding: 12px;
+        margin-bottom: 15px;
+        max-height: 150px;
+        overflow-y: auto;
     }
     
+    .magazine-details-grid,
     .book-details-grid {
         grid-template-columns: 1fr;
         gap: 10px;
+        margin-bottom: 15px;
     }
     
+    .magazine-detail-item,
     .book-detail-item {
         padding: 10px;
     }
     
-    .book-detail-price {
-        font-size: 28px;
-        padding: 15px;
+    .magazine-detail-label,
+    .book-detail-label {
+        font-size: 12px;
     }
     
+    .magazine-detail-value,
+    .book-detail-value {
+        font-size: 16px;
+    }
+    
+    .magazine-detail-price,
+    .book-detail-price {
+        font-size: 26px;
+        padding: 12px;
+        margin: 15px 0;
+    }
+    
+    .magazine-detail-actions,
     .book-detail-actions {
         flex-direction: column;
         gap: 10px;
+        margin-top: 15px;
     }
     
-    .book-detail-cart-btn {
+    .magazine-detail-cart-btn,
+    .book-detail-cart-btn,
+    .magazine-detail-buy-btn,
+    .book-detail-buy-btn {
         padding: 12px;
         font-size: 16px;
+        width: 100%;
+    }
+    
+    .close-detail-btn,
+    .modal-close {
+        width: 36px;
+        height: 36px;
+        font-size: 22px;
     }
     
     /* Модальное окно авторизации */
     .auth-modal .auth-form {
         width: 95%;
-        padding: 20px;
+        max-width: 400px;
     }
     
     .auth-content {
@@ -1531,140 +1664,106 @@
     
     .auth-title {
         font-size: 20px;
+        margin-bottom: 20px;
     }
     
     .form-group {
         margin-bottom: 15px;
     }
     
+    .form-label {
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+    
     .form-input {
-        padding: 10px;
+        padding: 10px 12px;
         font-size: 14px;
     }
     
     .auth-btn {
         padding: 12px;
-        font-size: 16px;
+        font-size: 15px;
     }
     
     .auth-tab {
         padding: 12px;
-        font-size: 16px;
+        font-size: 15px;
     }
     
-    /* ----- АДМИН-ПАНЕЛЬ ВНИЗУ ----- */
-    .admin-footer-panel {
-        margin-top: 40px;
+    .close-auth-btn {
+        font-size: 24px;
+        top: 10px;
+        right: 15px;
     }
     
-    .admin-footer-header {
+    /* ----- АДМИН-ПАНЕЛЬ (БОКОВАЯ) ----- */
+    .admin-panel {
+        width: 85%;
+        left: -85%;
+    }
+    
+    body.admin-panel-open {
+        margin-left: 85%;
+    }
+    
+    .admin-header {
         padding: 20px;
     }
     
-    .admin-footer-icon {
+    .admin-title-container {
+        gap: 10px;
+    }
+    
+    .admin-icon {
         width: 40px;
         height: 40px;
         font-size: 18px;
     }
     
-    .admin-footer-title {
+    .admin-title {
+        font-size: 22px;
+    }
+    
+    .admin-subtitle {
+        font-size: 11px;
+        margin-left: 50px;
+    }
+    
+    .admin-close {
+        top: 20px;
+        right: 20px;
+        width: 32px;
+        height: 32px;
         font-size: 20px;
-    }
-    
-    .admin-footer-subtitle {
-        font-size: 11px;
-    }
-    
-    .admin-footer-tabs {
-        flex-direction: column;
-        padding: 0;
-    }
-    
-    .admin-footer-tab {
-        width: 100%;
-        padding: 12px;
-        font-size: 14px;
-        justify-content: center;
-    }
-    
-    .admin-footer-content {
-        padding: 20px;
-    }
-    
-    .admin-footer-section-title {
-        font-size: 18px;
-        margin-bottom: 15px;
-    }
-    
-    .admin-footer-stats {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        margin-bottom: 20px;
-    }
-    
-    .admin-footer-stat-card {
-        padding: 15px;
-    }
-    
-    .admin-footer-stat-value {
-        font-size: 24px;
-    }
-    
-    .admin-footer-stat-label {
-        font-size: 11px;
-    }
-    
-    .admin-footer-table-container {
-        overflow-x: auto;
-        margin-bottom: 15px;
-    }
-    
-    .admin-footer-table {
-        font-size: 11px;
-        min-width: 500px;
-    }
-    
-    .admin-footer-table th,
-    .admin-footer-table td {
-        padding: 8px 12px;
-    }
-    
-    .admin-footer-actions {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .admin-footer-action-btn {
-        width: 100%;
-        justify-content: center;
-        padding: 10px;
-        font-size: 13px;
     }
     
     /* ----- СТРАНИЦА КОРЗИНЫ (cart.html) ----- */
     .cart-container {
         grid-template-columns: 1fr;
         gap: 20px;
+        padding: 0 15px;
     }
     
     .cart-items {
-        padding: 20px;
+        padding: 20px 15px;
     }
     
     .cart-items-title {
         font-size: 20px;
+        margin-bottom: 15px;
     }
     
     .cart-item {
         flex-direction: column;
         text-align: center;
-        padding: 20px;
-        gap: 15px;
+        padding: 15px;
+        gap: 12px;
     }
     
     .cart-item-image {
-        width: 120px;
-        height: 170px;
+        width: 100px;
+        height: 140px;
         margin: 0 auto;
     }
     
@@ -1673,15 +1772,15 @@
     }
     
     .cart-item-title {
-        font-size: 18px;
+        font-size: 16px;
     }
     
     .cart-item-author {
-        font-size: 14px;
+        font-size: 13px;
     }
     
     .cart-item-price {
-        font-size: 20px;
+        font-size: 18px;
         justify-content: center;
     }
     
@@ -1689,77 +1788,99 @@
         flex-direction: row;
         justify-content: center;
         width: 100%;
-        gap: 15px;
+        gap: 12px;
+        flex-wrap: wrap;
     }
     
     .quantity-control {
-        padding: 8px 12px;
+        padding: 6px 10px;
     }
     
     .quantity-btn {
-        width: 32px;
-        height: 32px;
+        width: 30px;
+        height: 30px;
         font-size: 16px;
     }
     
     .quantity {
-        font-size: 18px;
+        font-size: 16px;
+        min-width: 35px;
     }
     
     .remove-btn {
-        padding: 10px 20px;
-        font-size: 14px;
+        padding: 8px 16px;
+        font-size: 13px;
     }
     
     .cart-summary {
-        padding: 20px;
+        padding: 20px 15px;
         position: static;
+        margin-bottom: 20px;
     }
     
     .summary-title {
-        font-size: 22px;
+        font-size: 20px;
+        margin-bottom: 15px;
     }
     
     .summary-total {
-        font-size: 26px;
-        padding: 15px;
+        font-size: 24px;
+        padding: 12px;
+        margin: 15px 0;
     }
     
     .checkout-btn {
-        padding: 15px;
-        font-size: 18px;
+        padding: 14px;
+        font-size: 16px;
     }
     
     /* ----- ПУСТАЯ КОРЗИНА ----- */
     .empty-cart {
-        padding: 50px 20px;
+        padding: 40px 20px;
     }
     
     .empty-icon {
-        font-size: 60px;
+        font-size: 50px;
     }
     
     .empty-title {
-        font-size: 24px;
+        font-size: 22px;
+        margin: 15px 0 10px;
     }
     
     .empty-text {
-        font-size: 14px;
+        font-size: 13px;
     }
     
     .continue-shopping {
-        padding: 14px 25px;
-        font-size: 16px;
+        padding: 12px 20px;
+        font-size: 14px;
+        margin-top: 20px;
+    }
+    
+    /* ----- ПАГИНАЦИЯ ----- */
+    .pagination {
+        gap: 8px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .page-btn {
+        padding: 8px 14px;
+        font-size: 14px;
+        min-width: 40px;
     }
     
     /* ----- ПОДВАЛ ----- */
     .footer {
-        padding: 30px 15px;
+        padding: 25px 15px;
         margin-top: 40px;
     }
     
     .footer p {
-        font-size: 12px;
+        font-size: 11px;
+        margin-bottom: 10px;
     }
     
     /* ----- РЕЗУЛЬТАТЫ ПОИСКА ----- */
@@ -1768,7 +1889,8 @@
         right: 2.5%;
         left: 2.5%;
         top: 80px;
-        max-height: 80vh;
+        max-height: 70vh;
+        padding: 15px;
     }
     
     .search-result-item {
@@ -1792,6 +1914,17 @@
     .search-result-price {
         font-size: 14px;
     }
+    
+    /* ----- УВЕДОМЛЕНИЯ ----- */
+    .notification {
+        top: auto;
+        bottom: 20px;
+        right: 20px;
+        left: 20px;
+        padding: 12px 20px;
+        font-size: 14px;
+        text-align: center;
+    }
 }
 
 /* Маленькие телефоны (до 480px) */
@@ -1800,32 +1933,63 @@
         font-size: 18px;
     }
     
-    .section-title {
+    .section-title,
+    .filter-title {
+        font-size: 22px;
+    }
+    
+    .page-title {
         font-size: 24px;
     }
     
-    .book-title-right {
+    .page-subtitle {
+        font-size: 14px;
+    }
+    
+    .product-title {
         font-size: 16px;
     }
     
-    .book-price-right {
-        font-size: 18px;
+    .product-price {
+        font-size: 20px;
+    }
+    
+    .product-author {
+        font-size: 13px;
     }
     
     .genre-title {
         font-size: 24px;
     }
     
+    .banner-title {
+        font-size: 24px;
+    }
+    
+    .banner-logo-frame {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .banner-logo-inner {
+        width: 80px;
+        height: 80px;
+        font-size: 24px;
+    }
+    
+    .magazine-detail-name,
     .book-detail-name {
         font-size: 20px;
     }
     
+    .magazine-detail-author,
     .book-detail-author {
-        font-size: 16px;
+        font-size: 15px;
     }
     
+    .magazine-detail-price,
     .book-detail-price {
-        font-size: 24px;
+        font-size: 22px;
     }
     
     .modal-content {
@@ -1834,39 +1998,52 @@
     }
     
     .form-input {
-        padding: 10px;
+        padding: 8px 12px;
         font-size: 14px;
     }
     
-    .admin-footer-stat-value {
-        font-size: 20px;
+    .nav-item {
+        padding: 6px 12px;
+        font-size: 12px;
     }
     
-    .admin-footer-stat-label {
-        font-size: 10px;
+    .cart-item-title {
+        font-size: 15px;
+    }
+    
+    .summary-total {
+        font-size: 22px;
+    }
+    
+    .checkout-btn {
+        padding: 12px;
+        font-size: 15px;
     }
 }
 
 /* Очень маленькие телефоны (до 360px) */
 @media (max-width: 360px) {
     .banner-title {
-        font-size: 24px;
+        font-size: 22px;
     }
     
-    .book-image-left img {
-        width: 100px;
-        height: 150px;
+    .product-image {
+        max-width: 130px;
+    }
+    
+    .product-image-container {
+        min-height: 200px;
     }
     
     .carousel-image {
-        width: 160px;
-        height: 220px;
+        width: 140px;
+        height: 200px;
     }
     
     .user-menu {
         flex-direction: column;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
     }
     
     .user-actions {
@@ -1874,15 +2051,38 @@
         width: 100%;
     }
     
-    .user-action-btn, .logout-btn {
+    .user-action-btn, 
+    .logout-btn {
         width: 100%;
         justify-content: center;
     }
+    
+    .cart-item-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .quantity-control {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .remove-btn {
+        width: 100%;
+    }
+    
+    .page-btn {
+        padding: 6px 12px;
+        font-size: 13px;
+        min-width: 36px;
+    }
 }
 
-/* Улучшения для сенсорного управления */
+/* ============================================
+   УЛУЧШЕНИЯ ДЛЯ СЕНСОРНОГО УПРАВЛЕНИЯ
+   ============================================ */
 @media (max-width: 768px) {
-    /* Увеличенные области нажатия для пальцев */
+    /* Увеличенные области нажатия для пальцев (минимум 44px) */
     .nav-item,
     .add-to-cart,
     .cart-btn-right,
@@ -1898,25 +2098,35 @@
     .carousel-btn,
     .quantity-btn,
     .remove-btn,
-    .submit-order,
-    .cancel-order,
     .admin-footer-action-btn,
     .modal-close,
     .close-auth-btn,
     .close-detail-btn,
-    .close-orders-btn,
-    .close-profile-btn,
-    .close-random-book-btn {
+    .page-btn,
+    .search-button,
+    .admin-panel-btn,
+    .cart-count {
         min-height: 44px;
+        min-width: 44px;
     }
     
-    /* Убираем hover эффекты на мобильных (они не работают) */
+    /* Упрощаем навигацию - убираем сложные анимации */
+    .product-card:hover,
     .book-card:hover,
     .genre-card:hover,
     .nav-item:hover,
-    .add-to-cart:hover,
-    .cart-btn-right:hover {
+    .add-to-cart:hover {
         transform: none;
+        transition: none;
+    }
+    
+    /* На мобильных устройствах hover эффекты не работают,
+       поэтому оставляем только активные состояния */
+    .nav-item:active,
+    .add-to-cart:active,
+    .cart-btn-right:active {
+        opacity: 0.8;
+        transform: scale(0.98);
     }
     
     /* Плавная прокрутка */
@@ -1924,26 +2134,141 @@
         scroll-behavior: smooth;
     }
     
-    /* Отключаем масштабирование при фокусе на iOS */
+    /* Отключаем масштабирование при фокусе на iOS (чтобы не увеличивалось) */
     input,
     select,
     textarea {
         font-size: 16px;
     }
     
-    /* Улучшаем прокрутку */
+    /* Запрещаем горизонтальный скролл */
+    body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+    
+    /* Улучшаем скроллбар */
     ::-webkit-scrollbar {
-        width: 5px;
-        height: 5px;
+        width: 4px;
+        height: 4px;
     }
     
     ::-webkit-scrollbar-track {
         background: #F5E6D3;
+        border-radius: 4px;
     }
     
     ::-webkit-scrollbar-thumb {
         background: #8B4513;
-        border-radius: 5px;
+        border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: #D2691E;
+    }
+    
+    /* Для всех карточек убираем лишние отступы */
+    .product-card,
+    .book-card {
+        margin: 0;
+    }
+    
+    /* Центрирование модальных окон на мобильных */
+    .auth-modal,
+    .magazine-detail-modal,
+    .book-detail-modal {
+        padding: 10px;
+        align-items: center;
+    }
+    
+    /* Улучшаем читаемость текста */
+    p, li, .description, .product-description {
+        line-height: 1.5;
+    }
+    
+    /* Фикс для фиксированных элементов */
+    .header {
+        position: relative;
+        top: 0;
+        z-index: 100;
+    }
+    
+    /* Адаптация для поворота экрана */
+    @media (orientation: landscape) and (max-height: 500px) {
+        .magazine-detail-modal .magazine-detail-container,
+        .book-detail-modal .book-detail-container {
+            max-height: 90vh;
+        }
+        
+        .magazine-detail-description,
+        .book-detail-description {
+            max-height: 100px;
+        }
+        
+        .carousel-container {
+            min-height: 350px;
+        }
+        
+        .carousel-slide {
+            flex-direction: row;
+        }
+        
+        .carousel-image {
+            width: 120px;
+            height: 170px;
+        }
+    }
+}
+
+/* Дополнительные фиксы для очень старых Android устройств */
+@media (max-width: 768px) and (min-width: 320px) {
+    .container {
+        width: 100%;
+        overflow-x: hidden;
+    }
+    
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .product-image,
+    .book-image-left img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* Стили для печати (если пользователь захочет распечатать страницу) */
+@media print {
+    .header,
+    .footer,
+    .filter-section,
+    .pagination,
+    .admin-panel,
+    .auth-buttons,
+    .carousel-arrow,
+    .add-to-cart,
+    .cart-btn-right {
+        display: none !important;
+    }
+    
+    .products-grid,
+    .books-grid {
+        display: block;
+    }
+    
+    .product-card,
+    .book-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+    }
+    
+    body {
+        background: white;
+        color: black;
     }
 }
     </style>
