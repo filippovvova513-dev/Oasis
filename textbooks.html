@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Учебники - Литературный Оазис</title>
     <style>
         :root {
@@ -806,31 +806,6 @@
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
         }
-        .buy-now-btn {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, var(--buy-color), var(--buy-hover));
-            color: white;
-            border: none;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 16px;
-            font-weight: 700;
-            box-shadow: var(--shadow-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            z-index: 2;
-            position: relative;
-            margin-top: 10px;
-        }
-        .buy-now-btn:hover {
-            background: linear-gradient(135deg, var(--buy-hover), #4A5D23);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
 
         /* Модальное окно для подробностей учебника */
         .textbook-detail-modal {
@@ -1026,28 +1001,6 @@
             transform: translateY(-3px);
             box-shadow: var(--shadow-lg);
         }
-        .textbook-detail-buy-btn {
-            flex: 1;
-            padding: 18px;
-            background: linear-gradient(135deg, var(--buy-color), var(--buy-hover));
-            color: white;
-            border: none;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: 700;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: var(--shadow-md);
-        }
-        .textbook-detail-buy-btn:hover {
-            background: linear-gradient(135deg, var(--buy-hover), #4A5D23);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
 
         .pagination {
             display: flex;
@@ -1121,6 +1074,7 @@
             .textbook-detail-actions { flex-direction: column; }
         }
     </style>
+    <!-- Подключаем мобильную версию -->
     <link rel="stylesheet" href="css/mobile.css">
 </head>
 <body>
@@ -1205,7 +1159,7 @@
             <div class="admin-section active" id="usersSection">
                 <h3 class="admin-section-title">Зарегистрированные пользователи</h3>
                 <div class="admin-stats"><div class="stat-card"><div class="stat-value" id="totalUsers">0</div><div class="stat-label">Всего пользователей</div></div><div class="stat-card"><div class="stat-value" id="activeUsers">0</div><div class="stat-label">Активных сегодня</div></div></div>
-                <div class="admin-table-container"><table class="admin-table"><thead><tr><th>ID</th><th>Имя</th><th>Логин</th><th>Пароль</th><th>Email</th><th>Телефон</th><th>Регистрация</th><th>Заказов</th></tr></thead><tbody id="usersTable"></tbody></table></div>
+                <div class="admin-table-container"><table class="admin-table"><thead><tr><th>ID</th><th>Имя</th><th>Логин</th><th>Пароль</th><th>Email</th><th>Телефон</th><th>Регистрация</th><th>Заказов</th><tr></thead><tbody id="usersTable"></tbody></table></div>
                 <div class="admin-actions"><button class="admin-action-btn" onclick="refreshUsers()">Обновить</button><button class="admin-action-btn secondary" onclick="exportUsers()">Экспорт CSV</button></div>
             </div>
             <div class="admin-section" id="ordersSection">
@@ -1244,7 +1198,7 @@
             <h3 class="filter-title">Фильтры поиска</h3>
             <div class="filter-grid">
                 <div class="filter-group">
-                    <label class="filter-label"><img src="img/icon-subject.png" class="icon-img icon-img-sm" alt="Предмет" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z\'%3E%3C/path%3E%3C/svg%3E'">Предмет</label>
+                    <label class="filter-label">Предмет</label>
                     <select class="filter-select" id="subjectFilter" onchange="filterProducts()">
                         <option value="">Все предметы</option>
                         <option value="Физика">Физика</option>
@@ -1270,7 +1224,7 @@
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label class="filter-label"><img src="img/icon-class.png" class="icon-img icon-img-sm" alt="Класс" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M12 6v6l4 2\'%3E%3C/path%3E%3Cpath d=\'M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z\'%3E%3C/path%3E%3C/svg%3E'">Класс</label>
+                    <label class="filter-label">Класс</label>
                     <select class="filter-select" id="classFilter" onchange="filterProducts()">
                         <option value="">Все классы</option>
                         <option value="10">10 класс</option>
@@ -1279,7 +1233,7 @@
                     </select>
                 </div>
                 <div class="filter-group">
-                    <label class="filter-label"><img src="img/icon-sort.png" class="icon-img icon-img-sm" alt="Сортировка" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M3 6h18M6 12h12M10 18h4\'%3E%3C/path%3E%3C/svg%3E'">Сортировка</label>
+                    <label class="filter-label">Сортировка</label>
                     <select class="filter-select" id="sortFilter" onchange="filterProducts()">
                         <option value="default">По умолчанию</option>
                         <option value="price-asc">Цена (по возрастанию)</option>
@@ -1521,7 +1475,6 @@
                     </div>
                     <div class="textbook-detail-price">${textbook.price} руб</div>
                     <div class="textbook-detail-actions">
-                        <button class="textbook-detail-buy-btn" onclick="buyNow(${textbook.id}); closeTextbookDetail();">Купить сейчас</button>
                         <button class="textbook-detail-cart-btn" onclick="addToCartFromPage(${textbook.id}); closeTextbookDetail();">В корзину</button>
                     </div>
                 </div>
@@ -1565,7 +1518,6 @@
                         <p class="product-author">${textbook.author}</p>
                         <div class="product-meta"><span class="product-pages">${textbook.pages} стр.</span><span class="product-class">${textbook.class} класс</span></div>
                         <div class="product-price-container"><div class="product-price">${textbook.price} руб</div></div>
-                        <button class="buy-now-btn" onclick="buyNow(${textbook.id})">Купить сразу</button>
                         <button class="add-to-cart" onclick="addToCartFromPage(${textbook.id})">В корзину</button>
                     </div>
                 `;
@@ -1599,10 +1551,6 @@
             updateCartCount();
             showNotification(`"${textbook.title}" добавлен в корзину!`, 'success');
         }
-        function buyNow(bookId) {
-            if (!currentUser) { showAuthModal('login'); showNotification('Авторизуйтесь для покупки!', 'error'); return; }
-            showNotification(`Оформление заказа`, 'info');
-        }
         function showNotification(message, type) {
             const n = document.createElement('div');
             n.style.cssText = `position:fixed; top:20px; right:20px; background:${type==='success'?'#228B22':'#FF8C00'}; color:white; padding:15px 20px; border-radius:12px; z-index:3000; animation:slideIn 0.3s ease;`;
@@ -1615,7 +1563,8 @@
         function switchAdminTab(tabName) {
             document.querySelectorAll('.admin-tab').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.admin-section').forEach(section => section.classList.remove('active'));
-            document.querySelector(`.admin-tab[onclick*="${tabName}"]`).classList.add('active');
+            const tab = document.querySelector(`.admin-tab[onclick*="${tabName}"]`);
+            if (tab) tab.classList.add('active');
             document.getElementById(`${tabName}Section`).classList.add('active');
         }
         function loadAdminData() { loadUsersTable(); loadOrdersTable(); loadStatsTable(); updateAdminStats(); }
@@ -1632,21 +1581,53 @@
             const users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
             const tbody = document.getElementById('usersTable');
             tbody.innerHTML = '';
-            users.forEach(u => { tbody.innerHTML += `<tr><td>${u.id}</td><td>${u.name}</td><td>${u.username}</td><td>${u.password}</td><td>${u.email}</td><td>${u.phone}</td><td>${u.registrationDate}</td><td>0</td></tr>`; });
+            users.forEach(u => { tbody.innerHTML += `<tr><td>${u.id}</td><td>${u.name}</td><td>${u.username}</td><td>${u.password}
+                        users.forEach(u => { tbody.innerHTML += `<tr>
+                <td>${u.id}</td>
+                <td>${u.name}</td>
+                <td>${u.username}</td>
+                <td>${u.password}</td>
+                <td>${u.email}</td>
+                <td>${u.phone}</td>
+                <td>${u.registrationDate}</td>
+                <td>0</td>
+            </tr>`; });
         }
+
         function loadOrdersTable() {
             const orders = JSON.parse(localStorage.getItem('userOrders')) || [];
             const users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
             const tbody = document.getElementById('ordersTable');
             tbody.innerHTML = '';
-            orders.forEach(o => { const user = users.find(u=>u.id===o.userId); tbody.innerHTML += `<tr><td>#${o.id}</td><td>${user ? user.name : 'Пользователь'}</td><td>${o.items[0].title}</td><td>1</td><td>${o.total} руб</td><td>${o.date}</td><td><span class="status-badge status-active">Завершен</span></td></tr>`; });
+            orders.forEach(o => { 
+                const user = users.find(u=>u.id===o.userId); 
+                tbody.innerHTML += `<tr>
+                    <td>#${o.id}</td>
+                    <td>${user ? user.name : 'Пользователь'}</td>
+                    <td>${o.items[0].title}</td>
+                    <td>1</td>
+                    <td>${o.total} руб</td>
+                    <td>${o.date}</td>
+                    <td><span class="status-badge status-active">Завершен</span></td>
+                </tr>`;
+            });
         }
+
         function loadStatsTable() {
             const stats = JSON.parse(localStorage.getItem('bookStatistics')) || [];
             const tbody = document.getElementById('statsTable');
             tbody.innerHTML = '';
-            stats.sort((a,b)=>b.sold-a.sold).forEach(s => { tbody.innerHTML += `<td><td>${s.bookTitle}</td><td>${s.author}</td><td>${s.sold}</td><td>${s.revenue} руб</td><td>${s.sold>10?'⭐⭐⭐':'⭐'}</td></td>`; });
+            stats.sort((a,b)=>b.sold-a.sold).forEach(s => { 
+                tbody.innerHTML += `<tr>
+                    <td>${s.bookTitle}</td>
+                    <td>${s.author}</td>
+                    <td>${s.sold}</td>
+                    <td>${s.revenue} руб</td>
+                    <td>${s.sold>10?'⭐⭐⭐':'⭐'}</td>
+                </tr>`;
+            });
         }
+
         function refreshUsers() { loadUsersTable(); updateAdminStats(); showNotification('Обновлено!','success'); }
         function refreshOrders() { loadOrdersTable(); updateAdminStats(); showNotification('Обновлено!','success'); }
         function refreshStats() { loadStatsTable(); updateAdminStats(); showNotification('Обновлено!','success'); }
@@ -1657,7 +1638,10 @@
         // ========== ИНИЦИАЛИЗАЦИЯ ==========
         document.addEventListener('DOMContentLoaded', function() {
             const savedUser = localStorage.getItem('currentUser');
-            if (savedUser) { currentUser = JSON.parse(savedUser); if (currentUser.username === ADMIN_CREDENTIALS.login) localStorage.setItem('adminLoggedIn', 'true'); }
+            if (savedUser) { 
+                currentUser = JSON.parse(savedUser); 
+                if (currentUser.username === ADMIN_CREDENTIALS.login) localStorage.setItem('adminLoggedIn', 'true'); 
+            }
             if (localStorage.getItem('adminLoggedIn') === 'true' && (!currentUser || currentUser.username !== ADMIN_CREDENTIALS.login)) {
                 currentUser = { id: 0, name: "Администратор", username: ADMIN_CREDENTIALS.login, isAdmin: true };
                 localStorage.setItem('currentUser', JSON.stringify(currentUser));
