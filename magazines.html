@@ -190,7 +190,6 @@
             text-decoration: none;
             white-space: nowrap;
         }
-        .logo:hover { transform: translateY(-2px); text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2); }
         .nav {
             display: flex;
             gap: 8px;
@@ -245,12 +244,6 @@
             background: white;
             width: 220px;
         }
-        .search-input:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            box-shadow: var(--shadow-interactive);
-            transform: translateY(-2px);
-        }
         .search-button {
             padding: 8px 14px;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
@@ -258,15 +251,6 @@
             border: none;
             border-radius: var(--radius-md);
             cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .search-button:hover {
-            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-interactive);
         }
         .auth-buttons { display: flex; gap: 8px; align-items: center; }
         .login-btn, .register-btn {
@@ -282,15 +266,9 @@
             color: var(--primary-color);
             border: 2px solid var(--primary-color);
         }
-        .login-btn:hover { background: var(--primary-color); color: white; transform: translateY(-2px); box-shadow: var(--shadow-interactive); }
         .register-btn {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-        }
-        .register-btn:hover {
-            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-interactive);
         }
         .user-menu { display: flex; align-items: center; gap: 10px; }
         .user-info {
@@ -302,7 +280,6 @@
             border-radius: var(--radius-md);
             cursor: pointer;
         }
-        .user-info:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
         .user-avatar {
             width: 30px;
             height: 30px;
@@ -326,7 +303,6 @@
             font-size: 12px;
             font-weight: 600;
         }
-        .logout-btn:hover { background: linear-gradient(135deg, #B22222, #8B0000); transform: translateY(-2px); }
         .admin-panel-btn {
             background: linear-gradient(135deg, #228B22, #006400);
             color: white;
@@ -339,7 +315,6 @@
             display: none;
         }
         .admin-panel-btn.visible { display: flex; }
-        .admin-panel-btn:hover { background: linear-gradient(135deg, #006400, #004d00); transform: translateY(-2px); }
 
         /* Окно результатов поиска */
         .search-results {
@@ -366,12 +341,6 @@
             cursor: pointer;
             background: white;
         }
-        .search-result-item:hover {
-            background: var(--light-color);
-            border-color: var(--accent-color);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
         .search-result-image {
             width: 50px;
             height: 70px;
@@ -383,13 +352,10 @@
             font-size: 14px;
             font-weight: 700;
             color: var(--primary-color);
-            margin-bottom: 5px;
         }
         .search-result-author {
             font-size: 12px;
             color: var(--secondary-color);
-            margin-bottom: 5px;
-            font-style: italic;
         }
         .search-result-price {
             font-size: 14px;
@@ -754,11 +720,6 @@
             font-size: 14px;
             font-weight: 600;
         }
-        .page-btn:hover {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            transform: translateY(-2px);
-        }
         .page-btn.active {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
@@ -788,9 +749,9 @@
             }
         }
 
-        /* ===== ДЛЯ ТЕЛЕФОНОВ - ШАПКА В 2 СТРОКИ ===== */
+        /* ===== ДЛЯ ТЕЛЕФОНОВ - ШАПКА В 2 СТРОКИ (КАК НА ГЛАВНОЙ) ===== */
         @media (max-width: 768px) {
-            /* ШАПКА - 2 строки */
+            /* ШАПКА - перестраивается в 2 ряда */
             .header-content {
                 flex-direction: column;
                 gap: 10px;
@@ -858,6 +819,11 @@
                 margin-left: auto;
                 margin-right: auto;
                 gap: 20px;
+            }
+            
+            .product-card {
+                margin: 0 auto;
+                width: 100%;
             }
             
             /* ЗАГОЛОВКИ */
@@ -1221,14 +1187,14 @@
     <script>
         // Данные журналов (8 штук)
         const magazines = [
-            { id: 28, title: "National Geographic", author: "Various", pages: 120, price: 350, genre: "Наука", period: "Ежемесячный", image: "img/mag1.jpg", description: "Журнал о природе и науке с потрясающими фотографиями.", year: 1888, publisher: "National Geographic Society", rating: 4.8, ratingCount: 4567, language: "Русский", frequency: "Ежемесячный" },
-            { id: 29, title: "Forbes", author: "Various", pages: 100, price: 400, genre: "Бизнес", period: "Ежемесячный", image: "img/mag2.jpg", description: "Ведущий бизнес-журнал о финансах и предпринимательстве.", year: 1917, publisher: "Forbes Media", rating: 4.7, ratingCount: 3890, language: "Русский", frequency: "Ежемесячный" },
-            { id: 30, title: "Vogue", author: "Various", pages: 150, price: 450, genre: "Мода", period: "Ежемесячный", image: "img/mag3.jpg", description: "Культовый журнал о моде, красоте и стиле жизни.", year: 1892, publisher: "Condé Nast", rating: 4.6, ratingCount: 5123, language: "Русский", frequency: "Ежемесячный" },
-            { id: 31, title: "Популярная механика", author: "Various", pages: 110, price: 320, genre: "Техника", period: "Ежемесячный", image: "img/mag4.jpg", description: "Журнал о науке, технике и новых технологиях.", year: 2002, publisher: "Фэшн Пресс", rating: 4.5, ratingCount: 2345, language: "Русский", frequency: "Ежемесячный" },
-            { id: 32, title: "GQ", author: "Various", pages: 130, price: 380, genre: "Стиль", period: "Ежемесячный", image: "img/mag5.jpg", description: "Мужской журнал о стиле, культуре и образе жизни.", year: 1957, publisher: "Condé Nast", rating: 4.6, ratingCount: 3123, language: "Русский", frequency: "Ежемесячный" },
-            { id: 33, title: "Cosmopolitan", author: "Various", pages: 140, price: 370, genre: "Женский", period: "Ежемесячный", image: "img/mag6.jpg", description: "Журнал для современных женщин о моде и карьере.", year: 1886, publisher: "Hearst", rating: 4.5, ratingCount: 4987, language: "Русский", frequency: "Ежемесячный" },
-            { id: 34, title: "Time", author: "Various", pages: 90, price: 300, genre: "Новости", period: "Еженедельный", image: "img/mag7.jpg", description: "Еженедельный новостной журнал о мировых событиях.", year: 1923, publisher: "Time USA", rating: 4.7, ratingCount: 4321, language: "Русский", frequency: "Еженедельный" },
-            { id: 35, title: "The New Yorker", author: "Various", pages: 120, price: 350, genre: "Культура", period: "Еженедельный", image: "img/mag8.jpg", description: "Литературный журнал с репортажами и эссе.", year: 1925, publisher: "Condé Nast", rating: 4.8, ratingCount: 3987, language: "Русский", frequency: "Еженедельный" }
+            { id: 28, title: "National Geographic", author: "Various", pages: 120, price: 350, genre: "Наука", period: "Ежемесячный", image: "img/mag1.jpg", description: "Журнал о природе и науке с потрясающими фотографиями.", year: 1888, publisher: "National Geographic Society", rating: 4.8, ratingCount: 4567, language: "Русский" },
+            { id: 29, title: "Forbes", author: "Various", pages: 100, price: 400, genre: "Бизнес", period: "Ежемесячный", image: "img/mag2.jpg", description: "Ведущий бизнес-журнал о финансах и предпринимательстве.", year: 1917, publisher: "Forbes Media", rating: 4.7, ratingCount: 3890, language: "Русский" },
+            { id: 30, title: "Vogue", author: "Various", pages: 150, price: 450, genre: "Мода", period: "Ежемесячный", image: "img/mag3.jpg", description: "Культовый журнал о моде, красоте и стиле жизни.", year: 1892, publisher: "Condé Nast", rating: 4.6, ratingCount: 5123, language: "Русский" },
+            { id: 31, title: "Популярная механика", author: "Various", pages: 110, price: 320, genre: "Техника", period: "Ежемесячный", image: "img/mag4.jpg", description: "Журнал о науке, технике и новых технологиях.", year: 2002, publisher: "Фэшн Пресс", rating: 4.5, ratingCount: 2345, language: "Русский" },
+            { id: 32, title: "GQ", author: "Various", pages: 130, price: 380, genre: "Стиль", period: "Ежемесячный", image: "img/mag5.jpg", description: "Мужской журнал о стиле, культуре и образе жизни.", year: 1957, publisher: "Condé Nast", rating: 4.6, ratingCount: 3123, language: "Русский" },
+            { id: 33, title: "Cosmopolitan", author: "Various", pages: 140, price: 370, genre: "Женский", period: "Ежемесячный", image: "img/mag6.jpg", description: "Журнал для современных женщин о моде и карьере.", year: 1886, publisher: "Hearst", rating: 4.5, ratingCount: 4987, language: "Русский" },
+            { id: 34, title: "Time", author: "Various", pages: 90, price: 300, genre: "Новости", period: "Еженедельный", image: "img/mag7.jpg", description: "Еженедельный новостной журнал о мировых событиях.", year: 1923, publisher: "Time USA", rating: 4.7, ratingCount: 4321, language: "Русский" },
+            { id: 35, title: "The New Yorker", author: "Various", pages: 120, price: 350, genre: "Культура", period: "Еженедельный", image: "img/mag8.jpg", description: "Литературный журнал с репортажами и эссе.", year: 1925, publisher: "Condé Nast", rating: 4.8, ratingCount: 3987, language: "Русский" }
         ];
 
         let currentPage = 1;
