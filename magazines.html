@@ -742,31 +742,6 @@
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
         }
-        .buy-now-btn {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, var(--buy-color), var(--buy-hover));
-            color: white;
-            border: none;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 16px;
-            font-weight: 700;
-            box-shadow: var(--shadow-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            z-index: 2;
-            position: relative;
-            margin-top: 10px;
-        }
-        .buy-now-btn:hover {
-            background: linear-gradient(135deg, var(--buy-hover), #4A5D23);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
 
         /* Модальное окно для подробностей журнала */
         .magazine-detail-modal {
@@ -959,28 +934,6 @@
         }
         .magazine-detail-cart-btn:hover {
             background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
-        .magazine-detail-buy-btn {
-            flex: 1;
-            padding: 18px;
-            background: linear-gradient(135deg, var(--buy-color), var(--buy-hover));
-            color: white;
-            border: none;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: 700;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: var(--shadow-md);
-        }
-        .magazine-detail-buy-btn:hover {
-            background: linear-gradient(135deg, var(--buy-hover), #4A5D23);
             transform: translateY(-3px);
             box-shadow: var(--shadow-lg);
         }
@@ -1206,31 +1159,16 @@
     </footer>
 
     <script>
-        // Расширенные данные журналов
+        // === ИЗМЕНЕНО: Оставлено только 8 журналов, для фото указаны простые имена ===
         const magazines = [
-            { id: 28, title: "National Geographic", author: "Various", pages: 120, price: 350, genre: "Наука", category: "magazine", period: "Ежемесячный", image: "https://images.unsplash.com/photo-1589998059171-988d887df646?w=400&h=600&fit=crop&q=80", description: "Журнал о природе и науке с потрясающими фотографиями и глубокими научными статьями. Каждый выпуск посвящен исследованию нашей планеты и ее чудес.", year: 1888, publisher: "National Geographic Society", rating: 4.8, ratingCount: 4567, genres: ["Наука", "Путешествия", "Природа"], isbn: "ISSN 0027-9358", language: "Русский", weight: 220, dimensions: "28 x 21.5 x 0.8 см", frequency: "Ежемесячный", available: true },
-            { id: 29, title: "Forbes", author: "Various", pages: 100, price: 400, genre: "Бизнес", category: "magazine", period: "Ежемесячный", image: "https://images.unsplash.com/photo-1568667256549-094345857637?w=400&h=600&fit=crop&q=80", description: "Ведущий бизнес-журнал, посвященный миру финансов, инвестиций и предпринимательства. Содержит рейтинги самых богатых людей и перспективных компаний.", year: 1917, publisher: "Forbes Media", rating: 4.7, ratingCount: 3890, genres: ["Бизнес", "Финансы", "Предпринимательство"], isbn: "ISSN 0015-6914", language: "Русский", weight: 200, dimensions: "27.5 x 21 x 0.6 см", frequency: "Ежемесячный", available: true },
-            { id: 30, title: "Vogue", author: "Various", pages: 150, price: 450, genre: "Мода", category: "magazine", period: "Ежемесячный", image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&q=80", description: "Культовый журнал о моде, красоте и стиле жизни. Каждый выпуск представляет последние тренды, эксклюзивные фотосессии и интервью со знаменитостями.", year: 1892, publisher: "Condé Nast", rating: 4.6, ratingCount: 5123, genres: ["Мода", "Стиль", "Красота"], isbn: "ISSN 0042-8000", language: "Русский", weight: 280, dimensions: "30 x 23 x 1.2 см", frequency: "Ежемесячный", available: true },
-            { id: 31, title: "Популярная механика", author: "Various", pages: 110, price: 320, genre: "Техника", category: "magazine", period: "Ежемесячный", image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=600&fit=crop&q=80", description: "Журнал о науке и технике, рассказывающий о новейших технологиях, изобретениях и научных открытиях доступным языком.", year: 2002, publisher: "Фэшн Пресс", rating: 4.5, ratingCount: 2345, genres: ["Техника", "Наука", "Технологии"], isbn: "ISSN 1683-8615", language: "Русский", weight: 190, dimensions: "26 x 20 x 0.7 см", frequency: "Ежемесячный", available: true },
-            { id: 32, title: "GQ", author: "Various", pages: 130, price: 380, genre: "Стиль", category: "magazine", period: "Ежемесячный", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop&q=80", description: "Мужской журнал о стиле, культуре и роскошном образе жизни. Представляет лучшие в мире моды, гаджетов, автомобилей и путешествий.", year: 1957, publisher: "Condé Nast", rating: 4.6, ratingCount: 3123, genres: ["Мужской", "Стиль", "Лайфстайл"], isbn: "ISSN 0016-6979", language: "Русский", weight: 240, dimensions: "28 x 21.5 x 0.9 см", frequency: "Ежемесячный", available: true },
-            { id: 33, title: "Cosmopolitan", author: "Various", pages: 140, price: 370, genre: "Женский", category: "magazine", period: "Ежемесячный", image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=600&fit=crop&q=80", description: "Журнал для современных женщин, охватывающий темы моды, красоты, карьеры, отношений и саморазвития.", year: 1886, publisher: "Hearst Communications", rating: 4.5, ratingCount: 4987, genres: ["Женский", "Мода", "Лайфстайл"], isbn: "ISSN 0010-9541", language: "Русский", weight: 260, dimensions: "28 x 21.5 x 1.0 см", frequency: "Ежемесячный", available: true },
-            { id: 34, title: "Time", author: "Various", pages: 90, price: 300, genre: "Новости", category: "magazine", period: "Еженедельный", image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=600&fit=crop&q=80", description: "Еженедельный новостной журнал, предоставляющий анализ важнейших мировых событий в политике, экономике, культуре и науке.", year: 1923, publisher: "Time USA", rating: 4.7, ratingCount: 4321, genres: ["Новости", "Политика", "Культура"], isbn: "ISSN 0040-781X", language: "Русский", weight: 180, dimensions: "27.5 x 21 x 0.5 см", frequency: "Еженедельный", available: true },
-            { id: 35, title: "The New Yorker", author: "Various", pages: 120, price: 350, genre: "Культура", category: "magazine", period: "Еженедельный", image: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=400&h=600&fit=crop&q=80", description: "Литературный журнал, публикующий репортажи, эссе, сатирические материалы, а также художественную литературу и поэзию.", year: 1925, publisher: "Condé Nast", rating: 4.8, ratingCount: 3987, genres: ["Культура", "Литература", "Искусство"], isbn: "ISSN 0028-792X", language: "Русский", weight: 210, dimensions: "28 x 21 x 0.7 см", frequency: "Еженедельный", available: true },
-            { id: 36, title: "Scientific American", author: "Various", pages: 100, price: 330, genre: "Наука", category: "magazine", period: "Ежемесячный", image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&h=600&fit=crop&q=80", description: "Научный журнал, представляющий новейшие достижения в различных областях науки для широкой аудитории.", year: 1845, publisher: "Springer Nature", rating: 4.7, ratingCount: 3456, genres: ["Наука", "Технологии", "Образование"], isbn: "ISSN 0036-8733", language: "Русский", weight: 195, dimensions: "27.5 x 21 x 0.6 см", frequency: "Ежемесячный", available: true },
-            { id: 37, title: "Esquire", author: "Various", pages: 115, price: 360, genre: "Мужской", category: "magazine", period: "Ежемесячный", image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=400&h=600&fit=crop&q=80", description: "Мужской журнал, посвященный моде, культуре, политике и стилю жизни. Известен своими качественными интервью и литературными материалами.", year: 1933, publisher: "Hearst Communications", rating: 4.5, ratingCount: 2789, genres: ["Мужской", "Стиль", "Культура"], isbn: "ISSN 0194-9535", language: "Русский", weight: 225, dimensions: "28 x 21.5 x 0.8 см", frequency: "Ежемесячный", available: true },
-            { id: 38, title: "ELLE", author: "Various", pages: 145, price: 390, genre: "Мода", category: "magazine", period: "Ежемесячный", image: "https://images.unsplash.com/photo-1592672690593-9fdf1779e457?w=400&h=600&fit=crop&q=80", description: "Международный журнал о моде, публикующий последние тенденции, советы по стилю и эксклюзивные материалы от ведущих дизайнеров.", year: 1945, publisher: "Hachette Filipacchi Médias", rating: 4.6, ratingCount: 4123, genres: ["Мода", "Красота", "Стиль"], isbn: "ISSN 0935-462X", language: "Русский", weight: 270, dimensions: "30 x 23 x 1.1 см", frequency: "Ежемесячный", available: true },
-            { id: 39, title: "Forbes Life", author: "Various", pages: 125, price: 420, genre: "Лайфстайл", category: "magazine", period: "Ежемесячный", image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=600&fit=crop&q=80", description: "Журнал о роскошном образе жизни, представляющий лучшие отели, рестораны, яхты, автомобили и предметы роскоши.", year: 2004, publisher: "Forbes Media", rating: 4.7, ratingCount: 2345, genres: ["Лайфстайл", "Роскошь", "Путешествия"], isbn: "ISSN 1549-6158", language: "Русский", weight: 235, dimensions: "28 x 21.5 x 0.9 см", frequency: "Ежемесячный", available: true },
-            { id: 54, title: "National Geographic Traveler", author: "Various", pages: 130, price: 380, genre: "Путешествия", category: "magazine", period: "Двухнедельный", image: "https://images.unsplash.com/photo-1589998059171-988d887df646?w=400&h=600&fit=crop&q=80", description: "Журнал о путешествиях с уникальными маршрутами, советами опытных туристов и потрясающими фотографиями со всего мира.", year: 1984, publisher: "National Geographic Society", rating: 4.8, ratingCount: 3567, genres: ["Путешествия", "Природа", "Культура"], isbn: "ISSN 0747-0932", language: "Русский", weight: 240, dimensions: "28 x 21.5 x 0.8 см", frequency: "Двухнедельный", available: true },
-            { id: 55, title: "Harvard Business Review", author: "Various", pages: 95, price: 450, genre: "Бизнес", category: "magazine", period: "Ежемесячный", image: "https://images.unsplash.com/photo-1568667256549-094345857637?w=400&h=600&fit=crop&q=80", description: "Ведущий журнал по менеджменту, предлагающий стратегические идеи и лучшие практики от ведущих бизнес-мыслителей мира.", year: 1922, publisher: "Harvard University", rating: 4.9, ratingCount: 2987, genres: ["Бизнес", "Менеджмент", "Лидерство"], isbn: "ISSN 0017-8012", language: "Русский", weight: 185, dimensions: "27.5 x 21 x 0.6 см", frequency: "Ежемесячный", available: true },
-            { id: 56, title: "Marie Claire", author: "Various", pages: 135, price: 370, genre: "Женский", category: "magazine", period: "Ежемесячный", image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&q=80", description: "Журнал для современных женщин, сочетающий моду, красоту, карьерные советы и социально значимые темы.", year: 1937, publisher: "Hearst Corporation", rating: 4.6, ratingCount: 3876, genres: ["Женский", "Мода", "Феминизм"], isbn: "ISSN 0025-3049", language: "Русский", weight: 250, dimensions: "28 x 21.5 x 1.0 см", frequency: "Ежемесячный", available: true },
-            { id: 57, title: "Popular Science", author: "Various", pages: 105, price: 340, genre: "Наука", category: "magazine", period: "Ежемесячный", image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=600&fit=crop&q=80", description: "Журнал о новейших достижениях в науке и технике, представленных в доступной и увлекательной форме.", year: 1872, publisher: "Bonnier Corporation", rating: 4.5, ratingCount: 3123, genres: ["Наука", "Технологии", "Инновации"], isbn: "ISSN 0161-7370", language: "Русский", weight: 195, dimensions: "27.5 x 21 x 0.7 см", frequency: "Ежемесячный", available: true },
-            { id: 58, title: "Men's Health", author: "Various", pages: 125, price: 390, genre: "Мужской", category: "magazine", period: "Ежемесячный", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop&q=80", description: "Журнал о здоровье, фитнесе, питании и образе жизни для мужчин. Содержит тренировочные программы и советы экспертов.", year: 1987, publisher: "Rodale, Inc.", rating: 4.7, ratingCount: 4567, genres: ["Мужской", "Здоровье", "Фитнес"], isbn: "ISSN 1054-4836", language: "Русский", weight: 230, dimensions: "28 x 21.5 x 0.8 см", frequency: "Ежемесячный", available: true },
-            { id: 59, title: "Women's Health", author: "Various", pages: 130, price: 380, genre: "Женский", category: "magazine", period: "Ежемесячный", image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=600&fit=crop&q=80", description: "Журнал о здоровье, фитнесе, питании и красоте для женщин. Предлагает практические советы для здорового образа жизни.", year: 2005, publisher: "Rodale, Inc.", rating: 4.6, ratingCount: 4123, genres: ["Женский", "Здоровье", "Фитнес"], isbn: "ISSN 0884-7355", language: "Русский", weight: 245, dimensions: "28 x 21.5 x 0.9 см", frequency: "Ежемесячный", available: true },
-            { id: 60, title: "The Economist", author: "Various", pages: 110, price: 420, genre: "Бизнес", category: "magazine", period: "Еженедельный", image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=600&fit=crop&q=80", description: "Еженедельный журнал, освещающий международные новости, экономику, политику, науку и технологии с аналитической глубиной.", year: 1843, publisher: "The Economist Group", rating: 4.8, ratingCount: 5123, genres: ["Бизнес", "Экономика", "Политика"], isbn: "ISSN 0013-0613", language: "Русский", weight: 200, dimensions: "27.5 x 21 x 0.6 см", frequency: "Еженедельный", available: true },
-            { id: 61, title: "Forbes Woman", author: "Various", pages: 115, price: 400, genre: "Бизнес", category: "magazine", period: "Ежемесячный", image: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=400&h=600&fit=crop&q=80", description: "Журнал для женщин в бизнесе, представляющий истории успеха, карьерные стратегии и советы по лидерству.", year: 2008, publisher: "Forbes Media", rating: 4.7, ratingCount: 2345, genres: ["Бизнес", "Женский", "Карьера"], isbn: "ISSN 2151-9463", language: "Русский", weight: 210, dimensions: "28 x 21.5 x 0.7 см", frequency: "Ежемесячный", available: true },
-            { id: 62, title: "Glamour", author: "Various", pages: 140, price: 360, genre: "Мода", category: "magazine", period: "Ежемесячный", image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&h=600&fit=crop&q=80", description: "Журнал о моде, красоте и стиле жизни для молодых женщин, известный своими смелыми фотосессиями и актуальными темами.", year: 1939, publisher: "Condé Nast", rating: 4.5, ratingCount: 3876, genres: ["Мода", "Красота", "Стиль"], isbn: "ISSN 0017-0747", language: "Русский", weight: 260, dimensions: "28 x 21.5 x 1.0 см", frequency: "Ежемесячный", available: true },
-            { id: 63, title: "Maxim", author: "Various", pages: 120, price: 350, genre: "Мужской", category: "magazine", period: "Ежемесячный", image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=400&h=600&fit=crop&q=80", description: "Мужской журнал в развлекательном формате, охватывающий темы стиля, гаджетов, автомобилей и мужского образа жизни.", year: 1995, publisher: "Biglari Holdings", rating: 4.4, ratingCount: 3123, genres: ["Мужской", "Развлечения", "Стиль"], isbn: "ISSN 1092-9789", language: "Русский", weight: 220, dimensions: "28 x 21.5 x 0.8 см", frequency: "Ежемесячный", available: true },
-            { id: 64, title: "Playboy", author: "Various", pages: 150, price: 450, genre: "Мужской", category: "magazine", period: "Ежемесячный", image: "https://images.unsplash.com/photo-1592672690593-9fdf1779e457?w=400&h=600&fit=crop&q=80", description: "Культовый мужской журнал, сочетающий развлекательный контент с серьезными интервью, литературными произведениями и журналистскими расследованиями.", year: 1953, publisher: "Playboy Enterprises", rating: 4.3, ratingCount: 4987, genres: ["Мужской", "Культура", "Развлечения"], isbn: "ISSN 0032-1478", language: "Русский", weight: 280, dimensions: "30 x 23 x 1.2 см", frequency: "Ежемесячный", available: true }
+            { id: 28, title: "National Geographic", author: "Various", pages: 120, price: 350, genre: "Наука", category: "magazine", period: "Ежемесячный", image: "img/mag1.jpg", description: "Журнал о природе и науке с потрясающими фотографиями и глубокими научными статьями. Каждый выпуск посвящен исследованию нашей планеты и ее чудес.", year: 1888, publisher: "National Geographic Society", rating: 4.8, ratingCount: 4567, genres: ["Наука", "Путешествия", "Природа"], isbn: "ISSN 0027-9358", language: "Русский", weight: 220, dimensions: "28 x 21.5 x 0.8 см", frequency: "Ежемесячный", available: true },
+            { id: 29, title: "Forbes", author: "Various", pages: 100, price: 400, genre: "Бизнес", category: "magazine", period: "Ежемесячный", image: "img/mag2.jpg", description: "Ведущий бизнес-журнал, посвященный миру финансов, инвестиций и предпринимательства. Содержит рейтинги самых богатых людей и перспективных компаний.", year: 1917, publisher: "Forbes Media", rating: 4.7, ratingCount: 3890, genres: ["Бизнес", "Финансы", "Предпринимательство"], isbn: "ISSN 0015-6914", language: "Русский", weight: 200, dimensions: "27.5 x 21 x 0.6 см", frequency: "Ежемесячный", available: true },
+            { id: 30, title: "Vogue", author: "Various", pages: 150, price: 450, genre: "Мода", category: "magazine", period: "Ежемесячный", image: "img/mag3.jpg", description: "Культовый журнал о моде, красоте и стиле жизни. Каждый выпуск представляет последние тренды, эксклюзивные фотосессии и интервью со знаменитостями.", year: 1892, publisher: "Condé Nast", rating: 4.6, ratingCount: 5123, genres: ["Мода", "Стиль", "Красота"], isbn: "ISSN 0042-8000", language: "Русский", weight: 280, dimensions: "30 x 23 x 1.2 см", frequency: "Ежемесячный", available: true },
+            { id: 31, title: "Популярная механика", author: "Various", pages: 110, price: 320, genre: "Техника", category: "magazine", period: "Ежемесячный", image: "img/mag4.jpg", description: "Журнал о науке и технике, рассказывающий о новейших технологиях, изобретениях и научных открытиях доступным языком.", year: 2002, publisher: "Фэшн Пресс", rating: 4.5, ratingCount: 2345, genres: ["Техника", "Наука", "Технологии"], isbn: "ISSN 1683-8615", language: "Русский", weight: 190, dimensions: "26 x 20 x 0.7 см", frequency: "Ежемесячный", available: true },
+            { id: 32, title: "GQ", author: "Various", pages: 130, price: 380, genre: "Стиль", category: "magazine", period: "Ежемесячный", image: "img/mag5.jpg", description: "Мужской журнал о стиле, культуре и роскошном образе жизни. Представляет лучшие в мире моды, гаджетов, автомобилей и путешествий.", year: 1957, publisher: "Condé Nast", rating: 4.6, ratingCount: 3123, genres: ["Мужской", "Стиль", "Лайфстайл"], isbn: "ISSN 0016-6979", language: "Русский", weight: 240, dimensions: "28 x 21.5 x 0.9 см", frequency: "Ежемесячный", available: true },
+            { id: 33, title: "Cosmopolitan", author: "Various", pages: 140, price: 370, genre: "Женский", category: "magazine", period: "Ежемесячный", image: "img/mag6.jpg", description: "Журнал для современных женщин, охватывающий темы моды, красоты, карьеры, отношений и саморазвития.", year: 1886, publisher: "Hearst Communications", rating: 4.5, ratingCount: 4987, genres: ["Женский", "Мода", "Лайфстайл"], isbn: "ISSN 0010-9541", language: "Русский", weight: 260, dimensions: "28 x 21.5 x 1.0 см", frequency: "Ежемесячный", available: true },
+            { id: 34, title: "Time", author: "Various", pages: 90, price: 300, genre: "Новости", category: "magazine", period: "Еженедельный", image: "img/mag7.jpg", description: "Еженедельный новостной журнал, предоставляющий анализ важнейших мировых событий в политике, экономике, культуре и науке.", year: 1923, publisher: "Time USA", rating: 4.7, ratingCount: 4321, genres: ["Новости", "Политика", "Культура"], isbn: "ISSN 0040-781X", language: "Русский", weight: 180, dimensions: "27.5 x 21 x 0.5 см", frequency: "Еженедельный", available: true },
+            { id: 35, title: "The New Yorker", author: "Various", pages: 120, price: 350, genre: "Культура", category: "magazine", period: "Еженедельный", image: "img/mag8.jpg", description: "Литературный журнал, публикующий репортажи, эссе, сатирические материалы, а также художественную литературу и поэзию.", year: 1925, publisher: "Condé Nast", rating: 4.8, ratingCount: 3987, genres: ["Культура", "Литература", "Искусство"], isbn: "ISSN 0028-792X", language: "Русский", weight: 210, dimensions: "28 x 21 x 0.7 см", frequency: "Еженедельный", available: true }
         ];
 
         let currentPage = 1;
@@ -1410,6 +1348,7 @@
             if (!magazine) return;
             const modal = document.getElementById('magazineDetailModal');
             const content = document.getElementById('magazineDetailContent');
+            // === ИЗМЕНЕНО: Убрана кнопка "Купить сейчас" из модального окна ===
             content.innerHTML = `
                 <div class="magazine-detail-image-container"><img src="${magazine.image}" class="magazine-detail-image"></div>
                 <div class="magazine-detail-main">
@@ -1428,7 +1367,6 @@
                     </div>
                     <div class="magazine-detail-price">${magazine.price} руб</div>
                     <div class="magazine-detail-actions">
-                        <button class="magazine-detail-buy-btn" onclick="buyNow(${magazine.id}); closeMagazineDetail();">Купить сейчас</button>
                         <button class="magazine-detail-cart-btn" onclick="addToCartFromPage(${magazine.id}); closeMagazineDetail();">В корзину</button>
                     </div>
                 </div>
@@ -1464,6 +1402,7 @@
             paginatedProducts.forEach(magazine => {
                 const card = document.createElement('div');
                 card.className = 'product-card';
+                // === ИЗМЕНЕНО: Убрана кнопка "Купить сразу" из карточки товара ===
                 card.innerHTML = `
                     <div class="product-image-container" onclick="showMagazineDetail(${magazine.id})"><img src="${magazine.image}" class="product-image"></div>
                     <span class="product-genre">${magazine.genre}</span>
@@ -1472,7 +1411,6 @@
                         <p class="product-author">${magazine.author}</p>
                         <div class="product-meta"><span class="product-pages">${magazine.pages} стр.</span><span>${magazine.rating}★</span></div>
                         <div class="product-price-container"><div class="product-price">${magazine.price} руб</div></div>
-                        <button class="buy-now-btn" onclick="buyNow(${magazine.id})">Купить сразу</button>
                         <button class="add-to-cart" onclick="addToCartFromPage(${magazine.id})">В корзину</button>
                     </div>
                 `;
@@ -1506,10 +1444,7 @@
             updateCartCount();
             showNotification(`"${magazine.title}" добавлен в корзину!`, 'success');
         }
-        function buyNow(bookId) {
-            if (!currentUser) { showAuthModal('login'); showNotification('Авторизуйтесь для покупки!', 'error'); return; }
-            showNotification(`Оформление заказа`, 'info');
-        }
+        // Функция buyNow была удалена, так как она больше не используется
         function showNotification(message, type) {
             const n = document.createElement('div');
             n.style.cssText = `position:fixed; top:20px; right:20px; background:${type==='success'?'#228B22':'#FF8C00'}; color:white; padding:15px 20px; border-radius:12px; z-index:3000; animation:slideIn 0.3s ease;`;
