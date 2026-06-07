@@ -5,6 +5,340 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Фэнтези - Литературный Оазис</title>
     <style>
+        /* ===== ШАПКА - ДВЕ СТРОКИ ДЛЯ ВСЕХ ВЕРСИЙ ===== */
+.header {
+    background: linear-gradient(135deg, #FFF8DC, #F5E6D3);
+    border-bottom: 4px solid #8B4513;
+    box-shadow: 0 8px 32px rgba(139, 69, 19, 0.2);
+    width: 100%;
+    position: relative;
+    z-index: 1001;
+}
+
+/* Первая строка - только логотип */
+.header-row-top {
+    text-align: center;
+    padding: 15px 20px 5px 20px;
+    border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 800;
+    color: #8B4513;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    transform: translateY(-2px);
+    text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2);
+}
+
+/* Вторая строка - всё остальное */
+.header-row-bottom {
+    padding: 10px 20px 15px 20px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.nav {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #5D4037;
+    padding: 8px 14px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    position: relative;
+    border: 2px solid transparent;
+    background: rgba(139, 69, 19, 0.05);
+}
+
+.nav-item:hover {
+    background: linear-gradient(135deg, #8B4513, #D2691E);
+    color: white;
+    transform: translateY(-2px);
+    border-color: #FF8C00;
+}
+
+.cart-count {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: linear-gradient(135deg, #DC143C, #B22222);
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    border: 2px solid #FFF8DC;
+}
+
+.header-search {
+    display: flex;
+    gap: 8px;
+}
+
+.search-input {
+    padding: 8px 14px;
+    border: 2px solid #8B4513;
+    border-radius: 12px;
+    font-size: 13px;
+    background: white;
+    width: 220px;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #FF8C00;
+    box-shadow: 0 4px 12px rgba(210, 105, 30, 0.25);
+    transform: translateY(-2px);
+}
+
+.search-button {
+    padding: 8px 14px;
+    background: linear-gradient(135deg, #8B4513, #D2691E);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-button:hover {
+    background: linear-gradient(135deg, #D2691E, #FF8C00);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(210, 105, 30, 0.25);
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.login-btn, .register-btn {
+    padding: 8px 14px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+}
+
+.login-btn {
+    background: #FFF8DC;
+    color: #8B4513;
+    border: 2px solid #8B4513;
+}
+
+.login-btn:hover {
+    background: #8B4513;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(210, 105, 30, 0.25);
+}
+
+.register-btn {
+    background: linear-gradient(135deg, #8B4513, #D2691E);
+    color: white;
+}
+
+.register-btn:hover {
+    background: linear-gradient(135deg, #D2691E, #FF8C00);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(210, 105, 30, 0.25);
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: rgba(139, 69, 19, 0.1);
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.user-info:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(139, 69, 19, 0.15);
+}
+
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8B4513, #FF8C00);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.user-name {
+    font-weight: 600;
+    color: #5D4037;
+    font-size: 13px;
+}
+
+.logout-btn {
+    padding: 6px 12px;
+    background: linear-gradient(135deg, #DC143C, #B22222);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.logout-btn:hover {
+    background: linear-gradient(135deg, #B22222, #8B0000);
+    transform: translateY(-2px);
+}
+
+.admin-panel-btn {
+    background: linear-gradient(135deg, #228B22, #006400);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    display: none;
+}
+
+.admin-panel-btn.visible {
+    display: flex;
+}
+
+.admin-panel-btn:hover {
+    background: linear-gradient(135deg, #006400, #004d00);
+    transform: translateY(-2px);
+}
+
+/* Иконки */
+.icon-img { width: 20px; height: 20px; object-fit: contain; vertical-align: middle; }
+.icon-img-sm { width: 16px; height: 16px; }
+
+/* Адаптив для телефонов */
+@media (max-width: 768px) {
+    .header-row-top {
+        padding: 12px 15px 5px 15px;
+    }
+    
+    .logo {
+        font-size: 22px;
+    }
+    
+    .header-row-bottom {
+        padding: 8px 15px 12px 15px;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .nav {
+        justify-content: center;
+        width: 100%;
+        gap: 6px;
+    }
+    
+    .nav-item {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .header-search {
+        width: 100%;
+    }
+    
+    .search-input {
+        width: 100%;
+        font-size: 14px;
+    }
+    
+    .auth-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .user-menu {
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .cart-count {
+        width: 18px;
+        height: 18px;
+        font-size: 9px;
+        top: -5px;
+        right: -5px;
+    }
+    
+    .nav-item, .add-to-cart, .login-btn, .register-btn, .logout-btn, 
+    .search-button, .auth-btn, .admin-panel-btn {
+        min-height: 44px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 20px;
+    }
+    
+    .nav-item {
+        padding: 4px 10px;
+        font-size: 11px;
+    }
+    
+    .login-btn, .register-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
         :root {
             --primary-color: #8B4513;
             --secondary-color: #D2691E;
@@ -1051,6 +1385,36 @@
     </style>
 </head>
 <body>
+    <!-- Шапка - две строки -->
+<header class="header">
+    <!-- Первая строка: только логотип -->
+    <div class="header-row-top">
+        <a href="index.html" class="logo">Литературный Оазис</a>
+    </div>
+    
+    <!-- Вторая строка: всё остальное -->
+    <div class="header-row-bottom">
+        <div class="header-content">
+            <nav class="nav">
+                <a href="index.html" class="nav-item"><img src="img/icon-home.png" class="icon-img icon-img-sm" alt="Главная" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-5v-8H7v8H2a2 2 0 0 1-2-2z\'%3E%3C/path%3E%3C/svg%3E'">Главная</a>
+                <a href="manga.html" class="nav-item"><img src="img/icon-manga.png" class="icon-img icon-img-sm" alt="Манга" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Crect x=\'2\' y=\'3\' width=\'20\' height=\'18\' rx=\'2\'%3E%3C/rect%3E%3Cpath d=\'M8 7h8M8 11h6M8 15h4\'%3E%3C/path%3E%3C/svg%3E'">Манга</a>
+                <a href="textbooks.html" class="nav-item"><img src="img/icon-textbook.png" class="icon-img icon-img-sm" alt="Учебники" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M4 19.5A2.5 2.5 0 0 1 6.5 17H20\'%3E%3C/path%3E%3Cpath d=\'M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z\'%3E%3C/path%3E%3C/svg%3E'">Учебники</a>
+                <a href="magazines.html" class="nav-item"><img src="img/icon-magazine.png" class="icon-img icon-img-sm" alt="Журналы" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M4 4h16v16H4z\'%3E%3C/path%3E%3Cpath d=\'M8 8h8M8 12h6M8 16h4\'%3E%3C/path%3E%3C/svg%3E'">Журналы</a>
+            </nav>
+            
+            <div class="header-search">
+                <input type="text" class="search-input" placeholder="Поиск..." id="headerSearch">
+                <button class="search-button" onclick="performSearch()"><img src="img/icon-search.png" class="icon-img icon-img-sm" alt="Поиск" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\'%3E%3Ccircle cx=\'11\' cy=\'11\' r=\'8\'%3E%3C/circle%3E%3Cpath d=\'m21 21-4.35-4.35\'%3E%3C/path%3E%3C/svg%3E'"></button>
+            </div>
+            
+            <div class="auth-buttons" id="authButtons"></div>
+            
+            <button class="admin-panel-btn" id="adminPanelBtn" onclick="toggleAdminPanel()"><img src="img/icon-admin.png" class="icon-img icon-img-sm" alt="Админ" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\'%3E%3Cpath d=\'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\'%3E%3C/path%3E%3C/svg%3E'">Админ</button>
+            
+            <a href="cart.html" class="nav-item"><img src="img/icon-cart.png" class="icon-img icon-img-sm" alt="Корзина" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Ccircle cx=\'9\' cy=\'21\' r=\'1\'%3E%3C/circle%3E%3Ccircle cx=\'20\' cy=\'21\' r=\'1\'%3E%3C/circle%3E%3Cpath d=\'M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6\'%3E%3C/path%3E%3C/svg%3E'">Корзина<span class="cart-count" id="cart-count">0</span></a>
+        </div>
+    </div>
+</header>
     <!-- Модальное окно авторизации -->
     <div class="auth-modal" id="authModal">
         <div class="auth-form">
@@ -1224,14 +1588,14 @@
     <script>
         // Данные книг в жанре фэнтези
         const fantasyBooks = [
-            { id: 201, title: "Властелин Колец", author: "Дж. Р. Р. Толкин", pages: 1216, price: 1450, year: 1954, subgenre: "Высокое фэнтези", series: "Властелин Колец", image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=200&h=300&fit=crop&q=80", description: "Эпическая трилогия о борьбе добра и зла в Средиземье.", rating: 4.9, ratingCount: 7890, genres: ["Высокое фэнтези", "Эпическое фэнтези"], isbn: "978-5-17-090185-1", language: "Русский", weight: 1200, dimensions: "24.5 x 17.5 x 4.5 см", publisher: "АСТ", available: true },
-            { id: 202, title: "Хроники Нарнии", author: "Клайв С. Льюис", pages: 768, price: 980, year: 1950, subgenre: "Высокое фэнтези", series: "Хроники Нарнии", image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=200&h=300&fit=crop&q=80", description: "Семь книг о волшебной стране Нарнии и приключениях детей.", rating: 4.8, ratingCount: 4567, genres: ["Высокое фэнтези", "Детская литература"], isbn: "978-5-17-090186-8", language: "Русский", weight: 850, dimensions: "22.5 x 15.5 x 3.8 см", publisher: "Эксмо", available: true },
-            { id: 203, title: "Гарри Поттер и философский камень", author: "Джоан Роулинг", pages: 432, price: 890, year: 1997, subgenre: "Городское фэнтези", series: "Гарри Поттер", image: "https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?w=200&h=300&fit=crop&q=80", description: "Первая книга о юном волшебнике Гарри Поттере.", rating: 4.9, ratingCount: 9876, genres: ["Городское фэнтези", "Детская литература"], isbn: "978-5-389-07435-4", language: "Русский", weight: 520, dimensions: "22.5 x 14.5 x 3.2 см", publisher: "Махаон", available: true },
-            { id: 204, title: "Игра престолов", author: "Джордж Р. Р. Мартин", pages: 864, price: 950, year: 1996, subgenre: "Тёмное фэнтези", series: "Песнь Льда и Огня", image: "https://images.unsplash.com/photo-1589998059171-988d887df646?w=200&h=300&fit=crop&q=80", description: "Первая книга эпопеи о борьбе за Железный Трон.", rating: 4.7, ratingCount: 6543, genres: ["Тёмное фэнтези", "Политическое фэнтези"], isbn: "978-5-17-090187-5", language: "Русский", weight: 950, dimensions: "24.0 x 16.5 x 4.2 см", publisher: "АСТ", available: true },
-            { id: 205, title: "Ведьмак: Последнее желание", author: "Анджей Сапковский", pages: 288, price: 650, year: 1993, subgenre: "Тёмное фэнтези", series: "Ведьмак", image: "https://images.unsplash.com/photo-1568667256549-094345857637?w=200&h=300&fit=crop&q=80", description: "Сборник рассказов о ведьмаке Геральте.", rating: 4.8, ratingCount: 5678, genres: ["Тёмное фэнтези", "Славянское фэнтези"], isbn: "978-5-17-090188-2", language: "Русский", weight: 380, dimensions: "20.8 x 13.5 x 2.2 см", publisher: "АСТ", available: true },
-            { id: 206, title: "Хоббит", author: "Дж. Р. Р. Толкин", pages: 320, price: 720, year: 1937, subgenre: "Высокое фэнтези", series: "Легендариум Средиземья", image: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=200&h=300&fit=crop&q=80", description: "История о путешествии хоббита Бильбо Бэггинса.", rating: 4.8, ratingCount: 5432, genres: ["Высокое фэнтези", "Приключения"], isbn: "978-5-17-090189-9", language: "Русский", weight: 450, dimensions: "21.5 x 14.5 x 2.5 см", publisher: "АСТ", available: true },
-            { id: 207, title: "Имя ветра", author: "Патрик Ротфус", pages: 784, price: 850, year: 2007, subgenre: "Высокое фэнтези", series: "Хроника Убийцы Короля", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=300&fit=crop&q=80", description: "История Квоута, легендарного героя.", rating: 4.7, ratingCount: 4321, genres: ["Высокое фэнтези", "Магический реализм"], isbn: "978-5-17-090190-5", language: "Русский", weight: 780, dimensions: "24.0 x 16.5 x 4.0 см", publisher: "Фантастика", available: true },
-            { id: 208, title: "Дозоры", author: "Сергей Лукьяненко", pages: 448, price: 620, year: 1998, subgenre: "Городское фэнтези", series: "Дозоры", image: "https://images.unsplash.com/photo-1580477667995-2b94f01c9516?w=200&h=300&fit=crop&q=80", description: "Роман о мире, где среди людей живут Иные.", rating: 4.6, ratingCount: 3456, genres: ["Городское фэнтези", "Магический реализм"], isbn: "978-5-17-090193-6", language: "Русский", weight: 520, dimensions: "21.0 x 14.0 x 3.2 см", publisher: "АСТ", available: true }
+            { id: 201, title: "Властелин Колец", author: "Дж. Р. Р. Толкин", pages: 1216, price: 1450, year: 1954, subgenre: "Высокое фэнтези", series: "Властелин Колец", image: "img/f1.jpg", description: "Эпическая трилогия о борьбе добра и зла в Средиземье.", rating: 4.9, ratingCount: 7890, genres: ["Высокое фэнтези", "Эпическое фэнтези"], isbn: "978-5-17-090185-1", language: "Русский", weight: 1200, dimensions: "24.5 x 17.5 x 4.5 см", publisher: "АСТ", available: true },
+            { id: 202, title: "Хроники Нарнии", author: "Клайв С. Льюис", pages: 768, price: 980, year: 1950, subgenre: "Высокое фэнтези", series: "Хроники Нарнии", image: "img/f2.jpg", description: "Семь книг о волшебной стране Нарнии и приключениях детей.", rating: 4.8, ratingCount: 4567, genres: ["Высокое фэнтези", "Детская литература"], isbn: "978-5-17-090186-8", language: "Русский", weight: 850, dimensions: "22.5 x 15.5 x 3.8 см", publisher: "Эксмо", available: true },
+            { id: 203, title: "Гарри Поттер и философский камень", author: "Джоан Роулинг", pages: 432, price: 890, year: 1997, subgenre: "Городское фэнтези", series: "Гарри Поттер", image: "img/f3.jpg", description: "Первая книга о юном волшебнике Гарри Поттере.", rating: 4.9, ratingCount: 9876, genres: ["Городское фэнтези", "Детская литература"], isbn: "978-5-389-07435-4", language: "Русский", weight: 520, dimensions: "22.5 x 14.5 x 3.2 см", publisher: "Махаон", available: true },
+            { id: 204, title: "Игра престолов", author: "Джордж Р. Р. Мартин", pages: 864, price: 950, year: 1996, subgenre: "Тёмное фэнтези", series: "Песнь Льда и Огня", image: "img/f4.jpg", description: "Первая книга эпопеи о борьбе за Железный Трон.", rating: 4.7, ratingCount: 6543, genres: ["Тёмное фэнтези", "Политическое фэнтези"], isbn: "978-5-17-090187-5", language: "Русский", weight: 950, dimensions: "24.0 x 16.5 x 4.2 см", publisher: "АСТ", available: true },
+            { id: 205, title: "Ведьмак: Последнее желание", author: "Анджей Сапковский", pages: 288, price: 650, year: 1993, subgenre: "Тёмное фэнтези", series: "Ведьмак", image: "img/f5.jpg", description: "Сборник рассказов о ведьмаке Геральте.", rating: 4.8, ratingCount: 5678, genres: ["Тёмное фэнтези", "Славянское фэнтези"], isbn: "978-5-17-090188-2", language: "Русский", weight: 380, dimensions: "20.8 x 13.5 x 2.2 см", publisher: "АСТ", available: true },
+            { id: 206, title: "Хоббит", author: "Дж. Р. Р. Толкин", pages: 320, price: 720, year: 1937, subgenre: "Высокое фэнтези", series: "Легендариум Средиземья", image: "img/f6.jpg", description: "История о путешествии хоббита Бильбо Бэггинса.", rating: 4.8, ratingCount: 5432, genres: ["Высокое фэнтези", "Приключения"], isbn: "978-5-17-090189-9", language: "Русский", weight: 450, dimensions: "21.5 x 14.5 x 2.5 см", publisher: "АСТ", available: true },
+            { id: 207, title: "Имя ветра", author: "Патрик Ротфус", pages: 784, price: 850, year: 2007, subgenre: "Высокое фэнтези", series: "Хроника Убийцы Короля", image: "img/f7.jpg", description: "История Квоута, легендарного героя.", rating: 4.7, ratingCount: 4321, genres: ["Высокое фэнтези", "Магический реализм"], isbn: "978-5-17-090190-5", language: "Русский", weight: 780, dimensions: "24.0 x 16.5 x 4.0 см", publisher: "Фантастика", available: true },
+            { id: 208, title: "Дозоры", author: "Сергей Лукьяненко", pages: 448, price: 620, year: 1998, subgenre: "Городское фэнтези", series: "Дозоры", image: "img/f8.jpg", description: "Роман о мире, где среди людей живут Иные.", rating: 4.6, ratingCount: 3456, genres: ["Городское фэнтези", "Магический реализм"], isbn: "978-5-17-090193-6", language: "Русский", weight: 520, dimensions: "21.0 x 14.0 x 3.2 см", publisher: "АСТ", available: true }
         ];
 
         let currentBooks = [...fantasyBooks];
