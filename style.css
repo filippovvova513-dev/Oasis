@@ -176,3 +176,223 @@ body {
         padding: 0 15px;
     }
 }
+/* Добавьте эти стили в конец вашего CSS */
+
+/* Планшеты (768px - 1024px) */
+@media (max-width: 1024px) {
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .nav {
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .books-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .genres-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .banner-title {
+        font-size: 42px;
+    }
+    
+    .banner-slogan {
+        font-size: 18px;
+    }
+    
+    .carousel-slide {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .carousel-image {
+        width: 200px;
+        height: 260px;
+    }
+}
+
+/* Телефоны (до 768px) */
+@media (max-width: 768px) {
+    /* Шапка */
+    .header-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .nav {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+    }
+    
+    .nav-item {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .header-search {
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    .search-input {
+        width: 100%;
+    }
+    
+    /* Карточки товаров */
+    .books-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .book-card {
+        max-width: 100%;
+    }
+    
+    /* Жанры */
+    .genres-grid {
+        grid-template-columns: 1fr;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    /* Новости */
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Баннер */
+    .banner-title {
+        font-size: 32px;
+    }
+    
+    .banner-slogan {
+        font-size: 16px;
+    }
+    
+    .banner-contacts {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .banner-content {
+        flex-direction: column;
+        padding: 0 20px;
+    }
+    
+    .banner-logo-corner {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-bottom: 20px;
+    }
+    
+    /* Карусель */
+    .carousel-container {
+        height: auto;
+        min-height: 500px;
+    }
+    
+    .carousel-slide {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .carousel-image {
+        width: 180px;
+        height: 240px;
+    }
+    
+    .carousel-book-title {
+        font-size: 24px;
+        text-align: center;
+    }
+    
+    .carousel-meta {
+        justify-content: center;
+    }
+    
+    /* Модальные окна */
+    .book-detail-content {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .book-detail-image-container {
+        flex: 0 0 auto;
+        align-items: center;
+    }
+    
+    .book-details-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .book-detail-actions {
+        flex-direction: column;
+    }
+    
+    /* Админ-панель */
+    .admin-footer-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .admin-footer-tabs {
+        flex-direction: column;
+    }
+    
+    .admin-footer-tab {
+        width: 100%;
+    }
+    
+    .admin-footer-table {
+        font-size: 12px;
+    }
+    
+    .admin-footer-table th,
+    .admin-footer-table td {
+        padding: 8px;
+    }
+}
+
+/* Маленькие телефоны (до 480px) */
+@media (max-width: 480px) {
+    .banner-title {
+        font-size: 24px;
+    }
+    
+    .banner-subtitle {
+        font-size: 14px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .book-title {
+        font-size: 18px;
+    }
+    
+    .book-price {
+        font-size: 20px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 15px;
+    }
+    
+    .auth-content {
+        padding: 20px;
+    }
+    
+    .footer p {
+        font-size: 12px;
+    }
+}
