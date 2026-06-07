@@ -751,7 +751,7 @@
     <script>
         // Данные книг - ВСЕ ИЗОБРАЖЕНИЯ ТЕПЕРЬ ИЗ ПАПКИ img/
         const books = [
-            { id: 1, title: "Мастер и Маргарита", author: "Михаил Булгаков", pages: 480, price: 650, genre: "romance", category: "book", image: "img/master-i-margarita.jpg", description: "Мистический роман о дьяволе, посетившем Москву 1930-х годов.", year: 1967, publisher: "Экслюзивная литература", rating: 4.8, ratingCount: 2345, genres: ["Роман", "Мистика"], isbn: "978-5-699-12345-6", language: "Русский", weight: 450, dimensions: "20.5x13.5x2.8", available: true },
+            { id: 1, title: "Мастер и Маргарита", author: "Михаил Булгаков", pages: 480, price: 650, genre: "romance", category: "book", image: "img/master-i-margarita.jpg", description: "Мистический роман о дьяволе, посетившем Москву 1930-х годов.", year: 1967, publisher: "Художественная литература", rating: 4.8, ratingCount: 2345, genres: ["Роман", "Мистика"], isbn: "978-5-699-12345-6", language: "Русский", weight: 450, dimensions: "20.5x13.5x2.8", available: true },
             { id: 2, title: "1984", author: "Джордж Оруэлл", pages: 320, price: 550, genre: "sci-fi", category: "book", image: "img/1984.jpg", description: "Антиутопия о тоталитарном обществе и потере свободы.", year: 1949, publisher: "Secker & Warburg", rating: 4.7, ratingCount: 1890, genres: ["Антиутопия"], isbn: "978-5-17-080115-2", language: "Русский", weight: 380, dimensions: "20.8x13.5x2.2", available: true },
             { id: 3, title: "Гарри Поттер и философский камень", author: "Джоан Роулинг", pages: 432, price: 890, genre: "fantasy", category: "book", image: "img/harry-potter.jpg", description: "Начало магических приключений юного волшебника.", year: 1997, publisher: "Bloomsbury", rating: 4.9, ratingCount: 5678, genres: ["Фэнтези"], isbn: "978-5-389-07435-4", language: "Русский", weight: 520, dimensions: "22.5x14.5x3.2", available: true },
             { id: 4, title: "Наруто: Том 1", author: "Масаси Кисимото", pages: 192, price: 450, genre: "fantasy", category: "manga", image: "img/naruto.jpg", description: "Начало пути ниндзя-неудачника.", year: 1999, publisher: "Shueisha", rating: 4.6, ratingCount: 3210, genres: ["Манга"], isbn: "978-4-08-872840-7", language: "Японский", weight: 180, dimensions: "17.5x11.5x1.5", available: true },
@@ -803,6 +803,7 @@
                     </div>
                     <div class="random-book-price">${randomBook.price} ₽</div>
                     <div class="random-book-actions">
+                        <button class="random-book-action-btn random-book-buy-btn" onclick="buyNow(${randomBook.id}); closeRandomBook();">Купить сейчас</button>
                         <button class="random-book-action-btn random-book-cart-btn" onclick="addToCart(${randomBook.id}); closeRandomBook();">В корзину</button>
                     </div>
                 </div>
@@ -837,7 +838,7 @@
                     </div>
                     <div class="book-detail-price">${book.price} ₽</div>
                     <div class="book-detail-actions">
-                        
+                        <button class="book-detail-buy-btn" onclick="buyNow(${book.id}); closeBookDetail();">Купить сейчас</button>
                         <button class="book-detail-cart-btn" onclick="addToCart(${book.id}); closeBookDetail();">В корзину</button>
                     </div>
                 </div>
@@ -1223,7 +1224,7 @@
             books.forEach(book => {
                 const card = document.createElement('div');
                 card.className = 'book-card';
-             
+                card.innerHTML = `<div class="book-image-container" onclick="showBookDetail(${book.id})"><img src="${book.image}" class="book-image" onerror="this.src='https://via.placeholder.com/200x300?text=${encodeURIComponent(book.title)}'"></div><div class="book-content"><h3 class="book-title" onclick="showBookDetail(${book.id})">${book.title}</h3><p class="book-author">${book.author}</p><div class="book-meta"><span class="book-pages">${book.pages} стр.</span><span class="book-genre">${book.genre}</span></div><div class="book-price-container"><div class="book-price">${book.price} руб</div></div><button class="buy-now-btn" onclick="buyNow(${book.id})">Купить сразу</button><button class="add-to-cart" onclick="addToCart(${book.id})">В корзину</button></div>`;
                 grid.appendChild(card);
             });
         }
