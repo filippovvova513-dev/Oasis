@@ -71,25 +71,6 @@
             position: relative;
         }
         
-        /* Сдвигаем плашку "Случайная рекомендация" ниже */
-        .random-book-container {
-            margin-top: 30px;
-        }
-        .random-book-tag {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #FF8C00, #FFA500);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 13px;
-            font-weight: 700;
-            z-index: 10;
-            border: 3px solid var(--light-color);
-        }
-        
         .random-book-header, .book-detail-header, .user-orders-header {
             padding: 30px;
             background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
@@ -360,11 +341,14 @@
             margin: 20px 0;
         }
 
+        /* Плашка "Случайная рекомендация" УБРАНА */
+        .random-book-tag {
+            display: none;
+        }
+
         @media (max-width: 768px) {
             .random-book-content, .book-detail-content { flex-direction: column; }
             .random-book-actions, .book-detail-actions { flex-direction: column; }
-            .random-book-tag { font-size: 11px; padding: 6px 14px; top: -10px; }
-            .random-book-container { margin-top: 20px; }
         }
 
         .close-auth-btn {
@@ -441,7 +425,7 @@
         @media (max-width: 480px) { .banner-title { font-size: 32px; } .banner-subtitle { font-size: 16px; } .banner-slogan { font-size: 16px; } .contact-item { padding: 15px; } .main-banner { padding: 40px 20px; } }
         .container { max-width: 1300px; margin: auto; padding: 0 30px; }
         
-        /* ===== ШАПКА - БЕЗ ЛОГОТИПА, С ПОИСКОМ БЕЗ КНОПКИ ===== */
+        /* ===== ШАПКА - РАСШИРЕННАЯ, ВСЕ НА ОДНОМ УРОВНЕ ===== */
         .header {
             background: linear-gradient(135deg, var(--light-color), #F5E6D3);
             border-bottom: 4px solid var(--primary-color);
@@ -455,21 +439,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
+            flex-wrap: nowrap;
+            gap: 20px;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 12px 30px;
+            padding: 10px 30px;
             width: 100%;
         }
 
         .nav {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             align-items: center;
-            flex-wrap: wrap;
-            flex: 2;
-            justify-content: flex-start;
+            flex-wrap: nowrap;
         }
 
         .nav-item {
@@ -480,12 +462,13 @@
             padding: 8px 14px;
             border-radius: var(--radius-md);
             transition: var(--transition);
-            gap: 8px;
+            gap: 6px;
             font-size: 13px;
             font-weight: 600;
             position: relative;
             border: 2px solid transparent;
             background: rgba(139, 69, 19, 0.05);
+            white-space: nowrap;
         }
 
         .nav-item:hover {
@@ -512,21 +495,20 @@
             border: 2px solid var(--light-color);
         }
 
-        /* Поиск - без кнопки, только поле ввода */
         .header-search {
             display: flex;
             gap: 8px;
-            flex: 1;
-            justify-content: center;
+            flex: 0 1 280px;
+            min-width: 200px;
         }
 
         .search-input {
-            padding: 8px 18px;
+            padding: 8px 16px;
             border: 2px solid var(--primary-color);
             border-radius: var(--radius-md);
             font-size: 13px;
             background: white;
-            width: 280px;
+            width: 100%;
             transition: var(--transition);
             box-shadow: var(--shadow-sm);
         }
@@ -538,7 +520,6 @@
             transform: translateY(-2px);
         }
 
-        /* Кнопка поиска скрыта */
         .search-button {
             display: none;
         }
@@ -547,8 +528,7 @@
             display: flex;
             gap: 8px;
             align-items: center;
-            flex: 1;
-            justify-content: flex-end;
+            flex: 0 0 auto;
         }
 
         .login-btn, .register-btn {
@@ -558,6 +538,7 @@
             font-weight: 600;
             cursor: pointer;
             border: none;
+            white-space: nowrap;
         }
 
         .login-btn {
@@ -587,8 +568,8 @@
         .user-menu {
             display: flex;
             align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
+            gap: 8px;
+            flex-wrap: nowrap;
         }
 
         .user-info {
@@ -599,6 +580,7 @@
             background: rgba(139, 69, 19, 0.1);
             border-radius: var(--radius-md);
             cursor: pointer;
+            white-space: nowrap;
         }
 
         .user-info:hover {
@@ -635,6 +617,7 @@
             font-size: 12px;
             font-weight: 600;
             transition: var(--transition);
+            white-space: nowrap;
         }
 
         .logout-btn:hover {
@@ -653,6 +636,7 @@
             font-weight: 600;
             transition: var(--transition);
             color: var(--primary-color);
+            white-space: nowrap;
         }
 
         .user-action-btn:hover {
@@ -794,7 +778,6 @@
 
         .status-badge { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; display: inline-block; }
         .status-active { background: rgba(34, 139, 34, 0.1); color: #228B22; border: 1px solid rgba(34, 139, 34, 0.2); }
-        .status-deleted { background: rgba(220, 20, 60, 0.1); color: #DC143C; border: 1px solid rgba(220, 20, 60, 0.2); }
 
         /* Остальные стили */
         .search-results { position: fixed; top: 130px; right: 30px; width: 450px; max-height: 600px; background: var(--light-color); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); border: 3px solid var(--primary-color); z-index: 1000; display: none; overflow-y: auto; padding: 20px; }
@@ -892,7 +875,6 @@
         .news-title { font-size: 24px; font-weight: 700; color: var(--primary-color); margin-bottom: 15px; }
         .news-description { color: var(--text-color); font-size: 16px; line-height: 1.6; }
         
-        /* Кнопка удаления новости для администратора */
         .delete-news-btn {
             margin-top: 15px;
             padding: 8px 20px;
@@ -1114,7 +1096,6 @@
             transform: translateY(-2px);
         }
 
-        /* Кнопка для перехода в каталог (заказы) */
         .catalog-link-btn {
             display: inline-block;
             margin-top: 15px;
@@ -1139,13 +1120,16 @@
         @media (max-width: 1024px) {
             .container { padding: 0 25px; }
             .books-grid { grid-template-columns: repeat(2, 1fr); }
+            .header-content { flex-wrap: wrap; gap: 10px; }
+            .nav { flex-wrap: wrap; }
+            .header-search { flex: 1 1 200px; min-width: 150px; }
         }
         @media (max-width: 768px) {
-            .header-content { flex-direction: column; gap: 10px; }
-            .nav { justify-content: center; width: 100%; }
-            .header-search { width: 100%; }
+            .header-content { flex-direction: column; gap: 10px; align-items: stretch; }
+            .nav { justify-content: center; flex-wrap: wrap; }
+            .header-search { flex: 1 1 auto; }
             .search-input { width: 100%; }
-            .auth-buttons { width: 100%; justify-content: center; }
+            .auth-buttons { justify-content: center; }
             .books-grid { grid-template-columns: 1fr; max-width: 380px; margin-left: auto; margin-right: auto; }
             .genres-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
             .news-grid { grid-template-columns: 1fr; }
@@ -1167,6 +1151,7 @@
             .admin-footer-tabs { flex-direction: column; padding: 0; }
             .admin-footer-tab { width: 100%; padding: 12px; }
             .admin-footer-stats { grid-template-columns: repeat(2, 1fr); }
+            .user-menu { flex-wrap: wrap; justify-content: center; }
         }
         @media (max-width: 480px) {
             .container { padding: 0 20px; }
@@ -1174,6 +1159,9 @@
             .carousel-image { width: 160px; height: 220px; }
             .book-title { font-size: 18px; }
             .admin-footer-stats { grid-template-columns: 1fr; }
+            .nav-item { padding: 6px 10px; font-size: 12px; }
+            .user-info { padding: 4px 8px; }
+            .user-name { font-size: 12px; }
         }
     </style>
 </head>
@@ -1230,10 +1218,9 @@
         </div>
     </div>
 
-    <!-- Модальное окно случайной книги -->
+    <!-- Модальное окно случайной книги (БЕЗ желтой плашки) -->
     <div class="random-book-modal" id="randomBookModal">
         <div class="random-book-container">
-            <div class="random-book-tag">Случайная рекомендация</div>
             <div class="random-book-header">
                 <h2>Книга-сюрприз</h2>
                 <button class="close-random-book-btn" onclick="closeRandomBook()">×</button>
@@ -1253,7 +1240,7 @@
         </div>
     </div>
 
-    <!-- Шапка - без логотипа, с поиском без кнопки -->
+    <!-- Шапка - расширенная, все на одном уровне -->
     <header class="header">
         <div class="header-content">
             <nav class="nav">
@@ -1348,7 +1335,7 @@
         </section>
     </div>
 
-    <!-- Админ-панель внизу страницы (видна только администратору) -->
+    <!-- Админ-панель внизу страницы -->
     <div class="admin-footer-panel" id="adminFooterPanel">
         <div class="admin-footer-header">
             <div class="admin-footer-title-container">
@@ -1771,7 +1758,7 @@
 
         function closeProfile() { document.getElementById('profileModal').style.display = 'none'; }
 
-        // ЗАКАЗЫ
+        // ЗАКАЗЫ - с красивым оформлением
         function showUserOrders() {
             if (!currentUser || currentUser.isAdmin) return;
             const allOrders = JSON.parse(localStorage.getItem('userOrders')) || [];
@@ -1780,18 +1767,20 @@
             
             if (userOrders.length === 0) {
                 content.innerHTML = `
-                    <div class="no-orders" style="text-align:center; padding:40px; width:100%;">
-                        <p style="font-size:18px; color:var(--secondary-color); margin-bottom:20px;">У вас пока нет ни одного заказа.</p>
+                    <div style="text-align:center; padding:50px 20px; width:100%;">
+                        <div style="font-size:60px; margin-bottom:20px;">📭</div>
+                        <p style="font-size:20px; color:var(--primary-color); font-weight:700; margin-bottom:15px;">У вас пока нет ни одного заказа</p>
+                        <p style="font-size:16px; color:var(--secondary-color); margin-bottom:30px;">Откройте для себя мир книг в нашем каталоге</p>
                         <a href="index.html" class="catalog-link-btn" onclick="closeUserOrders()">Перейти в каталог</a>
                     </div>
                 `;
             } else {
-                let html = '<table class="orders-table"><thead><tr><th>№</th><th>Книги</th><th>Сумма</th><th>Дата</th><th>Статус</th></tr></thead><tbody>';
+                let html = '<table class="orders-table" style="width:100%; border-collapse:collapse;"><thead><tr><th style="padding:12px 15px; text-align:left; background:rgba(139,69,19,0.05); border-bottom:2px solid var(--accent-color);">№</th><th style="padding:12px 15px; text-align:left; background:rgba(139,69,19,0.05); border-bottom:2px solid var(--accent-color);">Книги</th><th style="padding:12px 15px; text-align:left; background:rgba(139,69,19,0.05); border-bottom:2px solid var(--accent-color);">Сумма</th><th style="padding:12px 15px; text-align:left; background:rgba(139,69,19,0.05); border-bottom:2px solid var(--accent-color);">Дата</th><th style="padding:12px 15px; text-align:left; background:rgba(139,69,19,0.05); border-bottom:2px solid var(--accent-color);">Статус</th></tr></thead><tbody>';
                 userOrders.forEach(o => {
                     const itemsHtml = o.items.map(item => `${item.title} (${item.quantity} шт)`).join('<br>');
-                    html += `<tr><td>#${o.id}</td><td>${itemsHtml}</td><td>${o.total} руб</td><td>${new Date(o.date).toLocaleDateString()}</td><td><span class="status-badge status-active">Выполнен</span></td></tr>`;
+                    html += `<tr><td style="padding:12px 15px; border-bottom:1px solid rgba(139,69,19,0.1);">#${o.id}</td><td style="padding:12px 15px; border-bottom:1px solid rgba(139,69,19,0.1);">${itemsHtml}</td><td style="padding:12px 15px; border-bottom:1px solid rgba(139,69,19,0.1); font-weight:700; color:#228B22;">${o.total} руб</td><td style="padding:12px 15px; border-bottom:1px solid rgba(139,69,19,0.1);">${new Date(o.date).toLocaleDateString()}</td><td style="padding:12px 15px; border-bottom:1px solid rgba(139,69,19,0.1);"><span class="status-badge status-active">✅ Выполнен</span></td></tr>`;
                 });
-                html += '</tbody></table><div style="margin-top:20px; text-align:center;"><button onclick="closeUserOrders()" class="catalog-link-btn" style="background:var(--primary-color);">Закрыть</button></div>';
+                html += '</tbody></table><div style="margin-top:25px; text-align:center;"><button onclick="closeUserOrders()" class="catalog-link-btn" style="background:var(--primary-color);">Закрыть</button></div>';
                 content.innerHTML = html;
             }
             document.getElementById('userOrdersModal').style.display = 'flex';
@@ -1800,12 +1789,6 @@
         function closeUserOrders() { document.getElementById('userOrdersModal').style.display = 'none'; }
 
         // АДМИН-ПАНЕЛЬ
-        function toggleAdminFooterPanel() {
-            const panel = document.getElementById('adminFooterPanel');
-            panel.classList.toggle('visible');
-            if (panel.classList.contains('visible')) refreshAdminFooterData();
-        }
-
         function switchAdminFooterTab(tab) {
             document.querySelectorAll('.admin-footer-tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.admin-footer-section').forEach(s => s.classList.remove('active'));
@@ -1826,15 +1809,14 @@
             const stats = JSON.parse(localStorage.getItem('bookStatistics')) || [];
             document.getElementById('footerStatsTable').innerHTML = stats.sort((a,b)=>b.sold-a.sold).slice(0,10).map(s => `<tr><td>${s.bookTitle}</td><td>${s.author}</td><td>${s.sold} шт</td><td>${s.revenue} руб</td>`).join('');
             
-            // Новости в админ-панели
             const newsData = JSON.parse(localStorage.getItem('adminNews')) || [];
             document.getElementById('footerNewsTable').innerHTML = newsData.map(item => `
                 <tr>
                     <td>${item.id}</td>
                     <td>${item.title}</td>
-                    <td>${item.badge}</td>
+                    <td><span class="news-badge" style="font-size:11px; padding:4px 12px;">${item.badge}</span></td>
                     <td>${item.date}</td>
-                    <td><button class="admin-footer-action-btn danger" onclick="deleteNews(${item.id})" style="padding:6px 14px; font-size:12px;">Удалить</button></td>
+                    <td><button class="admin-footer-action-btn danger" onclick="deleteNews(${item.id})" style="padding:6px 14px; font-size:12px;">🗑 Удалить</button></td>
                 </tr>
             `).join('');
         }
