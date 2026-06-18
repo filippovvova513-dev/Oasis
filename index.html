@@ -1271,7 +1271,7 @@
                 <h1 class="banner-title">Литературный Оазис</h1>
                 <div class="banner-slogan">Место, где каждая книга находит своего читателя, а каждый читатель — свою книгу</div>
                 <div class="banner-contacts">
-                    <div class="contact-item"><span class="contact-label">Адрес</span><span class="contact-value">г. Прокопьевск, Ул. Бамбуково, д.13</span></div>
+                    <div class="contact-item"><span class="contact-label">Адрес</span><span class="contact-value">Г. Прокопьевск, Ул. Бамбуково, д.13</span></div>
                     <div class="contact-item"><span class="contact-label">Телефон</span><span class="contact-value">+7 (921) 756-77-44</span></div>
                     <div class="contact-item"><span class="contact-label">Email</span><span class="contact-value">info@literary-oasis.ru</span></div>
                     <div class="contact-item"><span class="contact-label">Часы работы</span><span class="contact-value">9:00 - 21:00 ежедневно</span></div>
@@ -1383,8 +1383,8 @@
     </div>
 
     <footer class="footer">
-        <p>© 2024 Литературный Оазис. Все права защищены.</p>
-        <p>Книжный магазин с душой | Ул. Бамбуково, д.13 | +7 (921) 756-77-44</p>
+        <p>© 2026 Литературный Оазис. Все права защищены.</p>
+        <p>Книжный магазин с душой |Г. Прокопьевск Ул. Бамбуково, д.13 | +7 (921) 756-77-44</p>
     </footer>
 
     <script>
@@ -1409,7 +1409,7 @@
         let showAllNews = false;
         let currentUser = null;
         let news = JSON.parse(localStorage.getItem('adminNews')) || [
-            { id: 1, badge: "НОВОСТИ МАГАЗИНА", date: "15 ноября 2024", title: "Открытие нового филиала", description: "Рады сообщить об открытии нового филиала нашего магазина в центре города! Ждем всех любителей книг по адресу: ул. Читательская, 25.", publishedByAdmin: false },
+            { id: 1, badge: "НОВОСТИ МАГАЗИНА", date: "15 ноября 2026", title: "Открытие нового филиала", description: "Рады сообщить об открытии нового филиала нашего магазина в центре города! Ждем всех любителей книг по адресу: ул. Читательская, 25.", publishedByAdmin: false },
             { id: 2, badge: "ЮБИЛЕЙ", date: "12 ноября 2024", title: "70 лет со дня рождения Стивена Кинга", description: "Поздравляем великого мастера ужасов с юбилеем! В честь этого события скидка 20% на все книги автора.", publishedByAdmin: false }
         ];
 
@@ -1901,7 +1901,7 @@
         }
 
         function initUserData() {
-            if(!localStorage.getItem('registeredUsers')) localStorage.setItem('registeredUsers', JSON.stringify([{id:1,name:"Тест",username:"test",password:"test123",email:"test@test.com",phone:"+7(900)000-00-00",registrationDate:"2024-01-01",orders:[],isAdmin:false}]));
+            if(!localStorage.getItem('registeredUsers')) localStorage.setItem('registeredUsers', JSON.stringify([{id:1,name:"Тест",username:"test",password:"test123",email:"test@test.com",phone:"+7(900)000-00-00",registrationDate:"2026-01-01",orders:[],isAdmin:false}]));
             if(!localStorage.getItem('userOrders')) localStorage.setItem('userOrders', JSON.stringify([]));
             if(!localStorage.getItem('bookStatistics')) localStorage.setItem('bookStatistics', JSON.stringify(books.map(b=>({bookId:b.id,bookTitle:b.title,author:b.author,sold:0,revenue:0}))));
             if(!localStorage.getItem('cartItems')) localStorage.setItem('cartItems', JSON.stringify([]));
