@@ -330,7 +330,7 @@
             box-shadow: var(--shadow-lg);
         }
 
-        /* ===== ШАПКА - ДВЕ СТРОКИ ===== */
+        /* ===== ШАПКА - ДВЕ СТРОКИ (БЕЗ КНОПКИ АДМИН) ===== */
         .header {
             background: linear-gradient(135deg, var(--light-color), #F5E6D3);
             border-bottom: 4px solid var(--primary-color);
@@ -507,6 +507,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
         .user-info {
@@ -543,41 +544,28 @@
             font-size: 13px;
         }
 
+        /* Кнопка выхода как на главной - коричневая, не красная */
         .logout-btn {
-            padding: 6px 12px;
-            background: linear-gradient(135deg, #DC143C, #B22222);
-            color: white;
-            border: none;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .logout-btn:hover {
-            background: linear-gradient(135deg, #B22222, #8B0000);
-            transform: translateY(-2px);
-        }
-
-        .admin-panel-btn {
-            background: linear-gradient(135deg, #228B22, #006400);
+            padding: 6px 14px;
+            background: var(--primary-color);
             color: white;
             border: none;
             border-radius: var(--radius-md);
-            padding: 8px 14px;
             cursor: pointer;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
-            display: none;
+            transition: var(--transition);
         }
 
-        .admin-panel-btn.visible {
-            display: flex;
-        }
-
-        .admin-panel-btn:hover {
-            background: linear-gradient(135deg, #006400, #004d00);
+        .logout-btn:hover {
+            background: var(--secondary-color);
             transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+        }
+
+        /* Кнопка админ полностью скрыта */
+        .admin-panel-btn {
+            display: none !important;
         }
 
         /* Основной контент */
@@ -587,7 +575,7 @@
             padding: 0 30px;
         }
 
-        /* Боковая админ-панель */
+        /* Боковая админ-панель (скрыта, но оставлена для функциональности) */
         .admin-panel {
             position: fixed;
             left: -420px;
@@ -980,6 +968,7 @@
             box-shadow: var(--shadow-lg);
         }
 
+        /* ПОДВАЛ - год 2026, город Прокопьевск */
         .footer {
             background: linear-gradient(135deg, var(--dark-color), #4A3529);
             color: #F5E6D3;
@@ -992,7 +981,7 @@
         }
         .footer p { font-size: 16px; margin-bottom: 15px; font-weight: 600; }
 
-        /* ===== АДАПТИВ ДЛЯ ТЕЛЕФОНОВ ===== */
+        /* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
         @media (max-width: 1024px) {
             .books-grid { grid-template-columns: repeat(2, 1fr); }
             .genre-title { font-size: 36px; }
@@ -1007,9 +996,10 @@
             .logo { font-size: 22px; }
             .header-row-bottom { padding: 8px 15px 12px 15px; }
             .header-content { flex-direction: column; gap: 10px; }
-            .nav { justify-content: center; width: 100%; gap: 6px; }
-            .nav-item { padding: 6px 12px; font-size: 12px; }
-            .header-search { width: 100%; }
+            .nav { justify-content: center; width: 100%; gap: 6px; margin-left: 0; }
+            .nav-item { padding: 6px 12px; font-size: 12px; white-space: nowrap; }
+            .nav-item .icon-img-sm { width: 14px; height: 14px; }
+            .header-search { width: 100%; margin-left: 0; }
             .search-input { width: 100%; font-size: 14px; }
             .auth-buttons { width: 100%; justify-content: center; }
             .user-menu { justify-content: center; width: 100%; }
@@ -1019,20 +1009,25 @@
             .genre-title { font-size: 32px; }
             .genre-subtitle { font-size: 18px; }
             .genre-stats { flex-direction: column; gap: 20px; }
-            .books-grid { grid-template-columns: 1fr; gap: 20px; }
+            .books-grid { grid-template-columns: 1fr; gap: 20px; max-width: 380px; margin-left: auto; margin-right: auto; }
+            .book-card { margin: 0 auto; width: 100%; }
             .filters-grid { grid-template-columns: 1fr; }
             .book-details-grid { grid-template-columns: 1fr; }
             .book-detail-actions { flex-direction: column; }
             
             .nav-item, .add-to-cart, .login-btn, .register-btn, .logout-btn, 
-            .search-button, .auth-btn, .admin-panel-btn, .filter-btn {
-                min-height: 44px;
-            }
+            .page-btn, .search-button, .auth-btn, .close-detail-btn, 
+            .close-auth-btn, .book-detail-cart-btn { min-height: 44px; }
+            .product-card:hover, .nav-item:hover, .add-to-cart:hover { transform: none; }
+            .nav-item:active, .add-to-cart:active { opacity: 0.7; transform: scale(0.97); }
+            html { scroll-behavior: smooth; }
+            input, select, textarea { font-size: 16px; }
+            body { overflow-x: hidden; }
         }
 
         @media (max-width: 480px) {
             .container { padding: 0 20px; }
-            .books-grid { grid-template-columns: 1fr; max-width: 300px; margin-left: auto; margin-right: auto; }
+            .books-grid { max-width: 300px; }
             .genre-title { font-size: 28px; }
             .genre-subtitle { font-size: 16px; }
             .book-detail-content { padding: 20px; }
@@ -1041,34 +1036,23 @@
             .logo { font-size: 20px; }
             .nav-item { padding: 4px 10px; font-size: 11px; }
             .login-btn, .register-btn { padding: 6px 12px; font-size: 12px; }
+            .user-info { padding: 5px 10px; }
+            .user-avatar { width: 26px; height: 26px; font-size: 12px; }
+            .user-name { font-size: 12px; }
+            .logout-btn { padding: 5px 10px; font-size: 11px; }
+            .book-detail-name { font-size: 20px; }
+            .book-detail-price { font-size: 24px; }
+        }
+
+        @media (max-width: 360px) {
+            .nav-item { padding: 4px 8px; font-size: 10px; }
+            .book-image { max-width: 140px; }
+            .user-menu { flex-direction: column; gap: 6px; }
+            .admin-stats { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <!-- Шапка - две строки -->
-    <header class="header">
-        <div class="header-row-top">
-            <a href="index.html" class="logo">Литературный Оазис</a>
-        </div>
-        <div class="header-row-bottom">
-            <div class="header-content">
-                <nav class="nav">
-                    <a href="index.html" class="nav-item"><img src="img/icon-home.png" class="icon-img icon-img-sm" alt="Главная" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-5v-8H7v8H2a2 2 0 0 1-2-2z\'%3E%3C/path%3E%3C/svg%3E'">Главная</a>
-                    <a href="manga.html" class="nav-item"><img src="img/icon-manga.png" class="icon-img icon-img-sm" alt="Манга" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Crect x=\'2\' y=\'3\' width=\'20\' height=\'18\' rx=\'2\'%3E%3C/rect%3E%3Cpath d=\'M8 7h8M8 11h6M8 15h4\'%3E%3C/path%3E%3C/svg%3E'">Манга</a>
-                    <a href="textbooks.html" class="nav-item"><img src="img/icon-textbook.png" class="icon-img icon-img-sm" alt="Учебники" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M4 19.5A2.5 2.5 0 0 1 6.5 17H20\'%3E%3C/path%3E%3Cpath d=\'M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z\'%3E%3C/path%3E%3C/svg%3E'">Учебники</a>
-                    <a href="magazines.html" class="nav-item"><img src="img/icon-magazine.png" class="icon-img icon-img-sm" alt="Журналы" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M4 4h16v16H4z\'%3E%3C/path%3E%3Cpath d=\'M8 8h8M8 12h6M8 16h4\'%3E%3C/path%3E%3C/svg%3E'">Журналы</a>
-                </nav>
-                <div class="header-search">
-                    <input type="text" class="search-input" placeholder="Поиск детективов..." id="headerSearch">
-                    <button class="search-button" onclick="performSearch()"><img src="img/icon-search.png" class="icon-img icon-img-sm" alt="Поиск" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\'%3E%3Ccircle cx=\'11\' cy=\'11\' r=\'8\'%3E%3C/circle%3E%3Cpath d=\'m21 21-4.35-4.35\'%3E%3C/path%3E%3C/svg%3E'"></button>
-                </div>
-                <div class="auth-buttons" id="authButtons"></div>
-                <button class="admin-panel-btn" id="adminPanelBtn" onclick="toggleAdminPanel()"><img src="img/icon-admin.png" class="icon-img icon-img-sm" alt="Админ" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\'%3E%3Cpath d=\'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\'%3E%3C/path%3E%3C/svg%3E'">Админ</button>
-                <a href="cart.html" class="nav-item"><img src="img/icon-cart.png" class="icon-img icon-img-sm" alt="Корзина" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Ccircle cx=\'9\' cy=\'21\' r=\'1\'%3E%3C/circle%3E%3Ccircle cx=\'20\' cy=\'21\' r=\'1\'%3E%3C/circle%3E%3Cpath d=\'M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6\'%3E%3C/path%3E%3C/svg%3E'">Корзина<span class="cart-count" id="cart-count">0</span></a>
-            </div>
-        </div>
-    </header>
-
     <!-- Модальное окно авторизации -->
     <div class="auth-modal" id="authModal">
         <div class="auth-form">
@@ -1099,6 +1083,29 @@
         </div>
     </div>
 
+    <!-- Шапка - две строки (без кнопки Админ) -->
+    <header class="header">
+        <div class="header-row-top">
+            <a href="index.html" class="logo">Литературный Оазис</a>
+        </div>
+        <div class="header-row-bottom">
+            <div class="header-content">
+                <nav class="nav">
+                    <a href="index.html" class="nav-item"><img src="img/icon-home.png" class="icon-img icon-img-sm" alt="Главная" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-5v-8H7v8H2a2 2 0 0 1-2-2z\'%3E%3C/path%3E%3C/svg%3E'">Главная</a>
+                    <a href="manga.html" class="nav-item"><img src="img/icon-manga.png" class="icon-img icon-img-sm" alt="Манга" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Crect x=\'2\' y=\'3\' width=\'20\' height=\'18\' rx=\'2\'%3E%3C/rect%3E%3Cpath d=\'M8 7h8M8 11h6M8 15h4\'%3E%3C/path%3E%3C/svg%3E'">Манга</a>
+                    <a href="textbooks.html" class="nav-item"><img src="img/icon-textbook.png" class="icon-img icon-img-sm" alt="Учебники" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M4 19.5A2.5 2.5 0 0 1 6.5 17H20\'%3E%3C/path%3E%3Cpath d=\'M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z\'%3E%3C/path%3E%3C/svg%3E'">Учебники</a>
+                    <a href="magazines.html" class="nav-item"><img src="img/icon-magazine.png" class="icon-img icon-img-sm" alt="Журналы" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Cpath d=\'M4 4h16v16H4z\'%3E%3C/path%3E%3Cpath d=\'M8 8h8M8 12h6M8 16h4\'%3E%3C/path%3E%3C/svg%3E'">Журналы</a>
+                </nav>
+                <div class="header-search">
+                    <input type="text" class="search-input" placeholder="Поиск детективов..." id="headerSearch">
+                    <button class="search-button" onclick="performSearch()"><img src="img/icon-search.png" class="icon-img icon-img-sm" alt="Поиск" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\'%3E%3Ccircle cx=\'11\' cy=\'11\' r=\'8\'%3E%3C/circle%3E%3Cpath d=\'m21 21-4.35-4.35\'%3E%3C/path%3E%3C/svg%3E'"></button>
+                </div>
+                <div class="auth-buttons" id="authButtons"></div>
+                <a href="cart.html" class="nav-item"><img src="img/icon-cart.png" class="icon-img icon-img-sm" alt="Корзина" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Ccircle cx=\'9\' cy=\'21\' r=\'1\'%3E%3C/circle%3E%3Ccircle cx=\'20\' cy=\'21\' r=\'1\'%3E%3C/circle%3E%3Cpath d=\'M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6\'%3E%3C/path%3E%3C/svg%3E'">Корзина<span class="cart-count" id="cart-count">0</span></a>
+            </div>
+        </div>
+    </header>
+
     <!-- Модальное окно деталей книги -->
     <div class="book-detail-modal" id="bookDetailModal">
         <div class="book-detail-container">
@@ -1110,7 +1117,7 @@
         </div>
     </div>
 
-    <!-- Боковая админ-панель -->
+    <!-- Боковая админ-панель (скрыта, но оставлена) -->
     <div class="admin-panel" id="adminPanel">
         <button class="admin-close" onclick="toggleAdminPanel()">×</button>
         <div class="admin-header">
@@ -1149,7 +1156,7 @@
         </div>
     </div>
 
-    <!-- Заголовок страницы жанра -->
+    <!-- Заголовок страницы жанра - обновлены данные -->
     <section class="genre-header">
         <div class="genre-header-content">
             <h1 class="genre-title">Детективы</h1>
@@ -1214,29 +1221,30 @@
         </section>
     </div>
 
+    <!-- ПОДВАЛ - обновлен год и добавлен город -->
     <footer class="footer">
-        <p>© 2024 Литературный Оазис. Все права защищены.</p>
-        <p>Книжный магазин с душой | Ул. Бамбуково, д.13 | +7 (921) 756-77-44</p>
+        <p>© 2026 Литературный Оазис. Все права защищены.</p>
+        <p>Книжный магазин с душой | г. Прокопьевск, Ул. Бамбуково, д.13 | +7 (921) 756-77-44</p>
     </footer>
 
     <script>
         // Данные книг в жанре детектив
         const detectiveBooks = [
-            { id: 301, title: "Немой свидетель", author: "Агата Кристи", pages: 320, price: 590, year: 1937, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "img/d1.jpg", description: "Пожилая леди умирает при загадочных обстоятельствах, оставив состояние своей компаньонке. Эркюль Пуаро берётся за расследование этого запутанного дела, где главным свидетелем становится... собака!", rating: 4.7, ratingCount: 1890, genres: ["Классический детектив", "Загадочное убийство"], isbn: "978-5-04-105956-9", language: "Русский", weight: 380, dimensions: "20.5 x 13.5 x 2.2 см", publisher: "Эксмо", available: true, seriesBadge: "Пуаро" },
-            { id: 302, title: "Рождество Эркюля Пуаро", author: "Агата Кристи", pages: 288, price: 580, year: 1938, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "img/d2.jpg", description: "В канун Рождества богатый патриарх семейства зовёт всех родственников в своё поместье. В рождественскую ночь его находят убитым. Пуаро предстоит разгадать эту праздничную тайну.", rating: 4.8, ratingCount: 2345, genres: ["Классический детектив", "Семейная драма"], isbn: "978-5-04-105957-6", language: "Русский", weight: 360, dimensions: "20.5 x 13.5 x 2.0 см", publisher: "Эксмо", available: true, seriesBadge: "Пуаро" },
-            { id: 303, title: "Убийство на поле для гольфа", author: "Агата Кристи", pages: 256, price: 560, year: 1923, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "img/d3.jpg", description: "Романтический уик-энд Пуаро прерывается срочным вызовом. На поле для гольфа обнаружено тело миллионера с ножом в спине. Дело осложняется тем, что рядом найдена ещё одна жертва...", rating: 4.6, ratingCount: 1765, genres: ["Классический детектив", "Романтический"], isbn: "978-5-04-105958-3", language: "Русский", weight: 340, dimensions: "20.5 x 13.5 x 1.8 см", publisher: "Эксмо", available: true, seriesBadge: "Пуаро" },
-            { id: 304, title: "Смерть в облаках", author: "Агата Кристи", pages: 240, price: 540, year: 1935, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "img/d4.jpg", description: "Во время авиаперелёта через Ла-Манш одного из пассажиров находят мёртвым. По счастливой случайности на борту оказывается Эркюль Пуаро, которому предстоит раскрыть преступление, совершённое на высоте 3000 метров.", rating: 4.7, ratingCount: 1987, genres: ["Классический детектив", "Закрытая комната"], isbn: "978-5-04-105959-0", language: "Русский", weight: 330, dimensions: "20.5 x 13.5 x 1.7 см", publisher: "Эксмо", available: true, seriesBadge: "Пуаро" },
-            { id: 305, title: "Собака Баскервилей", author: "Артур Конан Дойл", pages: 256, price: 580, year: 1902, subgenre: "Классический детектив", series: "Шерлок Холмс", image: "img/d5.jpg", description: "Знаменитая повесть о Шерлоке Холмсе, расследующем тайну проклятия рода Баскервилей. Смерть сэра Чарльза Баскервиля и загадочный призрачный пёс, преследующий наследников.", rating: 4.9, ratingCount: 5678, genres: ["Классический детектив", "Готический"], isbn: "978-5-17-090196-8", language: "Русский", weight: 380, dimensions: "21 x 14 x 2.5 см", publisher: "АСТ", available: true, seriesBadge: "Шерлок Холмс" },
-            { id: 306, title: "Убийство в Восточном экспрессе", author: "Агата Кристи", pages: 320, price: 620, year: 1934, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "img/d6.jpg", description: "Поезд «Восточный экспресс» застревает в снежных заносах, а ночью происходит убийство. Пуаро предстоит допросить всех пассажиров и раскрыть самое знаменитое преступление в истории детективного жанра.", rating: 4.9, ratingCount: 7890, genres: ["Классический детектив", "Закрытая комната"], isbn: "978-5-04-105960-6", language: "Русский", weight: 400, dimensions: "21 x 14 x 2.8 см", publisher: "Эксмо", available: true, seriesBadge: "Пуаро" },
-            { id: 307, title: "Десять негритят", author: "Агата Кристи", pages: 288, price: 600, year: 1939, subgenre: "Психологический триллер", series: "Отдельный роман", image: "img/d7.jpg", description: "Десять человек, незнакомых друг с другом, получают приглашение на остров. Постепенно они начинают погибать один за другим в соответствии с детской считалкой.", rating: 4.9, ratingCount: 6789, genres: ["Психологический триллер", "Загадка"], isbn: "978-5-04-105961-3", language: "Русский", weight: 370, dimensions: "21 x 14 x 2.3 см", publisher: "Эксмо", available: true },
-            { id: 308, title: "Убийство Роджера Экройда", author: "Агата Кристи", pages: 304, price: 590, year: 1926, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "img/d8.jpg", description: "Роман, который шокировал читателей неожиданной развязкой и навсегда изменил жанр детектива. Пуаро расследует убийство богатого вдовца.", rating: 4.8, ratingCount: 4567, genres: ["Классический детектив", "Неожиданный финал"], isbn: "978-5-04-105962-0", language: "Русский", weight: 380, dimensions: "21 x 14 x 2.5 см", publisher: "Эксмо", available: true, seriesBadge: "Пуаро" }
+            { id: 301, title: "Немой свидетель", author: "Агата Кристи", pages: 320, price: 590, year: 1937, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "img/d1.jpg", description: "Пожилая леди умирает при загадочных обстоятельствах, оставив состояние своей компаньонке. Эркюль Пуаро берётся за расследование этого запутанного дела, где главным свидетелем становится... собака!", rating: 4.7, ratingCount: 1890, genre: "Детектив", isbn: "978-5-04-105956-9", publisher: "Эксмо", language: "Русский" },
+            { id: 302, title: "Рождество Эркюля Пуаро", author: "Агата Кристи", pages: 288, price: 580, year: 1938, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "img/d2.jpg", description: "В канун Рождества богатый патриарх семейства зовёт всех родственников в своё поместье. В рождественскую ночь его находят убитым. Пуаро предстоит разгадать эту праздничную тайну.", rating: 4.8, ratingCount: 2345, genre: "Детектив", isbn: "978-5-04-105957-6", publisher: "Эксмо", language: "Русский" },
+            { id: 303, title: "Убийство на поле для гольфа", author: "Агата Кристи", pages: 256, price: 560, year: 1923, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "img/d3.jpg", description: "Романтический уик-энд Пуаро прерывается срочным вызовом. На поле для гольфа обнаружено тело миллионера с ножом в спине. Дело осложняется тем, что рядом найдена ещё одна жертва...", rating: 4.6, ratingCount: 1765, genre: "Детектив", isbn: "978-5-04-105958-3", publisher: "Эксмо", language: "Русский" },
+            { id: 304, title: "Смерть в облаках", author: "Агата Кристи", pages: 240, price: 540, year: 1935, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "img/d4.jpg", description: "Во время авиаперелёта через Ла-Манш одного из пассажиров находят мёртвым. По счастливой случайности на борту оказывается Эркюль Пуаро, которому предстоит раскрыть преступление, совершённое на высоте 3000 метров.", rating: 4.7, ratingCount: 1987, genre: "Детектив", isbn: "978-5-04-105959-0", publisher: "Эксмо", language: "Русский" },
+            { id: 305, title: "Собака Баскервилей", author: "Артур Конан Дойл", pages: 256, price: 580, year: 1902, subgenre: "Классический детектив", series: "Шерлок Холмс", image: "img/d5.jpg", description: "Знаменитая повесть о Шерлоке Холмсе, расследующем тайну проклятия рода Баскервилей. Смерть сэра Чарльза Баскервиля и загадочный призрачный пёс, преследующий наследников.", rating: 4.9, ratingCount: 5678, genre: "Детектив", isbn: "978-5-17-090196-8", publisher: "АСТ", language: "Русский" },
+            { id: 306, title: "Убийство в Восточном экспрессе", author: "Агата Кристи", pages: 320, price: 620, year: 1934, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "img/d6.jpg", description: "Поезд «Восточный экспресс» застревает в снежных заносах, а ночью происходит убийство. Пуаро предстоит допросить всех пассажиров и раскрыть самое знаменитое преступление в истории детективного жанра.", rating: 4.9, ratingCount: 7890, genre: "Детектив", isbn: "978-5-04-105960-6", publisher: "Эксмо", language: "Русский" },
+            { id: 307, title: "Десять негритят", author: "Агата Кристи", pages: 288, price: 600, year: 1939, subgenre: "Психологический триллер", series: "Отдельный роман", image: "img/d7.jpg", description: "Десять человек, незнакомых друг с другом, получают приглашение на остров. Постепенно они начинают погибать один за другим в соответствии с детской считалкой.", rating: 4.9, ratingCount: 6789, genre: "Детектив", isbn: "978-5-04-105961-3", publisher: "Эксмо", language: "Русский" },
+            { id: 308, title: "Убийство Роджера Экройда", author: "Агата Кристи", pages: 304, price: 590, year: 1926, subgenre: "Классический детектив", series: "Эркюль Пуаро", image: "img/d8.jpg", description: "Роман, который шокировал читателей неожиданной развязкой и навсегда изменил жанр детектива. Пуаро расследует убийство богатого вдовца.", rating: 4.8, ratingCount: 4567, genre: "Детектив", isbn: "978-5-04-105962-0", publisher: "Эксмо", language: "Русский" }
         ];
 
         let currentBooks = [...detectiveBooks];
         let currentUser = null;
         const ADMIN_CREDENTIALS = { login: "8355Vova", password: "Adf220906" };
 
-        // Авторизация
+        // ========== ФУНКЦИИ АВТОРИЗАЦИИ ==========
         function showAuthModal(type) {
             document.getElementById('authModal').style.display = 'flex';
             switchAuthTab(type);
@@ -1267,6 +1275,7 @@
                 successEl.style.display = 'block';
                 errorEl.style.display = 'none';
                 updateAuthButtons();
+                updateCartCount();
                 setTimeout(() => closeAuthModal(), 1000);
                 return;
             }
@@ -1278,6 +1287,7 @@
                 successEl.style.display = 'block';
                 errorEl.style.display = 'none';
                 updateAuthButtons();
+                updateCartCount();
                 setTimeout(() => closeAuthModal(), 1000);
             } else {
                 errorEl.style.display = 'block';
@@ -1310,28 +1320,28 @@
             successEl.style.display = 'block';
             errorEl.style.display = 'none';
             updateAuthButtons();
+            updateCartCount();
             setTimeout(() => closeAuthModal(), 1500);
         }
         function userLogout() {
             currentUser = null;
             localStorage.removeItem('currentUser');
             updateAuthButtons();
+            document.getElementById('adminPanel').classList.remove('open');
         }
+
+        // Обновленная функция updateAuthButtons - без кнопки "Админ"
         function updateAuthButtons() {
             const authDiv = document.getElementById('authButtons');
-            const adminBtn = document.getElementById('adminPanelBtn');
             if (currentUser) {
                 const avatarLetter = currentUser.name.charAt(0).toUpperCase();
-                authDiv.innerHTML = `<div class="user-menu"><div class="user-info" onclick="window.location.href='index.html#profile'"><div class="user-avatar">${avatarLetter}</div><span class="user-name">${currentUser.name}</span></div><button class="logout-btn" onclick="userLogout()">Выйти</button></div>`;
-                if (currentUser.isAdmin) adminBtn.classList.add('visible');
-                else adminBtn.classList.remove('visible');
+                authDiv.innerHTML = `<div class="user-menu"><div class="user-info" onclick="alert('Профиль: ${currentUser.name}\\nEmail: ${currentUser.email}')"><div class="user-avatar">${avatarLetter}</div><span class="user-name">${currentUser.name}</span></div><button class="logout-btn" onclick="userLogout()">Выйти</button></div>`;
             } else {
                 authDiv.innerHTML = `<button class="login-btn" onclick="showAuthModal('login')">Войти</button><button class="register-btn" onclick="showAuthModal('register')">Регистрация</button>`;
-                adminBtn.classList.remove('visible');
             }
         }
 
-        // Корзина
+        // ========== ФУНКЦИИ ДЛЯ РАБОТЫ С КОРЗИНОЙ ==========
         function addToCart(bookId) {
             const book = detectiveBooks.find(b => b.id === bookId);
             let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
@@ -1357,15 +1367,15 @@
             setTimeout(() => n.remove(), 3000);
         }
 
-        // Отображение
+        // ========== ФУНКЦИИ ОТОБРАЖЕНИЯ ==========
         function showBookDetail(bookId) {
             const book = detectiveBooks.find(b => b.id === bookId);
             if (!book) return;
             const modal = document.getElementById('bookDetailModal');
             const content = document.getElementById('bookDetailContent');
-            const seriesHTML = book.seriesBadge ? `<div class="book-detail-item"><div class="book-detail-label">Серия</div><div class="book-detail-value">${book.seriesBadge}</div></div>` : '';
+            const seriesHTML = book.series ? `<div class="book-detail-item"><div class="book-detail-label">Серия</div><div class="book-detail-value">${book.series}</div></div>` : '';
             content.innerHTML = `
-                <div class="book-detail-image-container"><img src="${book.image}" class="book-detail-image" alt="${book.title}"></div>
+                <div class="book-detail-image-container"><img src="${book.image}" class="book-detail-image" alt="${book.title}" onerror="this.src='https://via.placeholder.com/220x320?text=${encodeURIComponent(book.title)}'"></div>
                 <div class="book-detail-main">
                     <h3 class="book-detail-name">${book.title}</h3>
                     <p class="book-detail-author">${book.author}</p>
@@ -1392,13 +1402,14 @@
 
         function displayBooks() {
             const grid = document.getElementById('detectiveBooksGrid');
+            if (!grid) return;
             grid.innerHTML = '';
             currentBooks.forEach(book => {
-                const seriesBadge = book.seriesBadge ? `<span style="font-size: 12px; color: var(--accent-color); font-weight: 600; background: rgba(255, 140, 0, 0.1); padding: 2px 8px; border-radius: 10px; border: 1px solid rgba(255, 140, 0, 0.2); display: inline-block; margin-top: 5px;">${book.seriesBadge}</span>` : '';
+                const seriesBadge = book.series ? `<span style="font-size: 12px; color: var(--accent-color); font-weight: 600; background: rgba(255, 140, 0, 0.1); padding: 2px 8px; border-radius: 10px; border: 1px solid rgba(255, 140, 0, 0.2); display: inline-block; margin-top: 5px;">${book.series}</span>` : '';
                 const card = document.createElement('div');
                 card.className = 'book-card';
                 card.innerHTML = `
-                    <div class="book-image-container" onclick="showBookDetail(${book.id})"><img src="${book.image}" class="book-image"></div>
+                    <div class="book-image-container" onclick="showBookDetail(${book.id})"><img src="${book.image}" class="book-image" onerror="this.src='https://via.placeholder.com/200x300?text=${encodeURIComponent(book.title)}'"></div>
                     <div class="book-content">
                         <h3 class="book-title" onclick="showBookDetail(${book.id})">${book.title}</h3>
                         <p class="book-author">${book.author}</p>
@@ -1416,14 +1427,16 @@
             const sortValue = document.getElementById('sortSelect').value;
             const priceValue = document.getElementById('priceSelect').value;
             const authorValue = document.getElementById('authorSelect').value;
-            let filteredBooks = detectiveBooks.filter(book => {
-                if (priceValue === 'all') return true;
-                if (priceValue === '0-500') return book.price <= 500;
-                if (priceValue === '500-1000') return book.price >= 500 && book.price <= 1000;
-                if (priceValue === '1000+') return book.price > 1000;
-                return true;
-            });
+            let filteredBooks = [...detectiveBooks];
+            
+            if (priceValue !== 'all') {
+                if (priceValue === '0-500') filteredBooks = filteredBooks.filter(book => book.price <= 500);
+                else if (priceValue === '500-1000') filteredBooks = filteredBooks.filter(book => book.price >= 500 && book.price <= 1000);
+                else if (priceValue === '1000+') filteredBooks = filteredBooks.filter(book => book.price > 1000);
+            }
+            
             if (authorValue !== 'all') filteredBooks = filteredBooks.filter(book => book.author === authorValue);
+            
             filteredBooks.sort((a, b) => {
                 if (sortValue === 'popular') return b.ratingCount - a.ratingCount;
                 if (sortValue === 'price-asc') return a.price - b.price;
@@ -1451,7 +1464,7 @@
             displayBooks();
         }
 
-        // Админ-панель
+        // ========== АДМИН-ПАНЕЛЬ ==========
         function toggleAdminPanel() {
             if (!currentUser || !currentUser.isAdmin) { alert('Доступ запрещен!'); return; }
             document.getElementById('adminPanel').classList.toggle('open');
@@ -1466,18 +1479,21 @@
         function loadUsersTable() {
             const users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
             document.getElementById('totalUsers').textContent = users.length;
-            document.getElementById('usersTable').innerHTML = users.map(u => `<tr><td>${u.id}</td><td>${u.name}</td><td>${u.username}</td><td>${u.password}</td><td>${u.email}</td><td>${u.phone}</td><td>${u.registrationDate}</td><td>0</td></tr>`).join('');
+            const tbody = document.getElementById('usersTable');
+            if (tbody) tbody.innerHTML = users.map(u => `<tr><td>${u.id}</td><td>${u.name}</td><td>${u.username}</td><td>${u.password}</td><td>${u.email}</td><td>${u.phone}</td><td>${u.registrationDate}</td><td>0</td></tr>`).join('');
         }
         function loadOrdersTable() {
             const orders = JSON.parse(localStorage.getItem('userOrders')) || [];
             document.getElementById('totalOrders').textContent = orders.length;
             document.getElementById('totalRevenue').textContent = orders.reduce((s,o)=>s+o.total,0) + ' руб';
-            document.getElementById('ordersTable').innerHTML = orders.map(o => `<tr><td>#${o.id}</td><td>Пользователь ${o.userId}</td><td>${o.items[0].title}</td><td>1</td><td>${o.total} руб</td><td>${o.date}</td><td><span class="status-badge status-active">Завершен</span></td></tr>`).join('');
+            const tbody = document.getElementById('ordersTable');
+            if (tbody) tbody.innerHTML = orders.map(o => `<tr><td>#${o.id}</td><td>Пользователь ${o.userId}</td><td>${o.items[0].title}</td><td>1</td><td>${o.total} руб</td><td>${o.date}</td><td>Завершен</td></tr>`).join('');
         }
         function loadStatsTable() {
             const stats = JSON.parse(localStorage.getItem('bookStatistics')) || [];
             document.getElementById('totalBooksSold').textContent = stats.reduce((s,st)=>s+st.sold,0);
-            document.getElementById('statsTable').innerHTML = stats.map(s => `<tr><td>${s.bookTitle}</td><td>${s.author}</td><td>${s.sold}</td><td>${s.revenue} руб</td><td>${s.sold>10?'⭐⭐⭐':'⭐'}</td></tr>`).join('');
+            const tbody = document.getElementById('statsTable');
+            if (tbody) tbody.innerHTML = stats.map(s => `<tr><td>${s.bookTitle}</td><td>${s.author}</td><td>${s.sold}</td><td>${s.revenue} руб</td><td>${s.sold>10?'⭐⭐⭐':'⭐'}</td></tr>`).join('');
         }
         function refreshUsers() { loadUsersTable(); showNotification('Обновлено!','success'); }
         function refreshOrders() { loadOrdersTable(); showNotification('Обновлено!','success'); }
@@ -1486,7 +1502,7 @@
         function exportOrders() { showNotification('Экспортировано!','success'); }
         function exportStats() { showNotification('График открывается...','info'); }
 
-        // Инициализация
+        // ========== ИНИЦИАЛИЗАЦИЯ ==========
         document.addEventListener('DOMContentLoaded', function() {
             const saved = localStorage.getItem('currentUser');
             if (saved) { currentUser = JSON.parse(saved); }
