@@ -330,7 +330,7 @@
             box-shadow: var(--shadow-lg);
         }
 
-        /* ===== ШАПКА - ДВЕ СТРОКИ ===== */
+        /* ===== ШАПКА - ДВЕ СТРОКИ (БЕЗ КНОПКИ АДМИН) ===== */
         .header {
             background: linear-gradient(135deg, var(--light-color), #F5E6D3);
             border-bottom: 4px solid var(--primary-color);
@@ -544,41 +544,28 @@
             font-size: 13px;
         }
 
+        /* Кнопка выхода как на главной - коричневая, не красная */
         .logout-btn {
-            padding: 6px 12px;
-            background: linear-gradient(135deg, #DC143C, #B22222);
-            color: white;
-            border: none;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .logout-btn:hover {
-            background: linear-gradient(135deg, #B22222, #8B0000);
-            transform: translateY(-2px);
-        }
-
-        .admin-panel-btn {
-            background: linear-gradient(135deg, #228B22, #006400);
+            padding: 6px 14px;
+            background: var(--primary-color);
             color: white;
             border: none;
             border-radius: var(--radius-md);
-            padding: 8px 14px;
             cursor: pointer;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
-            display: none;
+            transition: var(--transition);
         }
 
-        .admin-panel-btn.visible {
-            display: flex;
-        }
-
-        .admin-panel-btn:hover {
-            background: linear-gradient(135deg, #006400, #004d00);
+        .logout-btn:hover {
+            background: var(--secondary-color);
             transform: translateY(-2px);
+            box-shadow: var(--shadow-interactive);
+        }
+
+        /* Кнопка админ полностью скрыта */
+        .admin-panel-btn {
+            display: none !important;
         }
 
         /* Основной контент */
@@ -588,7 +575,7 @@
             padding: 0 30px;
         }
 
-        /* Боковая админ-панель */
+        /* Боковая админ-панель (скрыта, но оставлена для функциональности) */
         .admin-panel {
             position: fixed;
             left: -420px;
@@ -981,6 +968,7 @@
             box-shadow: var(--shadow-lg);
         }
 
+        /* ПОДВАЛ - год 2026, город Прокопьевск */
         .footer {
             background: linear-gradient(135deg, var(--dark-color), #4A3529);
             color: #F5E6D3;
@@ -1092,7 +1080,7 @@
         </div>
     </div>
 
-    <!-- Шапка - две строки -->
+    <!-- Шапка - две строки (без кнопки Админ) -->
     <header class="header">
         <div class="header-row-top">
             <a href="index.html" class="logo">Литературный Оазис</a>
@@ -1110,7 +1098,6 @@
                     <button class="search-button" onclick="performSearch()"><img src="img/icon-search.png" class="icon-img icon-img-sm" alt="Поиск" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\'%3E%3Ccircle cx=\'11\' cy=\'11\' r=\'8\'%3E%3C/circle%3E%3Cpath d=\'m21 21-4.35-4.35\'%3E%3C/path%3E%3C/svg%3E'"></button>
                 </div>
                 <div class="auth-buttons" id="authButtons"></div>
-                <button class="admin-panel-btn" id="adminPanelBtn" onclick="toggleAdminPanel()"><img src="img/icon-admin.png" class="icon-img icon-img-sm" alt="Админ" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\'%3E%3Cpath d=\'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\'%3E%3C/path%3E%3C/svg%3E'">Админ</button>
                 <a href="cart.html" class="nav-item"><img src="img/icon-cart.png" class="icon-img icon-img-sm" alt="Корзина" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'16\' height=\'16\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%238B4513\' stroke-width=\'2\'%3E%3Ccircle cx=\'9\' cy=\'21\' r=\'1\'%3E%3C/circle%3E%3Ccircle cx=\'20\' cy=\'21\' r=\'1\'%3E%3C/circle%3E%3Cpath d=\'M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6\'%3E%3C/path%3E%3C/svg%3E'">Корзина<span class="cart-count" id="cart-count">0</span></a>
             </div>
         </div>
@@ -1127,7 +1114,7 @@
         </div>
     </div>
 
-    <!-- Боковая админ-панель -->
+    <!-- Боковая админ-панель (скрыта, но оставлена) -->
     <div class="admin-panel" id="adminPanel">
         <button class="admin-close" onclick="toggleAdminPanel()">×</button>
         <div class="admin-header">
@@ -1166,7 +1153,7 @@
         </div>
     </div>
 
-    <!-- Заголовок страницы жанра -->
+    <!-- Заголовок страницы жанра - обновлены данные -->
     <section class="genre-header">
         <div class="genre-header-content">
             <h1 class="genre-title">Ужасы</h1>
@@ -1177,9 +1164,9 @@
                 здесь собраны самые страшные истории, которые заставят ваше сердце биться чаще.
             </p>
             <div class="genre-stats">
-                <div class="stat-item"><span class="stat-value">250+</span><span class="stat-label">Книг в жанре</span></div>
-                <div class="stat-item"><span class="stat-value">50+</span><span class="stat-label">Авторов</span></div>
-                <div class="stat-item"><span class="stat-value">1000+</span><span class="stat-label">Отзывов читателей</span></div>
+                <div class="stat-item"><span class="stat-value">350+</span><span class="stat-label">Книг в жанре</span></div>
+                <div class="stat-item"><span class="stat-value">65+</span><span class="stat-label">Авторов</span></div>
+                <div class="stat-item"><span class="stat-value">1200+</span><span class="stat-label">Отзывов читателей</span></div>
             </div>
         </div>
     </section>
@@ -1232,9 +1219,10 @@
         </section>
     </div>
 
+    <!-- ПОДВАЛ - обновлен год и добавлен город -->
     <footer class="footer">
-        <p>© 2024 Литературный Оазис. Все права защищены.</p>
-        <p>Книжный магазин с душой | Ул. Бамбуково, д.13 | +7 (921) 756-77-44</p>
+        <p>© 2026 Литературный Оазис. Все права защищены.</p>
+        <p>Книжный магазин с душой | г. Прокопьевск, Ул. Бамбуково, д.13 | +7 (921) 756-77-44</p>
     </footer>
 
     <script>
@@ -1339,17 +1327,15 @@
             updateAuthButtons();
             document.getElementById('adminPanel').classList.remove('open');
         }
+        
+        // Обновленная функция updateAuthButtons - без кнопки "Админ"
         function updateAuthButtons() {
             const authDiv = document.getElementById('authButtons');
-            const adminBtn = document.getElementById('adminPanelBtn');
             if (currentUser) {
                 const avatarLetter = currentUser.name.charAt(0).toUpperCase();
                 authDiv.innerHTML = `<div class="user-menu"><div class="user-info" onclick="alert('Профиль: ${currentUser.name}\\nEmail: ${currentUser.email}')"><div class="user-avatar">${avatarLetter}</div><span class="user-name">${currentUser.name}</span></div><button class="logout-btn" onclick="userLogout()">Выйти</button></div>`;
-                if (currentUser.isAdmin) adminBtn.classList.add('visible');
-                else adminBtn.classList.remove('visible');
             } else {
                 authDiv.innerHTML = `<button class="login-btn" onclick="showAuthModal('login')">Войти</button><button class="register-btn" onclick="showAuthModal('register')">Регистрация</button>`;
-                adminBtn.classList.remove('visible');
             }
         }
 
